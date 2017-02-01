@@ -42,6 +42,16 @@ public class GameManager : MonoBehaviour {
 
 	// ---------------
 
+
+	// --- LEVEL ---
+
+	// LevelManager GameObject
+	public GameObject levelObject;
+
+	// LevelManager instance
+	private LevelManager level;
+	// ---------------
+
 	// Awake is called before Start function
 	void Awake() {
 
@@ -82,6 +92,19 @@ public class GameManager : MonoBehaviour {
 		// get the class instance
 		network = NetworkManager.instance;
 	}	
+
+	// InitLevel: initializes the level following network initialization
+	public void InitLevel() {
+		
+		// check if LevelManager is already instantiated
+		if (LevelManager.instance == null)	
+
+			// instantiate the level manager
+			Instantiate(levelObject);
+
+		// get class instance
+		level = LevelManager.instance;
+	}
 
 
 	// GetBuild: return the current game build

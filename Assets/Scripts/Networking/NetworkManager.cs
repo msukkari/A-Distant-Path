@@ -121,8 +121,8 @@ public class NetworkManager : MonoBehaviour {
 		// set connection state
 		isConnected = true;
 
-		// Load the main scene
-		SceneManager.LoadScene((int) Scenes.MainScene);
+		// initialize the level
+		gm.InitLevel();
 	}
 
 	// getConnectionStatus: returns if connection is up

@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 	}	
 
 	// InitLevel: initializes the level following network initialization
-	public void InitLevel() {
+	public void InitLevel(TimeStates TimeState) {
 		
 		// check if LevelManager is already instantiated
 		if (LevelManager.instance == null)	
@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour {
 
 		// get class instance
 		level = LevelManager.instance;
+		level.setTimeState(TimeState);
 	}
 
 

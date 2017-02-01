@@ -3,10 +3,25 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+
+public enum TimeStates {
+		Past,
+		Present
+};
+
 public class LevelManager : MonoBehaviour {
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
+
+
+	private TimeStates TimeState;
+
+	TimeStates getTimeState(){
+		return this.TimeState;
+	}
+
+	public void setTimeState(TimeStates state){this.TimeState = state;}
 
 
 	void Awake() {

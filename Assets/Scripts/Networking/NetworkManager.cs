@@ -91,18 +91,18 @@ public class NetworkManager : MonoBehaviour {
 		Debug.Log("Room Joined.");
 
 		// Attempt to start game
-		OnStart();
+		OnStart(TimeStates.Past);
 	}	
 
 	// <BUILT IN CALL> OnPhotonPlayerConnected: 
 	void OnPhotonPlayerConnected(PhotonPlayer newPlayer) {
 
 		// Attempt to start game
-		OnStart();
+		OnStart(TimeStates.Present);
 	}
 
 	// OnStart: occurs when both players have joined the room. The game is ready to go :)
-	void OnStart() {
+	void OnStart(TimeStates TimeState) {
 
 		// Get all other players in the room
 		PhotonPlayer[] players = PhotonNetwork.otherPlayers;
@@ -122,7 +122,7 @@ public class NetworkManager : MonoBehaviour {
 		isConnected = true;
 
 		// initialize the level
-		gm.InitLevel();
+		gm.InitLevel(TimeState);
 	}
 
 	// getConnectionStatus: returns if connection is up

@@ -41,6 +41,15 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("level initialization...");
 
 	}	
+
+	public void LoadLevelScene(){
+		if(TimeState == TimeStates.Past){
+			SceneManager.LoadScene((int)Scenes.Past);
+		}
+		else{
+			SceneManager.LoadScene((int)Scenes.Present);
+		}
+	}
  
 
 

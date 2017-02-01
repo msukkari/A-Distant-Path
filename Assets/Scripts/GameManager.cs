@@ -18,9 +18,11 @@ using UnityEngine;
 
 // all game scenes
 public enum Scenes {
-		MainMenu = 0,
-		Loading = 1,
-		MainScene = 2
+		MainMenu,
+		Loading,
+		MainScene,
+		Past,
+		Present
 };
 
 public class GameManager : MonoBehaviour {
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour {
 		// get class instance
 		level = LevelManager.instance;
 		level.setTimeState(TimeState);
+		level.LoadLevelScene();
+		
 
 		Debug.Log(TimeState);
 	}

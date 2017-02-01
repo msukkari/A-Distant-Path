@@ -4284,6 +4284,7 @@ GameObject:
   - component: {fileID: 1484671621}
   - component: {fileID: 1484671620}
   - component: {fileID: 1484671619}
+  - component: {fileID: 1484671625}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4385,6 +4386,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1484671625
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1484671618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1500417833
 Prefab:
   m_ObjectHideFlags: 0

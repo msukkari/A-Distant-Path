@@ -105,6 +105,8 @@ public class GameManager : MonoBehaviour {
 		// get class instance
 		level = LevelManager.instance;
 		level.setTimeState(TimeState);
+
+		Debug.Log(TimeState);
 	}
 
 

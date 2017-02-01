@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkObject: {fileID: 1194044013853792, guid: 7c895731557934cfcb26deb626a36b2c,
     type: 2}
+  levelObject: {fileID: 1472357905583522, guid: f841b671eea494e829f04810199af2f0,
+    type: 2}

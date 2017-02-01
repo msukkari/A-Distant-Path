@@ -701,6 +701,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5473885b2d611e6459aaf79950bf2272, type: 2}
+    - target: {fileID: 114262278494099552, guid: c4b9091aafdcf7e419bbfaca6594514b,
+        type: 2}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4b9091aafdcf7e419bbfaca6594514b, type: 2}
   m_IsPrefabParent: 0
@@ -4304,7 +4309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ad5145cd49c354a89ecccaba8fd50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 3
   gravity: 20
 --- !u!114 &1484671620
 MonoBehaviour:

@@ -4,16 +4,17 @@ using System;
 
 public class Level : MonoBehaviour {
 	
-	private List<Tile> TileList;
+	//private List<Tile> TileList;
+
+	private LevelManager lm = LevelManager.instance;
+
 
 	// Use this for initialization
 	void Start () {
-		TileList = new List<Tile>();
 
-		foreach(Transform child in transform){			
-			TileList.Add(child.GetComponent<Tile>());
-		}
-
+		// Initialize me!
+		lm.AttachLevel(this);
+		lm.LoadTileList();
 
 	}
 	
@@ -22,7 +23,7 @@ public class Level : MonoBehaviour {
 
 	}
 
-	public List<Tile> getTileList(){return TileList;}
+	//public List<Tile> getTileList(){return TileList;}
 
 
 }

@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour {
 	// Main canvas object
 	public Canvas MainCanvas;
 
-	// GameManager GetInstance
+	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 
 

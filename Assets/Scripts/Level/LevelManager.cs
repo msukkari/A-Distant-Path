@@ -18,6 +18,12 @@ public class LevelManager : MonoBehaviour {
 
 	private TimeStates TimeState;
 
+	// TileList for given level
+	private List<Tile> TileList;
+
+	// Associated level attached to this manager
+	private Level attachedLevel = null;
+
 	TimeStates getTimeState(){
 		return this.TimeState;
 	}
@@ -62,8 +68,28 @@ public class LevelManager : MonoBehaviour {
 		}
 
 	}
- 
 
+	// Attach a new Level object
+	public void AttachLevel(Level level) {
+
+		// Assign level to this manager
+		this.attachedLevel = level;
+	}
+
+	// Load the tile list from level into TileList
+	public void LoadTileList() {
+			
+		// Instantiate new TileList
+		TileList = new List<Tile>();
+
+		// Loop and add all tiles
+		foreach(Transform child in attachedLevel.transform){			
+			TileList.Add(child.GetComponent<Tile>());
+		}
+	}
+
+	// Get TileList
+	public List<Tile> getTileList(){return TileList;}
 
 	
 	// Update is called once per frame

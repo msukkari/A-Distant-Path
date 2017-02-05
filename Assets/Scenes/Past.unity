@@ -1320,6 +1320,10 @@ Prefab:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011319796224, guid: c4b9091aafdcf7e419bbfaca6594514b, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4b9091aafdcf7e419bbfaca6594514b, type: 2}
   m_IsPrefabParent: 0
@@ -5322,7 +5326,7 @@ GameObject:
   - component: {fileID: 2079264884}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

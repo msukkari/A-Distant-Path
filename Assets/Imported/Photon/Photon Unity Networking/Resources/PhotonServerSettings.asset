@@ -44,4 +44,5 @@ MonoBehaviour:
   - RequestForPickupTimes
   - TaggedPlayer
   - displayCur
+  - Event
   DisableAutoOpenWizard: 1

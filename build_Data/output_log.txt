@@ -7,26 +7,26 @@ Direct3D:
     VRAM:     2109 MB
     Driver:   20.19.15.4531
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.033 seconds
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+- Completed reload, in  0.042 seconds
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.377670 ms
+UnloadTime: 1.446251 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -36,44 +36,28 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 187.274582 ms
+UnloadTime: 7.148678 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 434.
-Total: 11.413718 ms (FindLiveObjects: 0.037322 ms CreateObjectMapping: 0.028925 ms MarkObjects: 11.324145 ms  DeleteObjects: 0.014929 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 435.
+Total: 0.268722 ms (FindLiveObjects: 0.023326 ms CreateObjectMapping: 0.020993 ms MarkObjects: 0.215071 ms  DeleteObjects: 0.006997 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 10fc -> priority: 1 
+  Thread -> id: 16c0 -> priority: 1 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.598807 ms
+UnloadTime: 2.201100 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 452.
-Total: 0.359696 ms (FindLiveObjects: 0.038255 ms CreateObjectMapping: 0.020527 ms MarkObjects: 0.290649 ms  DeleteObjects: 0.009797 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 453.
+Total: 0.340102 ms (FindLiveObjects: 0.036389 ms CreateObjectMapping: 0.030791 ms MarkObjects: 0.262191 ms  DeleteObjects: 0.010263 ms)
 
 attempting to join room....
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Join Failed
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Creating new room...
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
 Room Joined.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Player count not fulfilled..
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -85,41 +69,13 @@ level initialization...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Present
+Past
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.367161 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.292515 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1065.
-Total: 0.539778 ms (FindLiveObjects: 0.066247 ms CreateObjectMapping: 0.036856 ms MarkObjects: 0.429676 ms  DeleteObjects: 0.006531 ms)
-
-Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1070.
+Total: 0.426877 ms (FindLiveObjects: 0.061582 ms CreateObjectMapping: 0.030791 ms MarkObjects: 0.327972 ms  DeleteObjects: 0.006064 ms)
 

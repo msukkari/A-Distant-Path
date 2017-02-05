@@ -6,44 +6,24 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	public int cur;
 
+
 	// Use this for initialization
 	void Awake () {
-		cur = 0;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		/*
-		if(!photonView.isMine){
-			Debug.Log("Tile ID: " + cur);
-		}
-		*/
 
-
-		if(Input.GetKeyDown("space"))
-			GetComponent<PhotonView>().RPC("displayCur", PhotonTargets.All);
-			
-
+		if(photonView.isMine && Input.GetKeyDown("space"))
+			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{50});
+		
 	}
 
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.isWriting)
-        {
-            // We own this player: send the others our data
-            stream.SendNext(100);
-        }
-        else
-        {
-            // Network player, receive data
-            cur = (int)stream.ReceiveNext();
-        }
-    }
+	[PunRPC]
+	public void Event(int TileID){
+		Debug.Log(TileID);
+	}	
 
-
-    [PunRPC]
-    void displayCur(){
-    	Debug.Log(cur);
-    }
 }

@@ -106,11 +106,9 @@ public class GameManager : MonoBehaviour {
 
 		// get class instance
 
-		PhotonNetwork.isMessageQueueRunning = false;
 		level = LevelManager.instance;
 		level.setTimeState(TimeState);
 		level.LoadLevelScene();
-		PhotonNetwork.isMessageQueueRunning = true;
 		
 
 		Debug.Log(TimeState);

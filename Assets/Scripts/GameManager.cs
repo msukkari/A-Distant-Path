@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics.Debug;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -27,8 +28,11 @@ public enum Scenes {
 
 public class GameManager : MonoBehaviour {
 
+	// assets path
+	public static string ASSETSPATH = Application.dataPath;
+
 	// game build
-	private readonly string BUILD = "1.0.2";
+	private string BUILD = "1.0.2";
 
 	// static instance of GameManager
 	public static GameManager instance = null;
@@ -70,8 +74,36 @@ public class GameManager : MonoBehaviour {
 		// Sets this to not be destroyed on scene reload
 		DontDestroyOnLoad(gameObject);
 
+		// --- initialize build here ---
+		//InitBuild();
+
 		// --- initiate game here ---
 		InitGame();
+	}
+
+	// InitBuild: Get the current build (based of the git branch)
+	void InitBuild() {
+
+		/*
+
+		// Create new process instance
+		Process p = new Process();
+		p.StartInfo.UseShellExecute = false;
+		p.StartInfo.RedirectStandardOutput = true;
+
+		string path = ASSETSPATH + "/gethash.sh";
+
+		p.StartInfo.FileName = path;
+		p.Start();
+		// Do not wait for the child process to exit before
+		// reading to the end of its redirected stream.
+		// p.WaitForExit();
+		// Read the output stream first and then wait.
+		string output = p.StandardOutput.ReadToEnd();
+		p.WaitForExit();
+
+		Debug.Log(output);
+		*/
 	}
 
 
@@ -79,6 +111,8 @@ public class GameManager : MonoBehaviour {
 	void InitGame() {
 		Debug.Log("initializing game...");
 		Debug.Log(Scenes.MainMenu);
+
+		// Load main menu scene
 		SceneManager.LoadScene((int) Scenes.MainMenu);		
 	}	
 

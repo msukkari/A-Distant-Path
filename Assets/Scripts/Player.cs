@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour{
 
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour{
 
 
 	public int getCurTileID(){
-		return ((int)(transform.position.x  * 10) + (int)transform.position.z);
+		return ((int)Math.Round((transform.position.x  * 10), MidpointRounding.AwayFromZero) + (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero));
 	}
 
 }

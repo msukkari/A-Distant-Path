@@ -11,7 +11,12 @@ public class Player : MonoBehaviour{
 
 
 	public int getCurTileID(){
-		return ((int)Math.Round((transform.position.x  * 10), MidpointRounding.AwayFromZero) + (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero));
+		int x = (int)Math.Round((transform.position.x), MidpointRounding.AwayFromZero) * 10;
+		int z = (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero);
+		Debug.Log("X CORD: " + x);
+		Debug.Log("Z CORD: " + z);
+
+		return x + z;
 	}
 
 }

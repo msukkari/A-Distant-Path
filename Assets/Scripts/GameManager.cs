@@ -28,7 +28,7 @@ public enum Scenes {
 public class GameManager : MonoBehaviour {
 
 	// game build
-	private readonly string BUILD = "1.0.1";
+	private readonly string BUILD = "1.0.2";
 
 	// static instance of GameManager
 	public static GameManager instance = null;

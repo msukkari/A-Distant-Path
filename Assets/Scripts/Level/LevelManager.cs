@@ -45,7 +45,6 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLevelScene(){
 		
 		GameObject ETManager = PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
-		DontDestroyOnLoad(ETManager);
 		
 
 		if(TimeState == TimeStates.Past){

@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour {
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
+	public GameObject playerPrefab;
 
 
 	private TimeStates TimeState;
@@ -44,8 +45,14 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadLevelScene(){
 		
-		GameObject ETManager = PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
+		GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
+		EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+
+		GameObject player = Instantiate(playerPrefab, new Vector3(0, 2.0f, 0), Quaternion.identity) as GameObject;
+		ETManager.player = player.GetComponent<Player>();
+
 		DontDestroyOnLoad(ETManager);
+		DontDestroyOnLoad(player);
 
 		if(TimeState == TimeStates.Past){
 			SceneManager.LoadScene((int)Scenes.Past);
@@ -53,6 +60,7 @@ public class LevelManager : MonoBehaviour {
 		else{
 			SceneManager.LoadScene((int)Scenes.Present);
 		}
+
 	}
  
 

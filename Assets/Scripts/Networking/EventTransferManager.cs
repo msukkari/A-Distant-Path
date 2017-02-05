@@ -6,6 +6,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	public int cur;
 
+	public Player player;
 
 
 	// Use this for initialization
@@ -17,7 +18,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	void Update () {
 
 		if(photonView.isMine && Input.GetKeyDown("space"))
-			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{50});
+			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
 		
 	}
 

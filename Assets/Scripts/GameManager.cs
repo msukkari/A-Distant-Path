@@ -29,7 +29,7 @@ public enum Scenes {
 public class GameManager : MonoBehaviour {
 
 	// assets path
-	public static string ASSETSPATH = Application.dataPath;
+	//public static string ASSETSPATH = Application.dataPath;
 
 	// game build
 	private string BUILD = "1.0.2";

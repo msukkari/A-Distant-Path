@@ -76,6 +76,15 @@ public class LevelManager : MonoBehaviour {
 		this.attachedLevel = level;
 	}
 
+	public Tile getTileAt(int id){
+		foreach(Tile tile in TileList){
+			if(tile.getTileID() == id)
+				return tile;
+		}
+
+		return TileList[0];
+	}
+
 	// Load the tile list from level into TileList
 	public void LoadTileList() {
 			

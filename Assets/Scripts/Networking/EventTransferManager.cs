@@ -33,9 +33,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	[PunRPC]
 	public void Event(int TileID){
 
-		List<Tile> temp = lm.getTileList();
-
-		Tile tile = temp[TileID];
+		Tile tile = lm.getTileAt(TileID);
 		tile.GetComponent<Renderer>().material.color = Color.blue;
 
 

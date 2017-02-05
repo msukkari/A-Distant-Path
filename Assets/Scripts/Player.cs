@@ -8,4 +8,9 @@ public class Player : MonoBehaviour{
 
 	}
 
+
+	public int getCurTileID(){
+		return ((int)(transform.position.x  * 10) + (int)transform.position.z);
+	}
+
 }

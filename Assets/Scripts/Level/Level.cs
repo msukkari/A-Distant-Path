@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Level : MonoBehaviour {
 	
@@ -12,8 +13,6 @@ public class Level : MonoBehaviour {
 		foreach(Transform child in transform){			
 			TileList.Add(child.GetComponent<Tile>());
 		}
-
-		print(TileList.Count);
 
 
 	}

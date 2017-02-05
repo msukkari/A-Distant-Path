@@ -19,14 +19,14 @@ Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Da
 Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.033 seconds
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\Prototypes\build_Data\Managed\System.dll (this message is harmless)
-desktop: 1366x768 50Hz; virtual: 1366x768 at 0,0
+desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.525103 ms
+UnloadTime: 1.377670 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -36,28 +36,44 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.728873 ms
+UnloadTime: 187.274582 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 433.
-Total: 0.287385 ms (FindLiveObjects: 0.025192 ms CreateObjectMapping: 0.023326 ms MarkObjects: 0.227202 ms  DeleteObjects: 0.008864 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 434.
+Total: 11.413718 ms (FindLiveObjects: 0.037322 ms CreateObjectMapping: 0.028925 ms MarkObjects: 11.324145 ms  DeleteObjects: 0.014929 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2b80 -> priority: 1 
+  Thread -> id: 10fc -> priority: 1 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.235421 ms
+UnloadTime: 1.598807 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 451.
-Total: 0.355033 ms (FindLiveObjects: 0.027525 ms CreateObjectMapping: 0.029391 ms MarkObjects: 0.285986 ms  DeleteObjects: 0.011196 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 452.
+Total: 0.359696 ms (FindLiveObjects: 0.038255 ms CreateObjectMapping: 0.020527 ms MarkObjects: 0.290649 ms  DeleteObjects: 0.009797 ms)
 
 attempting to join room....
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Join Failed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Creating new room...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Room Joined.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player count not fulfilled..
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -69,17 +85,41 @@ level initialization...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Past
+Present
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.331239 ms
+UnloadTime: 0.367161 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1060.
-Total: 0.638220 ms (FindLiveObjects: 0.096106 ms CreateObjectMapping: 0.054584 ms MarkObjects: 0.479131 ms  DeleteObjects: 0.007464 ms)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1065.
+Total: 0.539778 ms (FindLiveObjects: 0.066247 ms CreateObjectMapping: 0.036856 ms MarkObjects: 0.429676 ms  DeleteObjects: 0.006531 ms)
 
-100
+Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Received RPC "displayCur" for viewID 1 but this PhotonView does not exist! Was remote PV. Remote called. By: 2 Maybe GO was destroyed but RPC not cleaned up.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

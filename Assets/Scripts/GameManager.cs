@@ -28,7 +28,7 @@ public enum Scenes {
 public class GameManager : MonoBehaviour {
 
 	// game build
-	private readonly string BUILD = "1.0.0";
+	private readonly string BUILD = "1.0.1";
 
 	// static instance of GameManager
 	public static GameManager instance = null;
@@ -105,9 +105,12 @@ public class GameManager : MonoBehaviour {
 			Instantiate(levelObject);
 
 		// get class instance
+
+		PhotonNetwork.isMessageQueueRunning = false;
 		level = LevelManager.instance;
 		level.setTimeState(TimeState);
 		level.LoadLevelScene();
+		PhotonNetwork.isMessageQueueRunning = true;
 		
 
 		Debug.Log(TimeState);

@@ -1,27 +1,202 @@
 Initialize engine version: 5.5.1f1 (88d00a7498cd)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
-    Vendor:   Intel
-    VRAM:     2109 MB
-    Driver:   20.19.15.4531
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 760M (ID=0x11e3)
+    Vendor:   NVIDIA
+    VRAM:     1991 MB
+    Driver:   21.21.13.7270
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
-Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.491 seconds
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
-desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+- Completed reload, in  0.046 seconds
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Scott\Documents\GitHub\McGill-2\build_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.168877 ms
+initializing game...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+MainMenu
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.369709 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 438.
+Total: 0.309306 ms (FindLiveObjects: 0.029857 ms CreateObjectMapping: 0.027058 ms MarkObjects: 0.236528 ms  DeleteObjects: 0.012129 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2d50 -> priority: 1 
+  Thread -> id: d88 -> priority: 1 
+network initializing...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.796123 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 462.
+Total: 0.432469 ms (FindLiveObjects: 0.034522 ms CreateObjectMapping: 0.027058 ms MarkObjects: 0.357358 ms  DeleteObjects: 0.013062 ms)
+
+attempting to join room....
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Room Joined.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+~~READY~~
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+level initialization...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Past
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.105901 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 2881.
+Total: 0.666198 ms (FindLiveObjects: 0.115698 ms CreateObjectMapping: 0.077443 ms MarkObjects: 0.465126 ms  DeleteObjects: 0.007464 ms)
+
+X CORD: 1600
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 15
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1900
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 2000
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 12
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1900
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 17
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1800
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 17
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1800
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 18
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1800
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 19
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 19
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+X CORD: 1400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Z CORD: 18
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

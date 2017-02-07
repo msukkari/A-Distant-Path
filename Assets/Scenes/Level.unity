@@ -50,8 +50,8 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 4
     m_Resolution: 2
@@ -12876,6 +12876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02c26662ba5aeb44babc62870383b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GrassMat: {fileID: 0}
 --- !u!4 &1384553138
 Transform:
   m_ObjectHideFlags: 0

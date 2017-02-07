@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour {
 
 
 
-	private List<int> fetchNeighborTiles(){
+	public List<int> fetchNeighborTiles(){
 		List<int> result = new List<int>();
 		int maxTileID = (GameManager.GRID_SIZE * GameManager.GRID_SIZE) - 1;
 
@@ -63,11 +63,12 @@ public class Tile : MonoBehaviour {
 		if(back_left >= 0 && back_left <= maxTileID) result.Add(back_left);
 
 
+		
 		/*
 		// Only add valid TileID's
 		foreach(int n in result){
-			if(LevelManager.instance.getTileAt(n) != null)
-				this.nIDList.Add(n);
+			//if(LevelManager.instance.getTileAt(n) != null)
+			this.nIDList.Add(n);
 		}
 		*/
 

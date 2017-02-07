@@ -19,6 +19,7 @@ public class Level : MonoBehaviour {
 		lm.LoadTileList();
 
 		setTileMaterial();
+		
 
 	}
 	

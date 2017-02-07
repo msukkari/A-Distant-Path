@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour {
 		GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
 		EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
 
-		GameObject player = Instantiate(playerPrefab, new Vector3(0, 2.0f, 0), Quaternion.identity) as GameObject;
+		GameObject player = Instantiate(playerPrefab, new Vector3(15f, 2.0f, 12f), Quaternion.identity) as GameObject;
 		ETManager.player = player.GetComponent<Player>();
 
 		DontDestroyOnLoad(ETManager);
@@ -95,6 +95,13 @@ public class LevelManager : MonoBehaviour {
 		foreach(Transform child in attachedLevel.transform){			
 			TileList.Add(child.GetComponent<Tile>());
 		}
+
+		/*
+		// Calculate the neighboring tiles for each tile
+		foreach(Tile tile in TileList){
+			tile.fetchNeighborTiles();
+		}
+		*/
 	}
 
 	// Get TileList

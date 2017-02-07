@@ -34,13 +34,17 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	public void Event(int TileID){
 
 		Tile tile = lm.getTileAt(TileID);
-		tile.GetComponent<Renderer>().material.color = Color.blue;
+
+		if(tile != null){
+			tile.GetComponent<Renderer>().material.color = Color.blue;
+		}
 
 		foreach(int n in tile.getNTileIDList()){
 			Tile neighbor = lm.getTileAt(n);
 
-			if(neighbor != null)
+			if(neighbor != null){
 				neighbor.GetComponent<Renderer>().material.color = Color.blue;
+			}
 		}
 
 

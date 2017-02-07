@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour {
 				return tile;
 		}
 
-		return TileList[0];
+		return null;
 	}
 
 	// Load the tile list from level into TileList

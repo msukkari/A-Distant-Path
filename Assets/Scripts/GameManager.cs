@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
 
 	// static instance of GameManager
 	public static GameManager instance = null;
+	public static int GRID_SIZE = 100;
 
 
 	// --- NETWORK ---

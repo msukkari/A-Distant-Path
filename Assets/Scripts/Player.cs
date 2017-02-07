@@ -11,7 +11,7 @@ public class Player : MonoBehaviour{
 
 
 	public int getCurTileID(){
-		int x = (int)Math.Round((transform.position.x), MidpointRounding.AwayFromZero) * 10;
+		int x = (int)Math.Round((transform.position.x), MidpointRounding.AwayFromZero) * GameManager.GRID_SIZE;
 		int z = (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero);
 		Debug.Log("X CORD: " + x);
 		Debug.Log("Z CORD: " + z);

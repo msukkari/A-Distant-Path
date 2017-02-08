@@ -23,7 +23,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		if(photonView.isMine && Input.GetKeyDown("space")) {
 		
 			// Transfer
-			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
+			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getIDNew()});
 
 		}
 		

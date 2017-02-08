@@ -6,15 +6,41 @@ using System;
 public class Player : MonoBehaviour{
 
 
+	private float elementTimeCount = -1f;
+
+	private const int PICKUP_TIME_THRESHOLD = 1;
+
 	void Start(){
 
 	}
 
+
+
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.E))
 			printNTiles();
+		
+		CheckElementPickup();
 	}
 
+
+	private void CheckElementPickup() {
+
+		// check if player is attempting to collect water
+		if (!Input.GetKey(KeyCode.F)) {
+			elementTimeCount = 0;
+			return;
+		}
+
+		elementTimeCount += Time.deltaTime;
+
+		if (elementTimeCount >= PICKUP_TIME_THRESHOLD) {
+			Debug.Log("element pickup");
+			printNTiles();
+			elementTimeCount = 0;
+		}
+	}
+	
 	public int getCurTileID(){
 		int x = (int)Math.Round((transform.position.x), MidpointRounding.AwayFromZero) * GameManager.GRID_SIZE;
 		int z = (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero);

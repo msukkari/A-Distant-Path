@@ -24,10 +24,28 @@ public class Player : MonoBehaviour{
 		return x + z;
 	}
 
+	public int getIDNew(){
+		RaycastHit hit;
+
+		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
+			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+			if(cur != null)
+				return cur.tileID;
+		}
+
+		return -1;
+	}
+
 	// Using this to DEBUG
 	public void printNTiles(){
-		int curTileID = getCurTileID();
+
+		int curTileID = getIDNew();
 		Tile curTile = LevelManager.instance.getTileAt(curTileID);
+		if(curTile == null){
+			Debug.Log("TILE NOT FOUND");
+			return;
+		}
 		List<int> neighborList = curTile.getNTileIDList();
 
 

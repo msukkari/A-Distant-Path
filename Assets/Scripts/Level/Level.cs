@@ -18,7 +18,7 @@ public class Level : MonoBehaviour {
 		lm.AttachLevel(this);
 		lm.LoadTileList();
 
-		setTileMaterial();
+		//setTileMaterial();
 		
 
 	}
@@ -28,6 +28,7 @@ public class Level : MonoBehaviour {
 
 	}
 
+	/*
 	private void setTileMaterial(){
 		List<Tile> tileList = lm.getTileList();
 
@@ -35,6 +36,7 @@ public class Level : MonoBehaviour {
 			tileList[i].GetComponent<Renderer>().material = GrassMat;
 		}
 	}
+	*/
 
 	//public List<Tile> getTileList(){return TileList;}
 

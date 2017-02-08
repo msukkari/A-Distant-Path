@@ -6,10 +6,20 @@ using System.Collections.Generic;
 public class Tile : MonoBehaviour {
 
 	public int tileID;
+	public enum State {
+		Grass,
+		Water,
+		Fire
+	};
+	public State state;
+
+	public Material GrassMat;
+	public Material WaterMat;
+	public Material FireMat;
 
 	private Level level;
-
-	List<int> nIDList;
+	private List<int> nIDList;
+ 
 
 	// Use this for initialization
 	void Start(){
@@ -19,7 +29,9 @@ public class Tile : MonoBehaviour {
 		tileID = (int)(tilePos.x  * GameManager.GRID_SIZE) + (int)tilePos.z;
 
 		nIDList = fetchNeighborTiles();
+		setMaterial();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -73,6 +85,21 @@ public class Tile : MonoBehaviour {
 		*/
 
 		return result;
+	}
+
+	private void setMaterial(){
+		Renderer renderer = GetComponent<Renderer>();
+		switch(this.state){
+			case State.Grass:
+				renderer.material = GrassMat;
+				break;
+			case State.Water:
+				renderer.material = WaterMat;
+				break;
+			case State.Fire:
+				renderer.material = FireMat;
+				break;
+		}
 	}
 
 

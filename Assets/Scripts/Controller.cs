@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour {
 	public GameObject character;
-	public Rigidbody rb;
+	public CharacterController cc;
+	public float speed = 5;
+
+
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
+		cc = GetComponent <CharacterController> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Vector3 dispDir = Vector3.zero;
+		dispDir.x = Input.GetAxis ("LeftJoystickHorizontal");
+		dispDir.z = Input.GetAxis ("LeftJoystickVertical");
+
+		if (dispDir.sqrMagnitude > 0.4) {
+			dispDir *= speed;
+			cc.SimpleMove (dispDir);
+		}
+
 		if (Input.GetKey (KeyCode.W)) {
-			rb.AddForce (new Vector3 (0, 0, 1));
+			cc.SimpleMove(new Vector3(speed, 0,0));
 		}
 		if (Input.GetKey (KeyCode.S)) {
-			rb.AddForce (new Vector3 (0, 0, -1));
+			cc.SimpleMove(new Vector3(-speed, 0,0));
+
 		}
 		if (Input.GetKey (KeyCode.D)) {
-			rb.AddForce (new Vector3 (1, 0, 0));
+			cc.SimpleMove(new Vector3(0, 0,speed));
 		}
 		if (Input.GetKey (KeyCode.A)) {
-			rb.AddForce (new Vector3 (-1, 0, 0));
+			cc.SimpleMove(new Vector3(0, 0,-speed));
 		}
 	}
 }

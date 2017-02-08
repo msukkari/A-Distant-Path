@@ -104,3 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab4b67c5ba99f349995cb4e4cc67763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileID: 0
+  state: 0
+  GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
+  WaterMat: {fileID: 2100000, guid: 0ef0ea14618f5e647b50a9958371a307, type: 2}
+  FireMat: {fileID: 2100000, guid: 5473885b2d611e6459aaf79950bf2272, type: 2}

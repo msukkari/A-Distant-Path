@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour {
 		this.attachedLevel = level;
 	}
 
+	// Get the Tile with the passed in ID, returns null if not found
 	public Tile getTileAt(int id){
 		foreach(Tile tile in TileList){
 			if(tile.getTileID() == id)
@@ -85,7 +86,7 @@ public class LevelManager : MonoBehaviour {
 		return null;
 	}
 
-	// Load the tile list from level into TileList
+	// Load the tile list from level into TileList and initialize tiles
 	public void LoadTileList() {
 			
 		// Instantiate new TileList
@@ -96,12 +97,16 @@ public class LevelManager : MonoBehaviour {
 			TileList.Add(child.GetComponent<Tile>());
 		}
 
-		/*
-		// Calculate the neighboring tiles for each tile
+	
+		// Calculate the ID's of all the tiles (this must be done first in order for the neighbor method to work)
 		foreach(Tile tile in TileList){
-			tile.fetchNeighborTiles();
+			tile.calcID();
 		}
-		*/
+		foreach(Tile tile in TileList){
+			tile.initTile();
+		}
+		
+		
 	}
 
 	// Get TileList

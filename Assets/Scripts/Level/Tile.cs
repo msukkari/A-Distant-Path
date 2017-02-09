@@ -21,29 +21,56 @@ public class Tile : MonoBehaviour {
 	private List<int> nIDList;
  
 
-	// Use this for initialization
 	void Start(){
-		level = transform.parent.GetComponent<Level>();
 
-		Vector3 tilePos = transform.position;
-		tileID = (int)(tilePos.x  * GameManager.GRID_SIZE) + (int)tilePos.z;
-
-		nIDList = fetchNeighborTiles();
-		setMaterial();
 	}
 
 	
 	// Update is called once per frame
-	void Update () {
+	void Update (){
 	
 	}
 
-	public int getTileID(){return tileID;}
-	public List<int> getNTileIDList(){return this.nIDList;}
+	// PUBLIC METHODS //
+	public int getTileID(){return tileID;} // getter for tileID
+	public List<int> getNTileIDList(){return this.nIDList;} // getter for neighbor tile ID list
+
+	// calculates and sets the tile ID
+	public void calcID(){
+		this.tileID = (int)(transform.position.x  * GameManager.GRID_SIZE) + (int)transform.position.z;
+	}
 
 
+	// initialization of the tile goes here (tile ID calculation must be done before this method since some methods in init require all tile ID's to be calculated)
+	public void initTile(){
+		// Get the neighbor list and then validate it
+		this.fetchNeighborTiles();
+		this.validateNList();
 
-	public List<int> fetchNeighborTiles(){
+		// Set the material of the tile based on what state it is
+		this.setMaterial();
+	}
+
+
+	// PRIVATE METHODS //
+
+	// Removes invalid tile ID's (ID's that don't represent an actual tile)
+	private void validateNList(){
+		List<int> validList = new List<int>();
+
+		for(int i = 0; i < nIDList.Count; i++){
+			Tile tile = LevelManager.instance.getTileAt(nIDList[i]);
+			if(tile != null){
+				validList.Add(tile.getTileID());
+			}
+		}
+
+		this.nIDList = validList;
+	}
+
+
+	// Gets all the neighboring tile ID's and puts them in nIDList (NOTE: list must be validated! See valideNList())
+	private void fetchNeighborTiles(){
 		List<int> result = new List<int>();
 		int maxTileID = (GameManager.GRID_SIZE * GameManager.GRID_SIZE) - 1;
 
@@ -74,19 +101,10 @@ public class Tile : MonoBehaviour {
 		int back_left = this.tileID - 1 - GameManager.GRID_SIZE;
 		if(back_left >= 0 && back_left <= maxTileID) result.Add(back_left);
 
-
-		
-		/*
-		// Only add valid TileID's
-		foreach(int n in result){
-			//if(LevelManager.instance.getTileAt(n) != null)
-			this.nIDList.Add(n);
-		}
-		*/
-
-		return result;
+		this.nIDList = result;
 	}
 
+	// Sets the material of the tile based on the state it's in 
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
 		switch(this.state){

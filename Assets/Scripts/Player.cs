@@ -38,9 +38,30 @@ public class Player : MonoBehaviour{
 			Debug.Log("element pickup");
 			printNTiles();
 			elementTimeCount = 0;
+
+			if(next2Resource()){
+				Debug.Log("PLAYER IS NEXT TO A RESOURCE");
+			}
 		}
 	}
+
+	private bool next2Resource(){
+		Tile curTile = getCurTile();
+		List<int> nList = curTile.getNTileIDList();
+
+		foreach(int id in nList){
+			Tile neighbor = LevelManager.instance.getTileAt(id);
+			if(neighbor.state == Tile.State.Water || neighbor.state == Tile.State.Fire){
+				return true;
+			}
+
+		}
+
+		return false;
+	}
 	
+	/* 
+	// OLD METHOD
 	public int getCurTileID(){
 		int x = (int)Math.Round((transform.position.x), MidpointRounding.AwayFromZero) * GameManager.GRID_SIZE;
 		int z = (int)Math.Round(transform.position.z, MidpointRounding.AwayFromZero);
@@ -49,8 +70,9 @@ public class Player : MonoBehaviour{
 
 		return x + z;
 	}
+	*/
 
-	public int getIDNew(){
+	public int getCurTileID(){
 		RaycastHit hit;
 
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
@@ -63,10 +85,14 @@ public class Player : MonoBehaviour{
 		return -1;
 	}
 
+	public Tile getCurTile(){
+		return LevelManager.instance.getTileAt(this.getCurTileID());
+	}
+
 	// Using this to DEBUG
 	public void printNTiles(){
 
-		int curTileID = getIDNew();
+		int curTileID = getCurTileID();
 		Tile curTile = LevelManager.instance.getTileAt(curTileID);
 		if(curTile == null){
 			Debug.Log("TILE NOT FOUND");

@@ -91,6 +91,54 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &104406606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 104406608}
+  - component: {fileID: 104406607}
+  m_Layer: 0
+  m_Name: Movement Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &104406607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 104406606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f51cc4ea4f8e12408b2670baecda5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  zoomSpeed: 2
+  smoothTime: 1
+  maxZoom: 10
+  minZoom: 1
+  character: {fileID: 1421865437}
+  pivot: {fileID: 1995970732}
+--- !u!4 &104406608
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 104406606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1995970734}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &661588890
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,11 +466,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1421865437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1421865442
 MonoBehaviour:
@@ -546,7 +594,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1995970734}
-  - component: {fileID: 1995970733}
   m_Layer: 0
   m_Name: Pivot Point
   m_TagString: Untagged
@@ -554,24 +601,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1995970733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995970732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f51cc4ea4f8e12408b2670baecda5cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  zoomSpeed: 2
-  smoothTime: 1
-  maxZoom: 10
-  minZoom: 1
-  character: {fileID: 1421865437}
-  rotateSpeed: 0
 --- !u!4 &1995970734
 Transform:
   m_ObjectHideFlags: 0
@@ -579,10 +608,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1995970732}
   m_LocalRotation: {x: 0.1477733, y: -0, z: -0, w: 0.9890213}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015280202}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 104406608}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 16.996, y: 0, z: 0}

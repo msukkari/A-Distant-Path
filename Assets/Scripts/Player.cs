@@ -14,6 +14,8 @@ public class Player : MonoBehaviour{
 	private const int PICKUP_TIME_THRESHOLD = 1;
 
 	private int currentGun = 0;
+	private bool chargingWeapon = false;
+	private float currentCharge = 0.0f;
 
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour{
 			currentCharge = 0.0f;
 			chargingWeapon = false;
 		}
+
 	}
 
 	#region Gun Methods
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour{
 			// Changed from: if(neighbor.state == Tile.State.Water || neighbor.state == Tile.State.Fire) because 
 			// we'll have more than 10-15 element types soon. would be painful to write out all of them.
 			// That's why I use parent classes
-			if(neighbor.state == Tile.State.Water || neighbor.state == Tile.State.Fire){
+			if(neighbor.element != null){
 				return true;
 			}
 
@@ -183,7 +186,7 @@ public class Player : MonoBehaviour{
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
 			if(cur != null)
-				return cur.tileID;
+				return cur.id;
 		}
 
 		return -1;

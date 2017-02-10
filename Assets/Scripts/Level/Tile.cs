@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
 
-	public int tileID;
+	public int id;
 
 	public List<Tile> neighbors = new List<Tile>();
 
@@ -26,12 +26,12 @@ public class Tile : MonoBehaviour {
 	}
 
 	// PUBLIC METHODS //
-	public int getTileID(){return tileID;} // getter for tileID
+	public int getTileID(){return id;} // getter for id
 	public List<int> getNTileIDList(){return this.nIDList;} // getter for neighbor tile ID list
 
 	// calculates and sets the tile ID
 	public void calcID(){
-		this.tileID = (int)(transform.position.x  * GameManager.GRID_SIZE) + (int)transform.position.z;
+		this.id = (int)(transform.position.x  * GameManager.GRID_SIZE) + (int)transform.position.z;
 	}
 
 
@@ -42,9 +42,9 @@ public class Tile : MonoBehaviour {
 		this.validateNList();
 
 		// Set the material of the tile based on what state it is
-		this.setMaterial();
+		//this.setMaterial();
 
-		this.name = "Tile " + tileID;
+		this.name = "Tile " + id;
 		this.gameObject.tag = "Tile";
 	}
 
@@ -59,7 +59,7 @@ public class Tile : MonoBehaviour {
 	}
 
 	public void GainElement(ElementType elementType) {
-		Level.CreateElementAtTile (this, elementType);
+		LevelManager.CreateElementAtTile (this, elementType);
 	}
 
 	public void SetNavigatable(bool navigatable) {
@@ -102,28 +102,28 @@ public class Tile : MonoBehaviour {
 		// Forward is considered to be in the positive z-axis
 		// Right is considered to be in the positive x-axis
 
-		int forward = this.tileID + 1;
+		int forward = this.id + 1;
 		if(forward >= 0 && forward <= maxTileID) result.Add(forward);
 
-		int back = this.tileID - 1;
+		int back = this.id - 1;
 		if(back >= 0 && back <= maxTileID) result.Add(back);
 
-		int right = this.tileID + GameManager.GRID_SIZE;
+		int right = this.id + GameManager.GRID_SIZE;
 		if(right >= 0 && right <= maxTileID) result.Add(right);
 
-		int left = this.tileID - GameManager.GRID_SIZE;
+		int left = this.id - GameManager.GRID_SIZE;
 		if(left >= 0 && left <= maxTileID) result.Add(left);
 
-		int forward_right = this.tileID + 1 + GameManager.GRID_SIZE;
+		int forward_right = this.id + 1 + GameManager.GRID_SIZE;
 		if(forward_right >= 0 && forward_right <= maxTileID) result.Add(forward_right);
 
-		int forward_left = this.tileID + 1 - GameManager.GRID_SIZE;
+		int forward_left = this.id + 1 - GameManager.GRID_SIZE;
 		if(forward_left >= 0 && forward_left <= maxTileID) result.Add(forward_left);
 
-		int back_right = this.tileID - 1 + GameManager.GRID_SIZE;
+		int back_right = this.id - 1 + GameManager.GRID_SIZE;
 		if(back_right >= 0 && back_right <= maxTileID) result.Add(back_right);
 
-		int back_left = this.tileID - 1 - GameManager.GRID_SIZE;
+		int back_left = this.id - 1 - GameManager.GRID_SIZE;
 		if(back_left >= 0 && back_left <= maxTileID) result.Add(back_left);
 
 		this.nIDList = result;

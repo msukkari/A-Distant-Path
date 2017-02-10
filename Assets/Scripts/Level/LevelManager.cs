@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
-
-public enum TimeStates {
-		Past,
-		Present
-};
+using System;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
-
+	public GameObject elementManagerPrefab;
 
 	private TimeStates TimeState;
 
@@ -50,9 +46,11 @@ public class LevelManager : MonoBehaviour {
 	}	
 
 	public void LoadLevelScene(){
-		
 		GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
 		EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+
+		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
+		elementManagerGO.transform.parent = this.gameObject.transform;
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
 		ETManager.player = player.GetComponent<Player>();
@@ -107,8 +105,8 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		foreach(Tile tile in TileList) {
-			if(tile.id != player.GetComponent<Player>().getCurTile().id) {
-				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(TileType)).Length + 1) - 1);
+			if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
+				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(ElementType)).Length + 1) - 1);
 
 				if (elementType >= 0) {
 					CreateElementAtTile (tile, elementType);
@@ -140,3 +138,8 @@ public class LevelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () { }
 }
+
+public enum TimeStates {
+	Past,
+	Present
+};

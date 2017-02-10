@@ -7,7 +7,6 @@ public class ElementManager : MonoBehaviour {
 	public GameObject firePrefab;
 	public GameObject waterPrefab;
 
-
 	//private Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 

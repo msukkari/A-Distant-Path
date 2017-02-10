@@ -29,7 +29,7 @@ public class ElementAbsorbGun : Gun {
 	}
 
 	public override void AreaShot() {
-		foreach (Tile neighbor in owner.currentLocation.neighbors) {
+		foreach (Tile neighbor in owner.getCurTile().neighbors) {
 			if (neighbor.element != null) {
 				ElementType elementObtained = SuckTileElement (neighbor);
 				owner.GainElement (elementObtained, 1);

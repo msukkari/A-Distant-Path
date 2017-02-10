@@ -6,20 +6,14 @@ using System.Collections.Generic;
 public class Tile : MonoBehaviour {
 
 	public int tileID;
-	public enum State {
-		Grass,
-		Water,
-		Fire
-	};
-	public State state;
 
-	public Material GrassMat;
-	public Material WaterMat;
-	public Material FireMat;
+	public List<Tile> neighbors = new List<Tile>();
 
 	private Level level;
 	private List<int> nIDList;
- 
+
+	public Element element;
+	public bool navigatable = true;
 
 	void Start(){
 
@@ -49,6 +43,37 @@ public class Tile : MonoBehaviour {
 
 		// Set the material of the tile based on what state it is
 		this.setMaterial();
+
+		this.name = "Tile " + tileID;
+		this.gameObject.tag = "Tile";
+	}
+
+	public ElementType LoseElement() {
+		ElementType elementLost = this.element.elementType;
+		Destroy (element.gameObject);
+
+		this.element = null;
+		this.SetNavigatable (true);
+
+		return elementLost;
+	}
+
+	public void GainElement(ElementType elementType) {
+		Level.CreateElementAtTile (this, elementType);
+	}
+
+	public void SetNavigatable(bool navigatable) {
+		this.navigatable = navigatable;
+		BoxCollider collider = this.GetComponent<BoxCollider> ();
+		if (navigatable) {
+			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+		} else {
+			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
+		}
+	}
+
+	public bool HasElement() {
+		return this.element != null;
 	}
 
 
@@ -105,7 +130,7 @@ public class Tile : MonoBehaviour {
 	}
 
 	// Sets the material of the tile based on the state it's in 
-	private void setMaterial(){
+	/*private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
 		switch(this.state){
 			case State.Grass:
@@ -118,7 +143,8 @@ public class Tile : MonoBehaviour {
 				renderer.material = FireMat;
 				break;
 		}
-	}
+	}*/
+
 
 
 

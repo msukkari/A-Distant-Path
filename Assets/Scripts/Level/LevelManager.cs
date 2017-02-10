@@ -105,13 +105,37 @@ public class LevelManager : MonoBehaviour {
 		foreach(Tile tile in TileList){
 			tile.initTile();
 		}
-		
-		
+
+		foreach(Tile tile in TileList) {
+			if(tile.id != player.GetComponent<Player>().getCurTile().id) {
+				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(TileType)).Length + 1) - 1);
+
+				if (elementType >= 0) {
+					CreateElementAtTile (tile, elementType);
+				}
+			}
+
+			Collider[] neighbors = Physics.OverlapSphere(tile.transform.position, 1.0f);
+			for (int i = 0; i < neighbors.Length; i++) {
+				Tile other = neighbors[i].gameObject.GetComponent<Tile> ();
+
+				if (other != null && !tile.neighbors.Contains(other) && other != tile) {
+					tile.neighbors.Add (other);
+				}
+			}
+		}
 	}
 
 	// Get TileList
 	public List<Tile> getTileList(){return TileList;}
 
+	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
+		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);
+		elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
+		tile.element = elementCreated.GetComponent<Element> ();
+
+		tile.SetNavigatable (false);
+	}
 	
 	// Update is called once per frame
 	void Update () { }

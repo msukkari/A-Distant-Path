@@ -105,13 +105,16 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		foreach(Tile tile in TileList) {
-			if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
+			// Attaches random elements to tiles other than the player's current position. Was used for testing 
+			// out the level.
+			/*if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
+
 				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(ElementType)).Length + 1) - 1);
 
 				if (elementType >= 0) {
 					CreateElementAtTile (tile, elementType);
 				}
-			}
+			}*/
 
 			Collider[] neighbors = Physics.OverlapSphere(tile.transform.position, 1.0f);
 			for (int i = 0; i < neighbors.Length; i++) {

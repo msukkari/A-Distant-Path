@@ -43,14 +43,15 @@ public class Player : MonoBehaviour{
 		if (chargingWeapon) {
 			Debug.Log ("Charging weapon");
 			currentCharge += Time.deltaTime;
+
+			if (currentCharge > 1.0f) {
+				guns [currentGun].AreaShot ();
+			}
 		}
 
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			Debug.Log ("Released at charge = " + currentCharge);
 
-			if (currentCharge > 1.0f) {
-				guns [currentGun].AreaShot ();
-			}
 			currentCharge = 0.0f;
 			chargingWeapon = false;
 		}

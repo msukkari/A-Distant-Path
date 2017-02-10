@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ElementAbsorbGun : Gun {
 
-	/*public override void ShootGun(Tile tile) {
-		TileType elementObtained = SuckTileElement (tile);
-		owner.GainElementFromTile (elementObtained);
-	}*/
-
 	public override void ShootGun(Tile tile) {
 		if (tile.element != null) {
 			ElementType elementObtained = SuckTileElement (tile);
@@ -19,10 +14,6 @@ public class ElementAbsorbGun : Gun {
 	public override void ShootGun(Tile tile, int chargesPerHit) {
 		ShootGun (tile);
 	}
-
-	/*private TileType SuckTileElement(Tile tile) {
-		return tile.LoseElement ();
-	}*/
 
 	private ElementType SuckTileElement(Tile tile) {
 		return tile.LoseElement ();

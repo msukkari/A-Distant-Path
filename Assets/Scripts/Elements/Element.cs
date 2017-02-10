@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Element : MonoBehaviour {
+public abstract class Element : MonoBehaviour {
 
 	public ElementType elementType;
+	public int quantity = 1;
 
 	// Use this for initialization
 	void Start () {

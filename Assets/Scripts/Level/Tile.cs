@@ -16,7 +16,11 @@ public class Tile : MonoBehaviour {
 	public bool navigatable = true;
 
 	void Start(){
+		element = GetComponentInChildren<Element> ();
 
+		if (element != null) {
+			SetNavigatable (false);
+		}
 	}
 
 	
@@ -50,10 +54,13 @@ public class Tile : MonoBehaviour {
 
 	public ElementType LoseElement() {
 		ElementType elementLost = this.element.elementType;
-		Destroy (element.gameObject);
+		element.quantity--;
 
-		this.element = null;
-		this.SetNavigatable (true);
+		if (element.quantity <= 0) {
+			Destroy (element.gameObject);
+			this.element = null;
+			this.SetNavigatable (true);
+		}
 
 		return elementLost;
 	}

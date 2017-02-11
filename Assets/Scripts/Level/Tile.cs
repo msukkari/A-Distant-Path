@@ -10,10 +10,13 @@ public class Tile : MonoBehaviour {
 	public List<Tile> neighbors = new List<Tile>();
 
 	private Level level;
-	private List<int> nIDList;
+	//private List<int> nIDList;
 
 	public Element element;
 	public bool navigatable = true;
+
+	// MATERIALS //
+	public Material GrassMat;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
@@ -21,6 +24,8 @@ public class Tile : MonoBehaviour {
 		if (element != null) {
 			SetNavigatable (false);
 		}
+
+		this.setMaterial();
 	}
 
 	
@@ -31,7 +36,7 @@ public class Tile : MonoBehaviour {
 
 	// PUBLIC METHODS //
 	public int getTileID(){return id;} // getter for id
-	public List<int> getNTileIDList(){return this.nIDList;} // getter for neighbor tile ID list
+	//public List<int> getNTileIDList(){return this.nIDList;} // getter for neighbor tile ID list
 
 	// calculates and sets the tile ID
 	public void calcID(){
@@ -42,8 +47,8 @@ public class Tile : MonoBehaviour {
 	// initialization of the tile goes here (tile ID calculation must be done before this method since some methods in init require all tile ID's to be calculated)
 	public void initTile(){
 		// Get the neighbor list and then validate it
-		this.fetchNeighborTiles();
-		this.validateNList();
+		//this.fetchNeighborTiles();
+		//this.validateNList();
 
 		// Set the material of the tile based on what state it is
 		//this.setMaterial();
@@ -86,7 +91,18 @@ public class Tile : MonoBehaviour {
 
 	// PRIVATE METHODS //
 
+
+	// Sets the material of the tile based on the element it has
+	private void setMaterial(){
+		Renderer renderer = GetComponent<Renderer>();
+		if(this.element == null){
+			renderer.material = GrassMat;
+		}
+	}
+	
+
 	// Removes invalid tile ID's (ID's that don't represent an actual tile)
+	/*
 	private void validateNList(){
 		List<int> validList = new List<int>();
 
@@ -99,8 +115,10 @@ public class Tile : MonoBehaviour {
 
 		this.nIDList = validList;
 	}
+	*/
 
 
+	/* OLD NEIGHBOR FETCH METHOD
 	// Gets all the neighboring tile ID's and puts them in nIDList (NOTE: list must be validated! See valideNList())
 	private void fetchNeighborTiles(){
 		List<int> result = new List<int>();
@@ -135,22 +153,8 @@ public class Tile : MonoBehaviour {
 
 		this.nIDList = result;
 	}
+	*/
 
-	// Sets the material of the tile based on the state it's in 
-	/*private void setMaterial(){
-		Renderer renderer = GetComponent<Renderer>();
-		switch(this.state){
-			case State.Grass:
-				renderer.material = GrassMat;
-				break;
-			case State.Water:
-				renderer.material = WaterMat;
-				break;
-			case State.Fire:
-				renderer.material = FireMat;
-				break;
-		}
-	}*/
 
 
 

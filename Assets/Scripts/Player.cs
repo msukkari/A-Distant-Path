@@ -46,6 +46,7 @@ public class Player : MonoBehaviour{
 
 			if (currentCharge > 1.0f) {
 				guns [currentGun].AreaShot ();
+				currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
 			}
 		}
 
@@ -148,10 +149,8 @@ public class Player : MonoBehaviour{
 
 	private bool next2Resource(){
 		Tile curTile = getCurTile();
-		List<int> nList = curTile.getNTileIDList();
 
-		foreach(int id in nList){
-			Tile neighbor = LevelManager.instance.getTileAt(id);
+		foreach(Tile neighbor in curTile.neighbors){
 			// Changed from: if(neighbor.state == Tile.State.Water || neighbor.state == Tile.State.Fire) because 
 			// we'll have more than 10-15 element types soon. would be painful to write out all of them.
 			// That's why I use parent classes
@@ -200,17 +199,14 @@ public class Player : MonoBehaviour{
 	// Using this to DEBUG
 	public void printNTiles(){
 
-		int curTileID = getCurTileID();
-		Tile curTile = LevelManager.instance.getTileAt(curTileID);
+		Tile curTile = this.getCurTile();
 		if(curTile == null){
 			Debug.Log("TILE NOT FOUND");
 			return;
 		}
-		List<int> neighborList = curTile.getNTileIDList();
 
-
-		foreach(int n in neighborList)
-			Debug.Log(n);
+		foreach(Tile n in curTile.neighbors)
+			Debug.Log(n.getTileID());
 
 	}
 

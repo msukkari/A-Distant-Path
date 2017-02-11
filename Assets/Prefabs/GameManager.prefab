@@ -53,5 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkObject: {fileID: 1194044013853792, guid: 7c895731557934cfcb26deb626a36b2c,
     type: 2}
+  UIManagerObject: {fileID: 1648029690930406, guid: a35d4b911226aea4a935fe5977d00ec8,
+    type: 2}
   levelObject: {fileID: 1472357905583522, guid: f841b671eea494e829f04810199af2f0,
     type: 2}

@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
-
-public enum TimeStates {
-		Past,
-		Present
-};
+using System;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
-
+	public GameObject elementManagerPrefab;
 
 	private TimeStates TimeState;
 
@@ -50,9 +46,11 @@ public class LevelManager : MonoBehaviour {
 	}	
 
 	public void LoadLevelScene(){
-		
 		GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
 		EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+
+		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
+		elementManagerGO.transform.parent = this.gameObject.transform;
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
 		ETManager.player = player.GetComponent<Player>();
@@ -105,14 +103,46 @@ public class LevelManager : MonoBehaviour {
 		foreach(Tile tile in TileList){
 			tile.initTile();
 		}
-		
-		
+
+		foreach(Tile tile in TileList) {
+			// Attaches random elements to tiles other than the player's current position. Was used for testing 
+			// out the level.
+			/*if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
+
+				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(ElementType)).Length + 1) - 1);
+
+				if (elementType >= 0) {
+					CreateElementAtTile (tile, elementType);
+				}
+			}*/
+
+			Collider[] neighbors = Physics.OverlapSphere(tile.transform.position, 1.0f);
+			for (int i = 0; i < neighbors.Length; i++) {
+				Tile other = neighbors[i].gameObject.GetComponent<Tile> ();
+
+				if (other != null && !tile.neighbors.Contains(other) && other != tile) {
+					tile.neighbors.Add (other);
+				}
+			}
+		}
 	}
 
 	// Get TileList
 	public List<Tile> getTileList(){return TileList;}
 
+	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
+		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);
+		elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
+		tile.element = elementCreated.GetComponent<Element> ();
+
+		tile.SetNavigatable (false);
+	}
 	
 	// Update is called once per frame
 	void Update () { }
 }
+
+public enum TimeStates {
+	Past,
+	Present
+};

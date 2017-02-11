@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 	//public static string ASSETSPATH = Application.dataPath;
 
 	// game build
-	private string BUILD = "1.0.3";
+	private string BUILD = "elementsNew";
 
 	// static instance of GameManager
 	public static GameManager instance = null;
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour {
 
 	// ---------------
 
+	public GameObject UIManagerObject;
 
 	// --- LEVEL ---
 
@@ -57,6 +58,15 @@ public class GameManager : MonoBehaviour {
 
 	// LevelManager instance
 	private LevelManager level;
+	// ---------------
+
+	// --- ELEMENTS ---
+
+	// LevelManager GameObject
+	public GameObject elementManagerObject;
+
+	// LevelManager instance
+	private ElementManager elementManager;
 	// ---------------
 
 	// Awake is called before Start function

@@ -13,28 +13,21 @@ public class Menu : MonoBehaviour {
 	private GameManager gm = GameManager.instance;
 
 
-	// Called before Start()
-	void Awake() {
-
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	// <BUILT IN CALL> LoadOn: Called when play button is clicked
-	public void LoadOn() {
+	public void LoadOnline() {
 
 		// Initialize network connection
 		gm.InitNetwork();
 
 		// Load loading scene
 		SceneManager.LoadScene((int) Scenes.Loading);	
+ 	}
+
+ 	public void LoadOffline(){
+ 		// load off line scene
+ 		Debug.Log("LOADING OFFLINE SCENE");
+ 		
+ 		gm.InitLevel(TimeStates.Offline);
+
+
  	}
 }

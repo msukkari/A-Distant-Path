@@ -46,25 +46,34 @@ public class LevelManager : MonoBehaviour {
 	}	
 
 	public void LoadLevelScene(){
-		GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
-		EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+
 
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
-		ETManager.player = player.GetComponent<Player>();
 
-		DontDestroyOnLoad(ETManager);
+		if(TimeState != TimeStates.Offline){
+			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
+			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+			ETManager.player = player.GetComponent<Player>();
+			DontDestroyOnLoad(ETManager);
+		}
+
 		DontDestroyOnLoad(player);
 
 		if(TimeState == TimeStates.Past){
 			SceneManager.LoadScene((int)Scenes.Past);
 		}
-		else{
+		else if(TimeState == TimeStates.Present){
 			SceneManager.LoadScene((int)Scenes.Present);
 		}
-
+		else if(TimeState == TimeStates.Offline){
+ 			SceneManager.LoadScene((int) Scenes.Offline);	
+		}
+		else{
+			Debug.Log("INVALID TIMESTATE!!");
+		}
 	}
 
 	// Attach a new Level object
@@ -144,5 +153,6 @@ public class LevelManager : MonoBehaviour {
 
 public enum TimeStates {
 	Past,
-	Present
+	Present,
+	Offline
 };

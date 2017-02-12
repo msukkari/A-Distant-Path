@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Past.unity
   - enabled: 1
     path: Assets/Scenes/Present.unity
+  - enabled: 1
+    path: Assets/Scenes/Offline_Scene.unity

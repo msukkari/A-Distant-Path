@@ -23,7 +23,8 @@ public enum Scenes {
 		Loading,
 		MainScene,
 		Past,
-		Present
+		Present,
+		Offline
 };
 
 public class GameManager : MonoBehaviour {

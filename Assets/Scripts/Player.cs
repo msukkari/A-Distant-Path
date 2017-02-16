@@ -179,21 +179,35 @@ public class Player : MonoBehaviour{
 
 	#region Tile ID Methods
 
-	public int getCurTileID(){
+	public Tile getCurTile(){
 		RaycastHit hit;
 
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
 			if(cur != null)
-				return cur.id;
+				return cur;
 		}
 
-		return -1;
+		return null;
 	}
 
-	public Tile getCurTile(){
-		return LevelManager.instance.getTileAt(this.getCurTileID());
+	public int getCurTileID(){
+		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+	}
+
+	public Element getCurElement(){
+		if(this.getCurTile() == null){
+			Debug.Log("CANT FIND CUR TILE");
+		}
+		return this.getCurTile().element;
+	}
+
+	public ElementType getCurElementType(){
+		if(this.getCurElement() == null){
+			Debug.Log("WARNING: CURRENT TILE HAS NO ELEMENT");
+		}
+		return this.getCurElement().elementType;
 	}
 
 	// Using this to DEBUG

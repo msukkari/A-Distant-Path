@@ -45,4 +45,7 @@ MonoBehaviour:
   - TaggedPlayer
   - displayCur
   - Event
+  - addResource
+  - swapElements
+  - transferTileCheck
   DisableAutoOpenWizard: 1

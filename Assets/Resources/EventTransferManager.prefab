@@ -79,3 +79,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cur: 0
+  player: {fileID: 114614202194090420, guid: d1b97eaf3b01b41408b66af17bda5132, type: 2}

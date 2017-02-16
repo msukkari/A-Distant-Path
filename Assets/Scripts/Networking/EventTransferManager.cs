@@ -26,6 +26,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
 
 		}
+
+		if(photonView.isMine && Input.GetKeyDown(KeyCode.C) && player.getCurElementType() == ElementType.Transfer){
+			Debug.Log("CALLING TRANSFER TILE CHECK");
+			GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others);
+		}
 		
 	}
 
@@ -50,5 +55,27 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		Debug.Log(TileID);
 	}	
+
+
+	// Check if this player is on a transfer tile, and if so c
+	[PunRPC]
+	public void transferTileCheck(){
+		if(player == null){
+			Debug.Log("PLAYER NOT FOUND!");
+			return;
+		}
+		if(player.getCurElementType() == ElementType.Transfer){
+			Debug.Log("TRANSFER ATTEMPT DETECTED - SWAPPING");
+			GetComponent<PhotonView>().RPC("swapElements",PhotonTargets.Others);
+		}
+		else{
+			Debug.Log("NOT STANDING ON A TRANSFER ELEMENT - TRANSFER NOT DONE");
+		}
+	}
+
+	[PunRPC]
+	public void swapElements(){
+		Debug.Log("SWAPPING");
+	}
 
 }

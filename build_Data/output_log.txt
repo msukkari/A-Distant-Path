@@ -25,14 +25,14 @@ Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GETween.dll into Unity Child Domain
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll (this message is harmless)
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
+- Completed reload, in  0.477 seconds
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
-desktop: 1366x768 50Hz; virtual: 1366x768 at 0,0
+desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.677182 ms
+UnloadTime: 1.379998 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -42,26 +42,42 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 192.818588 ms
+UnloadTime: 5.607703 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 507.
-Total: 4.439051 ms (FindLiveObjects: 0.039655 ms CreateObjectMapping: 0.036389 ms MarkObjects: 4.342945 ms  DeleteObjects: 0.017261 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 524.
+Total: 0.317241 ms (FindLiveObjects: 0.039655 ms CreateObjectMapping: 0.029857 ms MarkObjects: 0.229533 ms  DeleteObjects: 0.009330 ms)
 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.570813 ms
+UnloadTime: 1.418254 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 531.
-Total: 0.394686 ms (FindLiveObjects: 0.042454 ms CreateObjectMapping: 0.030324 ms MarkObjects: 0.312109 ms  DeleteObjects: 0.009330 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 539.
+Total: 0.379756 ms (FindLiveObjects: 0.038722 ms CreateObjectMapping: 0.031257 ms MarkObjects: 0.297180 ms  DeleteObjects: 0.011663 ms)
 
 attempting to join room....
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Join Failed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Creating new room...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Room Joined.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player count not fulfilled..
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -73,55 +89,15 @@ level initialization...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Past
+Present
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.163752 ms
+UnloadTime: 0.149756 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3140.
-Total: 1.792415 ms (FindLiveObjects: 0.331704 ms CreateObjectMapping: 0.175882 ms MarkObjects: 1.268033 ms  DeleteObjects: 0.015395 ms)
-
-Started charge
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Charging weapon
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Released at charge = 0.1375625
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-989
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3078.
+Total: 1.761154 ms (FindLiveObjects: 0.253326 ms CreateObjectMapping: 0.166551 ms MarkObjects: 1.317017 ms  DeleteObjects: 0.023326 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2adc -> priority: 1 
+  Thread -> id: 3410 -> priority: 1 

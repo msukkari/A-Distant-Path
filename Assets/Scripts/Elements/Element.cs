@@ -20,5 +20,6 @@ public abstract class Element : MonoBehaviour {
 
 public enum ElementType {
 	Fire = 0,
-	Water
+	Water,
+	Transfer
 }

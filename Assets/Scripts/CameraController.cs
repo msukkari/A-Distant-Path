@@ -22,19 +22,24 @@ public class CameraController : MonoBehaviour {
 
 	Vector3 turnDir = Vector3.zero;
 
+	int type = 1;
+
 	// Use this for initialization
 	void Start () {
 		height = character.GetComponent<CapsuleCollider> ().height;
 
 		cam = pivot.GetComponentInChildren<Camera> ();
 		x = pivot.transform.rotation.y * 360/Mathf.PI;
-		Debug.Log ("X: " + x);
 		y = pivot.transform.rotation.x * 360/Mathf.PI;
-		Debug.Log ("Y: " + y);
 	}
 
 	private float x = 0;
 	private float y = 0;
+
+	private float targetAngle;
+
+	private bool horAxisUsed = false;
+	private bool verAxisUsed = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -52,20 +57,47 @@ public class CameraController : MonoBehaviour {
 
 		}
 
+
 		//Camera Rotation
-		turnDir.x = Input.GetAxis ("RightJoystickHorizontal");
-		turnDir.y = Input.GetAxis ("RightJoystickVertical");
-
-		if (turnDir.sqrMagnitude >= rotateThreshold) {
-			if (turnDir.x >= rotateThreshold || turnDir.x <= -rotateThreshold) {
-				x = Mathf.LerpAngle (x, turnDir.x * rotateSpeed + x, Time.deltaTime);
+		switch(type){
+		case 0: 
+			turnDir.x = Input.GetAxis ("RightJoystickHorizontal");
+			turnDir.y = Input.GetAxis ("RightJoystickVertical");
+			
+			if (turnDir.sqrMagnitude >= rotateThreshold) {
+				if (turnDir.x >= rotateThreshold || turnDir.x <= -rotateThreshold) {
+					x = Mathf.LerpAngle (x, turnDir.x * rotateSpeed + x, Time.deltaTime);
+				}
+				
+				if (turnDir.y >= rotateThreshold || turnDir.y <= -rotateThreshold) {
+					y = Mathf.Lerp (y, turnDir.y * rotateSpeed + y, Time.deltaTime);
+				}
+				y = Mathf.Clamp (y, 10, 70);
+				pivot.transform.rotation = Quaternion.Euler (new Vector3 (y, x, 0));
+			}
+			break;
+		case 1: 
+			if (DPadButtons.leftOnPressed) {
+				targetAngle += 90;
+				horAxisUsed = true;
+			} else if (DPadButtons.rightOnPressed) {
+				targetAngle -= 90;
+				verAxisUsed = true;
+			} else {
+				horAxisUsed = false;
+				verAxisUsed = false;
 			}
 
-			if (turnDir.y >= rotateThreshold || turnDir.y <= -rotateThreshold) {
-				y = Mathf.Lerp (y, turnDir.y * rotateSpeed + y, Time.deltaTime);
+			if (Mathf.Abs (targetAngle - x) < 0.001) {
+				x = targetAngle;
 			}
-			y = Mathf.Clamp (y, 10, 70);
-			pivot.transform.rotation = Quaternion.Euler (new Vector3 (y, x, 0));
+
+			if (x != targetAngle) {
+				x = Mathf.Lerp (x, targetAngle, Time.deltaTime*4);
+				pivot.transform.rotation = Quaternion.Euler (new Vector3 (30, x, 0));
+			}
+
+			break;
 		}
 
 	}

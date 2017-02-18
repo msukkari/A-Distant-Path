@@ -97,9 +97,7 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		if(this.element == null){
 			renderer.material = GrassMat;
-		}
 	}
 	
 

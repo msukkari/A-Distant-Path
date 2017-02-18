@@ -6,6 +6,7 @@ public class ElementManager : MonoBehaviour {
 
 	public GameObject firePrefab;
 	public GameObject waterPrefab;
+	public GameObject transferPrefab;
 
 	//private Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
@@ -14,6 +15,8 @@ public class ElementManager : MonoBehaviour {
 	void Start () {
 		elementSpawnDictionary.Add (ElementType.Fire, firePrefab);
 		elementSpawnDictionary.Add (ElementType.Water, waterPrefab);
+		elementSpawnDictionary.Add (ElementType.Transfer, transferPrefab);
+
 	}
 	
 	// Update is called once per frame

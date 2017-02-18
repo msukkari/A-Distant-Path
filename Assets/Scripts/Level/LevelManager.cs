@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
 
-	private TimeStates TimeState;
+	public TimeStates TimeState;
 
 	// TileList for given level
 	private List<Tile> TileList;

@@ -22,8 +22,10 @@ public class Tile : MonoBehaviour {
 		element = GetComponentInChildren<Element> ();
 
 		if (element != null) {
-			SetNavigatable (false);
+			if(element.elementType != ElementType.Transfer)
+				SetNavigatable (false);
 		}
+
 
 		this.setMaterial();
 	}
@@ -31,7 +33,7 @@ public class Tile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update (){
-	
+
 	}
 
 	// PUBLIC METHODS //

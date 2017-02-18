@@ -54,3 +54,5 @@ MonoBehaviour:
   firePrefab: {fileID: 1447741304997964, guid: 94dc208fb08eca44485ece46ca96cd57, type: 2}
   waterPrefab: {fileID: 1797516619120934, guid: deabe5dabd03f5c478d044150d6aa24d,
     type: 2}
+  transferPrefab: {fileID: 1047540629729090, guid: c9dd4dced2ceae94e86576dd434c6b61,
+    type: 2}

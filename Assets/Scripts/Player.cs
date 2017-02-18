@@ -179,21 +179,21 @@ public class Player : MonoBehaviour{
 
 	#region Tile ID Methods
 
-	public int getCurTileID(){
+	public Tile getCurTile(){
 		RaycastHit hit;
 
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
 			if(cur != null)
-				return cur.id;
+				return cur;
 		}
 
-		return -1;
+		return null;
 	}
 
-	public Tile getCurTile(){
-		return LevelManager.instance.getTileAt(this.getCurTileID());
+	public int getCurTileID(){
+		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
 	}
 
 	// Using this to DEBUG

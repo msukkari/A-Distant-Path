@@ -25,14 +25,14 @@ Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GETween.dll into Unity Child Domain
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll (this message is harmless)
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll into Unity Child Domain
-- Completed reload, in  0.458 seconds
+- Completed reload, in  0.614 seconds
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.350140 ms
+UnloadTime: 2.042939 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -42,26 +42,42 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.186201 ms
+UnloadTime: 9.347417 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 524.
-Total: 0.282717 ms (FindLiveObjects: 0.034523 ms CreateObjectMapping: 0.022860 ms MarkObjects: 0.205273 ms  DeleteObjects: 0.009797 ms)
+Total: 0.453468 ms (FindLiveObjects: 0.051318 ms CreateObjectMapping: 0.060182 ms MarkObjects: 0.327504 ms  DeleteObjects: 0.013995 ms)
 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.259876 ms
+UnloadTime: 1.836266 ms
 
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 539.
-Total: 0.375090 ms (FindLiveObjects: 0.048519 ms CreateObjectMapping: 0.030324 ms MarkObjects: 0.286450 ms  DeleteObjects: 0.009330 ms)
+Total: 0.452068 ms (FindLiveObjects: 0.041521 ms CreateObjectMapping: 0.046186 ms MarkObjects: 0.347565 ms  DeleteObjects: 0.015862 ms)
 
 attempting to join room....
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Join Failed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Creating new room...
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Room Joined.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player count not fulfilled..
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -73,217 +89,147 @@ level initialization...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Past
+Present
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.138093 ms
+UnloadTime: 0.152089 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3154.
-Total: 0.941926 ms (FindLiveObjects: 0.184279 ms CreateObjectMapping: 0.082575 ms MarkObjects: 0.664340 ms  DeleteObjects: 0.010263 ms)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3072.
+Total: 1.302088 ms (FindLiveObjects: 0.231399 ms CreateObjectMapping: 0.142291 ms MarkObjects: 0.916267 ms  DeleteObjects: 0.011663 ms)
 
-CANT FIND CUR TILE
+987
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-CALLING TRANSFER TILE CHECK
+1186
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-CANT FIND CUR TILE
+RECEIEVED RPC CALL FOR TRANSFER!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-CANT FIND CUR TILE
+PLAYER COMPONENT FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Started charge
+TILE FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+ELEMENT FOUND!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+ELEMENT IS A TRANSFER ELEMENT!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+RECEIEVED RPC CALL FOR TRANSFER!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+PLAYER COMPONENT FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+TILE FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+ELEMENT FOUND!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Charging weapon
+ELEMENT IS A TRANSFER ELEMENT!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Released at charge = 0.116881
+RECEIEVED RPC CALL FOR TRANSFER!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-CALLING TRANSFER TILE CHECK
+PLAYER COMPONENT FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-1292
+TILE FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-CANT FIND CUR TILE
+ELEMENT FOUND!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-CANT FIND CUR TILE
+ELEMENT IS A TRANSFER ELEMENT!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-CANT FIND CUR TILE
+RECEIEVED RPC CALL FOR TRANSFER!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-CANT FIND CUR TILE
+PLAYER COMPONENT FOUND
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Player.getCurElement () [0x00000] in <filename unknown>:0 
-  at Player.getCurElementType () [0x00000] in <filename unknown>:0 
-  at EventTransferManager.transferTileCheck () [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&)
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
-  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.ExecuteRpc (ExitGames.Client.Photon.Hashtable rpcData, .PhotonPlayer sender) [0x00000] in <filename unknown>:0 
-  at NetworkingPeer.OnEvent (ExitGames.Client.Photon.EventData photonEvent) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PeerBase.DeserializeMessageAndCallback (System.Byte[] inBuff) [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.EnetPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands () [0x00000] in <filename unknown>:0 
-  at PhotonHandler.Update () [0x00000] in <filename unknown>:0 
+TILE FOUND
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT FOUND!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT IS A TRANSFER ELEMENT!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+885
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RECEIEVED RPC CALL FOR TRANSFER!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+PLAYER COMPONENT FOUND
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+TILE FOUND
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT FOUND!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT IS A TRANSFER ELEMENT!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RECEIEVED RPC CALL FOR TRANSFER!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+PLAYER COMPONENT FOUND
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+TILE FOUND
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT FOUND!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+ELEMENT IS A TRANSFER ELEMENT!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 18ec -> priority: 1 
+  Thread -> id: 2abc -> priority: 1 

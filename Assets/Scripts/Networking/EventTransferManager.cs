@@ -27,11 +27,18 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		}
 
-		if(photonView.isMine && Input.GetKeyDown(KeyCode.C) && player.getCurElementType() == ElementType.Transfer){
+		if(photonView.isMine && Input.GetKeyDown(KeyCode.C) && player.getCurTile().element.elementType == ElementType.Transfer){
 			Debug.Log("CALLING TRANSFER TILE CHECK");
-			GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others);
+
+			int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
+			int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
+			GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
 		}
-		
+
+
+		if(photonView.isMine){
+			//Debug.Log(player.getCurTileID());
+		}
 	}
 
 
@@ -57,25 +64,52 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}	
 
 
-	// Check if this player is on a transfer tile, and if so c
+	// Checks to see if the current tile has a Transfer element, if it does then call the other player's transfer RPC
+	// NOTE: This method has a lot of Debug.Log's which I used for debugging - not 100% necessary 
 	[PunRPC]
-	public void transferTileCheck(){
-		if(player == null){
-			Debug.Log("PLAYER NOT FOUND!");
-			return;
-		}
-		if(player.getCurElementType() == ElementType.Transfer){
-			Debug.Log("TRANSFER ATTEMPT DETECTED - SWAPPING");
-			GetComponent<PhotonView>().RPC("swapElements",PhotonTargets.Others);
+	public void transferTileCheck(int fire, int water){
+		Debug.Log("RECEIEVED RPC CALL FOR TRANSFER!");
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer = play.GetComponent<Player>();
+
+		if(curPlayer != null){
+			Debug.Log("PLAYER COMPONENT FOUND");
+			Tile curTile = curPlayer.getCurTile();
+			if(curTile != null){
+				Debug.Log("TILE FOUND");
+
+				Element curElement = curTile.element;
+				if(curElement != null){
+					Debug.Log("ELEMENT FOUND!");
+					if(curElement.elementType == ElementType.Transfer){
+						Debug.Log("ELEMENT IS A TRANSFER ELEMENT!");
+						int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
+						int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
+						curPlayer.elementsInventory[ElementType.Water] = water;
+						curPlayer.elementsInventory[ElementType.Fire] = fire;
+
+						GetComponent<PhotonView>().RPC("transferResources",PhotonTargets.Others, new object[]{curFire, curWater});
+					}
+				}
+				else{
+					Debug.Log("ELEMENT NOT FOUND");
+				}
+			}
 		}
 		else{
-			Debug.Log("NOT STANDING ON A TRANSFER ELEMENT - TRANSFER NOT DONE");
+			Debug.Log("PLAYER COMPONENT NOT FOUND");
 		}
+
 	}
 
+
 	[PunRPC]
-	public void swapElements(){
-		Debug.Log("SWAPPING");
+	public void transferResources(int fire, int water){
+		Debug.Log("RECEIEVED TRANSFER COMFIRMATION");
+		//Debug.Log("OTHER PLAYER HAS " + fire + " FIRE AND " + water + " WATER");
+
+		player.elementsInventory[ElementType.Water] = water;
+		player.elementsInventory[ElementType.Fire] = fire;
 	}
 
 }

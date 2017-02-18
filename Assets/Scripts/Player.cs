@@ -196,20 +196,6 @@ public class Player : MonoBehaviour{
 		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
 	}
 
-	public Element getCurElement(){
-		if(this.getCurTile() == null){
-			Debug.Log("CANT FIND CUR TILE");
-		}
-		return this.getCurTile().element;
-	}
-
-	public ElementType getCurElementType(){
-		if(this.getCurElement() == null){
-			Debug.Log("WARNING: CURRENT TILE HAS NO ELEMENT");
-		}
-		return this.getCurElement().elementType;
-	}
-
 	// Using this to DEBUG
 	public void printNTiles(){
 

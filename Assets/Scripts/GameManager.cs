@@ -58,17 +58,22 @@ public class GameManager : MonoBehaviour {
 	public GameObject levelObject;
 
 	// LevelManager instance
-	private LevelManager level;
+	private LevelManager lm;
 	// ---------------
 
 	// --- ELEMENTS ---
 
-	// LevelManager GameObject
+	// ElementManager GameObject
 	public GameObject elementManagerObject;
 
-	// LevelManager instance
+	// ElementManager instance
 	private ElementManager elementManager;
 	// ---------------
+
+
+	// --- AI ---
+	public GameObject aiManagerObject;
+	private AIManager aiManager;
 
 	// Awake is called before Start function
 	void Awake() {
@@ -151,15 +156,24 @@ public class GameManager : MonoBehaviour {
 			Instantiate(levelObject);
 
 		// get class instance
+		lm = LevelManager.instance;
+		lm.setTimeState(TimeState);
 
-		level = LevelManager.instance;
-		level.setTimeState(TimeState);
-		level.LoadLevelScene();
-		
+		lm.LoadLevelScene();
 
-		Debug.Log(TimeState);
+
 	}
 
+	// InitAIManager: initializes that AI manager. Called from: LevelManager.cs
+	public void InitAIManager() {
+
+		if (AIManager.instance == null)
+
+			Instantiate(aiManagerObject);
+
+		aiManager = AIManager.instance;
+
+	}
 
 	// GetBuild: return the current game build
 	public string GetBuild() {

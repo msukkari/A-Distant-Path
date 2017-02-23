@@ -7,10 +7,14 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
+	// GameManager GetInstanceGameManager
+	private GameManager gm = GameManager.instance;
+
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
+
 
 	public TimeStates TimeState;
 
@@ -41,12 +45,16 @@ public class LevelManager : MonoBehaviour {
 		// Sets this to not be destroyed on scene reload
 		DontDestroyOnLoad(gameObject);
 
-		Debug.Log("level initialization...");
+		Debug.Log("LevelManager.cs: Manager initialized");
+
+		// Initialize the AI manager
+		gm.InitAIManager();
 
 	}	
 
 	public void LoadLevelScene(){
 
+		Debug.Log("LevelManager.cs: Loading scene...");
 
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
@@ -62,6 +70,7 @@ public class LevelManager : MonoBehaviour {
 
 		DontDestroyOnLoad(player);
 
+		// ---- SCENE LOADING -----
 		if(TimeState == TimeStates.Past){
 			SceneManager.LoadScene((int)Scenes.Past);
 		}
@@ -73,7 +82,8 @@ public class LevelManager : MonoBehaviour {
 		}
 		else{
 			Debug.Log("INVALID TIMESTATE!!");
-		}
+		}	
+
 	}
 
 	// Attach a new Level object

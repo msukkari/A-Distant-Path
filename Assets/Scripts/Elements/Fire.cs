@@ -11,7 +11,7 @@ public class Fire : Element {
 	void Start () {
 		elementType = ElementType.Fire;
 		nList = transform.parent.GetComponent<Tile>().neighbors;
-		IGNITE_THRESHOLD = 200;
+		IGNITE_THRESHOLD = 100000;
 
 		if(nList == null){
 			Debug.Log("Error getting nList in Fire Element");

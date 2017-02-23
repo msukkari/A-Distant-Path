@@ -9,6 +9,8 @@ public class Level : MonoBehaviour {
 	private LevelManager lm = LevelManager.instance;
 	private AIManager am = AIManager.instance;
 
+	public string name = "";
+
 
 	// Use this for initialization
 	void Start() {

@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
-	// Attach a new Level object
+	// Attach a new Level object (called from Level.cs)
 	public void AttachLevel(Level level) {
 
 		// Assign level to this manager
@@ -148,6 +148,11 @@ public class LevelManager : MonoBehaviour {
 
 	// Get TileList
 	public List<Tile> getTileList(){return TileList;}
+
+	// Get the attached level
+	public Level getAttachedLevel() {
+		return attachedLevel;
+	}
 
 	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
 		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);

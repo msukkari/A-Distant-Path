@@ -32,7 +32,13 @@ public class AIManager : MonoBehaviour {
 
 	// init: Initialze all level-specific AI related shit here
 	public void init() {	
+
+		Level level = lm.getAttachedLevel();
+
+		Debug.Log("AIManager.cs: Starting AI init for - " + level.name);
+
 		
+
 
 	}
 

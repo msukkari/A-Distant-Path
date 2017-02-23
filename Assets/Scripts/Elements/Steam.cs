@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Element : MonoBehaviour {
-
-	public ElementType elementType;
-	public int quantity = 1;
+public class Steam : Element {
 
 	// Use this for initialization
 	void Start () {
@@ -16,11 +13,4 @@ public abstract class Element : MonoBehaviour {
 	void Update () {
 		
 	}
-}
-
-public enum ElementType {
-	Fire = 0,
-	Water,
-	Steam,
-	Transfer
 }

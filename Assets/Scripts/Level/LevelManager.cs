@@ -141,7 +141,8 @@ public class LevelManager : MonoBehaviour {
 
 	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
 		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);
-		elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
+		elementCreated.transform.localPosition = ElementManager.elementSpawnDictionary [elementType].transform.localPosition;
+		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
 		tile.SetNavigatable (false);

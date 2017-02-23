@@ -127,7 +127,6 @@ public class Player : MonoBehaviour{
 	}
 
 	private void CheckElementPickup() {
-
 		// check if player is attempting to collect water
 		if (!Input.GetKey(KeyCode.F)) {
 			elementTimeCount = 0;

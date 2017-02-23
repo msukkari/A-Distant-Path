@@ -8,8 +8,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	public Player player;
 
+
 	// get LevelManager
 	private LevelManager lm = LevelManager.instance;
+	private int recentTransferID;
+	private bool transferHighlighted;
 
 
 	// Use this for initialization
@@ -20,24 +23,40 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(photonView.isMine && Input.GetKeyDown("space")) {
-		
-			// Transfer
-			GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
-
-		}
-
-		if(photonView.isMine && Input.GetKeyDown(KeyCode.C) && player.getCurTile().element.elementType == ElementType.Transfer){
-			Debug.Log("CALLING TRANSFER TILE CHECK");
-
-			int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
-			int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
-			GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
-		}
-
-
 		if(photonView.isMine){
-			//Debug.Log(player.getCurTileID());
+			if(Input.GetKeyDown("space")) {
+			
+				// Transfer
+				GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
+
+			}
+
+			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
+
+				recentTransferID = player.getCurTileID();
+
+				if(transferHighlighted == false){
+					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					transferHighlighted = true;
+				}
+
+
+				if(Input.GetKeyDown(KeyCode.C)){
+					Debug.Log("CALLING TRANSFER TILE CHECK");
+
+					int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
+					int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
+					GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
+				}
+			}
+			else{
+
+				if(transferHighlighted == true){
+					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					transferHighlighted = false;
+				}
+			}
+
 		}
 	}
 
@@ -110,6 +129,56 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		player.elementsInventory[ElementType.Water] = water;
 		player.elementsInventory[ElementType.Fire] = fire;
+	}
+
+
+	// Called when the other player is on a resource transfer tile, passes in the tileID
+	[PunRPC]
+	public void pOnTransfer(int tileID){
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+
+			if(tile.element != null){
+				if(tile.element.elementType == ElementType.Transfer){
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+				}
+				else{
+					Debug.Log("NOT A TRANSFER TILE!");
+				}
+			}
+			else{
+				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+			}
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+		}
+	}
+
+
+	// Called when the other player is not on a resource transfer tile, passes in the tileID of the transfer tile it left
+	[PunRPC]
+	public void pOffTransfer(int tileID){
+				Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+
+			if(tile.element != null){
+				if(tile.element.elementType == ElementType.Transfer){
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+				}
+				else{
+					Debug.Log("NOT A TRANSFER TILE!");
+				}
+			}
+			else{
+				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+			}
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+		}
 	}
 
 }

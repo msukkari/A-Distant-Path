@@ -25,14 +25,14 @@ Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GETween.dll into Unity Child Domain
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll (this message is harmless)
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll into Unity Child Domain
-- Completed reload, in  0.614 seconds
+- Completed reload, in  0.473 seconds
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
-desktop: 1366x768 60Hz; virtual: 3286x1080 at -1366,0
+desktop: 1920x1080 59Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 2.042939 ms
+UnloadTime: 1.361808 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -42,20 +42,20 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 9.347417 ms
+UnloadTime: 118.761932 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 524.
-Total: 0.453468 ms (FindLiveObjects: 0.051318 ms CreateObjectMapping: 0.060182 ms MarkObjects: 0.327504 ms  DeleteObjects: 0.013995 ms)
+Total: 9.546188 ms (FindLiveObjects: 0.046653 ms CreateObjectMapping: 0.034523 ms MarkObjects: 9.441219 ms  DeleteObjects: 0.015395 ms)
 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.836266 ms
+UnloadTime: 1.431788 ms
 
 Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 539.
-Total: 0.452068 ms (FindLiveObjects: 0.041521 ms CreateObjectMapping: 0.046186 ms MarkObjects: 0.347565 ms  DeleteObjects: 0.015862 ms)
+Total: 0.377424 ms (FindLiveObjects: 0.056450 ms CreateObjectMapping: 0.030324 ms MarkObjects: 0.279919 ms  DeleteObjects: 0.008864 ms)
 
 attempting to join room....
  
@@ -94,142 +94,10 @@ Present
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.152089 ms
+UnloadTime: 0.139026 ms
 
 Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3072.
-Total: 1.302088 ms (FindLiveObjects: 0.231399 ms CreateObjectMapping: 0.142291 ms MarkObjects: 0.916267 ms  DeleteObjects: 0.011663 ms)
-
-987
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-1186
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-885
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-RECEIEVED RPC CALL FOR TRANSFER!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-PLAYER COMPONENT FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-TILE FOUND
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT FOUND!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ELEMENT IS A TRANSFER ELEMENT!
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+Total: 0.902740 ms (FindLiveObjects: 0.179148 ms CreateObjectMapping: 0.083042 ms MarkObjects: 0.629352 ms  DeleteObjects: 0.009797 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2abc -> priority: 1 
+  Thread -> id: 2dd0 -> priority: 1 

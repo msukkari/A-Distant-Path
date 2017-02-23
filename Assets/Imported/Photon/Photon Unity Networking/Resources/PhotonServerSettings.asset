@@ -49,4 +49,6 @@ MonoBehaviour:
   - swapElements
   - transferTileCheck
   - transferResources
+  - pOnTransfer
+  - pOffTransfer
   DisableAutoOpenWizard: 1

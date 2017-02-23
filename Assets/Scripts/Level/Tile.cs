@@ -59,22 +59,42 @@ public class Tile : MonoBehaviour {
 		this.gameObject.tag = "Tile";
 	}
 
+	#region Tile Element Methods
+
+	public bool HasElement() {
+		return this.element != null;
+	}
+
+	public void GainElement(ElementType elementType) {
+		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
+
+		if (this.element == null || newElement != elementType) {
+			ClearElement ();
+			LevelManager.CreateElementAtTile (this, newElement);
+		}
+	}
+
 	public ElementType LoseElement() {
 		ElementType elementLost = this.element.elementType;
 		element.quantity--;
 
 		if (element.quantity <= 0) {
-			Destroy (element.gameObject);
-			this.element = null;
-			this.SetNavigatable (true);
+			ClearElement ();
 		}
 
 		return elementLost;
 	}
 
-	public void GainElement(ElementType elementType) {
-		LevelManager.CreateElementAtTile (this, elementType);
+	public void ClearElement() {
+		if (this.element != null) {
+			Destroy (element.gameObject);
+			this.element = null;
+			this.SetNavigatable (true);
+		}
 	}
+
+	#endregion
+
 
 	public void SetNavigatable(bool navigatable) {
 		this.navigatable = navigatable;
@@ -86,10 +106,6 @@ public class Tile : MonoBehaviour {
 		}
 	}
 
-	public bool HasElement() {
-		return this.element != null;
-	}
-
 
 	// PRIVATE METHODS //
 
@@ -97,9 +113,7 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		if(this.element == null){
 			renderer.material = GrassMat;
-		}
 	}
 	
 

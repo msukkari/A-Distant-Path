@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Fire : Element {
 
-	public int IGNITE_THRESHOLD = 200;
+	public int IGNITE_THRESHOLD = 100000;
 	public List<Tile> nList;
+	public bool FireSystemOn = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,9 @@ public class Fire : Element {
 	
 	// Update is called once per frame
 	void Update () {
-		stepFireSystem();
+		if(FireSystemOn){
+			stepFireSystem();
+		}	
 	}
 
 	private void stepFireSystem(){

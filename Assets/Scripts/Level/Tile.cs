@@ -21,10 +21,15 @@ public class Tile : MonoBehaviour {
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
-		if (element != null) {
-			if(element.elementType != ElementType.Transfer)
-				SetNavigatable (false);
+
+		if(element != null && element.elementType != ElementType.Transfer){
+			navigatable = false;
 		}
+		else{
+			navigatable = true;
+		}
+
+		SetNavigatable(this.navigatable);
 
 
 		this.setMaterial();
@@ -99,11 +104,10 @@ public class Tile : MonoBehaviour {
 	public void SetNavigatable(bool navigatable) {
 		this.navigatable = navigatable;
 		BoxCollider collider = this.GetComponent<BoxCollider> ();
-		if (navigatable) {
-			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
-		} else {
+
+		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
 			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
-		}
+		
 	}
 
 

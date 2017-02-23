@@ -25,14 +25,14 @@ Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GETween.dll into Unity Child Domain
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll (this message is harmless)
 Loading C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\GUIAnimatorFREE.dll into Unity Child Domain
-- Completed reload, in  0.473 seconds
+- Completed reload, in  0.467 seconds
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\michael\Documents\Unity-Projects\McGill-2\build_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 59Hz; virtual: 3286x1080 at -1366,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.361808 ms
+UnloadTime: 1.338948 ms
 initializing game...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -42,42 +42,26 @@ MainMenu
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 118.761932 ms
+UnloadTime: 163.372711 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 524.
-Total: 9.546188 ms (FindLiveObjects: 0.046653 ms CreateObjectMapping: 0.034523 ms MarkObjects: 9.441219 ms  DeleteObjects: 0.015395 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 545.
+Total: 4.063032 ms (FindLiveObjects: 0.037789 ms CreateObjectMapping: 0.030791 ms MarkObjects: 3.975790 ms  DeleteObjects: 0.010730 ms)
 
 network initializing...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.431788 ms
+UnloadTime: 1.802215 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 539.
-Total: 0.377424 ms (FindLiveObjects: 0.056450 ms CreateObjectMapping: 0.030324 ms MarkObjects: 0.279919 ms  DeleteObjects: 0.008864 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 560.
+Total: 0.689535 ms (FindLiveObjects: 0.053184 ms CreateObjectMapping: 0.049918 ms MarkObjects: 0.557039 ms  DeleteObjects: 0.028925 ms)
 
 attempting to join room....
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Join Failed
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Creating new room...
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
 Room Joined.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Player count not fulfilled..
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -89,15 +73,13 @@ level initialization...
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Present
+Past
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.139026 ms
+UnloadTime: 0.146024 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3072.
-Total: 0.902740 ms (FindLiveObjects: 0.179148 ms CreateObjectMapping: 0.083042 ms MarkObjects: 0.629352 ms  DeleteObjects: 0.009797 ms)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3175.
+Total: 0.933998 ms (FindLiveObjects: 0.180548 ms CreateObjectMapping: 0.083975 ms MarkObjects: 0.658744 ms  DeleteObjects: 0.009797 ms)
 
-Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2dd0 -> priority: 1 

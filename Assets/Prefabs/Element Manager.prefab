@@ -58,3 +58,7 @@ MonoBehaviour:
     type: 2}
   transferPrefab: {fileID: 1047540629729090, guid: c9dd4dced2ceae94e86576dd434c6b61,
     type: 2}
+  metalcubePrefab: {fileID: 1030483007302704, guid: 45f5afefbb2974541bf6df41210fb4d8,
+    type: 2}
+  metalcuberustedPrefab: {fileID: 1662827490164644, guid: 7bf90831658fa874c9abd67f859ae383,
+    type: 2}

@@ -73,7 +73,11 @@ public class Tile : MonoBehaviour {
 	public bool GainElement(ElementType elementType) {
 		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
 
-		if (this.element == null || newElement != elementType) {
+		if(newElement == ElementType.None){
+			ClearElement();
+			return true;
+		}
+		else if (this.element == null || newElement != elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
 			return true;

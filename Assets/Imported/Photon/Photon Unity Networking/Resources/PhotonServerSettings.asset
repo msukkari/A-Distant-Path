@@ -52,4 +52,5 @@ MonoBehaviour:
   - pOnTransfer
   - pOffTransfer
   - rustMetalCube
+  - growTree
   DisableAutoOpenWizard: 1

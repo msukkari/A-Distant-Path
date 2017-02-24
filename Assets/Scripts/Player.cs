@@ -55,8 +55,14 @@ public class Player : MonoBehaviour{
 
 			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
 				if(LevelManager.instance.TimeState == TimeStates.Past){
+
+					// Adding water to a metal cube
 					if(front.element != null && front.element.elementType == ElementType.MetalCube){
 						ETmanager.OnMetalRust(front.getTileID());
+					}
+					// Adding water to a stump
+					if(front.element != null && front.element.elementType == ElementType.Stump){
+						ETmanager.OnStumpWater(front.getTileID());
 					}
 
 					bool elementAdded = front.GainElement(ElementType.Water);

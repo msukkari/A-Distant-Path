@@ -49,10 +49,12 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLevelScene(){
 
 		if(TimeState == TimeStates.Past){
-			SceneManager.LoadScene((int)Scenes.Past);
+			//SceneManager.LoadScene((int)Scenes.Past);
+			PhotonNetwork.LoadLevel((int)Scenes.Past);
 		}
 		else if(TimeState == TimeStates.Present){
-			SceneManager.LoadScene((int)Scenes.Present);
+			//SceneManager.LoadScene((int)Scenes.Present);
+			PhotonNetwork.LoadLevel((int)Scenes.Present);
 		}
 		else if(TimeState == TimeStates.Offline){
  			SceneManager.LoadScene((int) Scenes.Offline);	

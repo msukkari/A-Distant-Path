@@ -71,7 +71,60 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 	}
 
+	public void OnStumpWater(int tileID){
+			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{tileID});
+	}
 
+
+	[PunRPC]
+	public void rustMetalCube(int tileID){
+		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+
+			if(tile.element != null){
+				if(tile.element.elementType == ElementType.MetalCube){
+					tile.LoseElement();
+				}
+				else{
+					Debug.Log("NOT A METAL CUBE!");
+				}
+			}
+			else{
+				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+			}
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+		}
+
+	}
+
+	[PunRPC] void growTree(int tileID){
+		Debug.Log("SAPLING HAS BEEN WATERED!");
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+
+			if(tile.element != null){
+				if(tile.element.elementType == ElementType.Stump){
+					// Just doing GainElement(ElementType.BigTree) wasn't working so I'm removing the element then adding the tree
+					tile.LoseElement();
+					tile.GainElement(ElementType.BigTree);
+				}
+				else{
+					Debug.Log("NOT A METAL CUBE!");
+				}
+			}
+			else{
+				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+			}
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+		}
+	}
 
 	[PunRPC]
 	public void Event(int TileID){
@@ -129,31 +182,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 		else{
 			Debug.Log("PLAYER COMPONENT NOT FOUND");
-		}
-
-	}
-
-	[PunRPC]
-	public void rustMetalCube(int tileID){
-		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
-		Tile tile = lm.getTileAt(tileID);
-
-		if(tile != null){
-
-			if(tile.element != null){
-				if(tile.element.elementType == ElementType.MetalCube){
-					tile.LoseElement();
-				}
-				else{
-					Debug.Log("NOT A METAL CUBE!");
-				}
-			}
-			else{
-				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
-			}
-		}
-		else{
-			Debug.Log("TILE NOT FOUND IN pOnTransfer");
 		}
 
 	}

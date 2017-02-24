@@ -121,6 +121,7 @@ public class NetworkManager : MonoBehaviour {
 		// set connection state
 		isConnected = true;
 
+		PhotonNetwork.networkingPeer.SetReceivingEnabled (1, true);
 		// initialize the level
 		gm.InitLevel(TimeState);
 	}

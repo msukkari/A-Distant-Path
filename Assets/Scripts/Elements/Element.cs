@@ -24,5 +24,8 @@ public enum ElementType {
 	Steam,
 	Transfer,
 	MetalCube,
-	MetalCubeRusted
+	MetalCubeRusted,
+	Stump,
+	Sapling,
+	BigTree
 }

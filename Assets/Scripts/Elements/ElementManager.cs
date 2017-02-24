@@ -10,6 +10,9 @@ public class ElementManager : MonoBehaviour {
 	public GameObject transferPrefab;
 	public GameObject metalcubePrefab;
 	public GameObject metalcuberustedPrefab;
+	public GameObject stumpPrefab;
+	public GameObject saplingPrefab;
+	public GameObject bigtreePrefab;
 
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<HashSet<ElementType>, ElementType> elementCombinationsDictionary = 
@@ -55,6 +58,9 @@ public class ElementManager : MonoBehaviour {
 		elementSpawnDictionary.Add (ElementType.Transfer, transferPrefab);
 		elementSpawnDictionary.Add (ElementType.MetalCube, metalcubePrefab);
 		elementSpawnDictionary.Add (ElementType.MetalCubeRusted, metalcuberustedPrefab);
+		elementSpawnDictionary.Add (ElementType.Stump, stumpPrefab);
+		elementSpawnDictionary.Add (ElementType.Sapling, saplingPrefab);
+		elementSpawnDictionary.Add (ElementType.BigTree, bigtreePrefab);
 
 	}
 
@@ -62,8 +68,15 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Fire), ElementType.Fire);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Water), ElementType.Water);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Steam), ElementType.Steam);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube), ElementType.MetalCube);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCubeRusted), ElementType.MetalCubeRusted);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Stump), ElementType.Stump);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sapling), ElementType.Sapling);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.BigTree), ElementType.BigTree);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Fire, ElementType.Water), ElementType.Steam);
-		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube, ElementType.Water), ElementType.MetalCubeRusted);		
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube, ElementType.Water), ElementType.MetalCubeRusted);	
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Stump, ElementType.Water), ElementType.Sapling);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.BigTree, ElementType.Stump), ElementType.BigTree);						
 	}
 
 	#endregion

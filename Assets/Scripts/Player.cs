@@ -40,6 +40,14 @@ public class Player : MonoBehaviour{
 			chargingWeapon = true;
 		}
 
+
+		if(Input.GetKeyDown(KeyCode.R)){
+			Tile front = getFrontTile();
+			front.GainElement(ElementType.Water);
+		}
+
+
+
 		if (chargingWeapon) {
 			Debug.Log ("Charging weapon");
 			currentCharge += Time.deltaTime;
@@ -193,6 +201,25 @@ public class Player : MonoBehaviour{
 
 	public int getCurTileID(){
 		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+	}
+
+	public Tile getFrontTile(){
+		RaycastHit hit;
+
+		Vector3 direction = Quaternion.AngleAxis(20, this.transform.right) * this.transform.forward;
+		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
+
+		if(Physics.Raycast(transform.position, direction, out hit)){
+			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+			if(cur != null){
+				Debug.Log(cur.getTileID());
+				return cur;
+			}
+		}
+
+		Debug.Log("TILE NOT FOUND");
+		return null;
 	}
 
 	// Using this to DEBUG

@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
+	public GameObject uiManagerPrefab;
 
 	public TimeStates TimeState;
 
@@ -47,21 +48,6 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadLevelScene(){
 
-
-		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
-		elementManagerGO.transform.parent = this.gameObject.transform;
-
-		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
-
-		if(TimeState != TimeStates.Offline){
-			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
-			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
-			ETManager.player = player.GetComponent<Player>();
-			DontDestroyOnLoad(ETManager);
-		}
-
-		DontDestroyOnLoad(player);
-
 		if(TimeState == TimeStates.Past){
 			SceneManager.LoadScene((int)Scenes.Past);
 		}
@@ -74,6 +60,22 @@ public class LevelManager : MonoBehaviour {
 		else{
 			Debug.Log("INVALID TIMESTATE!!");
 		}
+
+
+		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
+		elementManagerGO.transform.parent = this.gameObject.transform;
+
+		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
+
+		if(TimeState != TimeStates.Offline){
+			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
+			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+			ETManager.player = player.GetComponent<Player>();
+			player.GetComponent<Player>().ETmanager = ETManager;
+			DontDestroyOnLoad(ETManagerGO);
+		}
+
+		DontDestroyOnLoad(player);
 	}
 
 	// Attach a new Level object

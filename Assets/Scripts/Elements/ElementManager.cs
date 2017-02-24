@@ -8,6 +8,8 @@ public class ElementManager : MonoBehaviour {
 	public GameObject waterPrefab;
 	public GameObject steamPrefab;
 	public GameObject transferPrefab;
+	public GameObject metalcubePrefab;
+	public GameObject metalcuberustedPrefab;
 
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<HashSet<ElementType>, ElementType> elementCombinationsDictionary = 
@@ -51,6 +53,9 @@ public class ElementManager : MonoBehaviour {
 		elementSpawnDictionary.Add (ElementType.Water, waterPrefab);
 		elementSpawnDictionary.Add (ElementType.Steam, steamPrefab);
 		elementSpawnDictionary.Add (ElementType.Transfer, transferPrefab);
+		elementSpawnDictionary.Add (ElementType.MetalCube, metalcubePrefab);
+		elementSpawnDictionary.Add (ElementType.MetalCubeRusted, metalcuberustedPrefab);
+
 	}
 
 	private void FillElementCombinationsDictionary() {
@@ -58,6 +63,7 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Water), ElementType.Water);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Steam), ElementType.Steam);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Fire, ElementType.Water), ElementType.Steam);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube, ElementType.Water), ElementType.MetalCubeRusted);		
 	}
 
 	#endregion

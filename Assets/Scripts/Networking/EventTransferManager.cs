@@ -24,12 +24,16 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	void Update () {
 
 		if(photonView.isMine){
+
+
+			/* Added for debugging, not necessary anymore
 			if(Input.GetKeyDown("space")) {
 			
 				// Transfer
 				GetComponent<PhotonView>().RPC("Event",PhotonTargets.Others, new object[]{player.getCurTileID()});
 
 			}
+			*/
 
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
@@ -59,6 +63,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		}
 	}
+
+
+	public void OnMetalRust(int tileID){
+		if(photonView.isMine){
+			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{tileID});
+		}
+	}
+
 
 
 	[PunRPC]
@@ -117,6 +129,31 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 		else{
 			Debug.Log("PLAYER COMPONENT NOT FOUND");
+		}
+
+	}
+
+	[PunRPC]
+	public void rustMetalCube(int tileID){
+		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+
+			if(tile.element != null){
+				if(tile.element.elementType == ElementType.MetalCube){
+					tile.LoseElement();
+				}
+				else{
+					Debug.Log("NOT A METAL CUBE!");
+				}
+			}
+			else{
+				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+			}
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN pOnTransfer");
 		}
 
 	}
@@ -182,3 +219,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 }
+
+
+

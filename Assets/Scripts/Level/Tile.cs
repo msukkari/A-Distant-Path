@@ -70,13 +70,16 @@ public class Tile : MonoBehaviour {
 		return this.element != null;
 	}
 
-	public void GainElement(ElementType elementType) {
+	public bool GainElement(ElementType elementType) {
 		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
 
 		if (this.element == null || newElement != elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
+			return true;
 		}
+
+		return false;
 	}
 
 	public ElementType LoseElement() {
@@ -107,6 +110,9 @@ public class Tile : MonoBehaviour {
 
 		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
 			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
+		else if(navigatable){
+			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+		}
 		
 	}
 

@@ -22,5 +22,7 @@ public enum ElementType {
 	Fire = 0,
 	Water,
 	Steam,
-	Transfer
+	Transfer,
+	MetalCube,
+	MetalCubeRusted
 }

@@ -17,11 +17,20 @@ public class Player : MonoBehaviour{
 	private bool chargingWeapon = false;
 	private float currentCharge = 0.0f;
 
+	// This is linked when the player is initiated in LevelManager
+	public EventTransferManager ETmanager;
+
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
+
+		// Sanity check
+		foreach(Gun gun in guns){
+			gun.owner = this;
+		}
 	}
 
 	void Update(){
+
 		if(Input.GetKeyDown(KeyCode.E))
 			printNTiles();
 		
@@ -43,7 +52,27 @@ public class Player : MonoBehaviour{
 
 		if(Input.GetKeyDown(KeyCode.R)){
 			Tile front = getFrontTile();
-			front.GainElement(ElementType.Water);
+
+			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
+				if(LevelManager.instance.TimeState == TimeStates.Past){
+					if(front.element != null && front.element.elementType == ElementType.MetalCube){
+						ETmanager.OnMetalRust(front.getTileID());
+					}
+
+					bool elementAdded = front.GainElement(ElementType.Water);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+				else{
+					bool elementAdded = front.GainElement(ElementType.Water);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+			}
 		}
 
 
@@ -210,11 +239,14 @@ public class Player : MonoBehaviour{
 		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
 
 		if(Physics.Raycast(transform.position, direction, out hit)){
-			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-			if(cur != null){
-				Debug.Log(cur.getTileID());
-				return cur;
+			if(hit.collider.tag == "Tile"){
+				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+				if(cur != null){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
 			}
 		}
 

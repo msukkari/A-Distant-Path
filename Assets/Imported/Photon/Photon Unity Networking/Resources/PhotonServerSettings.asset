@@ -51,4 +51,5 @@ MonoBehaviour:
   - transferResources
   - pOnTransfer
   - pOffTransfer
+  - rustMetalCube
   DisableAutoOpenWizard: 1

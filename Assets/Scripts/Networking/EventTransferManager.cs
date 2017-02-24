@@ -92,11 +92,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 			}
 			else{
-				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+				Debug.Log("TILE HAS NO ELEMENT IN RUST METAL CUBE");
 			}
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+			Debug.Log("TILE NOT FOUND IN RUST METAL CUBE");
 		}
 
 	}
@@ -106,23 +106,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		Tile tile = lm.getTileAt(tileID);
 
 		if(tile != null){
-
-			if(tile.element != null){
-				if(tile.element.elementType == ElementType.Stump){
-					// Just doing GainElement(ElementType.BigTree) wasn't working so I'm removing the element then adding the tree
-					tile.LoseElement();
-					tile.GainElement(ElementType.BigTree);
-				}
-				else{
-					Debug.Log("NOT A METAL CUBE!");
-				}
-			}
-			else{
-				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
-			}
+			tile.GainElement(ElementType.BigTree);
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+			Debug.Log("TILE NOT FOUND IN GROWTREE");
 		}
 	}
 

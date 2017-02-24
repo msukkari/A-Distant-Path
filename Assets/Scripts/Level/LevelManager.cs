@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour {
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
-		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
+		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.0f, 5f), Quaternion.identity) as GameObject;
 
 		if(TimeState != TimeStates.Offline){
 			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);

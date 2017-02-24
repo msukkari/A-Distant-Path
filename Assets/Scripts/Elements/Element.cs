@@ -27,5 +27,7 @@ public enum ElementType {
 	MetalCubeRusted,
 	Stump,
 	Sapling,
-	BigTree
+	BigTree,
+	Ice,
+	None
 }

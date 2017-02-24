@@ -36,9 +36,11 @@ public class Player : MonoBehaviour{
 		
 		CheckElementPickup();
 
+		/*
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			ChangeGun ();
 		}
+		*/
 
 		if (Input.GetKeyDown (KeyCode.E)) {
 			guns [currentGun].ChangeMode ();
@@ -80,6 +82,19 @@ public class Player : MonoBehaviour{
 				}
 			}
 		}
+
+		if(Input.GetKeyDown(KeyCode.Q)){
+			Tile front = getFrontTile();
+
+			if(this.elementsInventory[ElementType.Fire] > 0 && front != null){
+
+					bool elementAdded = front.GainElement(ElementType.Fire);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Fire]--;
+					}
+				}
+			}
 
 
 

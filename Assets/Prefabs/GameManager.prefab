@@ -57,6 +57,3 @@ MonoBehaviour:
     type: 2}
   levelObject: {fileID: 1472357905583522, guid: f841b671eea494e829f04810199af2f0,
     type: 2}
-  elementManagerObject: {fileID: 0}
-  controlManager: {fileID: 1291018845965778, guid: 33be252232ffe18499a3b18ed3f36ed3,
-    type: 2}

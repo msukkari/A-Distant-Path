@@ -68,15 +68,7 @@ public class GameManager : MonoBehaviour {
 
 	// LevelManager instance
 	private ElementManager elementManager;
-    // ---------------
-
-    // --- CONTROLS ---
-
-    //ControlManager GameObject
-    public GameObject controlManager;
-
-    //ControlManager instance
-    private ControlManager controls;
+	// ---------------
 
 	// Awake is called before Start function
 	void Awake() {
@@ -132,8 +124,6 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("initializing game...");
 		Debug.Log(Scenes.MainMenu);
 
-        InitControls();
-
 		// Load main menu scene
 		SceneManager.LoadScene((int) Scenes.MainMenu);		
 	}	
@@ -165,22 +155,11 @@ public class GameManager : MonoBehaviour {
 		level = LevelManager.instance;
 		level.setTimeState(TimeState);
 		level.LoadLevelScene();
-
-        Debug.Log("Initalizing camera...");
+		
 
 		Debug.Log(TimeState);
 	}
 
-    public void InitControls() {
-        if(ControlManager.instance == null)
-        {
-            Instantiate(controlManager);
-        }
-
-        controls = ControlManager.instance;
-
-        controls.loadUtils();
-    }
 
 	// GetBuild: return the current game build
 	public string GetBuild() {

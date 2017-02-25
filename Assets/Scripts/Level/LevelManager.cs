@@ -78,10 +78,6 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad(player);
-
-        GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
-        cam.GetComponent<CameraControls>().setCharacter(player);
-        DontDestroyOnLoad(cam);
 	}
 
 	// Attach a new Level object

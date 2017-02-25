@@ -49,4 +49,8 @@ MonoBehaviour:
   - swapElements
   - transferTileCheck
   - transferResources
+  - pOnTransfer
+  - pOffTransfer
+  - rustMetalCube
+  - growTree
   DisableAutoOpenWizard: 1

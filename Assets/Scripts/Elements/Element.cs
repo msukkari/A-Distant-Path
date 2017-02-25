@@ -21,5 +21,13 @@ public abstract class Element : MonoBehaviour {
 public enum ElementType {
 	Fire = 0,
 	Water,
-	Transfer
+	Steam,
+	Transfer,
+	MetalCube,
+	MetalCubeRusted,
+	Stump,
+	Sapling,
+	BigTree,
+	Ice,
+	None
 }

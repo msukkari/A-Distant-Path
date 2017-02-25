@@ -17,19 +17,30 @@ public class Player : MonoBehaviour{
 	private bool chargingWeapon = false;
 	private float currentCharge = 0.0f;
 
+	// This is linked when the player is initiated in LevelManager
+	public EventTransferManager ETmanager;
+
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
+
+		// Sanity check
+		foreach(Gun gun in guns){
+			gun.owner = this;
+		}
 	}
 
 	void Update(){
+
 		if(Input.GetKeyDown(KeyCode.E))
 			printNTiles();
 		
 		CheckElementPickup();
 
+		/*
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			ChangeGun ();
 		}
+		*/
 
 		if (Input.GetKeyDown (KeyCode.E)) {
 			guns [currentGun].ChangeMode ();
@@ -39,6 +50,53 @@ public class Player : MonoBehaviour{
 			Debug.Log ("Started charge");
 			chargingWeapon = true;
 		}
+
+
+		if(Input.GetKeyDown(KeyCode.R)){
+			Tile front = getFrontTile();
+
+			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
+				if(LevelManager.instance.TimeState == TimeStates.Past){
+
+					// Adding water to a metal cube
+					if(front.element != null && front.element.elementType == ElementType.MetalCube){
+						ETmanager.OnMetalRust(front.getTileID());
+					}
+					// Adding water to a stump
+					if(front.element != null && front.element.elementType == ElementType.Stump){
+						ETmanager.OnStumpWater(front.getTileID());
+					}
+
+					bool elementAdded = front.GainElement(ElementType.Water);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+				else{
+					bool elementAdded = front.GainElement(ElementType.Water);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.Q)){
+			Tile front = getFrontTile();
+
+			if(this.elementsInventory[ElementType.Fire] > 0 && front != null){
+
+					bool elementAdded = front.GainElement(ElementType.Fire);
+
+					if(elementAdded){
+						this.elementsInventory[ElementType.Fire]--;
+					}
+				}
+			}
+
+
 
 		if (chargingWeapon) {
 			Debug.Log ("Charging weapon");
@@ -127,7 +185,6 @@ public class Player : MonoBehaviour{
 	}
 
 	private void CheckElementPickup() {
-
 		// check if player is attempting to collect water
 		if (!Input.GetKey(KeyCode.F)) {
 			elementTimeCount = 0;
@@ -194,6 +251,28 @@ public class Player : MonoBehaviour{
 
 	public int getCurTileID(){
 		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+	}
+
+	public Tile getFrontTile(){
+		RaycastHit hit;
+
+		Vector3 direction = Quaternion.AngleAxis(20, this.transform.right) * this.transform.forward;
+		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
+
+		if(Physics.Raycast(transform.position, direction, out hit)){
+
+			if(hit.collider.tag == "Tile"){
+				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+				if(cur != null){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+		}
+
+		Debug.Log("TILE NOT FOUND");
+		return null;
 	}
 
 	// Using this to DEBUG

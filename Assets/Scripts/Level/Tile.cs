@@ -21,10 +21,15 @@ public class Tile : MonoBehaviour {
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
-		if (element != null) {
-			if(element.elementType != ElementType.Transfer)
-				SetNavigatable (false);
+
+		if(element != null && element.elementType != ElementType.Transfer){
+			navigatable = false;
 		}
+		else{
+			navigatable = true;
+		}
+
+		SetNavigatable(this.navigatable);
 
 
 		this.setMaterial();
@@ -59,35 +64,60 @@ public class Tile : MonoBehaviour {
 		this.gameObject.tag = "Tile";
 	}
 
+	#region Tile Element Methods
+
+	public bool HasElement() {
+		return this.element != null;
+	}
+
+	public bool GainElement(ElementType elementType) {
+		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
+
+		if(newElement == ElementType.None){
+			ClearElement();
+			return true;
+		}
+		else if (this.element == null || newElement != elementType) {
+			ClearElement ();
+			LevelManager.CreateElementAtTile (this, newElement);
+			return true;
+		}
+
+		return false;
+	}
+
 	public ElementType LoseElement() {
 		ElementType elementLost = this.element.elementType;
 		element.quantity--;
 
 		if (element.quantity <= 0) {
-			Destroy (element.gameObject);
-			this.element = null;
-			this.SetNavigatable (true);
+			ClearElement ();
 		}
 
 		return elementLost;
 	}
 
-	public void GainElement(ElementType elementType) {
-		LevelManager.CreateElementAtTile (this, elementType);
+	public void ClearElement() {
+		if (this.element != null) {
+			Destroy (element.gameObject);
+			this.element = null;
+			this.SetNavigatable (true);
+		}
 	}
+
+	#endregion
+
 
 	public void SetNavigatable(bool navigatable) {
 		this.navigatable = navigatable;
 		BoxCollider collider = this.GetComponent<BoxCollider> ();
-		if (navigatable) {
-			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
-		} else {
-			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
-		}
-	}
 
-	public bool HasElement() {
-		return this.element != null;
+		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
+			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
+		else if(navigatable){
+			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+		}
+		
 	}
 
 
@@ -97,9 +127,7 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		if(this.element == null){
 			renderer.material = GrassMat;
-		}
 	}
 	
 

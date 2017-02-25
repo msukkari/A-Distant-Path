@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stump : Element {
+public class MoltenSand : Element {
 
-	public int tileID;
-
+	// Use this for initialization
 	void Start () {
-		elementType = ElementType.Stump;
-		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
-
+		
 	}
 	
 	// Update is called once per frame
@@ -18,9 +15,6 @@ public class Stump : Element {
 	}
 
 	public override bool WaterInteract(EventTransferManager ETManager) {
-		if (LevelManager.instance.TimeState == TimeStates.Past) {
-			ETManager.OnStumpWater (this.GetComponentInParent<Tile> ().getTileID ());
-		}
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
 		return true;
 	}

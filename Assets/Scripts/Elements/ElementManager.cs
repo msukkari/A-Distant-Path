@@ -14,6 +14,9 @@ public class ElementManager : MonoBehaviour {
 	public GameObject saplingPrefab;
 	public GameObject bigtreePrefab;
 	public GameObject icePrefab;
+	public GameObject sandPrefab;
+	public GameObject moltenSandPrefab;
+	public GameObject glassPrefab;
 
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<HashSet<ElementType>, ElementType> elementCombinationsDictionary = 
@@ -63,6 +66,9 @@ public class ElementManager : MonoBehaviour {
 		elementSpawnDictionary.Add (ElementType.Sapling, saplingPrefab);
 		elementSpawnDictionary.Add (ElementType.BigTree, bigtreePrefab);
 		elementSpawnDictionary.Add (ElementType.Ice, icePrefab);
+		elementSpawnDictionary.Add (ElementType.Sand, sandPrefab);
+		elementSpawnDictionary.Add (ElementType.MoltenSand, moltenSandPrefab);
+		elementSpawnDictionary.Add (ElementType.Glass, glassPrefab);
 	}
 
 	private void FillElementCombinationsDictionary() {
@@ -78,7 +84,10 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube, ElementType.Water), ElementType.MetalCubeRusted);	
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Stump, ElementType.Water), ElementType.Sapling);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.BigTree, ElementType.Stump), ElementType.BigTree);
-		elementCombinationsDictionary.Add (GetSetFor (ElementType.Ice, ElementType.Fire), ElementType.None);												
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Ice, ElementType.Fire), ElementType.None);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Ice, ElementType.Water), ElementType.Ice);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sand, ElementType.Fire), ElementType.MoltenSand);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.MoltenSand, ElementType.Water), ElementType.Sand);
 	}
 
 	#endregion

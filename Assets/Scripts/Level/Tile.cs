@@ -17,10 +17,14 @@ public class Tile : MonoBehaviour {
 
 	// MATERIALS //
 	public Material GrassMat;
+	public Material IceMat;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
+		if (element != null && element.elementType == ElementType.Fire) {
+			Debug.Log ("Found ice at " + this.name);
+		}
 
 		if(element != null && element.elementType != ElementType.Transfer){
 			navigatable = false;
@@ -80,6 +84,7 @@ public class Tile : MonoBehaviour {
 		else if (this.element == null || newElement != elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
+			setMaterial ();
 			return true;
 		}
 
@@ -99,9 +104,18 @@ public class Tile : MonoBehaviour {
 
 	public void ClearElement() {
 		if (this.element != null) {
+			ElementType type = this.element.elementType;
 			Destroy (element.gameObject);
 			this.element = null;
-			this.SetNavigatable (true);
+
+			if (type == ElementType.Water) {
+				this.GetComponent<MeshRenderer> ().enabled = false;
+				this.enabled = false;
+			} else {
+				this.SetNavigatable (true);
+			}
+
+			setMaterial ();
 		}
 	}
 
@@ -127,7 +141,31 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
+		renderer.material = GrassMat;
+
+		if (element != null) {
+			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand
+			   || element.elementType == ElementType.MoltenSand || element.elementType == ElementType.Glass) {
+				renderer.material = element.GetComponent<Renderer>().material;
+			}
+		}
+		/*
+		if (element != null) {
+			switch (element.elementType) {
+			case ElementType.Ice:
+				renderer.material = IceMat;
+				//this.element.GetComponent<MeshRenderer> ().enabled = false;
+				//this.element.GetComponent<Collider> ().enabled = false;
+				SetNavigatable (true);
+				break;
+			default:
+				renderer.material = GrassMat;
+				break;
+			}
+		}
+		else{
 			renderer.material = GrassMat;
+		}*/
 	}
 	
 

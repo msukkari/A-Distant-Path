@@ -16,6 +16,14 @@ public abstract class Element : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public virtual bool WaterInteract(EventTransferManager ETManager) {
+		return false;
+	}
+
+	public virtual bool FireInteract(EventTransferManager ETManager) {
+		return false;
+	}
 }
 
 public enum ElementType {
@@ -29,5 +37,8 @@ public enum ElementType {
 	Sapling,
 	BigTree,
 	Ice,
-	None
+	None,
+	Sand,
+	MoltenSand,
+	Glass
 }

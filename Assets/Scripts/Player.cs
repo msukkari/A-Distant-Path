@@ -56,29 +56,29 @@ public class Player : MonoBehaviour{
 			Tile front = getFrontTile();
 
 			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
+				//bool elementAdded;
+
 				if(LevelManager.instance.TimeState == TimeStates.Past){
-
-					// Adding water to a metal cube
-					if(front.element != null && front.element.elementType == ElementType.MetalCube){
-						ETmanager.OnMetalRust(front.getTileID());
-					}
-					// Adding water to a stump
-					if(front.element != null && front.element.elementType == ElementType.Stump){
-						ETmanager.OnStumpWater(front.getTileID());
-					}
-
-					bool elementAdded = front.GainElement(ElementType.Water);
-
-					if(elementAdded){
+					
+					if (front.element != null) {
+						if (front.element.WaterInteract (ETmanager)) {
+							this.elementsInventory[ElementType.Water]--;
+						}
+					} else {
+						front.GainElement (ElementType.Water);
 						this.elementsInventory[ElementType.Water]--;
 					}
 				}
 				else{
-					bool elementAdded = front.GainElement(ElementType.Water);
-
-					if(elementAdded){
+					if (front.element != null) {
+						if (front.element.WaterInteract (ETmanager)) {
+							this.elementsInventory[ElementType.Water]--;
+						}
+					} else {
+						front.GainElement (ElementType.Water);
 						this.elementsInventory[ElementType.Water]--;
 					}
+
 				}
 			}
 		}
@@ -88,13 +88,24 @@ public class Player : MonoBehaviour{
 
 			if(this.elementsInventory[ElementType.Fire] > 0 && front != null){
 
-					bool elementAdded = front.GainElement(ElementType.Fire);
+				/*bool elementAdded = front.GainElement(ElementType.Fire);
 
-					if(elementAdded){
-						this.elementsInventory[ElementType.Fire]--;
+				if (elementAdded) {
+					this.elementsInventory [ElementType.Fire]--;
+				} else {
+					front.element.FireInteract ();
+				}*/
+
+				if (front.element != null) {
+					if (front.element.FireInteract (ETmanager)) {
+						this.elementsInventory [ElementType.Fire]--;
 					}
+				} else {
+					front.GainElement(ElementType.Fire);
+					this.elementsInventory [ElementType.Fire]--;
 				}
 			}
+		}
 
 
 

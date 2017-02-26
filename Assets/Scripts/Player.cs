@@ -301,4 +301,15 @@ public class Player : MonoBehaviour{
 
 	#endregion
 
+    public void throwMaterial() {
+        Debug.Log("Throw material!");
+    }
+
+    public void placeWaypoint(Vector3 position) {
+        Debug.Log("Place waypoint");
+    }
+
+    public void interactInFront() {
+        Debug.Log("Interact in front!");
+    }
 }

@@ -42,5 +42,7 @@ public enum ElementType {
 	None,
 	Sand,
 	MoltenSand,
-	Glass
+	Glass,
+	Stone,
+	Wood
 }

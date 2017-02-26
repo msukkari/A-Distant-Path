@@ -16,6 +16,9 @@ public class MoltenSand : Element {
 
 	public override bool WaterInteract(EventTransferManager ETManager) {
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
+		if (LevelManager.instance.TimeState == TimeStates.Past) {
+			ETManager.OnLoseElement (this.GetComponentInParent<Tile> ().getTileID ());
+		}
 		return true;
 	}
 

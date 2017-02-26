@@ -7,6 +7,8 @@ public abstract class Element : MonoBehaviour {
 	public ElementType elementType;
 	public int quantity = 1;
 
+	public bool navigatable = true;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +17,14 @@ public abstract class Element : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public virtual bool WaterInteract(EventTransferManager ETManager) {
+		return false;
+	}
+
+	public virtual bool FireInteract(EventTransferManager ETManager) {
+		return false;
 	}
 }
 
@@ -29,5 +39,10 @@ public enum ElementType {
 	Sapling,
 	BigTree,
 	Ice,
-	None
+	None,
+	Sand,
+	MoltenSand,
+	Glass,
+	Stone,
+	Wood
 }

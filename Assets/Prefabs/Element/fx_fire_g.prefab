@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4089361878858536}
   - component: {fileID: 198650545427544204}
   - component: {fileID: 199461624847028200}
-  - component: {fileID: 114904059917987628}
   - component: {fileID: 114910119098942454}
   m_Layer: 0
   m_Name: fx_fire_g
@@ -43,18 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114904059917987628
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1447741304997964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12388c15e0ec790469b4197d6bdd54c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementType: 0
 --- !u!114 &114910119098942454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   quantity: 1
+  navigatable: 0
   IGNITE_THRESHOLD: 0
   nList: []
   fireSystemOn: 0

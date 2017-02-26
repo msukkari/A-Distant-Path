@@ -108,3 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 3
   quantity: 1
+  navigatable: 1

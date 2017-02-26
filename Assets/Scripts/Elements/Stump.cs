@@ -16,4 +16,16 @@ public class Stump : Element {
 	void Update () {
 		
 	}
+
+	public override bool WaterInteract(EventTransferManager ETManager) {
+		if (LevelManager.instance.TimeState == TimeStates.Past) {
+			ETManager.OnStumpWater (this.GetComponentInParent<Tile> ().getTileID ());
+		}
+		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
+		return true;
+	}
+
+	public override bool FireInteract(EventTransferManager ETManager) {
+		return false;
+	}
 }

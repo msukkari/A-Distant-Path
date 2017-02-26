@@ -59,7 +59,7 @@ public class CameraControls : MonoBehaviour {
         //Camera Rotation
         switch (type) {
             case 0:
-                if(Input.GetAxis("Trigger") <= 0.9) {
+                if(Input.GetAxis("RightTrigger") <= 0.9) {
                     turnDir.x = Input.GetAxis("RightJoystickHorizontal");
                     turnDir.y = Input.GetAxis("RightJoystickVertical");
 
@@ -103,5 +103,8 @@ public class CameraControls : MonoBehaviour {
 
     public void setCharacter(GameObject character) {
         this.character = character;
+    }
+
+    public void setCamera(Camera cam) {
     }
 }

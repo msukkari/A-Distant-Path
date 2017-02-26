@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour {
 	// MATERIALS //
 	public Material GrassMat;
 
+    public bool isHighlighted;
+
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
@@ -129,10 +131,10 @@ public class Tile : MonoBehaviour {
 		Renderer renderer = GetComponent<Renderer>();
 			renderer.material = GrassMat;
 	}
-	
 
-	// Removes invalid tile ID's (ID's that don't represent an actual tile)
-	/*
+
+    // Removes invalid tile ID's (ID's that don't represent an actual tile)
+    /*
 	private void validateNList(){
 		List<int> validList = new List<int>();
 
@@ -148,7 +150,7 @@ public class Tile : MonoBehaviour {
 	*/
 
 
-	/* OLD NEIGHBOR FETCH METHOD
+    /* OLD NEIGHBOR FETCH METHOD
 	// Gets all the neighboring tile ID's and puts them in nIDList (NOTE: list must be validated! See valideNList())
 	private void fetchNeighborTiles(){
 		List<int> result = new List<int>();
@@ -185,8 +187,22 @@ public class Tile : MonoBehaviour {
 	}
 	*/
 
+    private Vector3 offset = new Vector3(0f, 1.5f, 0f);
+    private GameObject highlightObj;
+    public void highlight() {
+        if (!isHighlighted) {
+            highlightObj = Instantiate(Resources.Load("Other/Highlight"), transform.position +offset, new Quaternion(), transform) as GameObject;
 
+            //GameObject highlight = Instantiate(Resources.Load("Other/Highlight")) as GameObject;
+            //highlight.transform.parent = transform;
+            isHighlighted = true;
+        }
+    }
 
+    public void unHighlight() {
+        Destroy(highlightObj);
+        isHighlighted = false;
+    }
 
 
 

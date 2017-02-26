@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4518652980492608}
   - component: {fileID: 114709368650412798}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Element Shooter Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33502459092268878}
   - component: {fileID: 65611711423248170}
   - component: {fileID: 23950399674844200}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4542650447629700}
   - component: {fileID: 114124919853940152}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Element Absorber Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 33867130598885780}
   - component: {fileID: 135646312319977520}
   - component: {fileID: 23052385084666848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 114124115610744012}
   - component: {fileID: 143302228250041796}
   - component: {fileID: 114741323499370424}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerWithGuns
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441764462275312}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.023179054, y: 0.40749997, z: 0.4658866}
+  m_LocalPosition: {x: 0.5, y: 0.40749997, z: 0}
   m_LocalScale: {x: 0.44080192, y: 0.2817389, z: 0.5433944}
   m_Children: []
   m_Father: {fileID: 4231733179098510}
@@ -360,7 +360,7 @@ MonoBehaviour:
   currentElement: 0
 --- !u!114 &114741323499370424
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998104012572068}
@@ -370,9 +370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cc: {fileID: 143302228250041796}
-  pivotPoint: {fileID: 1710163971638278, guid: 1c5249d9436c9114c844f28b45d7bb74, type: 2}
+  pivotPoint: {fileID: 0}
   cursor: {fileID: 1732701845634366}
-  speed: 5
   cursorRange: 5
 --- !u!135 &135646312319977520
 SphereCollider:

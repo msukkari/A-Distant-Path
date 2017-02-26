@@ -68,11 +68,12 @@ public class LevelManager : MonoBehaviour {
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.0f, 5f), Quaternion.identity) as GameObject;
-        Debug.Log("Creating camera");
+
         GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
         cam.GetComponent<CameraControls>().setCharacter(player);
         DontDestroyOnLoad(cam);
 
+        Camera.main.enabled = false;
         if (TimeState != TimeStates.Offline){
 			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
 			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();

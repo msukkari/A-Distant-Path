@@ -14,10 +14,12 @@ public class Tile : MonoBehaviour {
 
 	public Element element;
 	public bool navigatable = true;
+	public bool isGroundTile = true;
+
+	public Vector3 tileScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
 	// MATERIALS //
 	public Material GrassMat;
-	public Material IceMat;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
@@ -221,10 +223,25 @@ public class Tile : MonoBehaviour {
 	}
 	*/
 
+	private Tile GetTileAbove() {
+		RaycastHit hit;
 
+		Debug.DrawLine (this.transform.position, this.transform.position + 3.0f * Vector3.up);
+		if (Physics.Raycast (this.transform.position, Vector3.up, out hit)) {
+			if (hit.collider.tag == "Tile") {
+				return hit.collider.gameObject.GetComponent<Tile>();
+			}
+		}
+		return null;
+	}
 
+	public Tile GetTopTile() {
+		Tile topTile = this;
+		while (topTile.GetTileAbove () != null) {
+			topTile = topTile.GetTileAbove ().GetComponent<Tile> ();
+		}
 
-
-
+		return topTile;
+	}
 
 }

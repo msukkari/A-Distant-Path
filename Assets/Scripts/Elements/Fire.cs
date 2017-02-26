@@ -27,9 +27,6 @@ public class Fire : Element {
 		}
 	}
 
-
-
-
 	private void stepFireSystem(){
 		int roll = Random.Range(0, IGNITE_THRESHOLD) + 1;
 
@@ -41,5 +38,10 @@ public class Fire : Element {
 				hitTile.GainElement(ElementType.Fire);
 			}
 		}
+	}
+
+	public override bool WaterInteract(EventTransferManager ETManager) {
+		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
+		return true;
 	}
 }

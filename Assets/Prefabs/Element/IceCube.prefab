@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33415414188222968}
   - component: {fileID: 65621026924687216}
   - component: {fileID: 23002437003232846}
-  m_Layer: 0
+  - component: {fileID: 114305602062781160}
+  m_Layer: 8
   m_Name: IceCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,3 +93,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114305602062781160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983955630465292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab4b67c5ba99f349995cb4e4cc67763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  neighbors: []
+  element: {fileID: 0}
+  navigatable: 1
+  isGroundTile: 1
+  tileScale: {x: 1, y: 1, z: 1}
+  GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}

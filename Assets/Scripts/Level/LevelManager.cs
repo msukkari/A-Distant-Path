@@ -143,6 +143,10 @@ public class LevelManager : MonoBehaviour {
 	// Get TileList
 	public List<Tile> getTileList(){return TileList;}
 
+	public void AddTileToList(Tile tile) {
+		TileList.Add (tile);
+	}
+
 	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
 		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);
 		elementCreated.transform.localPosition = ElementManager.elementSpawnDictionary [elementType].transform.localPosition;

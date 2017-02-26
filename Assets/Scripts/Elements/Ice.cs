@@ -7,12 +7,12 @@ public class Ice : Element {
 	public int tileID;
 
 	public GameObject iceCubePrefab;
-	public List<GameObject> iceCubes = new List<GameObject> ();
+	//public GameObject icePrefab;
+	//public List<GameObject> iceCubes = new List<GameObject> ();
 
 	void Start () {
 		elementType = ElementType.Ice;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
-
 	}
 	
 	// Update is called once per frame
@@ -38,18 +38,27 @@ public class Ice : Element {
 	}
 
 	private void CreateIceCube() {
-		GameObject iceCube = Instantiate (iceCubePrefab, this.GetComponentInParent<Tile> ().transform.position + new Vector3(0.0f, (float)(iceCubes.Count + 1) ,0.0f), Quaternion.identity, this.transform);
-		iceCubes.Add (iceCube);
+		Level level = GameObject.FindGameObjectWithTag ("Level").GetComponent<Level> ();
+
+		if (level != null) {
+			Tile topTile = this.GetComponentInParent<Tile> ().GetTopTile ();
+			GameObject newIceCubeTile = Instantiate (iceCubePrefab, topTile.transform.position + new Vector3(0.0f, topTile.tileScale.y ,0.0f), Quaternion.identity, GameObject.FindGameObjectWithTag("Level").transform) as GameObject;
+			newIceCubeTile.tag = "Tile";
+			newIceCubeTile.GetComponent<Tile> ().isGroundTile = false;
+
+			GameObject newIceElement = Instantiate (this.gameObject, newIceCubeTile.transform);
+			// Should probably assign a unique id to the created tile as well!
+			LevelManager.instance.AddTileToList (newIceCubeTile.GetComponent<Tile> ());
+		}
 	}
 
 	private void DestroyIceCube() {
-		if (iceCubes.Count > 0) {
-			GameObject lastCube = iceCubes [iceCubes.Count - 1];
-			iceCubes.Remove (lastCube);
-			Destroy (lastCube);
+		Tile topTile = this.GetComponentInParent<Tile> ().GetTopTile ();
+		if (topTile.isGroundTile) {
+			topTile.SetNavigatable (false);
+			topTile.GetComponent<MeshRenderer> ().enabled = false;
 		} else {
-			this.GetComponentInParent<Tile> ().SetNavigatable (false);
-			this.GetComponentInParent<Tile> ().GetComponent<MeshRenderer> ().enabled = false;
+			topTile.gameObject.SetActive (false);
 		}
 	}
 

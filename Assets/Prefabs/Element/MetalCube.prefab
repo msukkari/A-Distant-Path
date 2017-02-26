@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4816857059556754}
   - component: {fileID: 33987358026979524}
   - component: {fileID: 23750213025513924}
-  - component: {fileID: 64310256276850644}
-  - component: {fileID: 95727160082858418}
+  - component: {fileID: 65887155092196904}
   - component: {fileID: 114149108351329086}
   m_Layer: 0
   m_Name: MetalCube
@@ -82,8 +81,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030483007302704}
   m_Mesh: {fileID: 4300000, guid: d6c312ce3d706dc41a8701d9e6eabe37, type: 3}
---- !u!64 &64310256276850644
-MeshCollider:
+--- !u!65 &65887155092196904
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -92,27 +91,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d6c312ce3d706dc41a8701d9e6eabe37, type: 3}
---- !u!95 &95727160082858418
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d6c312ce3d706dc41a8701d9e6eabe37, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_Size: {x: 0.889892, y: 0.88951826, z: 0.8837913}
+  m_Center: {x: 0, y: 0, z: 0.92956275}
 --- !u!114 &114149108351329086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,4 +106,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 4
   quantity: 1
+  navigatable: 1
   tileID: 0

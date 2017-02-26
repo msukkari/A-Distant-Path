@@ -18,27 +18,35 @@ public class Star : MonoBehaviour {
 	// Enemy instance
 	private Enemy enemy;
 
+	// A* path
+	private List<Node> path;
+
+	Vector3 target;
 
 	// Use this for initialization
 	void Start () {
 		parent = transform.parent;
+		this.transform.position = parent.transform.position;
 
 		// get the parent's enemy script
 		enemy = parent.GetComponent( typeof(Enemy) ) as Enemy;
 
 
-		Tile end = lm.getTileList()[70];
+		Tile end = lm.getTileList()[120];
 
-		test = findPathFromCurrentTile(end);
-		test.Reverse();
+		Debug.Log("PATH: current tile ID: " + enemy.getCurTile().id + " | target tile ID: " + end.id);
 
-		foreach (Node n in test) {
+
+		path = findPathFromCurrentTile(end);
+		path.Reverse();
+
+		foreach (Node n in path) {
 			Tile t = n.tile;
-
 			Debug.Log(t.id);
-
-
 		}
+
+		target = path[0].tile.transform.position;
+		target.y = target.y + 1;
 
 
 	}
@@ -110,7 +118,6 @@ public class Star : MonoBehaviour {
 				if (tileInList(closedList, neighbor) && gCost >= node.gCost) continue;
 
 				if (!tileInList(openList, neighbor) || gCost < node.gCost) openList.Add(node);
-
 			}
 
 
@@ -133,9 +140,29 @@ public class Star : MonoBehaviour {
 		return false;
 	}
 
-
+	private int speed = 2;
 	// Update is called once per frame
 	void Update () {
+
+		if (path.Count != 0) {		
+
+			if (path[0].tile != enemy.getCurTile()) {
+				parent.transform.position = Vector3.MoveTowards(parent.transform.position, target, 2 * Time.deltaTime);
+
+			// next tile
+			} else {
+				Debug.Log("here!!");
+				path.RemoveAt(0);
+
+				if (path.Count != 0) {
+					target = path[0].tile.transform.position;
+					target.y = target.y + 1;
+
+				}
+			}
+
+		}
+
 		
 	}
 }

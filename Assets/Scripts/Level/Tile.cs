@@ -14,6 +14,9 @@ public class Tile : MonoBehaviour {
 
 	public Element element;
 	public bool navigatable = true;
+	public bool isGroundTile = true;
+
+	public Vector3 tileScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
 	// MATERIALS //
 	public Material GrassMat;
@@ -23,16 +26,7 @@ public class Tile : MonoBehaviour {
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
-
-		if(element != null && element.elementType != ElementType.Transfer){
-			navigatable = false;
-		}
-		else{
-			navigatable = true;
-		}
-
-		SetNavigatable(this.navigatable);
-
+		SetNavigatable((this.element == null) ? true : this.element.navigatable);
 
 		this.setMaterial();
 	}
@@ -82,6 +76,12 @@ public class Tile : MonoBehaviour {
 		else if (this.element == null || newElement != elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
+
+			if (this.element.elementType == ElementType.Water) {
+				this.element.GetComponent<Water> ().destroyTileOnLose = false;
+			}
+
+			setMaterial ();
 			return true;
 		}
 
@@ -101,9 +101,18 @@ public class Tile : MonoBehaviour {
 
 	public void ClearElement() {
 		if (this.element != null) {
+			ElementType type = this.element.elementType;
+			if (type == ElementType.Water && this.element.GetComponent<Water> ().destroyTileOnLose) {
+				this.GetComponent<MeshRenderer> ().enabled = false;
+				this.enabled = false;
+			} else {
+				this.SetNavigatable (true);
+			}
+
 			Destroy (element.gameObject);
 			this.element = null;
-			this.SetNavigatable (true);
+
+			setMaterial ();
 		}
 	}
 
@@ -129,7 +138,36 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
+		renderer.material = GrassMat;
+
+		if (element != null) {
+			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand
+			   || element.elementType == ElementType.MoltenSand || element.elementType == ElementType.Glass) {
+				renderer.material = element.GetComponent<Renderer>().material;
+			}
+		}
+		/*
+		if (element != null) {
+			switch (element.elementType) {
+			case ElementType.Glass:
+				break;
+			case ElementType.Ice:
+				renderer.material = IceMat;
+				//this.element.GetComponent<MeshRenderer> ().enabled = false;
+				//this.element.GetComponent<Collider> ().enabled = false;
+				SetNavigatable (true);
+				break;
+			case ElementType.MoltenSand:
+			case ElementType.Sand:
+				break;
+			default:
+				renderer.material = GrassMat;
+				break;
+			}
+		}
+		else{
 			renderer.material = GrassMat;
+		}*/
 	}
 
 
@@ -186,7 +224,6 @@ public class Tile : MonoBehaviour {
 		this.nIDList = result;
 	}
 	*/
-
     private Vector3 offset = new Vector3(0f, 1.5f, 0f);
     private GameObject highlightObj;
     public void highlight() {
@@ -204,7 +241,24 @@ public class Tile : MonoBehaviour {
         isHighlighted = false;
     }
 
+	private Tile GetTileAbove() {
+		RaycastHit hit;
 
+		Debug.DrawLine (this.transform.position, this.transform.position + 3.0f * Vector3.up);
+		if (Physics.Raycast (this.transform.position, Vector3.up, out hit)) {
+			if (hit.collider.tag == "Tile") {
+				return hit.collider.gameObject.GetComponent<Tile>();
+			}
+		}
+		return null;
+	}
 
+	public Tile GetTopTile() {
+		Tile topTile = this;
+		while (topTile.GetTileAbove () != null) {
+			topTile = topTile.GetTileAbove ().GetComponent<Tile> ();
+		}
+		return topTile;
+	}
 
 }

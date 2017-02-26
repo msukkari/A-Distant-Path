@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62eb34fd9638244988c759ed1795304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 0
+  elementType: 7
   quantity: 1
+  navigatable: 1
   tileID: 0

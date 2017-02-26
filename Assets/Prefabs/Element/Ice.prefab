@@ -19,8 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4198285385038536}
-  - component: {fileID: 33875673739131478}
-  - component: {fileID: 65085381043626264}
   - component: {fileID: 23269893958354448}
   - component: {fileID: 114811275657512530}
   m_Layer: 0
@@ -49,7 +47,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715591441389790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -74,25 +72,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33875673739131478
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715591441389790}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65085381043626264
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1715591441389790}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114811275657512530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,6 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01273dcef32481040b531680828e13bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 0
+  elementType: 9
   quantity: 1
+  navigatable: 1
   tileID: 0
+  iceCubePrefab: {fileID: 1983955630465292, guid: 6cbc4397f8396b94b8011adf13e09ab1,
+    type: 2}
+  iceCubes: []

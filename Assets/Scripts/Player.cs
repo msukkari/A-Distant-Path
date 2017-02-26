@@ -46,71 +46,35 @@ public class Player : MonoBehaviour{
 			guns [currentGun].ChangeMode ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			Debug.Log ("Started charge");
+		// Suck tile only if space is pressed and the player is not moving
+		if (Input.GetKey (KeyCode.Space) && NotMoving()) {
 			chargingWeapon = true;
 		}
 
-
+		// R Shoots water in the front tile (for now)
 		if(Input.GetKeyDown(KeyCode.R)){
-			Tile front = getFrontTile();
-
-			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
-				if(LevelManager.instance.TimeState == TimeStates.Past){
-
-					// Adding water to a metal cube
-					if(front.element != null && front.element.elementType == ElementType.MetalCube){
-						ETmanager.OnMetalRust(front.getTileID());
-					}
-					// Adding water to a stump
-					if(front.element != null && front.element.elementType == ElementType.Stump){
-						ETmanager.OnStumpWater(front.getTileID());
-					}
-
-					bool elementAdded = front.GainElement(ElementType.Water);
-
-					if(elementAdded){
-						this.elementsInventory[ElementType.Water]--;
-					}
-				}
-				else{
-					bool elementAdded = front.GainElement(ElementType.Water);
-
-					if(elementAdded){
-						this.elementsInventory[ElementType.Water]--;
-					}
-				}
-			}
+			ShootWaterInFrontTile ();
 		}
 
+		// Q Shoots fire in the front tile (for now)
 		if(Input.GetKeyDown(KeyCode.Q)){
-			Tile front = getFrontTile();
+			ShootFireInFrontTile ();	
+		}
 
-			if(this.elementsInventory[ElementType.Fire] > 0 && front != null){
-
-					bool elementAdded = front.GainElement(ElementType.Fire);
-
-					if(elementAdded){
-						this.elementsInventory[ElementType.Fire]--;
-					}
-				}
-			}
-
-
-
-		if (chargingWeapon) {
-			Debug.Log ("Charging weapon");
+		if (chargingWeapon && NotMoving ()) {
 			currentCharge += Time.deltaTime;
 
 			if (currentCharge > 1.0f) {
 				guns [currentGun].AreaShot ();
 				currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
+				chargingWeapon = false;
 			}
+		} else {
+			currentCharge = 0.0f;
+			chargingWeapon = false;
 		}
 
 		if (Input.GetKeyUp (KeyCode.Space)) {
-			Debug.Log ("Released at charge = " + currentCharge);
-
 			currentCharge = 0.0f;
 			chargingWeapon = false;
 		}
@@ -154,6 +118,40 @@ public class Player : MonoBehaviour{
 				Debug.Log (hitInformation.transform.gameObject.name);
 			}
 		}*/
+	}
+
+	private void ShootWaterInFrontTile() {
+		if (HasElement (ElementType.Water, 1)) {
+			Tile front = getFrontTile();
+
+			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
+				if (front.element != null) {
+					if (front.element.WaterInteract (ETmanager)) {
+						this.elementsInventory[ElementType.Water]--;
+					}
+				} else {
+					front.GainElement (ElementType.Water);
+					this.elementsInventory[ElementType.Water]--;
+				}
+			}
+		}
+	}
+
+	private void ShootFireInFrontTile() {
+		if (HasElement (ElementType.Fire, 1)) {
+			Tile front = getFrontTile ();
+
+			if (this.elementsInventory [ElementType.Fire] > 0 && front != null) {
+				if (front.element != null) {
+					if (front.element.FireInteract (ETmanager)) {
+						this.elementsInventory [ElementType.Fire]--;
+					}
+				} else {
+					front.GainElement (ElementType.Fire);
+					this.elementsInventory [ElementType.Fire]--;
+				}
+			}
+		}
 	}
 
 	public void ChangeGun() {
@@ -220,6 +218,10 @@ public class Player : MonoBehaviour{
 		return false;
 	}
 
+	private bool NotMoving() {
+		return Input.GetAxis ("Horizontal") == 0.0f && Input.GetAxis ("Vertical") == 0.0f;
+	}
+
 	#endregion
 	
 	/* 
@@ -260,11 +262,19 @@ public class Player : MonoBehaviour{
 		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
 
 		if(Physics.Raycast(transform.position, direction, out hit)){
-
+			
 			if(hit.collider.tag == "Tile"){
 				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-				if(cur != null){
+				if(cur != null && cur.enabled){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+			else {
+				Tile cur = hit.collider.gameObject.GetComponentInParent<Tile>();
+
+				if(cur != null && cur.enabled){
 					Debug.Log(cur.getTileID());
 					return cur;
 				}

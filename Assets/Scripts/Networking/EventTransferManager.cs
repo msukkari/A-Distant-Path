@@ -75,6 +75,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{tileID});
 	}
 
+	public void OnSandFire(int tileID) {
+		GetComponent<PhotonView>().RPC("glassify",PhotonTargets.Others, new object[]{tileID});
+	}
+
+	public void OnLoseElement(int tileID) {
+		GetComponent<PhotonView>().RPC("loseElement",PhotonTargets.Others, new object[]{tileID});
+	}
+
 
 	[PunRPC]
 	public void rustMetalCube(int tileID){
@@ -99,6 +107,30 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			Debug.Log("TILE NOT FOUND IN RUST METAL CUBE");
 		}
 
+	}
+
+	[PunRPC] void glassify(int tileID){
+		Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+			tile.GainElement(ElementType.Glass);
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN GLASSIFY");
+		}
+	}
+
+	[PunRPC] void loseElement(int tileID){
+		Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
+		Tile tile = lm.getTileAt(tileID);
+
+		if(tile != null){
+			tile.LoseElement();
+		}
+		else{
+			Debug.Log("TILE NOT FOUND IN GLASSIFY");
+		}
 	}
 
 	[PunRPC] void growTree(int tileID){

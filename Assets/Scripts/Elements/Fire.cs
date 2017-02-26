@@ -11,6 +11,7 @@ public class Fire : Element {
 	// Use this for initialization
 	void Start () {
 		elementType = ElementType.Fire;
+		navigatable = false;
 		nList = transform.parent.GetComponent<Tile>().neighbors;
 		IGNITE_THRESHOLD = 1000;
 
@@ -26,9 +27,6 @@ public class Fire : Element {
 		}
 	}
 
-
-
-
 	private void stepFireSystem(){
 		int roll = Random.Range(0, IGNITE_THRESHOLD) + 1;
 
@@ -40,5 +38,10 @@ public class Fire : Element {
 				hitTile.GainElement(ElementType.Fire);
 			}
 		}
+	}
+
+	public override bool WaterInteract(EventTransferManager ETManager) {
+		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
+		return true;
 	}
 }

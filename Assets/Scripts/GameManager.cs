@@ -68,10 +68,19 @@ public class GameManager : MonoBehaviour {
 
 	// LevelManager instance
 	private ElementManager elementManager;
-	// ---------------
+    // ---------------
 
-	// Awake is called before Start function
-	void Awake() {
+    // --- CONTROLS ---
+
+    //ControlManager GameObject
+    public GameObject controlManager;
+
+    //ControlManager instance
+    private ControlManager controls;
+    // ---------------
+
+    // Awake is called before Start function
+    void Awake() {
 
 		// if the static class instance is null (singleton pattern)
 		if (instance == null)
@@ -124,8 +133,10 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("initializing game...");
 		Debug.Log(Scenes.MainMenu);
 
-		// Load main menu scene
-		SceneManager.LoadScene((int) Scenes.MainMenu);		
+        InitControls();
+
+        // Load main menu scene
+        SceneManager.LoadScene((int) Scenes.MainMenu);		
 	}	
 
 	// InitNetowrk: initializes the networking (currently called on "play" button)
@@ -160,9 +171,18 @@ public class GameManager : MonoBehaviour {
 		Debug.Log(TimeState);
 	}
 
+    public void InitControls() {
+        if (ControlManager.instance == null) {
+            Instantiate(controlManager);
+        }
 
-	// GetBuild: return the current game build
-	public string GetBuild() {
+        controls = ControlManager.instance;
+
+        controls.loadUtils();
+    }
+
+    // GetBuild: return the current game build
+    public string GetBuild() {
 		return BUILD;
 	}
 	

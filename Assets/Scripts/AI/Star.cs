@@ -35,7 +35,7 @@ public class Star : MonoBehaviour {
 
 		Debug.Log("Distance: " + Vector3.Distance(tile1.transform.position, tile2.transform.position));
 
-		Node n = new Node();
+		//Node n = new Node();
 
 	}
 

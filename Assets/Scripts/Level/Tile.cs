@@ -90,6 +90,10 @@ public class Tile : MonoBehaviour {
 		return this.element != null;
 	}
 
+	public double getDistance(Tile goal) {
+		return Vector3.Distance(this.transform.position, goal.transform.position);
+	}
+
 
 	// PRIVATE METHODS //
 

@@ -19,10 +19,6 @@ public class Star : MonoBehaviour {
 	private Enemy enemy;
 
 
-	List<Node> test;
-
-	Tile current;
-
 	// Use this for initialization
 	void Start () {
 		parent = transform.parent;
@@ -40,6 +36,7 @@ public class Star : MonoBehaviour {
 			Tile t = n.tile;
 
 			Debug.Log(t.id);
+
 
 		}
 
@@ -139,11 +136,6 @@ public class Star : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-
-
-
-		parent.Translate
 		
 	}
 }

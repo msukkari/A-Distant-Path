@@ -86,8 +86,8 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sapling), ElementType.Sapling);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.BigTree), ElementType.BigTree);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Ice), ElementType.Ice);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sand), ElementType.Sand);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.MoltenSand), ElementType.MoltenSand);
-		elementCombinationsDictionary.Add (GetSetFor (ElementType.Steam), ElementType.Steam);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Glass), ElementType.Glass);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Stone), ElementType.Stone);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Wood), ElementType.Wood);

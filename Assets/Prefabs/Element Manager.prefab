@@ -74,3 +74,6 @@ MonoBehaviour:
     type: 2}
   glassPrefab: {fileID: 1995470763605366, guid: 0ebf89ebff17cc64e9f58062547f4883,
     type: 2}
+  stonePrefab: {fileID: 1128275275651286, guid: 122a49b97390b294a80a4f25f6e864f7,
+    type: 2}
+  woodPrefab: {fileID: 1378966597508914, guid: 9ed2b095dc675f240ab0060a04c5db41, type: 2}

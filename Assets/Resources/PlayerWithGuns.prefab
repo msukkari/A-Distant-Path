@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 114614202194090420}
   - component: {fileID: 114124115610744012}
   - component: {fileID: 143302228250041796}
+  - component: {fileID: 114741323499370424}
   m_Layer: 0
   m_Name: PlayerWithGuns
   m_TagString: Player
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998104012572068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6ad5145cd49c354a89ecccaba8fd50f, type: 3}
   m_Name: 
@@ -359,7 +360,7 @@ MonoBehaviour:
   currentElement: 0
 --- !u!114 &114741323499370424
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998104012572068}

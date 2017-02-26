@@ -149,7 +149,7 @@ public class LevelManager : MonoBehaviour {
 		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
-		tile.SetNavigatable (false);
+		tile.SetNavigatable (tile.element.navigatable);
 	}
 	
 	// Update is called once per frame

@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 0
   quantity: 1
+  navigatable: 0
   IGNITE_THRESHOLD: 0
   nList: []
   fireSystemOn: 0

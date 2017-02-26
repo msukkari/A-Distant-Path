@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Water : Element {
 
+	public bool destroyTileOnLose = true;
+
 	// Use this for initialization
 	void Start () {
 		elementType = ElementType.Water;
+		navigatable = false;
 	}
 	
 	// Update is called once per frame

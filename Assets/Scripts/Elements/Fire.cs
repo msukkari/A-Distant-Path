@@ -11,6 +11,7 @@ public class Fire : Element {
 	// Use this for initialization
 	void Start () {
 		elementType = ElementType.Fire;
+		navigatable = false;
 		nList = transform.parent.GetComponent<Tile>().neighbors;
 		IGNITE_THRESHOLD = 1000;
 

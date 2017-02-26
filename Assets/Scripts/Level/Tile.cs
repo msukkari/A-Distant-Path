@@ -22,19 +22,7 @@ public class Tile : MonoBehaviour {
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
-		if (element != null && element.elementType == ElementType.Fire) {
-			Debug.Log ("Found ice at " + this.name);
-		}
-
-		if(element != null && element.elementType != ElementType.Transfer){
-			navigatable = false;
-		}
-		else{
-			navigatable = true;
-		}
-
-		SetNavigatable(this.navigatable);
-
+		SetNavigatable((this.element == null) ? true : this.element.navigatable);
 
 		this.setMaterial();
 	}
@@ -84,6 +72,11 @@ public class Tile : MonoBehaviour {
 		else if (this.element == null || newElement != elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
+
+			if (this.element.elementType == ElementType.Water) {
+				this.element.GetComponent<Water> ().destroyTileOnLose = false;
+			}
+
 			setMaterial ();
 			return true;
 		}
@@ -105,15 +98,15 @@ public class Tile : MonoBehaviour {
 	public void ClearElement() {
 		if (this.element != null) {
 			ElementType type = this.element.elementType;
-			Destroy (element.gameObject);
-			this.element = null;
-
-			if (type == ElementType.Water) {
+			if (type == ElementType.Water && this.element.GetComponent<Water> ().destroyTileOnLose) {
 				this.GetComponent<MeshRenderer> ().enabled = false;
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
 			}
+
+			Destroy (element.gameObject);
+			this.element = null;
 
 			setMaterial ();
 		}
@@ -152,11 +145,16 @@ public class Tile : MonoBehaviour {
 		/*
 		if (element != null) {
 			switch (element.elementType) {
+			case ElementType.Glass:
+				break;
 			case ElementType.Ice:
 				renderer.material = IceMat;
 				//this.element.GetComponent<MeshRenderer> ().enabled = false;
 				//this.element.GetComponent<Collider> ().enabled = false;
 				SetNavigatable (true);
+				break;
+			case ElementType.MoltenSand:
+			case ElementType.Sand:
 				break;
 			default:
 				renderer.material = GrassMat;

@@ -7,6 +7,8 @@ public abstract class Element : MonoBehaviour {
 	public ElementType elementType;
 	public int quantity = 1;
 
+	public bool navigatable = true;
+
 	// Use this for initialization
 	void Start () {
 		

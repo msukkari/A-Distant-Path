@@ -24,7 +24,8 @@ public enum Scenes {
 		MainScene,
 		Past,
 		Present,
-		Offline
+		Offline,
+		AITest
 };
 
 public class GameManager : MonoBehaviour {

@@ -46,7 +46,7 @@ public class RandomBehavior : MonoBehaviour {
 
 			// Select a random behavior
 			select = Random.Range(0, 2);
-
+	
 			// Generate a random time interval
 			timeInterval = Random.Range(1, 3);
 

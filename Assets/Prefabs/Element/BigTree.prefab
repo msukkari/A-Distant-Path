@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4124977881109784}
   - component: {fileID: 33155016536654750}
   - component: {fileID: 23995540257565286}
-  - component: {fileID: 95688242804311444}
   - component: {fileID: 114641039784426248}
   m_Layer: 0
   m_Name: BigTree
@@ -82,23 +81,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496319938696718}
   m_Mesh: {fileID: 4300000, guid: f11195ff89fd7e9468b82cd4c5067a7d, type: 3}
---- !u!95 &95688242804311444
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1496319938696718}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f11195ff89fd7e9468b82cd4c5067a7d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114641039784426248
 MonoBehaviour:
   m_ObjectHideFlags: 1

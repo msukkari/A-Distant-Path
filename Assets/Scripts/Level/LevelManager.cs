@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
-
+	
 
 	public TimeStates TimeState;
 

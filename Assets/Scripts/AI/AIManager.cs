@@ -7,10 +7,14 @@ public class AIManager : MonoBehaviour {
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 
+	// LevelManager instance
 	private LevelManager lm = LevelManager.instance;
 
 	// static instance of AIManager
-	public static AIManager instance = null;
+	public static AIManager instance = null;	
+
+	// Current
+	public List<Enemy> enemies = new List<Enemy>();
 
 
 	// Awake is called before Start function
@@ -32,29 +36,28 @@ public class AIManager : MonoBehaviour {
 
 	// init: Initialze all level-specific AI related shit here
 	public void init() {	
-
 		Level level = lm.getAttachedLevel();
-
 		Debug.Log("AIManager.cs: Starting AI init for - " + level.name);
-
-		
-
-
 	}
 
+	// recalculatePaths: re-calculate all AI's paths
+	public void recalculatePaths(Tile tile){
 
-	public void testaa() {
+		Debug.Log("recalculating..");
 
-		Debug.Log("here");
-		
-		List<Tile> list = lm.getTileList();
+		// Loop all enemy
+		foreach (Enemy enemy in enemies) {	
 
+			Star star = enemy.behavior.GetComponent( typeof(Star) ) as Star;
 
-		foreach (Tile tile in list) {
-			Debug.Log("here");
+			if (star != null) {
+				star.test(tile);
+			}
+
 		}
 
-	}
+
+	}	
 
 	
 	// Update is called once per frame

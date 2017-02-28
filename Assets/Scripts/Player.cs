@@ -17,8 +17,16 @@ public class Player : MonoBehaviour{
 	private bool chargingWeapon = false;
 	private float currentCharge = 0.0f;
 
+
+	// Get AIManager instance
+	private AIManager am = AIManager.instance;
+
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
+
+
+		// set the current tile location
+		currentLocation = getCurTile();
 	}
 
 	void Update(){
@@ -55,9 +63,30 @@ public class Player : MonoBehaviour{
 
 			currentCharge = 0.0f;
 			chargingWeapon = false;
+	
+		}
+	}
+
+	#region AI Triggeres
+		
+	private void handleAITrigger() {
+
+		// get current tile player is on
+		Tile temp = getCurTile();
+
+		if (temp != currentLocation) {
+			Debug.Log("here");	
+			currentLocation = temp;
+			
+			//am.recalculatePaths(currentLocation);
+
 		}
 
+
 	}
+
+	#endregion
+
 
 	#region Gun Methods
 

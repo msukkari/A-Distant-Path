@@ -32,6 +32,7 @@ public class Star : MonoBehaviour {
 		enemy = parent.GetComponent( typeof(Enemy) ) as Enemy;
 
 
+		/*
 		Tile end = lm.getTileList()[120];
 
 		Debug.Log("PATH: current tile ID: " + enemy.getCurTile().id + " | target tile ID: " + end.id);
@@ -47,11 +48,24 @@ public class Star : MonoBehaviour {
 
 		target = path[0].tile.transform.position;
 		target.y = target.y + 1;
-
+	*/
 
 	}
 
-	private List<Node> findPathFromCurrentTile(Tile end) {
+	public void test(Tile tile) {
+		Debug.Log(tile.id); 
+
+		path = findPathFromCurrentTile(tile);
+		path.Reverse();
+
+		target = path[0].tile.transform.position;
+		target.y = target.y + 1;
+
+	}
+
+	public List<Node> findPathFromCurrentTile(Tile end) {
+
+
 
 		// get current tile
 		Tile start = enemy.getCurTile();
@@ -61,7 +75,7 @@ public class Star : MonoBehaviour {
 	}
 
 
-	private List<Node> findPath(Tile start, Tile end) {
+	public List<Node> findPath(Tile start, Tile end) {
 
 		List<Node> openList = new List<Node>();
 		List<Node> closedList = new List<Node>();
@@ -144,6 +158,9 @@ public class Star : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+
+		/*
 		if (path.Count != 0) {		
 
 			if (path[0].tile != enemy.getCurTile()) {
@@ -162,7 +179,7 @@ public class Star : MonoBehaviour {
 			}
 
 		}
-
+	*/
 		
 	}
 }

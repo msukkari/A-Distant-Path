@@ -59,4 +59,5 @@ MonoBehaviour:
     type: 2}
   elementManagerObject: {fileID: 0}
   aiManagerObject: {fileID: 1649206698763604, guid: e2aaeeb3f6c614f46bc8ccf161ea8327,
+  controlManager: {fileID: 1291018845965778, guid: 33be252232ffe18499a3b18ed3f36ed3,
     type: 2}

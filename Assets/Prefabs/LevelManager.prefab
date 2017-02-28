@@ -56,5 +56,6 @@ MonoBehaviour:
   elementManagerPrefab: {fileID: 1729996963719242, guid: f8085b5b581bade45acc00a780065323,
     type: 2}
   levelManagerPrefab: {fileID: 1649206698763604, guid: e2aaeeb3f6c614f46bc8ccf161ea8327,
+  uiManagerPrefab: {fileID: 1648029690930406, guid: a35d4b911226aea4a935fe5977d00ec8,
     type: 2}
   TimeState: 0

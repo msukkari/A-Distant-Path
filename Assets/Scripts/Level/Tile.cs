@@ -14,18 +14,19 @@ public class Tile : MonoBehaviour {
 
 	public Element element;
 	public bool navigatable = true;
+	public bool isGroundTile = true;
+
+	public Vector3 tileScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
 	// MATERIALS //
 	public Material GrassMat;
 
+    public bool isHighlighted;
+
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
-		if (element != null) {
-			if(element.elementType != ElementType.Transfer)
-				SetNavigatable (false);
-		}
-
+		SetNavigatable((this.element == null) ? true : this.element.navigatable);
 
 		this.setMaterial();
 	}
@@ -59,35 +60,75 @@ public class Tile : MonoBehaviour {
 		this.gameObject.tag = "Tile";
 	}
 
+	#region Tile Element Methods
+
+	public bool HasElement() {
+		return this.element != null;
+	}
+
+	public bool GainElement(ElementType elementType) {
+		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
+
+		if(newElement == ElementType.None){
+			ClearElement();
+			return true;
+		}
+		else if (this.element == null || newElement != elementType) {
+			ClearElement ();
+			LevelManager.CreateElementAtTile (this, newElement);
+
+			if (this.element.elementType == ElementType.Water) {
+				this.element.GetComponent<Water> ().destroyTileOnLose = false;
+			}
+
+			setMaterial ();
+			return true;
+		}
+
+		return false;
+	}
+
 	public ElementType LoseElement() {
 		ElementType elementLost = this.element.elementType;
 		element.quantity--;
 
 		if (element.quantity <= 0) {
-			Destroy (element.gameObject);
-			this.element = null;
-			this.SetNavigatable (true);
+			ClearElement ();
 		}
 
 		return elementLost;
 	}
 
-	public void GainElement(ElementType elementType) {
-		LevelManager.CreateElementAtTile (this, elementType);
+	public void ClearElement() {
+		if (this.element != null) {
+			ElementType type = this.element.elementType;
+			if (type == ElementType.Water && this.element.GetComponent<Water> ().destroyTileOnLose) {
+				this.GetComponent<MeshRenderer> ().enabled = false;
+				this.enabled = false;
+			} else {
+				this.SetNavigatable (true);
+			}
+
+			Destroy (element.gameObject);
+			this.element = null;
+
+			setMaterial ();
+		}
 	}
+
+	#endregion
+
 
 	public void SetNavigatable(bool navigatable) {
 		this.navigatable = navigatable;
 		BoxCollider collider = this.GetComponent<BoxCollider> ();
-		if (navigatable) {
-			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
-		} else {
-			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
-		}
-	}
 
-	public bool HasElement() {
-		return this.element != null;
+		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
+			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
+		else if(navigatable){
+			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+		}
+		
 	}
 
 	public bool HasElementOfType(ElementType elementType) {
@@ -105,14 +146,41 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		if(this.element == null){
-			renderer.material = GrassMat;
-		}
-	}
-	
+		renderer.material = GrassMat;
 
-	// Removes invalid tile ID's (ID's that don't represent an actual tile)
-	/*
+		if (element != null) {
+			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand
+			   || element.elementType == ElementType.MoltenSand || element.elementType == ElementType.Glass) {
+				renderer.material = element.GetComponent<Renderer>().material;
+			}
+		}
+		/*
+		if (element != null) {
+			switch (element.elementType) {
+			case ElementType.Glass:
+				break;
+			case ElementType.Ice:
+				renderer.material = IceMat;
+				//this.element.GetComponent<MeshRenderer> ().enabled = false;
+				//this.element.GetComponent<Collider> ().enabled = false;
+				SetNavigatable (true);
+				break;
+			case ElementType.MoltenSand:
+			case ElementType.Sand:
+				break;
+			default:
+				renderer.material = GrassMat;
+				break;
+			}
+		}
+		else{
+			renderer.material = GrassMat;
+		}*/
+	}
+
+
+    // Removes invalid tile ID's (ID's that don't represent an actual tile)
+    /*
 	private void validateNList(){
 		List<int> validList = new List<int>();
 
@@ -128,7 +196,7 @@ public class Tile : MonoBehaviour {
 	*/
 
 
-	/* OLD NEIGHBOR FETCH METHOD
+    /* OLD NEIGHBOR FETCH METHOD
 	// Gets all the neighboring tile ID's and puts them in nIDList (NOTE: list must be validated! See valideNList())
 	private void fetchNeighborTiles(){
 		List<int> result = new List<int>();
@@ -164,11 +232,41 @@ public class Tile : MonoBehaviour {
 		this.nIDList = result;
 	}
 	*/
+    private Vector3 offset = new Vector3(0f, 1.5f, 0f);
+    private GameObject highlightObj;
+    public void highlight() {
+        if (!isHighlighted) {
+            highlightObj = Instantiate(Resources.Load("Other/Highlight"), transform.position +offset, new Quaternion(), transform) as GameObject;
 
+            //GameObject highlight = Instantiate(Resources.Load("Other/Highlight")) as GameObject;
+            //highlight.transform.parent = transform;
+            isHighlighted = true;
+        }
+    }
 
+    public void unHighlight() {
+        Destroy(highlightObj);
+        isHighlighted = false;
+    }
 
+	private Tile GetTileAbove() {
+		RaycastHit hit;
 
+		Debug.DrawLine (this.transform.position, this.transform.position + 3.0f * Vector3.up);
+		if (Physics.Raycast (this.transform.position, Vector3.up, out hit)) {
+			if (hit.collider.tag == "Tile") {
+				return hit.collider.gameObject.GetComponent<Tile>();
+			}
+		}
+		return null;
+	}
 
-
+	public Tile GetTopTile() {
+		Tile topTile = this;
+		while (topTile.GetTileAbove () != null) {
+			topTile = topTile.GetTileAbove ().GetComponent<Tile> ();
+		}
+		return topTile;
+	}
 
 }

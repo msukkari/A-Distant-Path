@@ -11,7 +11,6 @@ public class AStar : MonoBehaviour {
 	public List<Node> AStarPath(Tile start, Tile end) {
 		int count = 0;
 		target = end;
-		Debug.Log ("PERFORMING A* WITH START TILE = " + start.name);
 
 		List<Node> openList = new List<Node>();
 		List<Node> closedList = new List<Node>();

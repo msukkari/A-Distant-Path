@@ -6,8 +6,6 @@ using System;
 public class Player : MonoBehaviour{
 
 	public Gun[] guns;
-	
-	// current tile location of player (used for AI)
 	public Tile currentLocation;
 
 	public Dictionary<ElementType, int> elementsInventory = new Dictionary<ElementType, int>();
@@ -22,77 +20,93 @@ public class Player : MonoBehaviour{
 
 	// Get AIManager instance
 	private AIManager am = AIManager.instance;
+	// This is linked when the player is initiated in LevelManager
+	public EventTransferManager ETmanager;
+
 
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 
+
+		// set the current tile location
 		currentLocation = getCurTile();
+		// Sanity check
+		foreach(Gun gun in guns){
+			gun.owner = this;
+		}
 	}
 
 	void Update(){
+
 		if(Input.GetKeyDown(KeyCode.E))
 			printNTiles();
 		
 		CheckElementPickup();
 
+		/*
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			ChangeGun ();
 		}
+		*/
 
 		if (Input.GetKeyDown (KeyCode.E)) {
 			guns [currentGun].ChangeMode ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			Debug.Log ("Started charge");
+		// Suck tile only if space is pressed and the player is not moving
+		if ((Input.GetKey (KeyCode.Space) || Input.GetButton("XButton")) && NotMoving()) {
 			chargingWeapon = true;
 		}
 
-		if (chargingWeapon) {
-			Debug.Log ("Charging weapon");
+		// R Shoots water in the front tile (for now)
+		if(Input.GetKeyDown(KeyCode.R)){
+			ShootWaterInFrontTile ();
+		}
+
+		// Q Shoots fire in the front tile (for now)
+		if(Input.GetKeyDown(KeyCode.Q)){
+			ShootFireInFrontTile ();	
+		}
+
+		if (chargingWeapon && NotMoving ()) {
 			currentCharge += Time.deltaTime;
 
 			if (currentCharge > 1.0f) {
 				guns [currentGun].AreaShot ();
 				currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
+				chargingWeapon = false;
 			}
+		} else {
+			currentCharge = 0.0f;
+			chargingWeapon = false;
 		}
 
 		if (Input.GetKeyUp (KeyCode.Space)) {
-			Debug.Log ("Released at charge = " + currentCharge);
-
 			currentCharge = 0.0f;
 			chargingWeapon = false;
 	
 		}
-
-		// handle AI trigger
-		AITrigger();
-	}
-			
-
-	private void AITrigger() {
-
-		if (playerOnNewTile()) {
-			am.AIStateEvent(AIEvents.PlayerOnNewTile);
-		}
-
 	}
 
-	// playerOnNewTile: returns true if the player is on a new tile
-	private bool playerOnNewTile() {
+	#region AI Triggeres
+		
+	private void handleAITrigger() {
 
 		// get current tile player is on
 		Tile temp = getCurTile();
 
-		// if the player has moved
 		if (temp != currentLocation) {
+			Debug.Log("here");	
 			currentLocation = temp;
-			return true;
+			
+			//am.recalculatePaths(currentLocation);
+
 		}
 
-		return false; 
+
 	}
+
+	#endregion
 
 
 	#region Gun Methods
@@ -134,6 +148,84 @@ public class Player : MonoBehaviour{
 		}*/
 	}
 
+	private void ShootWaterInFrontTile() {
+		if (HasElement (ElementType.Water, 1)) {
+			Tile front = getFrontTile();
+
+			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
+				if (front.element != null) {
+					if (front.element.WaterInteract (ETmanager)) {
+						this.elementsInventory[ElementType.Water]--;
+					}
+				} else {
+					if(front.GainElement (ElementType.Water)){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+			}
+		}
+	}
+
+	private void ShootFireInFrontTile() {
+		if (HasElement (ElementType.Fire, 1)) {
+			Tile front = getFrontTile ();
+
+			if (this.elementsInventory [ElementType.Fire] > 0 && front != null) {
+				if (front.element != null) {
+					if (front.element.FireInteract (ETmanager)) {
+						this.elementsInventory [ElementType.Fire]--;
+					}
+				} else {
+					if(front.GainElement (ElementType.Fire))
+						this.elementsInventory [ElementType.Fire]--;
+				}
+			}
+		}
+	}
+
+	private void ShootWaterOnTile(int tileID) {
+		if (HasElement (ElementType.Water, 1)) {
+			Tile tile = LevelManager.instance.getTileAt(tileID);
+
+			if(tile == null){
+				Debug.Log("ERROR FINDING TILE in ShootWaterOnTile");
+				return;
+			}
+
+			if (tile.element != null) {
+				if (tile.element.WaterInteract (ETmanager)) {
+					this.elementsInventory[ElementType.Water]--;
+				}
+			} else {
+				if(tile.GainElement (ElementType.Water)){
+					this.elementsInventory[ElementType.Water]--;
+				}
+			}
+		}
+	}
+
+	private void ShootFireOnTile(int tileID) {
+		if (HasElement (ElementType.Fire, 1)) {
+			Tile tile = LevelManager.instance.getTileAt(tileID);
+
+			if(tile == null){
+				Debug.Log("ERROR FINDING TILE in ShootFireOnTile");
+				return;
+			}
+
+			if (tile.element != null) {
+				if (tile.element.FireInteract (ETmanager)) {
+					this.elementsInventory[ElementType.Fire]--;
+				}
+			} else {
+				if(tile.GainElement (ElementType.Fire)){
+					this.elementsInventory[ElementType.Fire]--;
+				}
+			}
+		}
+	}
+
+
 	public void ChangeGun() {
 		currentGun = (currentGun + 1) % guns.Length;
 		//Debug.Log ("Changed to gun at index: " + currentGun);
@@ -163,7 +255,6 @@ public class Player : MonoBehaviour{
 	}
 
 	private void CheckElementPickup() {
-
 		// check if player is attempting to collect water
 		if (!Input.GetKey(KeyCode.F)) {
 			elementTimeCount = 0;
@@ -199,6 +290,10 @@ public class Player : MonoBehaviour{
 		return false;
 	}
 
+	private bool NotMoving() {
+		return Input.GetAxis ("Horizontal") == 0.0f && Input.GetAxis ("Vertical") == 0.0f;
+	}
+
 	#endregion
 	
 	/* 
@@ -232,6 +327,36 @@ public class Player : MonoBehaviour{
 		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
 	}
 
+	public Tile getFrontTile(){
+		RaycastHit hit;
+
+		Vector3 direction = Quaternion.AngleAxis(20, this.transform.right) * this.transform.forward;
+		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
+
+		if(Physics.Raycast(transform.position, direction, out hit)){
+			
+			if(hit.collider.tag == "Tile"){
+				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+				if(cur != null && cur.enabled){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+			else {
+				Tile cur = hit.collider.gameObject.GetComponentInParent<Tile>();
+
+				if(cur != null && cur.enabled){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+		}
+
+		Debug.Log("TILE NOT FOUND");
+		return null;
+	}
+
 	// Using this to DEBUG
 	public void printNTiles(){
 
@@ -248,4 +373,17 @@ public class Player : MonoBehaviour{
 
 	#endregion
 
+    public void throwMaterial(int tileID) {
+        Debug.Log("Throw material!");
+        this.ShootWaterOnTile(tileID);
+    }
+
+    public void placeWaypoint(Vector3 position) {
+        Debug.Log("Place waypoint");
+    }
+
+    public void interactInFront(int tileID) {
+        Debug.Log("Interact in front!");
+        this.ShootWaterOnTile(tileID);
+    }
 }

@@ -7,6 +7,8 @@ public abstract class Element : MonoBehaviour {
 	public ElementType elementType;
 	public int quantity = 1;
 
+	public bool navigatable = true;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,10 +18,31 @@ public abstract class Element : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public virtual bool WaterInteract(EventTransferManager ETManager) {
+		return false;
+	}
+
+	public virtual bool FireInteract(EventTransferManager ETManager) {
+		return false;
+	}
 }
 
 public enum ElementType {
 	Fire = 0,
 	Water,
-	Transfer
+	Steam,
+	Transfer,
+	MetalCube,
+	MetalCubeRusted,
+	Stump,
+	Sapling,
+	BigTree,
+	Ice,
+	None,
+	Sand,
+	MoltenSand,
+	Glass,
+	Stone,
+	Wood
 }

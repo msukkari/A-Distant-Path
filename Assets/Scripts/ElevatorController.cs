@@ -17,10 +17,8 @@ public class ElevatorController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isTriggered & parent.transform.position.y < endPos.y) {
-
-			Debug.Log ("Hit");
 			parent.transform.position += Vector3.up * speed * 0.01f;
-		} else if ((!isTriggered) & parent.transform.position != startPos){
+		} else if ((!isTriggered) & parent.transform.position.y > startPos.y){
 			parent.transform.position += Vector3.down * speed * 0.01f;
 		}
 	}

@@ -7,16 +7,20 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
+	// GameManager GetInstanceGameManager
+	private GameManager gm = GameManager.instance;
+
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
+	
 	public GameObject uiManagerPrefab;
 
 	public TimeStates TimeState;
 
 	// TileList for given level
-	private List<Tile> TileList;
+	private List<Tile> tileList;
 
 	// Associated level attached to this manager
 	private Level attachedLevel = null;
@@ -42,12 +46,16 @@ public class LevelManager : MonoBehaviour {
 		// Sets this to not be destroyed on scene reload
 		DontDestroyOnLoad(gameObject);
 
-		Debug.Log("level initialization...");
+		Debug.Log("LevelManager.cs: Manager initialized");
+
+		// Initialize the AI manager
+		gm.InitAIManager();
 
 	}	
 
 	public void LoadLevelScene(){
 
+		Debug.Log("LevelManager.cs: Loading scene...");
 		if(TimeState == TimeStates.Past){
 			//SceneManager.LoadScene((int)Scenes.Past);
 			PhotonNetwork.LoadLevel((int)Scenes.Past);
@@ -83,9 +91,10 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad(player);
+
 	}
 
-	// Attach a new Level object
+	// Attach a new Level object (called from Level.cs)
 	public void AttachLevel(Level level) {
 
 		// Assign level to this manager
@@ -94,7 +103,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Get the Tile with the passed in ID, returns null if not found
 	public Tile getTileAt(int id){
-		foreach(Tile tile in TileList){
+		foreach(Tile tile in tileList){
 			if(tile.getTileID() == id)
 				return tile;
 		}
@@ -106,23 +115,23 @@ public class LevelManager : MonoBehaviour {
 	public void LoadTileList() {
 			
 		// Instantiate new TileList
-		TileList = new List<Tile>();
+		tileList = new List<Tile>();
 
 		// Loop and add all tiles
 		foreach(Transform child in attachedLevel.transform){			
-			TileList.Add(child.GetComponent<Tile>());
+			tileList.Add(child.GetComponent<Tile>());
 		}
 
 	
 		// Calculate the ID's of all the tiles (this must be done first in order for the neighbor method to work)
-		foreach(Tile tile in TileList){
+		foreach(Tile tile in tileList){
 			tile.calcID();
 		}
-		foreach(Tile tile in TileList){
+		foreach(Tile tile in tileList){
 			tile.initTile();
 		}
 
-		foreach(Tile tile in TileList) {
+		foreach(Tile tile in tileList) {
 			// Attaches random elements to tiles other than the player's current position. Was used for testing 
 			// out the level.
 			/*if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
@@ -146,7 +155,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	// Get TileList
-	public List<Tile> getTileList(){return TileList;}
+	public List<Tile> getTileList(){return tileList;}
+
+	// Get the attached level
+	public Level getAttachedLevel() {
+		return attachedLevel;
+	}
 
 	public void AddTileToList(Tile tile) {
 		TileList.Add (tile);
@@ -159,6 +173,27 @@ public class LevelManager : MonoBehaviour {
 		tile.element = elementCreated.GetComponent<Element> ();
 
 		tile.SetNavigatable (tile.element.navigatable);
+	}
+
+	public Tile GetClosestTileOfType(ElementType elemType, Vector3 position) {
+		bool first = true;
+		Tile closestTile = null;
+
+		for (int i = 0; i < tileList.Count - 1; i++) {
+			if(tileList[i].element != null && tileList[i].element.elementType == elemType) {
+				if(first) {
+					closestTile = tileList[i];
+					first = false;
+				}
+				else{
+					if(Mathf.Abs(Vector3.Distance(position, tileList[i].transform.position)) < 
+						Mathf.Abs(Vector3.Distance(position, closestTile.transform.position))) {
+						closestTile = tileList[i];
+					}
+				}
+			}
+		}
+		return closestTile;
 	}
 	
 	// Update is called once per frame

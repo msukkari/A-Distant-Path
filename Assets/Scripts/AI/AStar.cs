@@ -4,7 +4,7 @@ using System.Linq;
 
 public class AStar {
 
-	// 
+	// Return the path
 	public List<Tile> findPath(Tile start, Tile end) {
 
 		List<Node> openList = new List<Node>();

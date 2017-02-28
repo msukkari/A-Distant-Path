@@ -16,7 +16,6 @@ public class AIManager : MonoBehaviour {
 	// Current
 	public List<Enemy> enemies = new List<Enemy>();
 
-
 	// Awake is called before Start function
 	void Awake() {
 
@@ -39,6 +38,28 @@ public class AIManager : MonoBehaviour {
 		Level level = lm.getAttachedLevel();
 		Debug.Log("AIManager.cs: Starting AI init for - " + level.name);
 	}
+
+	// AIStateEvent: triggers all AI to a new event
+	public void AIStateEvent(AIEvents aiEvent) {
+
+		foreach (Enemy enemy in enemies) {	
+
+			switch (aiEvent) {
+
+				case AIEvents.PlayerOnNewTile:
+					Debug.Log("--- RECALCULATE ---");
+					enemy.stateClass.playerOnNewTile();
+					break;
+
+				default:
+					Debug.Log("AIManager.cs: undefined AIEvent!!");
+					break;
+			}
+
+		}
+
+	}
+
 
 	// recalculatePaths: re-calculate all AI's paths
 	public void recalculatePaths(Tile tile){

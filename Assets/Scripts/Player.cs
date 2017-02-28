@@ -74,9 +74,7 @@ public class Player : MonoBehaviour{
 	private void AITrigger() {
 
 		if (playerOnNewTile()) {
-
-			
-
+			am.AIStateEvent(AIEvents.PlayerOnNewTile);
 		}
 
 	}

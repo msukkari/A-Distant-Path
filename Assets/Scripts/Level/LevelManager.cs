@@ -10,12 +10,16 @@ public class LevelManager : MonoBehaviour {
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 
+	private AIManager am = AIManager.instance;
+
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
-	
 
+	// Instance of player
+	public Player player;
+	
 	public TimeStates TimeState;
 
 	// TileList for given level
@@ -60,6 +64,7 @@ public class LevelManager : MonoBehaviour {
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
+		this.player = player.GetComponent<Player>();
 
 		if(TimeState != TimeStates.Offline){
 			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
@@ -80,7 +85,6 @@ public class LevelManager : MonoBehaviour {
 		else if(TimeState == TimeStates.Offline){
  			//SceneManager.LoadScene((int) Scenes.Offline);	
 			SceneManager.LoadScene((int) Scenes.AITest);
-
 		}
 		else{
 			Debug.Log("INVALID TIMESTATE!!");
@@ -155,6 +159,7 @@ public class LevelManager : MonoBehaviour {
 	public Level getAttachedLevel() {
 		return attachedLevel;
 	}
+
 
 	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
 		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);

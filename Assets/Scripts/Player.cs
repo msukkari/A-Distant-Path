@@ -47,7 +47,7 @@ public class Player : MonoBehaviour{
 		}
 
 		// Suck tile only if space is pressed and the player is not moving
-		if (Input.GetKey (KeyCode.Space) && NotMoving()) {
+		if ((Input.GetKey (KeyCode.Space) || Input.GetButton("AButton")) && NotMoving()) {
 			chargingWeapon = true;
 		}
 
@@ -130,8 +130,9 @@ public class Player : MonoBehaviour{
 						this.elementsInventory[ElementType.Water]--;
 					}
 				} else {
-					front.GainElement (ElementType.Water);
-					this.elementsInventory[ElementType.Water]--;
+					if(front.GainElement (ElementType.Water)){
+						this.elementsInventory[ElementType.Water]--;
+					}
 				}
 			}
 		}
@@ -147,12 +148,55 @@ public class Player : MonoBehaviour{
 						this.elementsInventory [ElementType.Fire]--;
 					}
 				} else {
-					front.GainElement (ElementType.Fire);
-					this.elementsInventory [ElementType.Fire]--;
+					if(front.GainElement (ElementType.Fire))
+						this.elementsInventory [ElementType.Fire]--;
 				}
 			}
 		}
 	}
+
+	private void ShootWaterOnTile(int tileID) {
+		if (HasElement (ElementType.Water, 1)) {
+			Tile tile = LevelManager.instance.getTileAt(tileID);
+
+			if(tile == null){
+				Debug.Log("ERROR FINDING TILE in ShootWaterOnTile");
+				return;
+			}
+
+			if (tile.element != null) {
+				if (tile.element.WaterInteract (ETmanager)) {
+					this.elementsInventory[ElementType.Water]--;
+				}
+			} else {
+				if(tile.GainElement (ElementType.Water)){
+					this.elementsInventory[ElementType.Water]--;
+				}
+			}
+		}
+	}
+
+	private void ShootFireOnTile(int tileID) {
+		if (HasElement (ElementType.Fire, 1)) {
+			Tile tile = LevelManager.instance.getTileAt(tileID);
+
+			if(tile == null){
+				Debug.Log("ERROR FINDING TILE in ShootFireOnTile");
+				return;
+			}
+
+			if (tile.element != null) {
+				if (tile.element.FireInteract (ETmanager)) {
+					this.elementsInventory[ElementType.Fire]--;
+				}
+			} else {
+				if(tile.GainElement (ElementType.Fire)){
+					this.elementsInventory[ElementType.Fire]--;
+				}
+			}
+		}
+	}
+
 
 	public void ChangeGun() {
 		currentGun = (currentGun + 1) % guns.Length;
@@ -301,15 +345,17 @@ public class Player : MonoBehaviour{
 
 	#endregion
 
-    public void throwMaterial() {
+    public void throwMaterial(int tileID) {
         Debug.Log("Throw material!");
+        this.ShootWaterOnTile(tileID);
     }
 
     public void placeWaypoint(Vector3 position) {
         Debug.Log("Place waypoint");
     }
 
-    public void interactInFront() {
+    public void interactInFront(int tileID) {
         Debug.Log("Interact in front!");
+        this.ShootWaterOnTile(tileID);
     }
 }

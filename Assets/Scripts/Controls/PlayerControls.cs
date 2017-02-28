@@ -52,8 +52,11 @@ public class PlayerControls : MonoBehaviour {
 
         if(mode == TriggerType.arcThrowing || mode == TriggerType.placeWaypoint) {
             actualCursorRange = cursorRange;
+            cursor.GetComponent<MeshRenderer>().enabled = true;
         } else if(mode == TriggerType.directInteract) {
             actualCursorRange = 2f;
+            cursor.GetComponent<MeshRenderer>().enabled = false;
+
         }
 
         if (Input.GetAxis("RightTrigger") >= 0.9 || mode == TriggerType.directInteract) {
@@ -80,11 +83,14 @@ public class PlayerControls : MonoBehaviour {
             }
         }
 
+
+        int curID = getIDUnderCursor();
+
         if (Input.GetAxis("LeftTrigger") >= 0.9) {
             if (mode == TriggerType.arcThrowing) {
-                playerScript.throwMaterial();
+                playerScript.throwMaterial(curID);
             } else if (mode == TriggerType.directInteract) {
-                playerScript.interactInFront();
+                playerScript.interactInFront(curID);
             } else if (mode == TriggerType.placeWaypoint) {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
@@ -172,5 +178,24 @@ public class PlayerControls : MonoBehaviour {
         } else if (mode == TriggerType.directInteract) {
             cursor.GetComponent<MeshRenderer>().enabled = false;
         }*/
+    }
+
+    public int getIDUnderCursor(){
+        RaycastHit hit = new RaycastHit();
+        Ray ray = new Ray(cursor.transform.position + new Vector3(0, 50, 0), Vector3.down);
+
+        if (Physics.Raycast(ray, out hit)) {
+            GameObject tileGO = hit.collider.gameObject;
+            if (tileGO != null) {
+                Tile tile = tileGO.GetComponent<Tile>();
+
+                if (tile != null) {
+                    return tile.getTileID();
+                }     
+            }
+        }
+
+        Debug.Log("ERROR GETTING ID UNDER CURSOR");
+        return -1;
     }
 }

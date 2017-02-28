@@ -54,7 +54,7 @@ public class Player : MonoBehaviour{
 		}
 
 		// Suck tile only if space is pressed and the player is not moving
-		if ((Input.GetKey (KeyCode.Space) || Input.GetButton("AButton")) && NotMoving()) {
+		if ((Input.GetKey (KeyCode.Space) || Input.GetButton("XButton")) && NotMoving()) {
 			chargingWeapon = true;
 		}
 

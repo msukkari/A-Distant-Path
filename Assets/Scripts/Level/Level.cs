@@ -6,28 +6,17 @@ public class Level : MonoBehaviour {
 	
 	//private List<Tile> TileList;
 
-	private LevelManager lm = LevelManager.instance;
-	private AIManager am = AIManager.instance;
+	public Material GrassMat;
 
-	public string name = "";
+	private LevelManager lm = LevelManager.instance;
 
 
 	// Use this for initialization
-	void Start() {
-
-		Debug.Log("Level.cs: Level created");
+	void Start () {
 
 		// Initialize me!
 		lm.AttachLevel(this);
 		lm.LoadTileList();
-
-		
-		// ~~ Do all level initialization shit here ~~ //
-
-
-		am.init();
-
-
 
 	}
 	

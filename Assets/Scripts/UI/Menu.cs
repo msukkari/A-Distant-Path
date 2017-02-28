@@ -14,7 +14,6 @@ public class Menu : MonoBehaviour {
 
 
 	public void LoadOnline() {
-		Debug.Log("Menu.cs: <online button clicked>");
 
 		// Initialize network connection
 		gm.InitNetwork();
@@ -25,7 +24,7 @@ public class Menu : MonoBehaviour {
 
  	public void LoadOffline(){
  		// load off line scene
- 		Debug.Log("Menu.cs: <offline button clicked>");
+ 		Debug.Log("LOADING OFFLINE SCENE");
  		
  		gm.InitLevel(TimeStates.Offline);
 

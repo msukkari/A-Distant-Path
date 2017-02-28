@@ -131,14 +131,6 @@ public class Tile : MonoBehaviour {
 		
 	}
 
-	public bool HasElementOfType(ElementType elementType) {
-		return this.element != null && this.element.elementType == elementType;
-	}
-
-	public double getDistance(Tile goal) {
-		return Vector3.Distance(this.transform.position, goal.transform.position);
-	}
-
 
 	// PRIVATE METHODS //
 

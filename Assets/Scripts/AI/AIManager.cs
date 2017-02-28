@@ -45,6 +45,8 @@ public class AIManager : MonoBehaviour {
 
 		Debug.Log("recalculating..");
 
+		/*
+
 		// Loop all enemy
 		foreach (Enemy enemy in enemies) {	
 
@@ -54,7 +56,7 @@ public class AIManager : MonoBehaviour {
 				star.test(tile);
 			}
 
-		}
+		}*/
 
 
 	}	

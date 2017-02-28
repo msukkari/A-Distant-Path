@@ -23,8 +23,6 @@ public class Level : MonoBehaviour {
 
 		
 		// ~~ Do all level initialization shit here ~~ //
-
-
 		am.init();
 
 

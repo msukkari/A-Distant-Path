@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23750213025513924}
   - component: {fileID: 65887155092196904}
   - component: {fileID: 114149108351329086}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: MetalCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

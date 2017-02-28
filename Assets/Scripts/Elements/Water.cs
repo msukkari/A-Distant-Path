@@ -18,7 +18,6 @@ public class Water : Element {
 	}
 
 	public override bool FireInteract(EventTransferManager ETManager) {
-		this.GetComponentInParent<Tile> ().GainElement (ElementType.Fire);
-		return true;
+		return this.GetComponentInParent<Tile> ().GainElement (ElementType.Fire);;
 	}
 }

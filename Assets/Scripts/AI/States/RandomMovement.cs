@@ -2,37 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBehavior : MonoBehaviour {
-
-
-	// Parent enemy
-	private Transform parent;
-
+public class RandomMovement : AIStateInterface {
+	
 	// Random 
 	private Random rand = new Random();
 
 	// If the enemy is currently occupied
 	bool occupied = false;
 
+	// Enemy class
+	private Enemy enemy;
 
 	enum State {
 		Wait,
 		Walk
 	}
 
-
-	void Start() { 
-
-		// Set the parent
-		parent = transform.parent;
-
+	public RandomMovement(Enemy enemy) {
+		this.enemy = enemy; 
 	}
+
 
 	float now = 0;
 	float timeInterval = 0;
 	int select;
 	Vector3 direction = Vector3.forward;
-	void Update() {
+	public void Update() {
 
 		// increment now time
 		now += Time.deltaTime;
@@ -70,7 +65,7 @@ public class RandomBehavior : MonoBehaviour {
 				break;
 
 			case (int) State.Walk:
-				parent.Translate(direction * Time.deltaTime * 2);
+				enemy.transform.Translate(direction * Time.deltaTime * 2);
 				break;
 
 			default:
@@ -82,5 +77,7 @@ public class RandomBehavior : MonoBehaviour {
 
 	}
 
+	// do nothing..
+	public void playerOnNewTile () { }
 
 }

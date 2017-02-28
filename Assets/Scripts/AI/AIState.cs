@@ -1,7 +1,8 @@
 ﻿using System;
 
 public enum AIStates {
-	FollowPlayer,		
+	FollowPlayer,
+	RandomMovement		
 }
 
 public enum AIEvents {

@@ -54,6 +54,11 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new PlayerFollow(this));
 				break;
 
+			case AIStates.RandomMovement:
+				Debug.Log("--- AI STATE CHANGE: RandomMovement ---");
+				stateClass = new AIState(new RandomMovement(this));
+				break;
+
 			default:
 				Debug.Log("--- DEFAULT AI STATE CHANGE: FollowPlayer ---");
 				stateClass = new AIState(new PlayerFollow(this));

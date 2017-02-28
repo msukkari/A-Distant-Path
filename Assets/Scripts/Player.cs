@@ -6,8 +6,6 @@ using System;
 public class Player : MonoBehaviour{
 
 	public Gun[] guns;
-	
-	// current tile location of player (used for AI)
 	public Tile currentLocation;
 
 	public Dictionary<ElementType, int> elementsInventory = new Dictionary<ElementType, int>();
@@ -26,6 +24,8 @@ public class Player : MonoBehaviour{
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 
+
+		// set the current tile location
 		currentLocation = getCurTile();
 	}
 
@@ -65,34 +65,27 @@ public class Player : MonoBehaviour{
 			chargingWeapon = false;
 	
 		}
-
-		// handle AI trigger
-		AITrigger();
-	}
-			
-
-	private void AITrigger() {
-
-		if (playerOnNewTile()) {
-			am.AIStateEvent(AIEvents.PlayerOnNewTile);
-		}
-
 	}
 
-	// playerOnNewTile: returns true if the player is on a new tile
-	private bool playerOnNewTile() {
+	#region AI Triggeres
+		
+	private void handleAITrigger() {
 
 		// get current tile player is on
 		Tile temp = getCurTile();
 
-		// if the player has moved
 		if (temp != currentLocation) {
+			Debug.Log("here");	
 			currentLocation = temp;
-			return true;
+			
+			//am.recalculatePaths(currentLocation);
+
 		}
 
-		return false; 
+
 	}
+
+	#endregion
 
 
 	#region Gun Methods

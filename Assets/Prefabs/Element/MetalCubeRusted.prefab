@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64292702910252456}
   - component: {fileID: 65036984295038030}
   - component: {fileID: 114612494764211216}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MetalCubeRusted
   m_TagString: Untagged
   m_Icon: {fileID: 0}

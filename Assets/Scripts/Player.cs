@@ -19,6 +19,8 @@ public class Player : MonoBehaviour{
 	private bool chargingWeapon = false;
 	private float currentCharge = 0.0f;
 
+	private Tile lastValidTile;
+	private bool frozen;
 
 	// Get AIManager instance
 	private AIManager am = AIManager.instance;
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour{
 		foreach(Gun gun in guns){
 			gun.owner = this;
 		}
+
+		lastValidTile = getCurTile ();
 	}
 
 	void Update(){
@@ -324,15 +328,16 @@ public class Player : MonoBehaviour{
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-			if(cur != null)
+			if (cur != null)
+				lastValidTile = cur;
 				return cur;
 		}
 
-		return null;
+		return lastValidTile;
 	}
 
 	public int getCurTileID(){
-		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+		return this.getCurTile() == null ? lastValidTile.id : this.getCurTile().id; 
 	}
 
 	public Tile getFrontTile(){

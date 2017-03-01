@@ -47,6 +47,7 @@ public class PlayerFollow : AIStateInterface {
 		start = enemy.getCurTile();
 		path = star.AStarPath(start, end);
 		path.Reverse();
+		currentNode = 0;
 
 		//target = path[0].tile.transform.position;
 		//target.y = target.y + 1;

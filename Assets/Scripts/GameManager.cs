@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
 	//public static string ASSETSPATH = Application.dataPath;
 
 	// game build
-	private string BUILD = "RT-prototype";
+	private string BUILD = "elems-and-ui";
 
 	// static instance of GameManager
 	public static GameManager instance = null;
@@ -69,8 +69,16 @@ public class GameManager : MonoBehaviour {
 
 	// ElementManager instance
 	private ElementManager elementManager;
-	// ---------------
+    // ---------------
 
+    // --- CONTROLS ---
+
+    //ControlManager GameObject
+    public GameObject controlManager;
+
+    //ControlManager instance
+    private ControlManager controls;
+    // ---------------
 
 	// --- AI ---
 	public GameObject aiManagerObject;
@@ -78,6 +86,7 @@ public class GameManager : MonoBehaviour {
 
 	// Awake is called before Start function
 	void Awake() {
+
 
 		// if the static class instance is null (singleton pattern)
 		if (instance == null)
@@ -130,8 +139,10 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("initializing game...");
 		Debug.Log(Scenes.MainMenu);
 
-		// Load main menu scene
-		SceneManager.LoadScene((int) Scenes.MainMenu);		
+        InitControls();
+
+        // Load main menu scene
+        SceneManager.LoadScene((int) Scenes.MainMenu);		
 	}	
 
 	// InitNetowrk: initializes the networking (currently called on "play" button)
@@ -175,9 +186,19 @@ public class GameManager : MonoBehaviour {
 		aiManager = AIManager.instance;
 
 	}
+   
+  public void InitControls() {
+        if (ControlManager.instance == null) {
+            Instantiate(controlManager);
+        }
 
-	// GetBuild: return the current game build
-	public string GetBuild() {
+        controls = ControlManager.instance;
+
+        controls.loadUtils();
+    }
+
+    // GetBuild: return the current game build
+    public string GetBuild() {
 		return BUILD;
 	}
 	

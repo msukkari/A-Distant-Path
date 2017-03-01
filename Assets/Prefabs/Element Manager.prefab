@@ -54,5 +54,26 @@ MonoBehaviour:
   firePrefab: {fileID: 1447741304997964, guid: 94dc208fb08eca44485ece46ca96cd57, type: 2}
   waterPrefab: {fileID: 1797516619120934, guid: deabe5dabd03f5c478d044150d6aa24d,
     type: 2}
+  steamPrefab: {fileID: 1499303183999688, guid: cbdab045fb91d434895e812d28fc3ec3,
+    type: 2}
   transferPrefab: {fileID: 1047540629729090, guid: c9dd4dced2ceae94e86576dd434c6b61,
     type: 2}
+  metalcubePrefab: {fileID: 1030483007302704, guid: 45f5afefbb2974541bf6df41210fb4d8,
+    type: 2}
+  metalcuberustedPrefab: {fileID: 1662827490164644, guid: 7bf90831658fa874c9abd67f859ae383,
+    type: 2}
+  stumpPrefab: {fileID: 1612544977246558, guid: 21688c3bacb6cf54395a49b9d806ffbe,
+    type: 2}
+  saplingPrefab: {fileID: 1244577639243514, guid: 210eeef0f5a34374c8da34c0a2141b48,
+    type: 2}
+  bigtreePrefab: {fileID: 1496319938696718, guid: 1314ad4cc8d2de74982e8259d3b9796a,
+    type: 2}
+  icePrefab: {fileID: 1715591441389790, guid: 226d83749ccba8748b2d36221e50210c, type: 2}
+  sandPrefab: {fileID: 1633515460203148, guid: e48fe636e7ccb504aa92d2359a3d32ae, type: 2}
+  moltenSandPrefab: {fileID: 1546327965419238, guid: e1aeae34feff8004386490c5c8c9bad5,
+    type: 2}
+  glassPrefab: {fileID: 1995470763605366, guid: 0ebf89ebff17cc64e9f58062547f4883,
+    type: 2}
+  stonePrefab: {fileID: 1128275275651286, guid: 122a49b97390b294a80a4f25f6e864f7,
+    type: 2}
+  woodPrefab: {fileID: 1378966597508914, guid: 9ed2b095dc675f240ab0060a04c5db41, type: 2}

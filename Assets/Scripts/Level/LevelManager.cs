@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
+	public GameObject uiManagerPrefab;
 
 	// Instance of player
 	public Player player;
@@ -59,6 +60,22 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLevelScene(){
 
 		Debug.Log("LevelManager.cs: Loading scene...");
+    
+		if(TimeState == TimeStates.Past){
+			//SceneManager.LoadScene((int)Scenes.Past);
+			PhotonNetwork.LoadLevel((int)Scenes.Past);
+		}
+		else if(TimeState == TimeStates.Present){
+			//SceneManager.LoadScene((int)Scenes.Present);
+			PhotonNetwork.LoadLevel((int)Scenes.Present);
+		}
+		else if(TimeState == TimeStates.Offline){
+ 			SceneManager.LoadScene((int) Scenes.Offline);	
+		}
+		else{
+			Debug.Log("INVALID TIMESTATE!!");
+		}
+
 
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
@@ -66,29 +83,20 @@ public class LevelManager : MonoBehaviour {
 		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
 		this.player = player.GetComponent<Player>();
 
-		if(TimeState != TimeStates.Offline){
+        GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
+        cam.GetComponent<CameraControls>().setCharacter(player);
+        DontDestroyOnLoad(cam);
+
+        Camera.main.enabled = false;
+        if (TimeState != TimeStates.Offline){
 			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
 			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
 			ETManager.player = player.GetComponent<Player>();
-			DontDestroyOnLoad(ETManager);
+			player.GetComponent<Player>().ETmanager = ETManager;
+			DontDestroyOnLoad(ETManagerGO);
 		}
 
 		DontDestroyOnLoad(player);
-
-		// ---- SCENE LOADING -----
-		if(TimeState == TimeStates.Past){
-			SceneManager.LoadScene((int)Scenes.Past);
-		}
-		else if(TimeState == TimeStates.Present){
-			SceneManager.LoadScene((int)Scenes.Present);
-		}
-		else if(TimeState == TimeStates.Offline){
- 			//SceneManager.LoadScene((int) Scenes.Offline);	
-			SceneManager.LoadScene((int) Scenes.AITest);
-		}
-		else{
-			Debug.Log("INVALID TIMESTATE!!");
-		}	
 
 	}
 
@@ -161,12 +169,17 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
+	public void AddTileToList(Tile tile) {
+		TileList.Add (tile);
+	}
+
 	public static void CreateElementAtTile(Tile tile, ElementType elementType) {
 		GameObject elementCreated = Instantiate (ElementManager.elementSpawnDictionary[elementType], tile.transform);
-		elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
+		elementCreated.transform.localPosition = ElementManager.elementSpawnDictionary [elementType].transform.localPosition;
+		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
-		tile.SetNavigatable (false);
+		tile.SetNavigatable (tile.element.navigatable);
 	}
 
 	public Tile GetClosestTileOfType(ElementType elemType, Vector3 position) {

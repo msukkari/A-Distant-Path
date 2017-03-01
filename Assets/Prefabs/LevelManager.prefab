@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4585994547753096}
-  - component: {fileID: 114407598621583966}
+  - component: {fileID: 114495005519206278}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114407598621583966
+--- !u!114 &114495005519206278
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -55,7 +55,5 @@ MonoBehaviour:
     type: 2}
   elementManagerPrefab: {fileID: 1729996963719242, guid: f8085b5b581bade45acc00a780065323,
     type: 2}
-  levelManagerPrefab: {fileID: 1649206698763604, guid: e2aaeeb3f6c614f46bc8ccf161ea8327,
-  uiManagerPrefab: {fileID: 1648029690930406, guid: a35d4b911226aea4a935fe5977d00ec8,
-    type: 2}
+  uiManagerPrefab: {fileID: 0}
   TimeState: 0

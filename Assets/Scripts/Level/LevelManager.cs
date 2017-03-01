@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject uiManagerPrefab;
 
 	// Instance of player
-	public Player player;
+	private Player player;
 	
 	public TimeStates TimeState;
 
@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 
 		Debug.Log("LevelManager.cs: Loading scene...");
     
-		if(TimeState == TimeStates.Past){
+    	if(TimeState == TimeStates.Past){
 			//SceneManager.LoadScene((int)Scenes.Past);
 			PhotonNetwork.LoadLevel((int)Scenes.Past);
 		}
@@ -75,12 +75,13 @@ public class LevelManager : MonoBehaviour {
 		else{
 			Debug.Log("INVALID TIMESTATE!!");
 		}
+		
 
 
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
-		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
+		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.0f, 5f), Quaternion.identity) as GameObject;
 		this.player = player.GetComponent<Player>();
 
         GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
@@ -202,10 +203,16 @@ public class LevelManager : MonoBehaviour {
 		}
 		return closestTile;
 	}
+
+	public Player getPlayer() {
+		return this.player;
+	}
+
 	
 	// Update is called once per frame
 	void Update () { }
 }
+
 
 public enum TimeStates {
 	Past,

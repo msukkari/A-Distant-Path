@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour {
 
 	public bool NeedToRecalculatePath(List<Node> path, int currentNode) {
 		return path.Count != 0 && currentNode + 1 <= path.Count - 1 && 
-			!path [currentNode + 1].tile.navigatable && lm.player.getCurTile() != path [currentNode + 1].tile;
+			!path [currentNode + 1].tile.navigatable && lm.getPlayer().getCurTile() != path [currentNode + 1].tile;
 	}
 
 	public int getCurTileID(){

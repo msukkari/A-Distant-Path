@@ -42,9 +42,9 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114337706099196262
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709812198401298}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -53,12 +53,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkObject: {fileID: 1194044013853792, guid: 7c895731557934cfcb26deb626a36b2c,
     type: 2}
-  UIManagerObject: {fileID: 1648029690930406, guid: a35d4b911226aea4a935fe5977d00ec8,
-    type: 2}
+  UIManagerObject: {fileID: 0}
   levelObject: {fileID: 1472357905583522, guid: f841b671eea494e829f04810199af2f0,
     type: 2}
   elementManagerObject: {fileID: 1729996963719242, guid: f8085b5b581bade45acc00a780065323,
     type: 2}
-  aiManagerObject: {fileID: 1649206698763604, guid: e2aaeeb3f6c614f46bc8ccf161ea8327,
   controlManager: {fileID: 1291018845965778, guid: 33be252232ffe18499a3b18ed3f36ed3,
+    type: 2}
+  aiManagerObject: {fileID: 1649206698763604, guid: e2aaeeb3f6c614f46bc8ccf161ea8327,
     type: 2}

@@ -93,7 +93,7 @@ public class PlayerFollow : AIStateInterface {
 
 
 	public void playerOnNewTile () {
-		this.end = lm.player.getCurTile();
+		this.end = lm.getPlayer().getCurTile();
 		calculatePath(); 
 	}
 }

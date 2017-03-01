@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour {
 	// AIManager instance
 	private AIManager am = AIManager.instance;
 
+	private LevelManager lm = LevelManager.instance;
+
 	// public enum for current state
 	public AIStates currentState;
 
@@ -94,6 +96,11 @@ public class Enemy : MonoBehaviour {
 		}
 
 		return null;
+	}
+
+	public bool NeedToRecalculatePath(List<Node> path, int currentNode) {
+		return path.Count != 0 && currentNode + 1 <= path.Count - 1 && 
+			!path [currentNode + 1].tile.navigatable && lm.player.getCurTile() != path [currentNode + 1].tile;
 	}
 
 	public int getCurTileID(){

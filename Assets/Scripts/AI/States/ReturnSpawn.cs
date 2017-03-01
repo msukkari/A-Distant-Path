@@ -51,6 +51,10 @@ public class ReturnSpawn : AIStateInterface {
 
 	// Update is called once per frame
 	public void Update () {
+
+		if (enemy.NeedToRecalculatePath(path, currentNode)) {
+			FindPathToInitialPos();
+		}
 		
 		// Move towards each next tile on path
 		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {

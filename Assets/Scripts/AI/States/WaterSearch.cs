@@ -53,7 +53,11 @@ public class WaterSearch : AIStateInterface {
 	
 	// Update is called once per frame
 	public void Update () {
-			
+		
+		if (enemy.NeedToRecalculatePath(path, currentNode)) {
+			FindClosestWaterPath();
+		}
+
 		// If A* returned a valid water tile
 		if (star.found) {
 

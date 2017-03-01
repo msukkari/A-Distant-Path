@@ -17,12 +17,19 @@ public class Enemy : MonoBehaviour {
 	// current state class
 	public AIState stateClass;	
 
+	public float moveSpeed = 3.0f;
+
+	// spawn tile of enemy
+	private Tile spawnTile;
 
 	// Use this for initialization
 	void Start () {
 
 		// add this to a list of enemies
 		am.enemies.Add(this);
+
+		// set the spawn tile
+		spawnTile = getCurTile();
 
 		// initialize this enemies current state
 		initState();
@@ -54,6 +61,16 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new PlayerFollow(this));
 				break;
 
+			case AIStates.WaterSearch:
+				Debug.Log("--- AI STATE CHANGE: WaterSearch ---");
+				stateClass = new AIState(new WaterSearch(this));
+				break;
+
+			case AIStates.ReturnSpawn:
+				Debug.Log("--- AI STATE CHANGE: ReturnSpawn ---");
+				stateClass = new AIState(new ReturnSpawn(this));
+				break;
+
 			case AIStates.RandomMovement:
 				Debug.Log("--- AI STATE CHANGE: RandomMovement ---");
 				stateClass = new AIState(new RandomMovement(this));
@@ -81,6 +98,10 @@ public class Enemy : MonoBehaviour {
 
 	public int getCurTileID(){
 		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+	}
+
+	public Tile getSpawnTile() {
+		return spawnTile;
 	}
 
 	

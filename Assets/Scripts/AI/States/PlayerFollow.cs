@@ -17,7 +17,7 @@ public class PlayerFollow : AIStateInterface {
 	private AStar star;
 
 	// Current path
-	private List<Tile> path = null;
+	private List<Node> path = null;
 
 	// Start and ending tiles
 	private Tile start, end;
@@ -37,10 +37,10 @@ public class PlayerFollow : AIStateInterface {
 
 	private void calculatePath() {
 		start = enemy.getCurTile();
-		path = star.findPath(start, end);
+		path = star.AStarPath(start, end);
 		path.Reverse();
 
-		target = path[0].transform.position;
+		target = path[0].tile.transform.position;
 		target.y = target.y + 1;
 	}
 
@@ -49,7 +49,7 @@ public class PlayerFollow : AIStateInterface {
 			
 		if (path.Count != 0) {		
 
-			if (path[0] != enemy.getCurTile()) {
+			if (path[0].tile != enemy.getCurTile()) {
 				enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, target, 2 * Time.deltaTime);
 
 			// next tile
@@ -57,7 +57,7 @@ public class PlayerFollow : AIStateInterface {
 				path.RemoveAt(0);
 
 				if (path.Count != 0) {
-					target = path[0].transform.position;
+					target = path[0].tile.transform.position;
 					target.y = target.y + 1;
 				}
 			}

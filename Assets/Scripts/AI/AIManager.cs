@@ -47,7 +47,6 @@ public class AIManager : MonoBehaviour {
 			switch (aiEvent) {
 
 				case AIEvents.PlayerOnNewTile:
-					Debug.Log("--- RECALCULATE ---");
 					enemy.stateClass.playerOnNewTile();
 					break;
 

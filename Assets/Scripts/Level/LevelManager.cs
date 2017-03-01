@@ -180,7 +180,7 @@ public class LevelManager : MonoBehaviour {
 					first = false;
 				}
 				else{
-					if(Mathf.Abs(Vector3.Distance(position, tileList[i].transform.position)) < 
+					if(Mathf.Abs(Vector3.Distance(position, TileList[i].transform.position)) < 
 						Mathf.Abs(Vector3.Distance(position, closestTile.transform.position))) {
 						closestTile = TileList[i];
 					}

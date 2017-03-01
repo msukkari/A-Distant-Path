@@ -7,12 +7,20 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
+	// GameManager GetInstanceGameManager
+	private GameManager gm = GameManager.instance;
+
+	private AIManager am = AIManager.instance;
+
 	// static instance of LevelManager
 	public static LevelManager instance = null;
 	public GameObject playerPrefab;
 	public GameObject elementManagerPrefab;
 	public GameObject uiManagerPrefab;
 
+	// Instance of player
+	public Player player;
+	
 	public TimeStates TimeState;
 
 	// TileList for given level
@@ -42,12 +50,17 @@ public class LevelManager : MonoBehaviour {
 		// Sets this to not be destroyed on scene reload
 		DontDestroyOnLoad(gameObject);
 
-		Debug.Log("level initialization...");
+		Debug.Log("LevelManager.cs: Manager initialized");
+
+		// Initialize the AI manager
+		gm.InitAIManager();
 
 	}	
 
 	public void LoadLevelScene(){
 
+		Debug.Log("LevelManager.cs: Loading scene...");
+    
 		if(TimeState == TimeStates.Past){
 			//SceneManager.LoadScene((int)Scenes.Past);
 			PhotonNetwork.LoadLevel((int)Scenes.Past);
@@ -67,7 +80,8 @@ public class LevelManager : MonoBehaviour {
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
 
-		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.0f, 5f), Quaternion.identity) as GameObject;
+		GameObject player = Instantiate(playerPrefab, new Vector3(10f, 2.0f, 10f), Quaternion.identity) as GameObject;
+		this.player = player.GetComponent<Player>();
 
         GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
         cam.GetComponent<CameraControls>().setCharacter(player);
@@ -83,9 +97,10 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		DontDestroyOnLoad(player);
+
 	}
 
-	// Attach a new Level object
+	// Attach a new Level object (called from Level.cs)
 	public void AttachLevel(Level level) {
 
 		// Assign level to this manager
@@ -148,6 +163,12 @@ public class LevelManager : MonoBehaviour {
 	// Get TileList
 	public List<Tile> getTileList(){return TileList;}
 
+	// Get the attached level
+	public Level getAttachedLevel() {
+		return attachedLevel;
+	}
+
+
 	public void AddTileToList(Tile tile) {
 		TileList.Add (tile);
 	}
@@ -159,6 +180,27 @@ public class LevelManager : MonoBehaviour {
 		tile.element = elementCreated.GetComponent<Element> ();
 
 		tile.SetNavigatable (tile.element.navigatable);
+	}
+
+	public Tile GetClosestTileOfType(ElementType elemType, Vector3 position) {
+		bool first = true;
+		Tile closestTile = null;
+
+		for (int i = 0; i < TileList.Count - 1; i++) {
+			if(TileList[i].element != null && TileList[i].element.elementType == elemType) {
+				if(first) {
+					closestTile = TileList[i];
+					first = false;
+				}
+				else{
+					if(Mathf.Abs(Vector3.Distance(position, TileList[i].transform.position)) < 
+						Mathf.Abs(Vector3.Distance(position, closestTile.transform.position))) {
+						closestTile = TileList[i];
+					}
+				}
+			}
+		}
+		return closestTile;
 	}
 	
 	// Update is called once per frame

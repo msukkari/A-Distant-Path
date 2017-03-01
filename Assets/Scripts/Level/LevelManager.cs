@@ -173,16 +173,16 @@ public class LevelManager : MonoBehaviour {
 		bool first = true;
 		Tile closestTile = null;
 
-		for (int i = 0; i < tileList.Count - 1; i++) {
-			if(tileList[i].element != null && tileList[i].element.elementType == elemType) {
+		for (int i = 0; i < TileList.Count - 1; i++) {
+			if(TileList[i].element != null && TileList[i].element.elementType == elemType) {
 				if(first) {
-					closestTile = tileList[i];
+					closestTile = TileList[i];
 					first = false;
 				}
 				else{
 					if(Mathf.Abs(Vector3.Distance(position, tileList[i].transform.position)) < 
 						Mathf.Abs(Vector3.Distance(position, closestTile.transform.position))) {
-						closestTile = tileList[i];
+						closestTile = TileList[i];
 					}
 				}
 			}

@@ -17,7 +17,11 @@ public class Enemy : MonoBehaviour {
 	// current state class
 	public AIState stateClass;	
 
+	// speed of enemy
 	public float moveSpeed = 3.0f;
+
+	// list of enemy waypoints
+	public List<Tile> waypoints = new List<Tile>();
 
 	// spawn tile of enemy
 	private Tile spawnTile;
@@ -80,6 +84,11 @@ public class Enemy : MonoBehaviour {
 			case AIStates.RandomMovement:
 				Debug.Log("--- AI STATE CHANGE: RandomMovement ---");
 				stateClass = new AIState(new RandomMovement(this));
+				break;
+
+			case AIStates.FollowWaypoints:
+				Debug.Log("--- AI STATE CHANGE: FollowWaypoints ---");
+				stateClass = new AIState(new FollowWaypoints(this));
 				break;
 
 			default:

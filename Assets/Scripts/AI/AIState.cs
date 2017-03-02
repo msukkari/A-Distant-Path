@@ -5,7 +5,8 @@ public enum AIStates {
 	WaterSearch,
 	ReturnSpawnWater,
 	RandomMovement,
-	ReturnSpawn
+	ReturnSpawn,
+	FollowWaypoints,
 }
 
 public enum AIEvents {

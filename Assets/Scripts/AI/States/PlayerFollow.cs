@@ -28,6 +28,7 @@ public class PlayerFollow : AIStateInterface {
 
 	public PlayerFollow(Enemy enemy) {
 		this.enemy = enemy;
+		enemy.isShrunk = false;
 
 		// Create new A* pathfinding class
 		this.star = new AStar();

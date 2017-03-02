@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour {
 	private Tile spawnTile;
 	private Tile lastValidTile;
 
+	public bool isShrunk = false;
+	public bool isGrown = false;
+	public bool foundWater = false;
 	public float activityRadius = 15.0f;
 
 	// Use this for initialization
@@ -37,10 +40,6 @@ public class Enemy : MonoBehaviour {
 
 		// initialize this enemies current state
 		initState();
-
-		//GameObject behaviorGO = Instantiate (behavior) as GameObject;
-		//behaviorGO.transform.parent = this.gameObject.transform;
-
 	}
 	
 	// Update is called once per frame
@@ -56,10 +55,8 @@ public class Enemy : MonoBehaviour {
 
 	// initState: initializes a new ai-state
 	private void initState() {
-
 		// switch-case for current state
 		switch (currentState) {
-
 			case AIStates.FollowPlayer:
 				Debug.Log("--- AI STATE CHANGE: FollowPlayer ---");
 				stateClass = new AIState(new PlayerFollow(this));
@@ -120,5 +117,34 @@ public class Enemy : MonoBehaviour {
 		return spawnTile;
 	}
 
+	public void GetHitByElement(ElementType elementType) {
+		switch (elementType) {
+		case ElementType.Fire:
+			if (isShrunk) {
+				// DESTROY
+			} else if (isGrown) {
+				// SHRINK TO NORMAL SIZE PREFAB
+				isGrown = false;
+			} else {
+				// SHRINK ENEMY TO SMALL PREFAB
+				isShrunk = true;
+				setState(AIStates.WaterSearch);
+			}
+			break;
+
+		case ElementType.Water:
+			if (isShrunk) {
+				// GROW TO NORMAL SIZE PREFAB
+				isShrunk = false;
+			} else if (!isGrown) {
+				// GROW TO LARGE SIZE PREFAB
+				isGrown = true;
+			}
+			setState(AIStates.FollowPlayer);
+			break;
+		default:
+			break;
+		}
+	}
 	
 }

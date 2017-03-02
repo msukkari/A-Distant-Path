@@ -18,12 +18,15 @@ public class ReturnSpawnWater : AIStateInterface {
 
 	// Path
 	private List<Node> path;
-
 	private int currentNode;
+
+	private float waitingSinceSeconds = 0.0f;
+	private float waitTimeToGrow = 2.0f;
 
 	public ReturnSpawnWater(Enemy enemy) {
 		// set enemy class
 		this.enemy = enemy;
+		this.enemy.isShrunk = true;
 
 		// Create new A* pathfinding class
 		this.star = new AStar();
@@ -64,16 +67,15 @@ public class ReturnSpawnWater : AIStateInterface {
 		} else {
 
 			// Note: this section is commented out because we need to figure out how ALL AI reacts to reaching spawn..
-				
-			/*
-			Debug.Log ("REached back to the starting position");
+			Debug.Log ("Reached back to the starting position");
 			// 
-			if (foundWater) {
+			if (enemy.foundWater) {
 				waitingSinceSeconds += Time.deltaTime;
 
 				if (waitingSinceSeconds >= waitTimeToGrow) {
 					// GROW TO NORMAL SIZED ENEMY
 					Debug.Log("Would have grown into a normal sized enemy here");
+					enemy.foundWater = false;
 					if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.transform.position)) <= enemy.activityRadius) {
 						this.enemy.setState (AIStates.FollowPlayer);
 					}
@@ -81,12 +83,11 @@ public class ReturnSpawnWater : AIStateInterface {
 						this.enemy.setState (AIStates.RandomMovement);
 					}
 				}
-			} else {
-				currentState = ShrunkEnemyState.WaterSearch;
-				stateChanged = true;
 			}
-		}*/
-		
+		}
+
+		if (!enemy.foundWater && lm.GetClosestTileOfType (ElementType.Water, enemy.transform.position)) {
+			this.enemy.setState (AIStates.WaterSearch);
 		}
 	}
 

@@ -28,6 +28,7 @@ public class ReturnSpawn : AIStateInterface {
 	public ReturnSpawn(Enemy enemy) {
 		// set enemy class
 		this.enemy = enemy;
+		this.enemy.isShrunk = false;
 
 		// Create new A* pathfinding class
 		this.star = new AStar();

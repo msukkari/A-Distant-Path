@@ -302,7 +302,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998104012572068}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6ad5145cd49c354a89ecccaba8fd50f, type: 3}
   m_Name: 
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998104012572068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f5a5dc59fb6ea4fa88fbef5d84c6a0, type: 3}
   m_Name: 
@@ -372,7 +372,6 @@ MonoBehaviour:
   cc: {fileID: 143302228250041796}
   pivotPoint: {fileID: 0}
   cursor: {fileID: 1732701845634366}
-  cursorRange: 5
 --- !u!135 &135646312319977520
 SphereCollider:
   m_ObjectHideFlags: 1

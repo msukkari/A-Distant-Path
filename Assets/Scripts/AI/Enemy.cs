@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-
-
 	// Attached behavior
 	//public GameObject behavior;
 
@@ -14,7 +12,7 @@ public class Enemy : MonoBehaviour {
 	private LevelManager lm = LevelManager.instance;
 
 	// public enum for current state
-	public AIStates currentState;
+	public AIStates currentState = AIStates.RandomMovement;
 
 	// current state class
 	public AIState stateClass;	
@@ -23,6 +21,9 @@ public class Enemy : MonoBehaviour {
 
 	// spawn tile of enemy
 	private Tile spawnTile;
+	private Tile lastValidTile;
+
+	public float activityRadius = 15.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,7 @@ public class Enemy : MonoBehaviour {
 
 		// set the spawn tile
 		spawnTile = getCurTile();
+		lastValidTile = spawnTile;
 
 		// initialize this enemies current state
 		initState();
@@ -73,6 +75,11 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new ReturnSpawn(this));
 				break;
 
+			case AIStates.ReturnSpawnWater:
+				Debug.Log("--- AI STATE CHANGE: ReturnSpawnWater ---");
+				stateClass = new AIState(new ReturnSpawnWater(this));
+				break;
+
 			case AIStates.RandomMovement:
 				Debug.Log("--- AI STATE CHANGE: RandomMovement ---");
 				stateClass = new AIState(new RandomMovement(this));
@@ -91,11 +98,13 @@ public class Enemy : MonoBehaviour {
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-			if(cur != null)
+			if (cur != null) {
+				lastValidTile = cur;
 				return cur;
+			}
 		}
 
-		return null;
+		return lastValidTile;
 	}
 
 	public bool NeedToRecalculatePath(List<Node> path, int currentNode) {
@@ -104,7 +113,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public int getCurTileID(){
-		return this.getCurTile() == null ? -1 : this.getCurTile().id; 
+		return this.getCurTile() == null ? lastValidTile.id : this.getCurTile().id; 
 	}
 
 	public Tile getSpawnTile() {

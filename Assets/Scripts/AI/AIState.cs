@@ -3,8 +3,9 @@
 public enum AIStates {
 	FollowPlayer,
 	WaterSearch,
-	ReturnSpawn,
-	RandomMovement		
+	ReturnSpawnWater,
+	RandomMovement,
+	ReturnSpawn
 }
 
 public enum AIEvents {

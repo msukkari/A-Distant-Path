@@ -21,6 +21,8 @@ public class Player : MonoBehaviour{
 
 	private Tile lastValidTile;
 	private bool frozen;
+	private float frozenSinceSeconds = 0.0f;
+	public const float unfreezeSeconds = 2.0f;
 
 	// Get AIManager instance
 	private AIManager am = AIManager.instance;
@@ -42,60 +44,91 @@ public class Player : MonoBehaviour{
 	}
 
 	void Update(){
+		if (!frozen) {
+			if (Input.GetKeyDown (KeyCode.E))
+				printNTiles ();
 
-		if(Input.GetKeyDown(KeyCode.E))
-			printNTiles();
-		
-		CheckElementPickup();
+			CheckElementPickup ();
 
-		/*
+			/*
 		if (Input.GetKeyDown (KeyCode.Q)) {
 			ChangeGun ();
 		}
 		*/
 
-		if (Input.GetKeyDown (KeyCode.E)) {
-			guns [currentGun].ChangeMode ();
-		}
+			if (Input.GetKeyDown (KeyCode.E)) {
+				guns [currentGun].ChangeMode ();
+			}
 
-		// Suck tile only if space is pressed and the player is not moving
-		if ((Input.GetKey (KeyCode.Space) || Input.GetButton("XButton")) && NotMoving()) {
-			chargingWeapon = true;
-		}
+			// Suck tile only if space is pressed and the player is not moving
+			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton")) && NotMoving ()) {
+				chargingWeapon = true;
+			}
 
-		// R Shoots water in the front tile (for now)
-		if(Input.GetKeyDown(KeyCode.R)){
-			ShootWaterInFrontTile ();
-		}
+			// R Shoots water in the front tile (for now)
+			if (Input.GetKeyDown (KeyCode.R)) {
+				ShootWaterInFrontTile ();
+			}
 
-		// Q Shoots fire in the front tile (for now)
-		if(Input.GetKeyDown(KeyCode.Q)){
-			ShootFireInFrontTile ();	
-		}
+			// Q Shoots fire in the front tile (for now)
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				ShootFireInFrontTile ();	
+			}
 
-		if (chargingWeapon && NotMoving ()) {
-			currentCharge += Time.deltaTime;
+			if (chargingWeapon && NotMoving ()) {
+				currentCharge += Time.deltaTime;
 
-			if (currentCharge > 1.0f) {
-				guns [currentGun].AreaShot ();
-				currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
+				if (currentCharge > 1.0f) {
+					guns [currentGun].AreaShot ();
+					currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
+					chargingWeapon = false;
+				}
+			} else {
+				currentCharge = 0.0f;
 				chargingWeapon = false;
 			}
+
+			if (Input.GetKeyUp (KeyCode.Space)) {
+				currentCharge = 0.0f;
+				chargingWeapon = false;
+
+			}
+
+			// handle AI trigger
+			AITrigger ();
 		} else {
-			currentCharge = 0.0f;
-			chargingWeapon = false;
+			frozenSinceSeconds += Time.deltaTime;
+
+			// Player would either freeze itself, or enemy would externally unfreeze the player once reaches its initial location
+			if (frozenSinceSeconds >= unfreezeSeconds) {
+				//Freeze(false)
+			}
+
 		}
 
-		if (Input.GetKeyUp (KeyCode.Space)) {
-			currentCharge = 0.0f;
-			chargingWeapon = false;
-	
-		}
-
-		// handle AI trigger
-		AITrigger();
 	}
-			
+
+	public void Freeze(bool freeze) {
+		MonoBehaviour[] allScripts = this.gameObject.GetComponents<MonoBehaviour> ();
+
+		if (freeze) {
+			this.frozen = true;
+			Debug.Log ("Player is frozen!!!");
+			foreach (MonoBehaviour script in allScripts) {
+				if (script != this) {
+					script.enabled = false;
+				}
+			}
+		} else {
+			foreach (MonoBehaviour script in allScripts) {
+				script.enabled = true;
+			}
+			this.frozen = false;
+			frozenSinceSeconds = 0.0f;
+			Debug.Log ("PLAYER UNFROZEN!");
+		}
+
+	}			
 
 	private void AITrigger() {
 

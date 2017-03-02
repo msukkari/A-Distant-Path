@@ -8,9 +8,11 @@ public class PlayerControls : MonoBehaviour {
     public GameObject pivotPoint;
     public GameObject cursor;
 
+    public Animator anim;
+
     //Parameters
     //  Movement
-    private float speed = 5;
+    private float speed = 3.5f;
 
     //  Cursor
     private float actualCursorRange;
@@ -22,6 +24,9 @@ public class PlayerControls : MonoBehaviour {
     private GameObject prevSelectedTile;
 
     private TriggerType mode;
+
+    private float jumpForce = 10;
+    private float verticalVelocity;
 
     private int numTypes = 3;
     public enum TriggerType {
@@ -35,6 +40,7 @@ public class PlayerControls : MonoBehaviour {
     // Use this for initialization
     void Start() {
         cc = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
         mode = TriggerType.directInteract;
         playerScript = gameObject.GetComponent<Player>();
     }
@@ -46,6 +52,20 @@ public class PlayerControls : MonoBehaviour {
         move();
         orient();
 
+        if(cc.isGrounded){
+        	verticalVelocity = -9.81f * Time.deltaTime;
+        	anim.SetBool("Jumping", false);
+
+        	if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
+        		verticalVelocity = jumpForce;
+        		anim.SetBool("Jumping", true);
+        	}
+        }
+
+
+        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+
+
         if (Input.GetButtonDown("LeftBumper")) {
             toggleMode();
         }
@@ -54,7 +74,7 @@ public class PlayerControls : MonoBehaviour {
             actualCursorRange = cursorRange;
             cursor.GetComponent<MeshRenderer>().enabled = true;
         } else if(mode == TriggerType.directInteract) {
-            actualCursorRange = 2f;
+            actualCursorRange = 0.4f;
             cursor.GetComponent<MeshRenderer>().enabled = false;
 
         }
@@ -101,6 +121,13 @@ public class PlayerControls : MonoBehaviour {
         float xDisp = Input.GetAxis("LeftJoystickHorizontal");
         float zDisp = -1 * Input.GetAxis("LeftJoystickVertical");
 
+        if((Mathf.Abs(xDisp) >= 0.1) || (Mathf.Abs(zDisp) >= 0.1)){
+        	anim.SetBool("Moving", true);
+        }
+        else{
+        	anim.SetBool("Moving", false);
+        }
+
         Vector3 dispDir = Vector3.zero;
 
         if (Mathf.Abs(xDisp) >= joystickThreshold || Mathf.Abs(zDisp) >= joystickThreshold) {
@@ -132,12 +159,12 @@ public class PlayerControls : MonoBehaviour {
 
                     if (orientation.sqrMagnitude >= 0.01) {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
-                        cursor.transform.localPosition = new Vector3(Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange), 0, 0);
+                        cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
-                        cursor.transform.localPosition = new Vector3(2, 0, 0);
+                        cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
                     }
                 } else {
-                    cursor.transform.localPosition = new Vector3(2, 0, 0);
+                    cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
                 }
                 break;
             case 1:
@@ -145,8 +172,8 @@ public class PlayerControls : MonoBehaviour {
                 orientation.z = Input.GetAxis("RightJoystickHorizontal");
 
                 if (orientation.sqrMagnitude >= 0.01) {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation, transform.eulerAngles.z);
-                    cursor.transform.localPosition = new Vector3(actualCursorRange * orientation.magnitude, 0, 0);
+                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation + 90, transform.eulerAngles.z);
+                    cursor.transform.localPosition = new Vector3(0, 0, actualCursorRange * orientation.magnitude);
                     //Handles.DrawBezier
                 } else {
                     cursor.transform.localPosition = new Vector3(0, 0, 0);
@@ -156,7 +183,7 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public void orient(float angle) {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, angle, transform.eulerAngles.z);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, angle + 90, transform.eulerAngles.z);
     }
 
     public void jump() {

@@ -52,6 +52,10 @@ public class PlayerControls : MonoBehaviour {
         move();
         orient();
 
+        if(Input.GetButtonDown("YButton")){
+        	climb();
+        }
+
         if(cc.isGrounded){
         	verticalVelocity = -9.81f * Time.deltaTime;
         	anim.SetBool("Jumping", false);
@@ -224,5 +228,50 @@ public class PlayerControls : MonoBehaviour {
 
         Debug.Log("ERROR GETTING ID UNDER CURSOR");
         return -1;
+    }
+
+
+
+    public void climb(){
+    	Tile frontTile = null;
+
+
+    	RaycastHit hit = new RaycastHit();
+        Ray ray = new Ray(this.gameObject.transform.position, this.transform.forward);
+
+        if (Physics.Raycast(ray, out hit)) {
+            GameObject tileGO = hit.collider.gameObject;
+            if (tileGO != null) {
+                Tile tile = tileGO.GetComponent<Tile>();
+
+                if (tile != null && hit.distance < 1) {
+                    Debug.Log("TILE: " + tile.getTileID() + " is in front of the player");
+                    frontTile = LevelManager.instance.getTileAt(tile.getTileID());
+                }
+
+            }
+        }
+
+
+        if(frontTile != null){
+        	StartCoroutine(climbWithStall(frontTile));
+
+        }
+        else{
+        	Debug.Log("Climbing failed, either not close enough to front tile or no such tile exists");
+        }
+
+    }
+
+    IEnumerator climbWithStall(Tile tile){
+    	PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+    	
+    	mesh.enableMesh(false);
+    	yield return new WaitForSeconds(0.2f);
+
+
+    	this.transform.position = new Vector3(tile.transform.position.x, 1.565f, tile.transform.position.z); // height is hard coded for now
+
+    	mesh.enableMesh(true);
     }
 }

@@ -25,6 +25,9 @@ public class PlayerControls : MonoBehaviour {
 
     private TriggerType mode;
 
+    private float jumpForce = 10;
+    private float verticalVelocity;
+
     private int numTypes = 3;
     public enum TriggerType {
         placeWaypoint,
@@ -48,6 +51,20 @@ public class PlayerControls : MonoBehaviour {
     void Update() {
         move();
         orient();
+
+        if(cc.isGrounded){
+        	verticalVelocity = -9.81f * Time.deltaTime;
+        	anim.SetBool("Jumping", false);
+
+        	if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
+        		verticalVelocity = jumpForce;
+        		anim.SetBool("Jumping", true);
+        	}
+        }
+
+
+        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+
 
         if (Input.GetButtonDown("LeftBumper")) {
             toggleMode();

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturnSpawn : AIStateInterface {
 
+public class ReturnSpawn : AIStateInterface {
 
 	// AIManager instance
 	private AIManager am = AIManager.instance;
@@ -22,10 +22,10 @@ public class ReturnSpawn : AIStateInterface {
 
 	private int currentNode;
 
-
+	private float waitingSinceSeconds = 0.0f;
+	public float WAIT_FOR_SECONDS_UNTIL_ATTACK = 0.0f;
 
 	public ReturnSpawn(Enemy enemy) {
-
 		// set enemy class
 		this.enemy = enemy;
 
@@ -40,53 +40,44 @@ public class ReturnSpawn : AIStateInterface {
 
 		FindPathToInitialPos();
 	}
-	
+
 	private void FindPathToInitialPos() {
 		path = star.AStarPath(enemy.getCurTile(), enemy.getSpawnTile());
 		path.Reverse();
 		currentNode = 0;
 	}
 
-
-
 	// Update is called once per frame
 	public void Update () {
-
 		if (enemy.NeedToRecalculatePath(path, currentNode)) {
 			FindPathToInitialPos();
 		}
-		
+
 		// Move towards each next tile on path
 		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {
 			enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
 				* enemy.moveSpeed * Time.deltaTime;
 
-			//if (getCurTile () == path [currentNode + 1].tile) {
+			// If at the last node in path, increment the index to move to (currentNode)
 			if (Vector3.Distance (path [currentNode + 1].tile.transform.position + Vector3.up, enemy.transform.position) < 0.1f) {
 				currentNode++;
 			}
 
-		// REACHED TO INITIAL POSITION. EITHER WITH OR WITHOUT WATER
+		// Reached back to spawn tile
 		} else {
+			Debug.Log ("Reached back to the starting position");
+			waitingSinceSeconds += Time.deltaTime;
 
-			// Note: this section is commented out because we need to figure out how ALL AI reacts to reaching spawn..
-				
-			/*
-			Debug.Log ("REached back to the starting position");
-			// 
-			if (foundWater) {
-				waitingSinceSeconds += Time.deltaTime;
+			if (waitingSinceSeconds >= WAIT_FOR_SECONDS_UNTIL_ATTACK) {
+				lm.getPlayer ().Freeze (false);
 
-				if (waitingSinceSeconds >= waitTimeToGrow) {
-					// GROW TO NORMAL SIZED ENEMY
-					Debug.Log("Would have grown into a normal sized enemy here");
+				if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
+					this.enemy.setState (AIStates.FollowPlayer);
 				}
-			} else {
-				currentState = ShrunkEnemyState.WaterSearch;
-				stateChanged = true;
+				else{
+					this.enemy.setState (AIStates.RandomMovement);
+				}
 			}
-		}*/
-		
 		}
 	}
 

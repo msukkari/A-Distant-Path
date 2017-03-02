@@ -6100,7 +6100,7 @@ Prefab:
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
       propertyPath: currentState
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
@@ -6129,7 +6129,7 @@ Prefab:
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
       propertyPath: initialState
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e2ffab74c39e41179a34d179c33d4de, type: 2}

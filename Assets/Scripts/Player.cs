@@ -336,7 +336,7 @@ public class Player : MonoBehaviour{
 	}
 
 	private bool NotMoving() {
-		return Input.GetAxis ("Horizontal") == 0.0f && Input.GetAxis ("Vertical") == 0.0f;
+		return (Mathf.Abs(Input.GetAxis ("Horizontal")) < 0.1f) && (Mathf.Abs(Input.GetAxis ("Vertical")) < 0.1f);
 	}
 
 	#endregion

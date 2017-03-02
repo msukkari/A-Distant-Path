@@ -21,10 +21,7 @@ public class WaterSearch : AIStateInterface {
 	private int currentNode;
 	private float waitingSinceSeconds;
 
-	private bool stateChanged;
 	private bool foundWater;
-
-
 
 	public WaterSearch(Enemy enemy) {
 
@@ -37,7 +34,6 @@ public class WaterSearch : AIStateInterface {
 		path = new List<Node> ();
 		path.Add (new Node (enemy.getCurTile (), null, 0, 0));
 		currentNode = 1;
-		stateChanged = true;
 		foundWater = true;
 
 		// Init search
@@ -70,13 +66,10 @@ public class WaterSearch : AIStateInterface {
 					path [path.Count - 1].tile.LoseElement ();
 					currentNode = 1;
 
-					this.enemy.setState(AIStates.ReturnSpawn);
-
+					this.enemy.setState(AIStates.ReturnSpawnWater);
 
 					// If no water was found, search for the next closest water tile
 				}
-
-				stateChanged = true;
 				// If not reached target, incrimentally move upwards on the determined A* path list
 			} else {
 				enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
@@ -86,11 +79,12 @@ public class WaterSearch : AIStateInterface {
 					currentNode++;
 				}
 			}
-			// If no water tile is present in the map, keep checking until something is found
-		} else {
-			stateChanged = true;
 		}	
-
+		// If no water tile is present in the map, keep checking until something is found
+		else{
+			// Recalculate path
+			FindClosestWaterPath();
+		}
 	}
 
 

@@ -47,6 +47,7 @@ public class PlayerFollow : AIStateInterface {
 		start = enemy.getCurTile();
 		path = star.AStarPath(start, end);
 		path.Reverse();
+		currentNode = 0;
 
 		//target = path[0].tile.transform.position;
 		//target.y = target.y + 1;
@@ -54,7 +55,6 @@ public class PlayerFollow : AIStateInterface {
 
 
 	public void Update() {
-
 		if (enemy.NeedToRecalculatePath(path, currentNode)) {
 			calculatePath();
 		}
@@ -62,16 +62,21 @@ public class PlayerFollow : AIStateInterface {
 			
 		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {
 			enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
-				* enemy.moveSpeed * Time.deltaTime;
+			* enemy.moveSpeed * Time.deltaTime;
 
 			//if (getCurTile () == path [currentNode + 1].tile) {
 			if (Vector3.Distance (path [currentNode + 1].tile.transform.position + Vector3.up, enemy.transform.position) < 0.1f) {
 				currentNode++;
 			}
 
-		} 
+		} else if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.transform.position)) <= 1.0f) {
+			lm.getPlayer ().Freeze (true);
+			this.enemy.setState(AIStates.ReturnSpawn);
+		}
 
-
+		if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) > enemy.activityRadius) {
+			this.enemy.setState (AIStates.ReturnSpawn);
+		}
 		/*
 		if (path.Count != 0) {		
 

@@ -71,14 +71,21 @@ public class ReturnSpawn : AIStateInterface {
 
 			if (waitingSinceSeconds >= WAIT_FOR_SECONDS_UNTIL_ATTACK) {
 				lm.getPlayer ().Freeze (false);
+				enemy.frozePlayer = false;
 
 				if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
+					enemy.followPlayerAgain = true;
 					this.enemy.setState (AIStates.FollowPlayer);
 				}
 				else{
 					this.enemy.setState (AIStates.RandomMovement);
 				}
 			}
+		}
+
+		if (!enemy.frozePlayer && Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
+			enemy.followPlayerAgain = true;
+			this.enemy.setState (AIStates.FollowPlayer);
 		}
 	}
 

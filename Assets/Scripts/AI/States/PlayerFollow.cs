@@ -40,7 +40,14 @@ public class PlayerFollow : AIStateInterface {
 		currentNode = 1;
 
 		// error insurance
-		start = end = enemy.getCurTile();
+		//start = end = enemy.getCurTile();
+		start = enemy.getCurTile();
+		end = lm.getPlayer ().getCurTile ();
+
+		if (enemy.followPlayerAgain) {
+			enemy.followPlayerAgain = false;
+			calculatePath ();
+		}
 	}
 
 
@@ -72,6 +79,7 @@ public class PlayerFollow : AIStateInterface {
 
 		} else if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.transform.position)) <= 1.0f) {
 			lm.getPlayer ().Freeze (true);
+			enemy.frozePlayer = true;
 			this.enemy.setState(AIStates.ReturnSpawn);
 		}
 

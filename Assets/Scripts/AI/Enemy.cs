@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour {
 	public bool isShrunk = false;
 	public bool isGrown = false;
 	public bool foundWater = false;
+	public bool frozePlayer = false;
+	public bool followPlayerAgain = false;
+
 	public float activityRadius = 15.0f;
 
 	// Use this for initialization

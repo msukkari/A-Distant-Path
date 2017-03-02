@@ -12,16 +12,27 @@ public class Enemy : MonoBehaviour {
 	private LevelManager lm = LevelManager.instance;
 
 	// public enum for current state
-	public AIStates currentState = AIStates.RandomMovement;
+	public AIStates currentState = AIStates.Idle;
+	public AIStates initialState = AIStates.Idle;
 
 	// current state class
 	public AIState stateClass;	
 
+	// speed of enemy
 	public float moveSpeed = 3.0f;
+
+	// list of enemy waypoints
+	public List<Tile> waypoints = new List<Tile>();
 
 	// spawn tile of enemy
 	private Tile spawnTile;
 	private Tile lastValidTile;
+
+	public bool isShrunk = false;
+	public bool isGrown = false;
+	public bool foundWater = false;
+	public bool frozePlayer = false;
+	public bool followPlayerAgain = false;
 
 	public float activityRadius = 15.0f;
 
@@ -37,10 +48,6 @@ public class Enemy : MonoBehaviour {
 
 		// initialize this enemies current state
 		initState();
-
-		//GameObject behaviorGO = Instantiate (behavior) as GameObject;
-		//behaviorGO.transform.parent = this.gameObject.transform;
-
 	}
 	
 	// Update is called once per frame
@@ -56,10 +63,8 @@ public class Enemy : MonoBehaviour {
 
 	// initState: initializes a new ai-state
 	private void initState() {
-
 		// switch-case for current state
 		switch (currentState) {
-
 			case AIStates.FollowPlayer:
 				Debug.Log("--- AI STATE CHANGE: FollowPlayer ---");
 				stateClass = new AIState(new PlayerFollow(this));
@@ -85,9 +90,24 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new RandomMovement(this));
 				break;
 
+			case AIStates.FollowWaypoints:
+				Debug.Log("--- AI STATE CHANGE: FollowWaypoints ---");
+
+				// ensure at least two waypoints exist
+				if (waypoints.Count > 1)
+					stateClass = new AIState(new FollowWaypoints(this));
+				else 
+					setState(AIStates.Idle);
+				break;
+
+			case AIStates.Idle:
+				Debug.Log("--- AI STATE CHANGE: Idle ---");
+				stateClass = new AIState(new Idle(this));
+				break; 
+
 			default:
 				Debug.Log("--- DEFAULT AI STATE CHANGE: FollowPlayer ---");
-				stateClass = new AIState(new PlayerFollow(this));
+				stateClass = new AIState(new Idle(this));
 				break;
 		}
 	}
@@ -120,5 +140,38 @@ public class Enemy : MonoBehaviour {
 		return spawnTile;
 	}
 
+	public void GetHitByElement(ElementType elementType) {
+		switch (elementType) {
+		case ElementType.Fire:
+			if (isShrunk) {
+				// DESTROY
+			} else if (isGrown) {
+				// SHRINK TO NORMAL SIZE PREFAB
+				Debug.Log("ENEMY SHRUNK TO NORMAL SIZE");
+				isGrown = false;
+			} else {
+				// SHRINK ENEMY TO SMALL PREFAB
+				Debug.Log("ENEMY SHRUNK TO SMALL SIZE");
+				isShrunk = true;
+				setState(AIStates.WaterSearch);
+			}
+			break;
+
+		case ElementType.Water:
+			if (isShrunk) {
+				// GROW TO NORMAL SIZE PREFAB
+				Debug.Log("ENEMY GREW TO NORMAL SIZE");
+				isShrunk = false;
+			} else if (!isGrown) {
+				// GROW TO LARGE SIZE PREFAB
+				Debug.Log("ENEMY GREW TO LARGE SIZE");
+				isGrown = true;
+			}
+			setState(AIStates.FollowPlayer);
+			break;
+		default:
+			break;
+		}
+	}
 	
 }

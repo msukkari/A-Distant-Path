@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16788316, g: 0.21073577, b: 0.28994018, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788329, g: 0.21073541, b: 0.2899403, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5772,11 +5772,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  initialState: 6
   moveSpeed: 3
   waypoints: []
   isShrunk: 0
   isGrown: 0
   foundWater: 0
+  frozePlayer: 0
+  followPlayerAgain: 0
   activityRadius: 15
 --- !u!4 &716428037
 Transform:
@@ -6122,6 +6125,11 @@ Prefab:
     - target: {fileID: 4434427113754868, guid: 3e2ffab74c39e41179a34d179c33d4de, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
+        type: 2}
+      propertyPath: initialState
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e2ffab74c39e41179a34d179c33d4de, type: 2}

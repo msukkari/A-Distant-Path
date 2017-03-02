@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour {
 
 	// public enum for current state
 	public AIStates currentState = AIStates.Idle;
+	public AIStates initialState = AIStates.Idle;
 
 	// current state class
 	public AIState stateClass;	

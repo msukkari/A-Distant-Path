@@ -80,7 +80,7 @@ public class ReturnSpawnWater : AIStateInterface {
 						this.enemy.setState (AIStates.FollowPlayer);
 					}
 					else{
-						this.enemy.setState (AIStates.RandomMovement);
+						this.enemy.setState (this.enemy.initialState);
 					}
 				}
 			}

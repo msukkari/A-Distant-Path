@@ -208,6 +208,12 @@ public class Player : MonoBehaviour{
 					}
 				}
 			}
+
+			foreach (Enemy enemy in AIManager.instance.enemies) {
+				if (enemy.getCurTile () == front) {
+					enemy.GetHitByElement (ElementType.Water);
+				}
+			}
 		}
 	}
 
@@ -223,6 +229,12 @@ public class Player : MonoBehaviour{
 				} else {
 					if(front.GainElement (ElementType.Fire))
 						this.elementsInventory [ElementType.Fire]--;
+				}
+			}
+
+			foreach (Enemy enemy in AIManager.instance.enemies) {
+				if (enemy.getCurTile () == front) {
+					enemy.GetHitByElement (ElementType.Fire);
 				}
 			}
 		}

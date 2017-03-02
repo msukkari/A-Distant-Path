@@ -7,6 +7,7 @@ public enum AIStates {
 	RandomMovement,
 	ReturnSpawn,
 	FollowWaypoints,
+	Idle,
 }
 
 public enum AIEvents {

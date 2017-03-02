@@ -35,28 +35,24 @@ public class FollowWaypoints : AIStateInterface {
 	public FollowWaypoints(Enemy enemy) {
 		this.enemy = enemy;
 
-		// If the waypoints list is empty, switch to random behavior
-		if (enemy.waypoints.Count == 0) {
-			enemy.setState(AIStates.FollowWaypoints);
-			return; 
-		}
-
 		// Create new A* pathfinding class
 		this.star = new AStar();
 
 		path = new List<Node> ();
 		path.Add (new Node (enemy.getCurTile (), null, 0, 0));
 
+		calculatePath();
 	}
 
 	// Calculate path to next waypoint
 	private void calculatePath() {
+
 		if (waypointIndex == enemy.waypoints.Count) {
 			waypointIndex = 0;
 		}	
 
 		start = enemy.getCurTile();
-		end = enemy.waypoints[waypointIndex];	
+		end = enemy.waypoints[waypointIndex];
 
 		path = star.AStarPath(start, end);
 		path.Reverse();

@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour {
 	private LevelManager lm = LevelManager.instance;
 
 	// public enum for current state
-	public AIStates currentState = AIStates.RandomMovement;
+	public AIStates currentState = AIStates.Idle;
 
 	// current state class
 	public AIState stateClass;	
@@ -91,12 +91,22 @@ public class Enemy : MonoBehaviour {
 
 			case AIStates.FollowWaypoints:
 				Debug.Log("--- AI STATE CHANGE: FollowWaypoints ---");
-				stateClass = new AIState(new FollowWaypoints(this));
+
+				// ensure at least two waypoints exist
+				if (waypoints.Count > 1)
+					stateClass = new AIState(new FollowWaypoints(this));
+				else 
+					setState(AIStates.Idle);
 				break;
+
+			case AIStates.Idle:
+				Debug.Log("--- AI STATE CHANGE: Idle ---");
+				stateClass = new AIState(new Idle(this));
+				break; 
 
 			default:
 				Debug.Log("--- DEFAULT AI STATE CHANGE: FollowPlayer ---");
-				stateClass = new AIState(new PlayerFollow(this));
+				stateClass = new AIState(new Idle(this));
 				break;
 		}
 	}

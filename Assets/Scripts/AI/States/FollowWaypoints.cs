@@ -55,6 +55,7 @@ public class FollowWaypoints : AIStateInterface {
 		end = enemy.waypoints[waypointIndex];
 
 		path = star.AStarPath(start, end);
+		Debug.Log ("Start is: " + start.name + ", end is = " + end.name);
 		path.Reverse();
 		currentNode = 0;
 	}

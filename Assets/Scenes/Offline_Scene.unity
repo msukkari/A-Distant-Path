@@ -6100,7 +6100,7 @@ Prefab:
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
       propertyPath: currentState
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
@@ -6129,7 +6129,7 @@ Prefab:
     - target: {fileID: 114365093037781642, guid: 3e2ffab74c39e41179a34d179c33d4de,
         type: 2}
       propertyPath: initialState
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e2ffab74c39e41179a34d179c33d4de, type: 2}
@@ -6150,6 +6150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6854fda5f8390433ab12becf91fa74f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfViewAngle: 110
+  playerInSight: 0
+  personalLastSighting: {fileID: 0}
 --- !u!1001 &765275185
 Prefab:
   m_ObjectHideFlags: 0

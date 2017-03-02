@@ -12,15 +12,13 @@ public class EnemySight : MonoBehaviour {
 	public bool playerInSight;
 	public Tile personalLastSighting;
 
-	private NavMeshAgent nav;
+	private UnityEngine.AI.NavMeshAgent nav;
 	private SphereCollider col;
 
 	
 	void Awake() {
-		nav = GetComponent<NavMeshAgent>();
+		nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		col = GetComponent<SphereCollider>();
-
-		player = lm.getPlayer();
 
 	}
 	
@@ -31,7 +29,7 @@ public class EnemySight : MonoBehaviour {
 
 	void OnTriggerStay() {
 
-		Vector3 direction = player.transform.position - transform.position;
+		Vector3 direction = lm.getPlayer().transform.position - transform.position;
 		float angle = Vector3.Angle(direction, transform.forward);
 
 		// check if player is within fied of view

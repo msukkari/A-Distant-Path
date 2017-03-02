@@ -146,9 +146,11 @@ public class Enemy : MonoBehaviour {
 				// DESTROY
 			} else if (isGrown) {
 				// SHRINK TO NORMAL SIZE PREFAB
+				Debug.Log("ENEMY SHRUNK TO NORMAL SIZE");
 				isGrown = false;
 			} else {
 				// SHRINK ENEMY TO SMALL PREFAB
+				Debug.Log("ENEMY SHRUNK TO SMALL SIZE");
 				isShrunk = true;
 				setState(AIStates.WaterSearch);
 			}
@@ -157,9 +159,11 @@ public class Enemy : MonoBehaviour {
 		case ElementType.Water:
 			if (isShrunk) {
 				// GROW TO NORMAL SIZE PREFAB
+				Debug.Log("ENEMY GREW TO NORMAL SIZE");
 				isShrunk = false;
 			} else if (!isGrown) {
 				// GROW TO LARGE SIZE PREFAB
+				Debug.Log("ENEMY GREW TO LARGE SIZE");
 				isGrown = true;
 			}
 			setState(AIStates.FollowPlayer);

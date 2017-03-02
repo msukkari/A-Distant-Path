@@ -246,6 +246,12 @@ public class Player : MonoBehaviour{
 					this.elementsInventory[ElementType.Water]--;
 				}
 			}
+
+			foreach (Enemy enemy in AIManager.instance.enemies) {
+				if (enemy.getCurTile () == tile) {
+					enemy.GetHitByElement (ElementType.Water);
+				}
+			}
 		}
 	}
 
@@ -265,6 +271,12 @@ public class Player : MonoBehaviour{
 			} else {
 				if(tile.GainElement (ElementType.Fire)){
 					this.elementsInventory[ElementType.Fire]--;
+				}
+			}
+
+			foreach (Enemy enemy in AIManager.instance.enemies) {
+				if (enemy.getCurTile () == tile) {
+					enemy.GetHitByElement (ElementType.Fire);
 				}
 			}
 		}

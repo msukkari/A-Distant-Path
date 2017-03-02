@@ -142,7 +142,7 @@ public class PlayerControls : MonoBehaviour {
 
                     if (orientation.sqrMagnitude >= 0.01) {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
-                        cursor.transform.localPosition = new Vector3(Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange), 0, 0);
+                        cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
                         cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
                     }
@@ -155,8 +155,8 @@ public class PlayerControls : MonoBehaviour {
                 orientation.z = Input.GetAxis("RightJoystickHorizontal");
 
                 if (orientation.sqrMagnitude >= 0.01) {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation, transform.eulerAngles.z);
-                    cursor.transform.localPosition = new Vector3(actualCursorRange * orientation.magnitude, 0, 0);
+                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation + 90, transform.eulerAngles.z);
+                    cursor.transform.localPosition = new Vector3(0, 0, actualCursorRange * orientation.magnitude);
                     //Handles.DrawBezier
                 } else {
                     cursor.transform.localPosition = new Vector3(0, 0, 0);

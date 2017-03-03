@@ -30,6 +30,7 @@ public class CameraControls : MonoBehaviour {
         cam = pivot.GetComponentInChildren<Camera>();
         x = pivot.transform.rotation.y * 360 / Mathf.PI;
         y = pivot.transform.rotation.x * 360 / Mathf.PI;
+        pivot.transform.Rotate(new Vector3(45f, 0, 0));
 
         character.GetComponent<PlayerControls>().setPivotPoint(pivot);
     }

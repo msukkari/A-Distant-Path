@@ -12,11 +12,17 @@ public class Fire : Element {
 	void Start () {
 		elementType = ElementType.Fire;
 		navigatable = false;
-		nList = transform.parent.GetComponent<Tile>().neighbors;
+
+		Tile tileOnFire = transform.parent.GetComponent<Tile> ();
+
+		if (tileOnFire != null) {
+			nList = transform.parent.GetComponent<Tile>().neighbors;
+		}
+
 		IGNITE_THRESHOLD = 1000;
 
 		if(nList == null){
-			Debug.Log("Error getting nList in Fire Element");
+		//	Debug.Log("Error getting nList in Fire Element");
 		}
 	}
 	

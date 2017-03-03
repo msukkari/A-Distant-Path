@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 136593595562434412}
   - component: {fileID: 23392818278571664}
   - component: {fileID: 114365093037781642}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 3
+  initialState: 6
   moveSpeed: 3
+  waypoints: []
+  isShrunk: 0
+  isGrown: 0
+  foundWater: 0
+  frozePlayer: 0
+  followPlayerAgain: 0
+  activityRadius: 15
 --- !u!136 &136593595562434412
 CapsuleCollider:
   m_ObjectHideFlags: 1

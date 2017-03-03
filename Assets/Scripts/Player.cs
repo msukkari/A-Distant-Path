@@ -11,6 +11,7 @@ public class Player : MonoBehaviour{
 	public Tile currentLocation;
 
 	public Dictionary<ElementType, int> elementsInventory = new Dictionary<ElementType, int>();
+	public Bucket heldBucket;
 
 	private float elementTimeCount = -1f;
 	private const int PICKUP_TIME_THRESHOLD = 1;
@@ -56,8 +57,8 @@ public class Player : MonoBehaviour{
 		}
 		*/
 
-			if (Input.GetKeyDown (KeyCode.E)) {
-				guns [currentGun].ChangeMode ();
+			if (Input.GetKeyDown (KeyCode.T)) {
+				PickupOrDropBucketInFrontTile ();
 			}
 
 			// Suck tile only if space is pressed and the player is not moving
@@ -91,6 +92,9 @@ public class Player : MonoBehaviour{
 			if (Input.GetKeyUp (KeyCode.Space)) {
 				currentCharge = 0.0f;
 				chargingWeapon = false;
+			}
+
+			if (heldBucket != null) {
 
 			}
 
@@ -105,7 +109,26 @@ public class Player : MonoBehaviour{
 			}
 
 		}
+	}
 
+	public void PickupOrDropBucketInFrontTile() {
+		Tile front = getFrontTile();
+
+		if (heldBucket == null) {
+			if (front.bucket != null) {
+				this.heldBucket = front.bucket;
+				this.heldBucket.transform.parent = this.transform;
+				front.bucket = null;
+			}
+		} else {
+			if (front.bucket == null && (front.element == null || front.element.navigatable)) {
+				front.bucket = this.heldBucket;
+				front.bucket.transform.parent = front.transform;
+				front.bucket.transform.position = front.transform.position;
+				front.bucket.transform.localPosition = Vector3.up * 0.5f;
+				this.heldBucket = null;
+			}
+		}
 	}
 
 	public void Freeze(bool freeze) {

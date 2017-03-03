@@ -13,6 +13,8 @@ public class Tile : MonoBehaviour {
 	//private List<int> nIDList;
 
 	public Element element;
+	public Bucket bucket;
+
 	public bool navigatable = true;
 	public bool isGroundTile = true;
 
@@ -25,7 +27,7 @@ public class Tile : MonoBehaviour {
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
-
+		bucket = GetComponentInChildren<Bucket> ();
 		SetNavigatable((this.element == null) ? true : this.element.navigatable);
 
 		this.setMaterial();
@@ -67,6 +69,14 @@ public class Tile : MonoBehaviour {
 	}
 
 	public bool GainElement(ElementType elementType) {
+		if (this.bucket != null) {
+			if (this.bucket.heldElement == null) {
+				this.bucket.GetHitByElement (elementType);
+				return true;
+			} else {
+				return false;
+			}
+		}
 		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
 
 		if(newElement == ElementType.None){

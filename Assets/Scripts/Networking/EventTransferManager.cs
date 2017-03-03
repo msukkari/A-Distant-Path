@@ -181,17 +181,24 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			if(curTile != null){
 				Debug.Log("TILE FOUND");
 
-				Element curElement = curTile.element;
-				if(curElement != null){
+				//Element curElement = curTile.element;
+				if(curTile.element != null){
 					Debug.Log("ELEMENT FOUND!");
-					if(curElement.elementType == ElementType.Transfer){
+					if(curTile.element.elementType == ElementType.Transfer){
 						Debug.Log("ELEMENT IS A TRANSFER ELEMENT!");
-						int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
-						int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
-						curPlayer.elementsInventory[ElementType.Water] = water;
-						curPlayer.elementsInventory[ElementType.Fire] = fire;
+						// it's a regular transfer operation
+						if (curTile.bucket == null) {
+							int curWater = curPlayer.elementsInventory.ContainsKey (ElementType.Water) ? curPlayer.elementsInventory [ElementType.Water] : 0;
+							int curFire = curPlayer.elementsInventory.ContainsKey (ElementType.Fire) ? curPlayer.elementsInventory [ElementType.Fire] : 0;
+							curPlayer.elementsInventory [ElementType.Water] = water;
+							curPlayer.elementsInventory [ElementType.Fire] = fire;
 
-						GetComponent<PhotonView>().RPC("transferResources",PhotonTargets.Others, new object[]{curFire, curWater});
+							GetComponent<PhotonView> ().RPC ("transferResources", PhotonTargets.Others, new object[]{ curFire, curWater });
+						} 
+						// it's a bucket transfer operation
+						else {
+							GetComponent<PhotonView> ().RPC ("transferResourcesBucket", PhotonTargets.Others, new object[]{ curTile.bucket });
+						}
 					}
 				}
 				else{
@@ -213,6 +220,16 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		player.elementsInventory[ElementType.Water] = water;
 		player.elementsInventory[ElementType.Fire] = fire;
+	}
+
+	[PunRPC]
+	public void transferResourcesBucket(Bucket bucket){
+		Debug.Log("RECEIEVED TRANSFER CONFIRMATION FOR BUCKET");
+		if (bucket.heldElement != null) {
+			player.elementsInventory [bucket.heldElement.elementType] = bucket.currentQuantity;
+			bucket.LoseElement ();
+		}
+
 	}
 
 

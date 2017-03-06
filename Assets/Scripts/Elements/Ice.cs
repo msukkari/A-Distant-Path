@@ -55,28 +55,25 @@ public class Ice : Element {
 
 	private void DestroyIceCube() {
 		Tile topTile = this.GetComponentInParent<Tile> ().GetTopTile ();
-		if (topTile.isGroundTile) {
-			topTile.SetNavigatable (false);
-			topTile.GetComponent<MeshRenderer> ().enabled = false;
-		} else {
-			topTile.gameObject.SetActive (false);
-		}
+		//if (topTile.isGroundTile) {
+		//	topTile.SetNavigatable (true);
+        //    Destroy(topTile.gameObject);
+		//} else {
+		//	topTile.gameObject.SetActive (false);
+		//}
         RaycastHit hit;
         Ray ray = new Ray(topTile.transform.position, Vector3.down);
         if (Physics.Raycast(ray, out hit)){
-            Tile hitTile = hit.collider.GetComponentInParent<Tile>();
-            if (hitTile.element.elementType != ElementType.Ice)
-            {
-                if (hitTile.element != null)
-                {
-                    hitTile.element.WaterInteract(hitTile.EventManager);
-                }
-                else
-                {
+            Tile hitTile = hit.collider.GetComponentInParent<Tile>();       
+                if (hitTile.element != null ){
+                    if (hitTile.element.elementType != ElementType.Ice){
+                        hitTile.element.WaterInteract(hitTile.EventManager);
+                    }
+                } else {
                     hitTile.GainElement(ElementType.Water);
                 }
-            }
         }
+        topTile.gameObject.SetActive(false);
 	}
 
 	/*private void CreateOrDestroyIceBlock(bool create) {

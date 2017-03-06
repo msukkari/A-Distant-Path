@@ -11,7 +11,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// get LevelManager
 	private LevelManager lm = LevelManager.instance;
-	private int recentTransferID;
+	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
 
@@ -37,10 +37,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
-				recentTransferID = player.getCurTileID();
+				recentTransferPos = player.getCurTile().transform.position;
 
 				if(transferHighlighted == false){
-					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = true;
 				}
 
@@ -56,7 +56,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			else{
 
 				if(transferHighlighted == true){
-					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = false;
 				}
 			}
@@ -218,8 +218,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// Called when the other player is on a resource transfer tile, passes in the tileID
 	[PunRPC]
-	public void pOnTransfer(int tileID){
-		Tile tile = lm.getTileAt(tileID);
+	public void pOnTransfer(Vector3 pos){
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 

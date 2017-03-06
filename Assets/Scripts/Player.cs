@@ -240,10 +240,8 @@ public class Player : MonoBehaviour{
 		}
 	}
 
-	private void ShootWaterOnTile(int tileID) {
+	private void ShootWaterOnTile(Tile tile) {
 		if (HasElement (ElementType.Water, 1)) {
-			Tile tile = LevelManager.instance.getTileAt(tileID);
-
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootWaterOnTile");
 				return;
@@ -267,10 +265,8 @@ public class Player : MonoBehaviour{
 		}
 	}
 
-	private void ShootFireOnTile(int tileID) {
+	private void ShootFireOnTile(Tile tile) {
 		if (HasElement (ElementType.Fire, 1)) {
-			Tile tile = LevelManager.instance.getTileAt(tileID);
-
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootFireOnTile");
 				return;
@@ -385,22 +381,23 @@ public class Player : MonoBehaviour{
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-			if (cur != null)
+			if (cur != null){
 				lastValidTile = cur;
 				return cur;
+			}
 		}
 
 		return lastValidTile;
 	}
 
-	public int getCurTileID(){
+	public int getCurTileAt(int tileID){
 		return this.getCurTile() == null ? lastValidTile.id : this.getCurTile().id; 
 	}
 
 	public Tile getFrontTile(){
 		RaycastHit hit;
 
-		Vector3 direction = Quaternion.AngleAxis(20, this.transform.right) * this.transform.forward;
+		Vector3 direction = Quaternion.AngleAxis(20, this.transform.forward) * this.transform.forward;
 		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
 
 		if(Physics.Raycast(transform.position, direction, out hit)){
@@ -443,17 +440,69 @@ public class Player : MonoBehaviour{
 
 	#endregion
 
-    public void throwMaterial(int tileID) {
+    public void throwMaterial(Tile tile) {
         Debug.Log("Throw material!");
-        this.ShootWaterOnTile(tileID);
+        if(tile != null){
+        	this.ShootWaterOnTile(tile);
+        }
     }
 
     public void placeWaypoint(Vector3 position) {
         Debug.Log("Place waypoint");
     }
 
-    public void interactInFront(int tileID) {
+    public void interactInFront(Tile tile) {
         Debug.Log("Interact in front!");
-        this.ShootWaterOnTile(tileID);
+        if(tile != null){ 
+            this.ShootFireOnTile(tile);
+
+            /*
+        	Tile above = aboveTile(tile);
+
+        	if(above != null){
+        		Tile aboveAbove = aboveTile(above);
+
+        		if(aboveAbove != null){
+        			Debug.Log(aboveAbove.getTileID());
+        			this.ShootWaterOnTile(aboveAbove.getTileID());
+        		}
+        		else{
+        			Debug.Log(above.getTileID());
+        			this.ShootWaterOnTile(above.getTileID());
+        		}
+        	}
+        	else{
+        		Debug.Log(tile.getTileID());
+        		this.ShootWaterOnTile(tile.getTileID());
+        	}
+        	*/
+        }
+        else{
+        	Debug.Log("TILE IS NULL IN INTERACTINFRONT");
+
+        	
+        }
+
+
+
+    }
+
+    public Tile aboveTile(Tile curTile){
+    	RaycastHit hit;
+
+		Debug.DrawRay(curTile.transform.position, curTile.transform.up, Color.red, 1, false);
+		if(Physics.Raycast(curTile.transform.position, curTile.transform.up, out hit)){
+			
+			if(hit.collider.tag == "Tile"){
+				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+				if(cur != null && cur.enabled){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+		}
+
+		return null;
     }
 }

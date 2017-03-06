@@ -108,13 +108,13 @@ public class PlayerControls : MonoBehaviour {
         }
 
 
-        int curID = getIDUnderCursor();
+        Tile curTile = getTileUnderCursor();
 
         if (Input.GetAxis("LeftTrigger") >= 0.9) {
             if (mode == TriggerType.arcThrowing) {
-                playerScript.throwMaterial(curID);
+                playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {
-                playerScript.interactInFront(curID);
+                playerScript.interactInFront(curTile);
             } else if (mode == TriggerType.placeWaypoint) {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
@@ -165,10 +165,10 @@ public class PlayerControls : MonoBehaviour {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
                         cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
-                        cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                        cursor.transform.localPosition = new Vector3(0, 0, 1f);
                     }
                 } else {
-                    cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                    cursor.transform.localPosition = new Vector3(0, 0, 1f);
                 }
                 break;
             case 1:
@@ -211,7 +211,7 @@ public class PlayerControls : MonoBehaviour {
         }*/
     }
 
-    public int getIDUnderCursor(){
+    public Tile getTileUnderCursor(){
         RaycastHit hit = new RaycastHit();
         Ray ray = new Ray(cursor.transform.position + new Vector3(0, 50, 0), Vector3.down);
 
@@ -221,13 +221,13 @@ public class PlayerControls : MonoBehaviour {
                 Tile tile = tileGO.GetComponent<Tile>();
 
                 if (tile != null) {
-                    return tile.getTileID();
+                    return tile;
                 }     
             }
         }
 
-        Debug.Log("ERROR GETTING ID UNDER CURSOR");
-        return -1;
+        Debug.Log("ERROR GETTING TILE UNDER CURSOR");
+        return null;
     }
 
 
@@ -246,7 +246,7 @@ public class PlayerControls : MonoBehaviour {
 
                 if (tile != null && hit.distance < 1) {
                     Debug.Log("TILE: " + tile.getTileID() + " is in front of the player");
-                    frontTile = LevelManager.instance.getTileAt(tile.getTileID());
+                    frontTile = tile;
                 }
 
             }

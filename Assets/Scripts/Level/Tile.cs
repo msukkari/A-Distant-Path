@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
+    public EventTransferManager EventManager; // Instantiated in Level Manager
 
 	public int id;
 

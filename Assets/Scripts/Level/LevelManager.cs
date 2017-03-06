@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour {
 
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
-
 	private AIManager am = AIManager.instance;
 
 	// static instance of LevelManager
@@ -70,7 +69,7 @@ public class LevelManager : MonoBehaviour {
 			PhotonNetwork.LoadLevel((int)Scenes.Present);
 		}
 		else if(TimeState == TimeStates.Offline){
- 			SceneManager.LoadScene(7);	
+ 			SceneManager.LoadScene((int) Scenes.Offline);	
 		}
 		else{
 			Debug.Log("INVALID TIMESTATE!!");
@@ -95,9 +94,13 @@ public class LevelManager : MonoBehaviour {
 			ETManager.player = player.GetComponent<Player>();
 			player.GetComponent<Player>().ETmanager = ETManager;
 			DontDestroyOnLoad(ETManagerGO);
-		}
-
-		DontDestroyOnLoad(player);
+            foreach (Tile tile in TileList)
+            {
+                tile.EventManager = ETManager;
+            }
+        }
+   
+        DontDestroyOnLoad(player);
 
 	}
 
@@ -136,7 +139,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		foreach(Tile tile in TileList){
 			tile.initTile();
-		}
+        }
 
 		foreach(Tile tile in TileList) {
 			// Attaches random elements to tiles other than the player's current position. Was used for testing 

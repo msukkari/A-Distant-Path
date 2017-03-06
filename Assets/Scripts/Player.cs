@@ -400,7 +400,7 @@ public class Player : MonoBehaviour{
 	public Tile getFrontTile(){
 		RaycastHit hit;
 
-		Vector3 direction = Quaternion.AngleAxis(20, this.transform.right) * this.transform.forward;
+		Vector3 direction = Quaternion.AngleAxis(20, this.transform.forward) * this.transform.forward;
 		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
 
 		if(Physics.Raycast(transform.position, direction, out hit)){
@@ -454,6 +454,59 @@ public class Player : MonoBehaviour{
 
     public void interactInFront(int tileID) {
         Debug.Log("Interact in front!");
-        this.ShootWaterOnTile(tileID);
+        Tile tile = LevelManager.instance.getTileAt(tileID);
+
+
+        if(tile != null){ 
+            this.ShootWaterOnTile(tile.getTileID());
+
+            /*
+        	Tile above = aboveTile(tile);
+
+        	if(above != null){
+        		Tile aboveAbove = aboveTile(above);
+
+        		if(aboveAbove != null){
+        			Debug.Log(aboveAbove.getTileID());
+        			this.ShootWaterOnTile(aboveAbove.getTileID());
+        		}
+        		else{
+        			Debug.Log(above.getTileID());
+        			this.ShootWaterOnTile(above.getTileID());
+        		}
+        	}
+        	else{
+        		Debug.Log(tile.getTileID());
+        		this.ShootWaterOnTile(tile.getTileID());
+        	}
+        	*/
+        }
+        else{
+        	Debug.Log("TILE IS NULL IN INTERACTINFRONT");
+
+        	
+        }
+
+
+
+    }
+
+    public Tile aboveTile(Tile curTile){
+    	RaycastHit hit;
+
+		Debug.DrawRay(curTile.transform.position, curTile.transform.up, Color.red, 1, false);
+		if(Physics.Raycast(curTile.transform.position, curTile.transform.up, out hit)){
+			
+			if(hit.collider.tag == "Tile"){
+				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
+
+				if(cur != null && cur.enabled){
+					Debug.Log(cur.getTileID());
+					return cur;
+				}
+			}
+		}
+
+		return null;
     }
 }

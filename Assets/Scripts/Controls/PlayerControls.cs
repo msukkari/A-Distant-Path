@@ -165,10 +165,10 @@ public class PlayerControls : MonoBehaviour {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
                         cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
-                        cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                        cursor.transform.localPosition = new Vector3(0, 0, 1f);
                     }
                 } else {
-                    cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                    cursor.transform.localPosition = new Vector3(0, 0, 1f);
                 }
                 break;
             case 1:

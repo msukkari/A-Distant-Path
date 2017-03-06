@@ -69,7 +69,9 @@ public class LevelManager : MonoBehaviour {
 			PhotonNetwork.LoadLevel((int)Scenes.Present);
 		}
 		else if(TimeState == TimeStates.Offline){
- 			SceneManager.LoadScene((int) Scenes.Offline);	
+ 			//SceneManager.LoadScene((int) Scenes.Offline);	
+			 SceneManager.LoadScene(7);	
+
 		}
 		else{
 			Debug.Log("INVALID TIMESTATE!!");

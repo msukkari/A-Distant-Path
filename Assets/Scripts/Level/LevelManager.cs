@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		else if(TimeState == TimeStates.Offline){
  			//SceneManager.LoadScene((int) Scenes.Offline);	
-			 SceneManager.LoadScene(7);	
+			 SceneManager.LoadScene((int)Scenes.Offline);	
 
 		}
 		else{
@@ -114,12 +114,27 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	// Get the Tile with the passed in ID, returns null if not found
-	public Tile getTileAt(int id){
+	public Tile getTileAtID(int id){
 		foreach(Tile tile in TileList){
 			if(tile.getTileID() == id)
 				return tile;
 		}
 
+		return null;
+	}
+
+	public Tile getTileAt(Vector3 pos){
+		foreach(Tile tile in TileList){
+			if(tile.transform.position == pos){
+				return tile;
+			}
+		}
+
+		Debug.Log("COULDN'T FIND TILE IN GETTILEAT");
+		return null;
+	}
+
+	public Tile getTileAt(int tileID){
 		return null;
 	}
 

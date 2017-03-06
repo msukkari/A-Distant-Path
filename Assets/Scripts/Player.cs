@@ -240,10 +240,8 @@ public class Player : MonoBehaviour{
 		}
 	}
 
-	private void ShootWaterOnTile(int tileID) {
+	private void ShootWaterOnTile(Tile tile) {
 		if (HasElement (ElementType.Water, 1)) {
-			Tile tile = LevelManager.instance.getTileAt(tileID);
-
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootWaterOnTile");
 				return;
@@ -267,10 +265,8 @@ public class Player : MonoBehaviour{
 		}
 	}
 
-	private void ShootFireOnTile(int tileID) {
+	private void ShootFireOnTile(Tile tile) {
 		if (HasElement (ElementType.Fire, 1)) {
-			Tile tile = LevelManager.instance.getTileAt(tileID);
-
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootFireOnTile");
 				return;
@@ -385,15 +381,16 @@ public class Player : MonoBehaviour{
 		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
-			if (cur != null)
+			if (cur != null){
 				lastValidTile = cur;
 				return cur;
+			}
 		}
 
 		return lastValidTile;
 	}
 
-	public int getCurTileID(){
+	public int getCurTileAt(int tileID){
 		return this.getCurTile() == null ? lastValidTile.id : this.getCurTile().id; 
 	}
 
@@ -443,22 +440,21 @@ public class Player : MonoBehaviour{
 
 	#endregion
 
-    public void throwMaterial(int tileID) {
+    public void throwMaterial(Tile tile) {
         Debug.Log("Throw material!");
-        this.ShootWaterOnTile(tileID);
+        if(tile != null){
+        	this.ShootWaterOnTile(tile);
+        }
     }
 
     public void placeWaypoint(Vector3 position) {
         Debug.Log("Place waypoint");
     }
 
-    public void interactInFront(int tileID) {
+    public void interactInFront(Tile tile) {
         Debug.Log("Interact in front!");
-        Tile tile = LevelManager.instance.getTileAt(tileID);
-
-
         if(tile != null){ 
-            this.ShootWaterOnTile(tile.getTileID());
+            this.ShootFireOnTile(tile);
 
             /*
         	Tile above = aboveTile(tile);

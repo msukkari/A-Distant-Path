@@ -245,7 +245,7 @@ public class PlayerControls : MonoBehaviour {
                 Tile tile = tileGO.GetComponent<Tile>();
 
                 if (tile != null && hit.distance < 1) {
-                    Debug.Log("TILE: " + tile.getTileID() + " is in front of the player");
+                    Debug.Log("TILE: " + tile.transform.position + " is in front of the player");
                     frontTile = tile;
                 }
 

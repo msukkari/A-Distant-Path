@@ -33,6 +33,10 @@ public class Player : MonoBehaviour{
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 
+		elementsInventory[ElementType.Fire] = 10;
+		elementsInventory[ElementType.Water] = 10;
+
+
 		currentLocation = getCurTile();
     
 		// Sanity check

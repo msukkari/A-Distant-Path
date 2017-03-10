@@ -28,6 +28,8 @@ public class PlayerControls : MonoBehaviour {
     private float jumpForce = 10;
     private float verticalVelocity;
 
+    private bool isShooting = false;
+
     private int numTypes = 3;
     public enum TriggerType {
         placeWaypoint,
@@ -110,7 +112,10 @@ public class PlayerControls : MonoBehaviour {
 
         Tile curTile = getTileUnderCursor();
 
-        if (Input.GetAxis("LeftTrigger") >= 0.9) {
+
+        Debug.Log(isShooting);
+        if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
+        	isShooting = true;
             if (mode == TriggerType.arcThrowing) {
                 playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {
@@ -118,6 +123,10 @@ public class PlayerControls : MonoBehaviour {
             } else if (mode == TriggerType.placeWaypoint) {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
+        }
+        else{
+        	Debug.Log("SETTING SHOOTING TO FALSE");
+        	isShooting = false;
         }
     }
 
@@ -237,6 +246,7 @@ public class PlayerControls : MonoBehaviour {
 
 
     	RaycastHit hit = new RaycastHit();
+    	Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
         Ray ray = new Ray(this.gameObject.transform.position, this.transform.forward);
 
         if (Physics.Raycast(ray, out hit)) {
@@ -245,7 +255,7 @@ public class PlayerControls : MonoBehaviour {
                 Tile tile = tileGO.GetComponent<Tile>();
 
                 if (tile != null && hit.distance < 1) {
-                    Debug.Log("TILE: " + tile.transform.position + " is in front of the player");
+                    Debug.Log("GLOBAL: " + tile.transform.position + " LOCAL: " + tile.transform.localPosition);
                     frontTile = tile;
                 }
 
@@ -270,7 +280,7 @@ public class PlayerControls : MonoBehaviour {
     	yield return new WaitForSeconds(0.2f);
 
 
-    	this.transform.position = new Vector3(tile.transform.position.x, 1.565f, tile.transform.position.z); // height is hard coded for now
+    	this.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 1f, tile.transform.position.z); // height is hard coded for now
 
     	mesh.enableMesh(true);
     }

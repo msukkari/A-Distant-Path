@@ -18,7 +18,10 @@ public class MetalCube : Element {
 	}
 
 	public override bool WaterInteract(EventTransferManager ETManager) {
-		if (LevelManager.instance.TimeState == TimeStates.Past) {
+
+
+
+		if(ETManager != null && LevelManager.instance.TimeState == TimeStates.Past) {
 			ETManager.OnMetalRust (this.GetComponentInParent<Tile> ().getTileID ());
 		}
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);

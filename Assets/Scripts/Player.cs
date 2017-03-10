@@ -277,6 +277,7 @@ public class Player : MonoBehaviour{
 			}
 
 			if (tile.element != null) {
+				Debug.Log(tile.element + " IN SHOOTFIREONTILE");
 				if (tile.element.FireInteract (ETmanager)) {
 					this.elementsInventory[ElementType.Fire]--;
 				}

@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 	private AIManager am = AIManager.instance;
+	private EventTransferManager ETManager = null;
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
@@ -56,6 +57,7 @@ public class LevelManager : MonoBehaviour {
 
 	}	
 
+	// LoadLevelScene() is called before LoadTileList() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public void LoadLevelScene(){
 
 		Debug.Log("LevelManager.cs: Loading scene...");
@@ -94,14 +96,10 @@ public class LevelManager : MonoBehaviour {
         Camera.main.enabled = false;
         if (TimeState != TimeStates.Offline){
 			GameObject ETManagerGO = (GameObject)PhotonNetwork.Instantiate("EventTransferManager", Vector3.zero, Quaternion.identity, 0);
-			EventTransferManager ETManager = ETManagerGO.GetComponent<EventTransferManager>();
+			this.ETManager = ETManagerGO.GetComponent<EventTransferManager>();
 			ETManager.player = player.GetComponent<Player>();
 			player.GetComponent<Player>().ETmanager = ETManager;
 			DontDestroyOnLoad(ETManagerGO);
-            foreach (Tile tile in TileList)
-            {
-                tile.EventManager = ETManager;
-            }
         }
    
         DontDestroyOnLoad(player);
@@ -158,6 +156,13 @@ public class LevelManager : MonoBehaviour {
 		}
 		foreach(Tile tile in TileList){
 			tile.initTile();
+        }
+
+        foreach (Tile tile in TileList)
+        {
+        	Debug.Log(tile);
+        	Debug.Log("ET MANAGER: " + this.ETManager);
+            tile.EventManager = this.ETManager;
         }
 
 		foreach(Tile tile in TileList) {

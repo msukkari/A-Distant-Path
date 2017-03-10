@@ -17,7 +17,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
+		this.transferHighlighted = false;
 	}
 	
 	// Update is called once per frame
@@ -34,12 +34,15 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			}
 			*/
-
+			Debug.Log(player.getCurTile().element.elementType);
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
+
+				Debug.Log("PLAYER IS ON A TRANSFER TILE");
 
 				recentTransferPos = player.getCurTile().transform.position;
 
 				if(transferHighlighted == false){
+					Debug.Log("CALLING pOnTransfer");
 					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = true;
 				}

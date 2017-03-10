@@ -9,7 +9,7 @@ public class MetalCube : Element {
 	void Start () {
 		elementType = ElementType.MetalCube;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
-
+		this.climable = true;
 	}
 
 	// Update is called once per frame

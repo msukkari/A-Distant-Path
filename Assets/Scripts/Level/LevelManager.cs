@@ -81,9 +81,11 @@ public class LevelManager : MonoBehaviour {
 
 		GameObject elementManagerGO = Instantiate (elementManagerPrefab) as GameObject;
 		elementManagerGO.transform.parent = this.gameObject.transform;
+		DontDestroyOnLoad(elementManagerGO);
 
 		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
 		this.player = player.GetComponent<Player>();
+		DontDestroyOnLoad(player);
 
         GameObject cam = Instantiate(Resources.Load("Camera")) as GameObject;
         cam.GetComponent<CameraControls>().setCharacter(player);

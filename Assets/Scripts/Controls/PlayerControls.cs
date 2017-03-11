@@ -12,7 +12,7 @@ public class PlayerControls : MonoBehaviour {
 
     //Parameters
     //  Movement
-    private float speed = 3.5f;
+    private float speed = 2.5f;
 
     //  Cursor
     private float actualCursorRange;
@@ -59,25 +59,17 @@ public class PlayerControls : MonoBehaviour {
         orient();
 
         if(Input.GetButtonDown("YButton")){
-        	climb();
+            if(LevelManager.instance.TimeState == TimeStates.Present){
+                jump();      
+            }
+            else{
+                climb();
+            }
         }
 
         if(Input.GetButtonDown("BButton")){
         	currentAmmo = (currentAmmo + 1) % 2;
         }
-
-        if(cc.isGrounded){
-        	verticalVelocity = -9.81f * Time.deltaTime;
-        	anim.SetBool("isJumping", false);
-
-        	if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
-        		verticalVelocity = jumpForce;
-        		anim.SetBool("isJumping", true);
-        	}
-        }
-
-
-        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
 
 
         if (Input.GetButtonDown("LeftBumper")) {
@@ -220,7 +212,19 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public void jump() {
+        if(cc.isGrounded){
+            verticalVelocity = -9.81f * Time.deltaTime;
+            anim.SetBool("isJumping", false);
 
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
+                verticalVelocity = jumpForce;
+                anim.SetBool("isJumping", true);
+                //anim.SetBool("isMoving", false);
+            }
+        }
+
+
+        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
     }
 
     public void setPivotPoint(GameObject pivotPoint) {

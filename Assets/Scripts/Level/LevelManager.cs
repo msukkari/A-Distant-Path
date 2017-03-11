@@ -14,7 +14,8 @@ public class LevelManager : MonoBehaviour {
 
 	// static instance of LevelManager
 	public static LevelManager instance = null;
-	public GameObject playerPrefab;
+	public GameObject pastPlayerPrefab;
+	public GameObject futurePlayerPrefab;
 	public GameObject elementManagerPrefab;
 	public GameObject uiManagerPrefab;
 
@@ -85,7 +86,14 @@ public class LevelManager : MonoBehaviour {
 		elementManagerGO.transform.parent = this.gameObject.transform;
 		DontDestroyOnLoad(elementManagerGO);
 
-		GameObject player = Instantiate(playerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
+		GameObject player;
+		if(TimeState == TimeStates.Present){
+			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
+		}
+		else{
+			player = Instantiate(pastPlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;			
+		}
+
 		this.player = player.GetComponent<Player>();
 		DontDestroyOnLoad(player);
 
@@ -168,7 +176,7 @@ public class LevelManager : MonoBehaviour {
 		foreach(Tile tile in TileList) {
 			// Attaches random elements to tiles other than the player's current position. Was used for testing 
 			// out the level.
-			/*if(tile.id != playerPrefab.GetComponent<Player>().getCurTileID()) {
+			/*if(tile.id != pastPlayerPrefab.GetComponent<Player>().getCurTileID()) {
 
 				ElementType elementType = (ElementType)(Random.Range (0, Enum.GetNames (typeof(ElementType)).Length + 1) - 1);
 

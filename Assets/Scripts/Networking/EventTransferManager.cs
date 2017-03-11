@@ -48,7 +48,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 
 
-				if(Input.GetKeyDown(KeyCode.C)){
+				if(Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("AButton")){
 					Debug.Log("CALLING TRANSFER TILE CHECK");
 
 					int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;

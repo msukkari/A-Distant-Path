@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 312fe3196d2d30a4b9ccdb4d3132be93
-timeCreated: 1489233034
+guid: 05f348bfb16fc274f8e4449be580c421
+timeCreated: 1489236013
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -16,14 +16,13 @@ ModelImporter:
     100016: Bone_R_001
     100018: Bone_R_002
     100020: Bone_R_003
-    100022: Cube_005
-    100024: Cube_006
-    100026: Cube_007
-    100028: Cube_014
-    100030: Cube_015
+    100022: Cube_000
+    100024: Cube_005
+    100026: Cube_006
+    100028: Cube_007
+    100030: Cube_014
     100032: Cube_016
-    100034: Cube_018
-    100036: //RootNode
+    100034: //RootNode
     400000: Armature
     400002: Bone
     400004: Bone_001
@@ -35,23 +34,19 @@ ModelImporter:
     400016: Bone_R_001
     400018: Bone_R_002
     400020: Bone_R_003
-    400022: Cube_005
-    400024: Cube_006
-    400026: Cube_007
-    400028: Cube_014
-    400030: Cube_015
+    400022: Cube_000
+    400024: Cube_005
+    400026: Cube_006
+    400028: Cube_007
+    400030: Cube_014
     400032: Cube_016
-    400034: Cube_018
-    400036: //RootNode
-    2300000: Cube_018
-    3300000: Cube_018
-    4300000: Cube_007
-    4300002: Cube_016
-    4300004: Cube_005
-    4300006: Cube_015
-    4300008: Cube_018
-    4300010: Cube_006
-    4300012: Cube_014
+    400034: //RootNode
+    4300000: Cube_000
+    4300002: Cube_007
+    4300004: Cube_016
+    4300006: Cube_005
+    4300008: Cube_006
+    4300010: Cube_014
     7400000: Default Take
     7400002: Action1
     7400004: Action2
@@ -63,11 +58,11 @@ ModelImporter:
     7400016: JumpStart
     7400018: WalkCycleRanger
     9500000: //RootNode
-    13700000: Cube_005
-    13700002: Cube_006
-    13700004: Cube_007
-    13700006: Cube_014
-    13700008: Cube_015
+    13700000: Cube_000
+    13700002: Cube_005
+    13700004: Cube_006
+    13700006: Cube_007
+    13700008: Cube_014
     13700010: Cube_016
   materials:
     importMaterials: 1
@@ -94,7 +89,7 @@ ModelImporter:
       name: Default Take
       takeName: Default Take
       firstFrame: -1
-      lastFrame: 79
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -139,6 +134,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -146,10 +143,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -205,6 +198,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -212,10 +207,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -271,6 +262,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -278,10 +271,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -337,6 +326,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -344,10 +335,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -403,6 +390,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -410,10 +399,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -469,6 +454,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -476,10 +463,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -535,6 +518,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -542,10 +527,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -563,7 +544,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -601,6 +582,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -608,10 +591,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -667,6 +646,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -674,10 +655,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1
@@ -695,7 +672,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -733,6 +710,8 @@ ModelImporter:
         weight: 1
       - path: Armature/Bone_R_002/Bone_R_003
         weight: 1
+      - path: Cube_000
+        weight: 1
       - path: Cube_005
         weight: 1
       - path: Cube_006
@@ -740,10 +719,6 @@ ModelImporter:
       - path: Cube_007
         weight: 1
       - path: Cube_014
-        weight: 1
-      - path: Cube_015
-        weight: 1
-      - path: Cube_015/Cube_018
         weight: 1
       - path: Cube_016
         weight: 1

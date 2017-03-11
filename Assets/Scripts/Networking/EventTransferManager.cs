@@ -34,7 +34,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			}
 			*/
-			Debug.Log(player.getCurTile().element);
+			//Debug.Log(player.getCurTile().element);
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
 				Debug.Log("PLAYER IS ON A TRANSFER TILE");
@@ -68,9 +68,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 
-	public void OnMetalRust(int tileID){
+	public void OnMetalRust(Vector3 pos){
 		if(photonView.isMine){
-			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{tileID});
+			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{pos});
 		}
 	}
 
@@ -88,9 +88,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 	[PunRPC]
-	public void rustMetalCube(int tileID){
+	public void rustMetalCube(Vector3 pos){
 		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
-		Tile tile = lm.getTileAt(tileID);
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 

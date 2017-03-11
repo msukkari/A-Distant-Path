@@ -121,7 +121,7 @@ public class PlayerControls : MonoBehaviour {
         Tile curTile = getTileUnderCursor();
 
 
-        Debug.Log(isShooting);
+        // Debug.Log(isShooting);
         if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
         	isShooting = true;
             if (mode == TriggerType.arcThrowing) {
@@ -133,7 +133,7 @@ public class PlayerControls : MonoBehaviour {
             }
         }
         else{
-        	Debug.Log("SETTING SHOOTING TO FALSE");
+        	// Debug.Log("SETTING SHOOTING TO FALSE");
         	isShooting = false;
         }
     }

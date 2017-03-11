@@ -22,7 +22,7 @@ public class MetalCube : Element {
 
 
 		if(ETManager != null && LevelManager.instance.TimeState == TimeStates.Past) {
-			ETManager.OnMetalRust (this.GetComponentInParent<Tile> ().getTileID ());
+			ETManager.OnMetalRust(this.GetComponentInParent<Tile>().gameObject.transform.position);
 		}
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
 		return true;

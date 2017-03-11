@@ -68,11 +68,11 @@ public class PlayerControls : MonoBehaviour {
 
         if(cc.isGrounded){
         	verticalVelocity = -9.81f * Time.deltaTime;
-        	anim.SetBool("Jumping", false);
+        	anim.SetBool("isJumping", false);
 
         	if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
         		verticalVelocity = jumpForce;
-        		anim.SetBool("Jumping", true);
+        		anim.SetBool("isJumping", true);
         	}
         }
 
@@ -88,7 +88,7 @@ public class PlayerControls : MonoBehaviour {
             actualCursorRange = cursorRange;
             cursor.GetComponent<MeshRenderer>().enabled = true;
         } else if(mode == TriggerType.directInteract) {
-            actualCursorRange = 0.4f;
+            actualCursorRange = 1.8f;
             cursor.GetComponent<MeshRenderer>().enabled = false;
 
         }
@@ -194,10 +194,10 @@ public class PlayerControls : MonoBehaviour {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
                         cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
-                        cursor.transform.localPosition = new Vector3(0, 0, 1f);
+                        cursor.transform.localPosition = new Vector3(0, 0, 1.8f);
                     }
                 } else {
-                    cursor.transform.localPosition = new Vector3(0, 0, 1f);
+                    cursor.transform.localPosition = new Vector3(0, 0, 1.8f);
                 }
                 break;
             case 1:

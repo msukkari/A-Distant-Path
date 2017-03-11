@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5653457d617ca488b989fcd316aaf671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1059333441859844, guid: 941c08102e99d0043b9f04ddac18f720,
+  playerPrefab: {fileID: 1104518414419040, guid: 89315eb57f406ac448aed009212ab6ee,
     type: 2}
   elementManagerPrefab: {fileID: 1729996963719242, guid: f8085b5b581bade45acc00a780065323,
     type: 2}
-  uiManagerPrefab: {fileID: 0}
+  uiManagerPrefab: {fileID: 100034, guid: 9ccbb15236123c94f8d718c9b71d5fb6, type: 3}
   TimeState: 0

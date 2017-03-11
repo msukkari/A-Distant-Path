@@ -114,7 +114,7 @@ public class Player : MonoBehaviour{
 
 	public void Respawn(){
 		this.gameObject.transform.position = new Vector3(5f, 2.5f, 2.5f);
-		// this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
+		this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
 	}
 
 	public void Freeze(bool freeze) {

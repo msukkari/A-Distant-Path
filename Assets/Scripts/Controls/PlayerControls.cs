@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour {
 
     private TriggerType mode;
 
-    private float jumpForce = 10;
+    private float jumpForce = 3f;
     public float verticalVelocity;
 
     private bool isShooting = false;

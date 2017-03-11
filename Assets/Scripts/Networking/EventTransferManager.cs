@@ -11,13 +11,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// get LevelManager
 	private LevelManager lm = LevelManager.instance;
-	private int recentTransferID;
+	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
 
 	// Use this for initialization
 	void Awake () {
-
+		this.transferHighlighted = false;
 	}
 	
 	// Update is called once per frame
@@ -34,13 +34,16 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			}
 			*/
-
+			//Debug.Log(player.getCurTile().element);
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
-				recentTransferID = player.getCurTileID();
+				Debug.Log("PLAYER IS ON A TRANSFER TILE");
+
+				recentTransferPos = player.getCurTile().transform.position;
 
 				if(transferHighlighted == false){
-					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					Debug.Log("CALLING pOnTransfer");
+					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = true;
 				}
 
@@ -56,7 +59,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			else{
 
 				if(transferHighlighted == true){
-					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferID});
+					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = false;
 				}
 			}
@@ -65,14 +68,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 
-	public void OnMetalRust(int tileID){
+	public void OnMetalRust(Vector3 pos){
 		if(photonView.isMine){
-			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{tileID});
+			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{pos});
 		}
 	}
 
-	public void OnStumpWater(int tileID){
-			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{tileID});
+	public void OnStumpWater(Vector3 pos){
+			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{pos});
 	}
 
 	public void OnSandFire(int tileID) {
@@ -85,9 +88,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 	[PunRPC]
-	public void rustMetalCube(int tileID){
+	public void rustMetalCube(Vector3 pos){
 		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
-		Tile tile = lm.getTileAt(tileID);
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 
@@ -133,9 +136,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 	}
 
-	[PunRPC] void growTree(int tileID){
+	[PunRPC] void growTree(Vector3 pos){
 		Debug.Log("SAPLING HAS BEEN WATERED!");
-		Tile tile = lm.getTileAt(tileID);
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 			tile.GainElement(ElementType.BigTree);
@@ -218,8 +221,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// Called when the other player is on a resource transfer tile, passes in the tileID
 	[PunRPC]
-	public void pOnTransfer(int tileID){
-		Tile tile = lm.getTileAt(tileID);
+	public void pOnTransfer(Vector3 pos){
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 
@@ -243,8 +246,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// Called when the other player is not on a resource transfer tile, passes in the tileID of the transfer tile it left
 	[PunRPC]
-	public void pOffTransfer(int tileID){
-				Tile tile = lm.getTileAt(tileID);
+	public void pOffTransfer(Vector3 pos){
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 

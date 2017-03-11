@@ -9,7 +9,7 @@ public class Water : Element {
 	// Use this for initialization
 	void Start () {
 		elementType = ElementType.Water;
-		navigatable = false;
+		navigatable = true;
 	}
 	
 	// Update is called once per frame

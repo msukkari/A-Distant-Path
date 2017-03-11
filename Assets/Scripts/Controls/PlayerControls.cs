@@ -26,7 +26,13 @@ public class PlayerControls : MonoBehaviour {
     private TriggerType mode;
 
     private float jumpForce = 10;
-    private float verticalVelocity;
+    public float verticalVelocity;
+
+    private bool isShooting = false;
+
+
+    // 0 is fire, 1 is water
+    private int currentAmmo = 0;
 
     private int numTypes = 3;
     public enum TriggerType {
@@ -51,6 +57,14 @@ public class PlayerControls : MonoBehaviour {
     void Update() {
         move();
         orient();
+
+        if(Input.GetButtonDown("YButton")){
+        	climb();
+        }
+
+        if(Input.GetButtonDown("BButton")){
+        	currentAmmo = (currentAmmo + 1) % 2;
+        }
 
         if(cc.isGrounded){
         	verticalVelocity = -9.81f * Time.deltaTime;
@@ -89,31 +103,50 @@ public class PlayerControls : MonoBehaviour {
                 selectedTile = hit.collider.gameObject;
                 if (selectedTile != null) {
                     if (prevSelectedTile != selectedTile) {
-                        selectedTile.GetComponent<Tile>().highlight();
+                        Tile curtile = selectedTile.GetComponent<Tile>();
+
+                        if(curtile != null){
+                            selectedTile.GetComponent<Tile>().unHighlight();
+                        }
 
                         if (prevSelectedTile != null) {
-                            prevSelectedTile.GetComponent<Tile>().unHighlight();
+                            Tile prevtile = prevSelectedTile.GetComponent<Tile>();
+
+                            if(prevtile != null){
+                                prevSelectedTile.GetComponent<Tile>().unHighlight();
+                            }
                         }
                     }
                 }
             }
         } else {
             if (selectedTile != null) {
-                selectedTile.GetComponent<Tile>().unHighlight();
+                Tile tile = selectedTile.GetComponent<Tile>();
+
+                if(tile != null){
+                    selectedTile.GetComponent<Tile>().unHighlight();
+                }
             }
         }
 
 
-        int curID = getIDUnderCursor();
+        Tile curTile = getTileUnderCursor();
 
-        if (Input.GetAxis("LeftTrigger") >= 0.9) {
+
+        // Debug.Log(isShooting);
+        if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
+        	isShooting = true;
             if (mode == TriggerType.arcThrowing) {
-                playerScript.throwMaterial(curID);
+                playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {
-                playerScript.interactInFront(curID);
+                playerScript.interactInFront(curTile, currentAmmo);
             } else if (mode == TriggerType.placeWaypoint) {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
+        }
+        else{
+        	// Debug.Log("SETTING SHOOTING TO FALSE");
+        	isShooting = false;
         }
     }
 
@@ -161,10 +194,10 @@ public class PlayerControls : MonoBehaviour {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
                         cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
                     } else {
-                        cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                        cursor.transform.localPosition = new Vector3(0, 0, 1f);
                     }
                 } else {
-                    cursor.transform.localPosition = new Vector3(0, 0, 0.5f);
+                    cursor.transform.localPosition = new Vector3(0, 0, 1f);
                 }
                 break;
             case 1:
@@ -207,7 +240,7 @@ public class PlayerControls : MonoBehaviour {
         }*/
     }
 
-    public int getIDUnderCursor(){
+    public Tile getTileUnderCursor(){
         RaycastHit hit = new RaycastHit();
         Ray ray = new Ray(cursor.transform.position + new Vector3(0, 50, 0), Vector3.down);
 
@@ -217,12 +250,80 @@ public class PlayerControls : MonoBehaviour {
                 Tile tile = tileGO.GetComponent<Tile>();
 
                 if (tile != null) {
-                    return tile.getTileID();
+                    return tile;
                 }     
             }
         }
 
-        Debug.Log("ERROR GETTING ID UNDER CURSOR");
-        return -1;
+        Debug.Log("ERROR GETTING TILE UNDER CURSOR");
+        return null;
+    }
+
+
+
+    public void climb(){
+    	Tile frontTile = null;
+
+
+
+    	Tile tile = getTileUnderCursor();
+
+    	if(tile != null){
+    		frontTile = tile;
+    	}
+
+    	/*
+    	RaycastHit hit = new RaycastHit();
+    	Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
+        Ray ray = new Ray(this.gameObject.transform.position + new Vector3(0, 0.2f, 0), this.transform.forward);
+
+
+        if (Physics.Raycast(ray, out hit)) {
+            GameObject tileGO = hit.collider.gameObject;
+
+            if (tileGO != null && hit.distance < 1) {
+                	Debug.Log("GLOBAL: " + tileGO.transform.position + " LOCAL: " + tileGO.transform.localPosition);
+                    frontTile = tileGO;
+            }
+        }
+        */
+
+
+        if(frontTile != null){
+
+        	float heightDiff = frontTile.transform.position.y - playerScript.gameObject.transform.position.y;
+        	Debug.Log(heightDiff);
+        	if(heightDiff < 1.6){
+        		StartCoroutine(climbWithStall(frontTile));
+        	}
+        	else{
+        		Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
+        	}
+
+        }
+        else{
+        	Debug.Log("Climbing failed, either not close enough to front tile or no such tile exists");
+        }
+
+    }
+
+    IEnumerator climbWithStall(Tile tile){
+    	PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+    	
+    	mesh.enableMesh(false);
+    	yield return new WaitForSeconds(0.2f);
+
+    	Vector3 newPosition;
+    	if(tile.element != null && tile.element.climable){
+    		newPosition = tile.element.gameObject.transform.position;
+    	}
+    	else{
+    		newPosition = tile.transform.position;
+    	}
+
+
+    	this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
+
+    	mesh.enableMesh(true);
     }
 }

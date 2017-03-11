@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
+    public EventTransferManager EventManager = null; // Instantiated in Level Manager
 
 	public int id;
 
@@ -69,11 +70,13 @@ public class Tile : MonoBehaviour {
 	public bool GainElement(ElementType elementType) {
 		ElementType newElement = (this.element == null) ? elementType : ElementManager.GetCombinationElement(elementType, this.element.elementType);
 
+		Debug.Log(newElement);
+
 		if(newElement == ElementType.None){
 			ClearElement();
 			return true;
 		}
-		else if (this.element == null || newElement != elementType) {
+		else if (this.element == null || newElement != this.element.elementType) {
 			ClearElement ();
 			LevelManager.CreateElementAtTile (this, newElement);
 

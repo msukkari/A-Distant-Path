@@ -9,7 +9,7 @@ public class MetalCube : Element {
 	void Start () {
 		elementType = ElementType.MetalCube;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
-
+		this.climable = true;
 	}
 
 	// Update is called once per frame
@@ -18,8 +18,11 @@ public class MetalCube : Element {
 	}
 
 	public override bool WaterInteract(EventTransferManager ETManager) {
-		if (LevelManager.instance.TimeState == TimeStates.Past) {
-			ETManager.OnMetalRust (this.GetComponentInParent<Tile> ().getTileID ());
+
+
+
+		if(ETManager != null && LevelManager.instance.TimeState == TimeStates.Past) {
+			ETManager.OnMetalRust(this.GetComponentInParent<Tile>().gameObject.transform.position);
 		}
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
 		return true;

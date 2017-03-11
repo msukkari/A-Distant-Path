@@ -28,6 +28,12 @@ public class PlayerControls : MonoBehaviour {
     private float jumpForce = 10;
     private float verticalVelocity;
 
+    private bool isShooting = false;
+
+
+    // 0 is fire, 1 is water
+    private int currentAmmo = 0;
+
     private int numTypes = 3;
     public enum TriggerType {
         placeWaypoint,
@@ -54,6 +60,10 @@ public class PlayerControls : MonoBehaviour {
 
         if(Input.GetButtonDown("YButton")){
         	climb();
+        }
+
+        if(Input.GetButtonDown("BButton")){
+        	currentAmmo = (currentAmmo + 1) % 2;
         }
 
         if(cc.isGrounded){
@@ -110,14 +120,21 @@ public class PlayerControls : MonoBehaviour {
 
         Tile curTile = getTileUnderCursor();
 
-        if (Input.GetAxis("LeftTrigger") >= 0.9) {
+
+        Debug.Log(isShooting);
+        if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
+        	isShooting = true;
             if (mode == TriggerType.arcThrowing) {
                 playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {
-                playerScript.interactInFront(curTile);
+                playerScript.interactInFront(curTile, currentAmmo);
             } else if (mode == TriggerType.placeWaypoint) {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
+        }
+        else{
+        	Debug.Log("SETTING SHOOTING TO FALSE");
+        	isShooting = false;
         }
     }
 
@@ -236,25 +253,40 @@ public class PlayerControls : MonoBehaviour {
     	Tile frontTile = null;
 
 
+
+    	Tile tile = getTileUnderCursor();
+
+    	if(tile != null){
+    		frontTile = tile;
+    	}
+
+    	/*
     	RaycastHit hit = new RaycastHit();
-        Ray ray = new Ray(this.gameObject.transform.position, this.transform.forward);
+    	Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
+        Ray ray = new Ray(this.gameObject.transform.position + new Vector3(0, 0.2f, 0), this.transform.forward);
+
 
         if (Physics.Raycast(ray, out hit)) {
             GameObject tileGO = hit.collider.gameObject;
-            if (tileGO != null) {
-                Tile tile = tileGO.GetComponent<Tile>();
 
-                if (tile != null && hit.distance < 1) {
-                    Debug.Log("TILE: " + tile.getTileID() + " is in front of the player");
-                    frontTile = tile;
-                }
-
+            if (tileGO != null && hit.distance < 1) {
+                	Debug.Log("GLOBAL: " + tileGO.transform.position + " LOCAL: " + tileGO.transform.localPosition);
+                    frontTile = tileGO;
             }
         }
+        */
 
 
         if(frontTile != null){
-        	StartCoroutine(climbWithStall(frontTile));
+
+        	float heightDiff = frontTile.transform.position.y - playerScript.gameObject.transform.position.y;
+        	Debug.Log(heightDiff);
+        	if(heightDiff < 1.6){
+        		StartCoroutine(climbWithStall(frontTile));
+        	}
+        	else{
+        		Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
+        	}
 
         }
         else{
@@ -269,8 +301,16 @@ public class PlayerControls : MonoBehaviour {
     	mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);
 
+    	Vector3 newPosition;
+    	if(tile.element != null && tile.element.climable){
+    		newPosition = tile.element.gameObject.transform.position;
+    	}
+    	else{
+    		newPosition = tile.transform.position;
+    	}
 
-    	this.transform.position = new Vector3(tile.transform.position.x, 1.565f, tile.transform.position.z); // height is hard coded for now
+
+    	this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
 
     	mesh.enableMesh(true);
     }

@@ -33,6 +33,10 @@ public class Player : MonoBehaviour{
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 
+		elementsInventory[ElementType.Fire] = 10;
+		elementsInventory[ElementType.Water] = 10;
+
+
 		currentLocation = getCurTile();
     
 		// Sanity check
@@ -451,11 +455,19 @@ public class Player : MonoBehaviour{
         Debug.Log("Place waypoint");
     }
 
-    public void interactInFront(Tile tile) {
+    public void interactInFront(Tile tile, int curType) {
         Debug.Log("Interact in front!");
         if(tile != null){ 
-            this.ShootFireOnTile(tile);
 
+        	if(curType == 0){
+            	this.ShootFireOnTile(tile);
+            }
+            else if(curType == 1){
+            	this.ShootWaterOnTile(tile);
+            }
+            else{
+            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
+            }
             /*
         	Tile above = aboveTile(tile);
 

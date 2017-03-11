@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour {
 
     private TriggerType mode;
 
-    private float jumpForce = 10;
+    private float jumpForce = 3f;
     public float verticalVelocity;
 
     private bool isShooting = false;
@@ -155,10 +155,10 @@ public class PlayerControls : MonoBehaviour {
         float zDisp = -1 * Input.GetAxis("LeftJoystickVertical");
 
         if((Mathf.Abs(xDisp) >= 0.1) || (Mathf.Abs(zDisp) >= 0.1)){
-        	anim.SetBool("Moving", true);
+        	anim.SetBool("isMoving", true);
         }
         else{
-        	anim.SetBool("Moving", false);
+        	anim.SetBool("isMoving", false);
         }
 
         Vector3 dispDir = Vector3.zero;
@@ -308,9 +308,9 @@ public class PlayerControls : MonoBehaviour {
     }
 
     IEnumerator climbWithStall(Tile tile){
-    	PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+    	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
     	
-    	mesh.enableMesh(false);
+    	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);
 
     	Vector3 newPosition;
@@ -324,6 +324,6 @@ public class PlayerControls : MonoBehaviour {
 
     	this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
 
-    	mesh.enableMesh(true);
+    	//mesh.enableMesh(true);
     }
 }

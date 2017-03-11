@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour {
     private TriggerType mode;
 
     private float jumpForce = 10;
-    private float verticalVelocity;
+    public float verticalVelocity;
 
     private bool isShooting = false;
 
@@ -103,17 +103,29 @@ public class PlayerControls : MonoBehaviour {
                 selectedTile = hit.collider.gameObject;
                 if (selectedTile != null) {
                     if (prevSelectedTile != selectedTile) {
-                        selectedTile.GetComponent<Tile>().highlight();
+                        Tile curtile = selectedTile.GetComponent<Tile>();
+
+                        if(curtile != null){
+                            selectedTile.GetComponent<Tile>().unHighlight();
+                        }
 
                         if (prevSelectedTile != null) {
-                            prevSelectedTile.GetComponent<Tile>().unHighlight();
+                            Tile prevtile = prevSelectedTile.GetComponent<Tile>();
+
+                            if(prevtile != null){
+                                prevSelectedTile.GetComponent<Tile>().unHighlight();
+                            }
                         }
                     }
                 }
             }
         } else {
             if (selectedTile != null) {
-                selectedTile.GetComponent<Tile>().unHighlight();
+                Tile tile = selectedTile.GetComponent<Tile>();
+
+                if(tile != null){
+                    selectedTile.GetComponent<Tile>().unHighlight();
+                }
             }
         }
 

@@ -19,7 +19,7 @@ public class Stump : Element {
 
 	public override bool WaterInteract(EventTransferManager ETManager) {
 		if (LevelManager.instance.TimeState == TimeStates.Past) {
-			ETManager.OnStumpWater (this.GetComponentInParent<Tile> ().getTileID ());
+			ETManager.OnStumpWater (this.GetComponentInParent<Tile>().gameObject.transform.position);
 		}
 		this.GetComponentInParent<Tile> ().GainElement (ElementType.Water);
 		return true;

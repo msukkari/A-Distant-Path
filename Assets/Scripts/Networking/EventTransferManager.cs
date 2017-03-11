@@ -34,7 +34,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			}
 			*/
-			Debug.Log(player.getCurTile().element.elementType);
+			Debug.Log(player.getCurTile().element);
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
 				Debug.Log("PLAYER IS ON A TRANSFER TILE");
@@ -74,8 +74,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 	}
 
-	public void OnStumpWater(int tileID){
-			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{tileID});
+	public void OnStumpWater(Vector3 pos){
+			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{pos});
 	}
 
 	public void OnSandFire(int tileID) {
@@ -136,9 +136,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 	}
 
-	[PunRPC] void growTree(int tileID){
+	[PunRPC] void growTree(Vector3 pos){
 		Debug.Log("SAPLING HAS BEEN WATERED!");
-		Tile tile = lm.getTileAt(tileID);
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 			tile.GainElement(ElementType.BigTree);
@@ -246,8 +246,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	// Called when the other player is not on a resource transfer tile, passes in the tileID of the transfer tile it left
 	[PunRPC]
-	public void pOffTransfer(int tileID){
-				Tile tile = lm.getTileAt(tileID);
+	public void pOffTransfer(Vector3 pos){
+		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 

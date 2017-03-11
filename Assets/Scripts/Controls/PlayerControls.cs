@@ -58,18 +58,29 @@ public class PlayerControls : MonoBehaviour {
         move();
         orient();
 
+        if(cc.isGrounded){
+            verticalVelocity = -9.81f * Time.deltaTime;
+            anim.SetBool("isJumping", false);
+        }
+
         if(Input.GetButtonDown("YButton")){
             if(LevelManager.instance.TimeState == TimeStates.Present){
-                jump();      
+        	   climb();
             }
             else{
-                climb();
+                if(cc.isGrounded){
+                    verticalVelocity = jumpForce;
+                    anim.SetBool("isJumping", true); 
+                }
             }
         }
 
         if(Input.GetButtonDown("BButton")){
         	currentAmmo = (currentAmmo + 1) % 2;
         }
+
+
+        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
 
 
         if (Input.GetButtonDown("LeftBumper")) {
@@ -212,19 +223,7 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public void jump() {
-        if(cc.isGrounded){
-            verticalVelocity = -9.81f * Time.deltaTime;
-            anim.SetBool("isJumping", false);
 
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
-                verticalVelocity = jumpForce;
-                anim.SetBool("isJumping", true);
-                //anim.SetBool("isMoving", false);
-            }
-        }
-
-
-        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
     }
 
     public void setPivotPoint(GameObject pivotPoint) {

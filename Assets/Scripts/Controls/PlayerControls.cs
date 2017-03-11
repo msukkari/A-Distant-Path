@@ -64,7 +64,7 @@ public class PlayerControls : MonoBehaviour {
         }
 
         if(Input.GetButtonDown("YButton")){
-            if(LevelManager.instance.TimeState == TimeStates.Present){
+            if(LevelManager.instance.TimeState == TimeStates.Past){
         	   climb();
             }
             else{

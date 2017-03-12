@@ -7254,7 +7254,7 @@ Prefab:
     - target: {fileID: 114194878842651850, guid: 9ed9c2030afc6a24eacaa7f4d0055ff8,
         type: 2}
       propertyPath: endPos.y
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed9c2030afc6a24eacaa7f4d0055ff8, type: 2}
@@ -21471,22 +21471,22 @@ Transform:
   - {fileID: 913221957}
   - {fileID: 1846878569}
   - {fileID: 798014220}
+  - {fileID: 470133910}
   - {fileID: 401625785}
   - {fileID: 1939171017}
-  - {fileID: 1278061167}
   - {fileID: 295308235}
+  - {fileID: 1278061167}
   - {fileID: 38224895}
-  - {fileID: 1889389589}
   - {fileID: 597226298}
+  - {fileID: 1889389589}
   - {fileID: 649628324}
-  - {fileID: 794840604}
   - {fileID: 1483570473}
   - {fileID: 2113787515}
   - {fileID: 427965272}
   - {fileID: 1672942892}
   - {fileID: 178985202}
   - {fileID: 522234259}
-  - {fileID: 470133910}
+  - {fileID: 794840604}
   - {fileID: 2080857954}
   - {fileID: 703506558}
   - {fileID: 323748983}

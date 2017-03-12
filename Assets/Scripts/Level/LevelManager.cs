@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour {
 		}
 		else if(TimeState == TimeStates.Offline){
  			//SceneManager.LoadScene((int) Scenes.Offline);	
-			 SceneManager.LoadScene((int)Scenes.Offline);	
+			SceneManager.LoadScene((int)Scenes.AITest);	
 
 		}
 		else{

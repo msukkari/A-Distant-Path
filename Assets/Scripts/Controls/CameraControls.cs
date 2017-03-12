@@ -12,6 +12,8 @@ public class CameraControls : MonoBehaviour {
     public float maxZoom = 10.0f;
     public float minZoom = 1.0f;
 
+    public Vector3 camPos = new Vector3(0, 0, -12f);
+
     public GameObject character;
     public GameObject pivot;
     float dragFactor = 3.0f;
@@ -31,6 +33,7 @@ public class CameraControls : MonoBehaviour {
         x = pivot.transform.rotation.y * 360 / Mathf.PI;
         y = pivot.transform.rotation.x * 360 / Mathf.PI;
         pivot.transform.Rotate(new Vector3(45f, 0, 0));
+        cam.gameObject.transform.localPosition = camPos;
 
         character.GetComponent<PlayerControls>().setPivotPoint(pivot);
     }

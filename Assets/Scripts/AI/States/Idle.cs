@@ -23,7 +23,7 @@ public class Idle : AIStateInterface {
 	// Update is called once per frame
 	public void Update () {
 		if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
-			this.enemy.setState (AIStates.FollowPlayer);
+			//this.enemy.setState (AIStates.FollowPlayer);
 		}
 	}
 

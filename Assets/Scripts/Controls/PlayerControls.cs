@@ -12,7 +12,7 @@ public class PlayerControls : MonoBehaviour {
 
     //Parameters
     //  Movement
-    private float speed = 3.5f;
+    private float speed = 2.5f;
 
     //  Cursor
     private float actualCursorRange;
@@ -58,22 +58,25 @@ public class PlayerControls : MonoBehaviour {
         move();
         orient();
 
+        if(cc.isGrounded){
+            verticalVelocity = -9.81f * Time.deltaTime;
+            anim.SetBool("isJumping", false);
+        }
+
         if(Input.GetButtonDown("YButton")){
-        	climb();
+            if(LevelManager.instance.TimeState == TimeStates.Past){
+        	   climb();
+            }
+            else{
+                if(cc.isGrounded){
+                    verticalVelocity = jumpForce;
+                    anim.SetBool("isJumping", true); 
+                }
+            }
         }
 
         if(Input.GetButtonDown("BButton")){
         	currentAmmo = (currentAmmo + 1) % 2;
-        }
-
-        if(cc.isGrounded){
-        	verticalVelocity = -9.81f * Time.deltaTime;
-        	anim.SetBool("isJumping", false);
-
-        	if(Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("AButton")){
-        		verticalVelocity = jumpForce;
-        		anim.SetBool("isJumping", true);
-        	}
         }
 
 

@@ -101,6 +101,8 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Ice, ElementType.Water), ElementType.Ice);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sand, ElementType.Fire), ElementType.MoltenSand);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.MoltenSand, ElementType.Water), ElementType.Sand);
+		elementCombinationsDictionary.Add (GetSetFor (ElementType.Sapling, ElementType.Fire), ElementType.Stump);
+
 	}
 
 	#endregion

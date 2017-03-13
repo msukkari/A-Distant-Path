@@ -48,7 +48,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 
 
-				if(Input.GetKeyDown(KeyCode.C)){
+				if(Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("AButton")){
 					Debug.Log("CALLING TRANSFER TILE CHECK");
 
 					int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
@@ -76,6 +76,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	public void OnStumpWater(Vector3 pos){
 			GetComponent<PhotonView>().RPC("growTree",PhotonTargets.Others, new object[]{pos});
+	}
+
+	public void OnSaplingFire(Vector3 pos){
+			GetComponent<PhotonView>().RPC("destroyTree",PhotonTargets.Others, new object[]{pos});
 	}
 
 	public void OnSandFire(int tileID) {
@@ -145,6 +149,19 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 		else{
 			Debug.Log("TILE NOT FOUND IN GROWTREE");
+		}
+	}
+
+	[PunRPC]
+	void destroyTree(Vector3 pos){
+		Debug.Log("BIG TREE BEING DESTROYED");
+		Tile tile = lm.getTileAt(pos);
+
+		if(tile != null && tile.element != null && tile.element.elementType == ElementType.BigTree){
+			tile.LoseElement();
+		}
+		else{
+			Debug.Log("ELEMENT ISNT A BIG TREE IS DESTORY TREE");
 		}
 	}
 

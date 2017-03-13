@@ -1101,6 +1101,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114479723446908098, guid: deabe5dabd03f5c478d044150d6aa24d,
+        type: 2}
+      propertyPath: destroyTileOnLose
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
   m_IsPrefabParent: 0
@@ -2018,6 +2023,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114479723446908098, guid: deabe5dabd03f5c478d044150d6aa24d,
+        type: 2}
+      propertyPath: destroyTileOnLose
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3334,6 +3344,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114479723446908098, guid: deabe5dabd03f5c478d044150d6aa24d,
+        type: 2}
+      propertyPath: destroyTileOnLose
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
   m_IsPrefabParent: 0
@@ -4149,6 +4164,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114479723446908098, guid: deabe5dabd03f5c478d044150d6aa24d,
+        type: 2}
+      propertyPath: destroyTileOnLose
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
   m_IsPrefabParent: 0
@@ -4462,6 +4482,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114479723446908098, guid: deabe5dabd03f5c478d044150d6aa24d,
+        type: 2}
+      propertyPath: destroyTileOnLose
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

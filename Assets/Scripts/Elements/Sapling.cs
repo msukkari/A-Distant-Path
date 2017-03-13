@@ -16,4 +16,13 @@ public class Sapling : Element {
 	void Update () {
 		
 	}
+
+	public override bool FireInteract(EventTransferManager ETManager) {
+	if (LevelManager.instance.TimeState == TimeStates.Past) {
+		ETManager.OnSaplingFire (this.GetComponentInParent<Tile>().gameObject.transform.position);
+	}
+
+	this.GetComponentInParent<Tile> ().GainElement (ElementType.Fire);
+	return true;
+	}
 }

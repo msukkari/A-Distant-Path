@@ -50,7 +50,16 @@ public class ReturnSpawnWater : AIStateInterface {
 	public void Update () {
 
 		if (enemy.NeedToRecalculatePath(path, currentNode)) {
-			FindPathToInitialPos();
+			waitingSinceSeconds += Time.deltaTime;
+
+			if (waitingSinceSeconds >= waitTimeToGrow) {
+				FindPathToInitialPos();
+				waitingSinceSeconds = 0.0f;
+			}
+		}
+
+		if (!enemy.foundWater && lm.GetClosestTileOfType (ElementType.Water, enemy.transform.position)) {
+			this.enemy.setState (AIStates.WaterSearch);
 		}
 		
 		// Move towards each next tile on path
@@ -77,17 +86,15 @@ public class ReturnSpawnWater : AIStateInterface {
 					Debug.Log("Would have grown into a normal sized enemy here");
 					enemy.foundWater = false;
 					if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.transform.position)) <= enemy.activityRadius) {
-						this.enemy.setState (AIStates.FollowPlayer);
+						//this.enemy.setState (AIStates.FollowPlayer);
 					}
 					else{
-						this.enemy.setState (this.enemy.initialState);
+						//this.enemy.setState (this.enemy.initialState);
 					}
+					enemy.isShrunk = false;
+					this.enemy.setState (this.enemy.initialState);
 				}
 			}
-		}
-
-		if (!enemy.foundWater && lm.GetClosestTileOfType (ElementType.Water, enemy.transform.position)) {
-			this.enemy.setState (AIStates.WaterSearch);
 		}
 	}
 

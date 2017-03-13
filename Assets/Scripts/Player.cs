@@ -33,8 +33,8 @@ public class Player : MonoBehaviour{
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 
-		elementsInventory[ElementType.Fire] = 10;
-		elementsInventory[ElementType.Water] = 10;
+		//elementsInventory[ElementType.Fire] = 10;
+		//elementsInventory[ElementType.Water] = 10;
 
 
 		currentLocation = getCurTile();
@@ -205,98 +205,122 @@ public class Player : MonoBehaviour{
 	private void ShootWaterInFrontTile() {
 		if (HasElement (ElementType.Water, 1)) {
 			Tile front = getFrontTile();
+			bool hitEnemy = false;
 
 			if(this.elementsInventory[ElementType.Water] > 0 && front != null){
-				if (front.element != null) {
-					if (front.element.WaterInteract (ETmanager)) {
-						this.elementsInventory[ElementType.Water]--;
+				foreach (Enemy enemy in AIManager.instance.enemies) {
+					if (enemy.getCurTile () == front) {
+						enemy.GetHitByElement (ElementType.Water);
+						hitEnemy = true;
 					}
-				} else {
-					if(front.GainElement (ElementType.Water)){
-						this.elementsInventory[ElementType.Water]--;
+				}
+
+				if (!hitEnemy) {
+					if (front.element != null) {
+						if (front.element.WaterInteract (ETmanager)) {
+							this.elementsInventory[ElementType.Water]--;
+						}
+					} else {
+						if(front.GainElement (ElementType.Water)){
+							this.elementsInventory[ElementType.Water]--;
+						}
 					}
 				}
 			}
 
-			foreach (Enemy enemy in AIManager.instance.enemies) {
-				if (enemy.getCurTile () == front) {
-					enemy.GetHitByElement (ElementType.Water);
-				}
-			}
+
 		}
 	}
 
 	private void ShootFireInFrontTile() {
 		if (HasElement (ElementType.Fire, 1)) {
 			Tile front = getFrontTile ();
+			bool hitEnemy = false;
 
 			if (this.elementsInventory [ElementType.Fire] > 0 && front != null) {
-				if (front.element != null) {
-					if (front.element.FireInteract (ETmanager)) {
-						this.elementsInventory [ElementType.Fire]--;
+				foreach (Enemy enemy in AIManager.instance.enemies) {
+					if (enemy.getCurTile () == front) {
+						enemy.GetHitByElement (ElementType.Fire);
+						hitEnemy = true;
 					}
-				} else {
-					if(front.GainElement (ElementType.Fire))
-						this.elementsInventory [ElementType.Fire]--;
+				}
+
+				if (!hitEnemy) {
+					if (front.element != null) {
+						if (front.element.FireInteract (ETmanager)) {
+							this.elementsInventory [ElementType.Fire]--;
+						}
+					} else {
+						if(front.GainElement (ElementType.Fire))
+							this.elementsInventory [ElementType.Fire]--;
+					}
 				}
 			}
 
-			foreach (Enemy enemy in AIManager.instance.enemies) {
-				if (enemy.getCurTile () == front) {
-					enemy.GetHitByElement (ElementType.Fire);
-				}
-			}
+
 		}
 	}
 
 	private void ShootWaterOnTile(Tile tile) {
 		if (HasElement (ElementType.Water, 1)) {
+			bool hitEnemy = false;
+
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootWaterOnTile");
 				return;
 			}
 
-			if (tile.element != null) {
-				if (tile.element.WaterInteract (ETmanager)) {
-					this.elementsInventory[ElementType.Water]--;
-				}
-			} else {
-				if(tile.GainElement (ElementType.Water)){
-					this.elementsInventory[ElementType.Water]--;
-				}
-			}
-
 			foreach (Enemy enemy in AIManager.instance.enemies) {
 				if (enemy.getCurTile () == tile) {
 					enemy.GetHitByElement (ElementType.Water);
+					hitEnemy = true;
 				}
 			}
+
+			if (!hitEnemy) {
+				if (tile.element != null) {
+					if (tile.element.WaterInteract (ETmanager)) {
+						this.elementsInventory[ElementType.Water]--;
+					}
+				} else {
+					if(tile.GainElement (ElementType.Water)){
+						this.elementsInventory[ElementType.Water]--;
+					}
+				}
+			}
+
 		}
 	}
 
 	private void ShootFireOnTile(Tile tile) {
 		if (HasElement (ElementType.Fire, 1)) {
+			bool hitEnemy = false;
+
 			if(tile == null){
 				Debug.Log("ERROR FINDING TILE in ShootFireOnTile");
 				return;
 			}
 
-			if (tile.element != null) {
-				Debug.Log(tile.element + " IN SHOOTFIREONTILE");
-				if (tile.element.FireInteract (ETmanager)) {
-					this.elementsInventory[ElementType.Fire]--;
-				}
-			} else {
-				if(tile.GainElement (ElementType.Fire)){
-					this.elementsInventory[ElementType.Fire]--;
-				}
-			}
-
 			foreach (Enemy enemy in AIManager.instance.enemies) {
 				if (enemy.getCurTile () == tile) {
 					enemy.GetHitByElement (ElementType.Fire);
+					hitEnemy = true;
 				}
 			}
+
+			if (!hitEnemy) {
+				if (tile.element != null) {
+					Debug.Log(tile.element + " IN SHOOTFIREONTILE");
+					if (tile.element.FireInteract (ETmanager)) {
+						this.elementsInventory[ElementType.Fire]--;
+					}
+				} else {
+					if(tile.GainElement (ElementType.Fire)){
+						this.elementsInventory[ElementType.Fire]--;
+					}
+				}
+			}
+
 		}
 	}
 
@@ -409,10 +433,12 @@ public class Player : MonoBehaviour{
 
 		Vector3 direction = Quaternion.AngleAxis(20, this.transform.forward) * this.transform.forward;
 		Debug.DrawRay(transform.position, direction, Color.red, 1, false);
+		//Debug.DrawRay(transform.position, this.gameObject.transform.FindChild("Cursor").transform.position - transform.position, Color.red, 1, false);
 
-		if(Physics.Raycast(transform.position, direction, out hit)){
+		if(Physics.Raycast(transform.position + this.transform.forward.normalized, Vector3.down, out hit)){
 			
 			if(hit.collider.tag == "Tile"){
+				Debug.Log ("Found tile");
 				Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
 				if(cur != null && cur.enabled){
@@ -421,6 +447,7 @@ public class Player : MonoBehaviour{
 				}
 			}
 			else {
+				Debug.Log ("Hit " + hit.collider.gameObject.name);
 				Tile cur = hit.collider.gameObject.GetComponentInParent<Tile>();
 
 				if(cur != null && cur.enabled){
@@ -433,6 +460,19 @@ public class Player : MonoBehaviour{
 		Debug.Log("TILE NOT FOUND");
 		return null;
 	}
+
+	/*public Tile getFrontTile(){
+		Tile front = null;
+
+		foreach (Tile neighbor in this.currentLocation.neighbors) {
+			if ((neighbor.transform.position - this.currentLocation.transform.position).magnitude <= this.transform.forward.magnitude) {
+				front = neighbor;
+			}
+		}
+
+		return front;
+	}*/
+
 
 	// Using this to DEBUG
 	public void printNTiles(){

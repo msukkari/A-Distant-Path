@@ -55,4 +55,5 @@ MonoBehaviour:
   - growTree
   - glassify
   - loseElement
+  - destroyTree
   DisableAutoOpenWizard: 1

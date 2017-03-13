@@ -7913,11 +7913,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 6
   initialState: 6
+  searchElementType: 1
+  triggeringElementType: 0
   moveSpeed: 3
   waypoints: []
   isShrunk: 0
   isGrown: 0
-  foundWater: 0
+  foundElement: 0
   frozePlayer: 0
   followPlayerAgain: 0
   activityRadius: 15

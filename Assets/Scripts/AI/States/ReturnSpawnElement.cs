@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class ReturnSpawn : AIStateInterface {
+public class ReturnSpawnElement : AIStateInterface {
 
 	// AIManager instance
 	private AIManager am = AIManager.instance;
@@ -19,16 +18,15 @@ public class ReturnSpawn : AIStateInterface {
 
 	// Path
 	private List<Node> path;
-
 	private int currentNode;
 
 	private float waitingSinceSeconds = 0.0f;
-	public float WAIT_FOR_SECONDS_UNTIL_ATTACK = 0.0f;
+	private float waitTimeToGrow = 2.0f;
 
-	public ReturnSpawn(Enemy enemy) {
+	public ReturnSpawnElement(Enemy enemy) {
 		// set enemy class
 		this.enemy = enemy;
-		this.enemy.isShrunk = false;
+		this.enemy.isShrunk = true;
 
 		// Create new A* pathfinding class
 		this.star = new AStar();
@@ -41,7 +39,7 @@ public class ReturnSpawn : AIStateInterface {
 
 		FindPathToInitialPos();
 	}
-
+	
 	private void FindPathToInitialPos() {
 		path = star.AStarPath(enemy.getCurTile(), enemy.getSpawnTile());
 		path.Reverse();
@@ -50,44 +48,53 @@ public class ReturnSpawn : AIStateInterface {
 
 	// Update is called once per frame
 	public void Update () {
+
 		if (enemy.NeedToRecalculatePath(path, currentNode)) {
-			FindPathToInitialPos();
+			waitingSinceSeconds += Time.deltaTime;
+
+			if (waitingSinceSeconds >= waitTimeToGrow) {
+				FindPathToInitialPos();
+				waitingSinceSeconds = 0.0f;
+			}
 		}
 
+		if (!enemy.foundElement && lm.GetClosestTileOfType (ElementType.Water, enemy.transform.position)) {
+			this.enemy.setState (AIStates.ElementSearch);
+		}
+		
 		// Move towards each next tile on path
 		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {
 			enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
 				* enemy.moveSpeed * Time.deltaTime;
 
-			// If at the last node in path, increment the index to move to (currentNode)
+			//if (getCurTile () == path [currentNode + 1].tile) {
 			if (Vector3.Distance (path [currentNode + 1].tile.transform.position + Vector3.up, enemy.transform.position) < 0.1f) {
 				currentNode++;
 			}
 
-		// Reached back to spawn tile
+		// REACHED TO INITIAL POSITION. EITHER WITH OR WITHOUT WATER
 		} else {
+
+			// Note: this section is commented out because we need to figure out how ALL AI reacts to reaching spawn..
 			Debug.Log ("Reached back to the starting position");
-			waitingSinceSeconds += Time.deltaTime;
+			// 
+			if (enemy.foundElement) {
+				waitingSinceSeconds += Time.deltaTime;
 
-			if (waitingSinceSeconds >= WAIT_FOR_SECONDS_UNTIL_ATTACK) {
-				lm.getPlayer ().Freeze (false);
-				enemy.frozePlayer = false;
-
-				if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
-					enemy.followPlayerAgain = true;
-					//this.enemy.setState (AIStates.FollowPlayer);
-					this.enemy.setState(enemy.initialState);
-				}
-				else{
+				if (waitingSinceSeconds >= waitTimeToGrow) {
+					// GROW TO NORMAL SIZED ENEMY
+					Debug.Log("Would have grown into a normal sized enemy here");
+					enemy.foundElement = false;
+					if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.transform.position)) <= enemy.activityRadius) {
+						//this.enemy.setState (AIStates.FollowPlayer);
+					}
+					else{
+						//this.enemy.setState (this.enemy.initialState);
+					}
+					enemy.isShrunk = false;
 					this.enemy.setState (this.enemy.initialState);
 				}
 			}
-		}
-
-		if (!enemy.frozePlayer && Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
-			enemy.followPlayerAgain = true;
-			//this.enemy.setState (AIStates.FollowPlayer);
-			//this.enemy.setState(enemy.initialState);
 		}
 	}
 

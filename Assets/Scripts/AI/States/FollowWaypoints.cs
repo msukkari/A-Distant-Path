@@ -85,7 +85,8 @@ public class FollowWaypoints : AIStateInterface {
 		}
 
 		if (Mathf.Abs (Vector3.Distance (lm.getPlayer ().transform.position, enemy.getSpawnTile().transform.position)) <= enemy.activityRadius) {
-			this.enemy.setState (AIStates.FollowPlayer);
+			//this.enemy.setState (AIStates.FollowPlayer);
+			//this.enemy.setState(enemy.initialState);
 		}
 
 	}

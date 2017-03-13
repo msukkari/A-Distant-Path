@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour {
 	public AIStates currentState = AIStates.Idle;
 	public AIStates initialState = AIStates.Idle;
 
+	public ElementType searchElementType;
+	public ElementType triggeringElementType;
+
 	// current state class
 	public AIState stateClass;	
 
@@ -30,7 +33,7 @@ public class Enemy : MonoBehaviour {
 
 	public bool isShrunk = false;
 	public bool isGrown = false;
-	public bool foundWater = false;
+	public bool foundElement = false;
 	public bool frozePlayer = false;
 	public bool followPlayerAgain = false;
 
@@ -61,6 +64,62 @@ public class Enemy : MonoBehaviour {
 		initState();
 	}
 
+	public void setState(AIStates state, ElementType searchType) {
+		this.currentState = state;
+		initState(searchType);
+	}
+
+	// initState: initializes a new ai-state
+	private void initState(ElementType searchElementType) {
+		// switch-case for current state
+		switch (currentState) {
+		case AIStates.FollowPlayer:
+			Debug.Log("--- AI STATE CHANGE: FollowPlayer ---");
+			stateClass = new AIState(new PlayerFollow(this));
+			break;
+
+		case AIStates.ElementSearch:
+			Debug.Log("--- AI STATE CHANGE: WaterSearch ---");
+			stateClass = new AIState(new ElementSearch(this, searchElementType));
+			break;
+
+		case AIStates.ReturnSpawn:
+			Debug.Log("--- AI STATE CHANGE: ReturnSpawn ---");
+			stateClass = new AIState(new ReturnSpawn(this));
+			break;
+
+		case AIStates.ReturnSpawnElement:
+			Debug.Log("--- AI STATE CHANGE: ReturnSpawnWater ---");
+			stateClass = new AIState(new ReturnSpawnElement(this));
+			break;
+
+		case AIStates.RandomMovement:
+			Debug.Log("--- AI STATE CHANGE: RandomMovement ---");
+			stateClass = new AIState(new RandomMovement(this));
+			break;
+
+		case AIStates.FollowWaypoints:
+			Debug.Log("--- AI STATE CHANGE: FollowWaypoints ---");
+
+			// ensure at least two waypoints exist
+			if (waypoints.Count > 1)
+				stateClass = new AIState(new FollowWaypoints(this));
+			else 
+				setState(AIStates.Idle);
+			break;
+
+		case AIStates.Idle:
+			Debug.Log("--- AI STATE CHANGE: Idle ---");
+			stateClass = new AIState(new Idle(this));
+			break; 
+
+		default:
+			Debug.Log("--- DEFAULT AI STATE CHANGE: Idle ---");
+			stateClass = new AIState(new Idle(this));
+			break;
+		}
+	}
+
 	// initState: initializes a new ai-state
 	private void initState() {
 		// switch-case for current state
@@ -70,19 +129,14 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new PlayerFollow(this));
 				break;
 
-			case AIStates.WaterSearch:
-				Debug.Log("--- AI STATE CHANGE: WaterSearch ---");
-				stateClass = new AIState(new WaterSearch(this));
-				break;
-
 			case AIStates.ReturnSpawn:
 				Debug.Log("--- AI STATE CHANGE: ReturnSpawn ---");
 				stateClass = new AIState(new ReturnSpawn(this));
 				break;
 
-			case AIStates.ReturnSpawnWater:
+			case AIStates.ReturnSpawnElement:
 				Debug.Log("--- AI STATE CHANGE: ReturnSpawnWater ---");
-				stateClass = new AIState(new ReturnSpawnWater(this));
+				stateClass = new AIState(new ReturnSpawnElement(this));
 				break;
 
 			case AIStates.RandomMovement:
@@ -140,7 +194,7 @@ public class Enemy : MonoBehaviour {
 		return spawnTile;
 	}
 
-	public void GetHitByElement(ElementType elementType) {
+	/*public void GetHitByElement(ElementType elementType) {
 		switch (elementType) {
 		case ElementType.Fire:
 			if (isShrunk) {
@@ -153,7 +207,7 @@ public class Enemy : MonoBehaviour {
 				// SHRINK ENEMY TO SMALL PREFAB
 				Debug.Log("ENEMY SHRUNK TO SMALL SIZE");
 				isShrunk = true;
-				setState(AIStates.WaterSearch);
+				setState(AIStates.ElementSearch);
 			}
 			break;
 
@@ -167,10 +221,21 @@ public class Enemy : MonoBehaviour {
 				Debug.Log("ENEMY GREW TO LARGE SIZE");
 				isGrown = true;
 			}
-			setState(AIStates.FollowPlayer);
+			setState(initialState);
 			break;
 		default:
 			break;
+		}
+	}*/
+
+	public void GetHitByElement(ElementType elementType) {
+		if (elementType == triggeringElementType) {
+			isShrunk = true;
+			setState(AIStates.ElementSearch, searchElementType);
+		}
+		if (elementType == searchElementType) {
+			isShrunk = false;
+			setState(AIStates.ReturnSpawn);
 		}
 	}
 	

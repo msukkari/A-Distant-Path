@@ -16,10 +16,17 @@ public class ElevatorController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isTriggered & parent.transform.position.y < endPos.y) {
+		/*if (isTriggered & parent.transform.position.y < endPos.y) {
 			parent.transform.position += Vector3.up * speed * 0.01f;
 		} else if ((!isTriggered) & parent.transform.position.y > startPos.y){
 			parent.transform.position += Vector3.down * speed * 0.01f;
+		}*/
+		if (isTriggered & parent.transform.position.y < endPos.y) {
+			//parent.transform.position += Vector3.up * speed * 0.01f;
+			Vector3.Lerp(parent.transform.position, endPos, speed * Time.deltaTime);
+		} else if ((!isTriggered) & parent.transform.position.y > startPos.y){
+			//parent.transform.position += Vector3.down * speed * 0.01f;
+			Vector3.Lerp(parent.transform.position, startPos, speed * Time.deltaTime);
 		}
 	}
 

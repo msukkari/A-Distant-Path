@@ -2,8 +2,8 @@
 
 public enum AIStates {
 	FollowPlayer,
-	WaterSearch,
-	ReturnSpawnWater,
+	ElementSearch,
+	ReturnSpawnElement,
 	RandomMovement,
 	ReturnSpawn,
 	FollowWaypoints,

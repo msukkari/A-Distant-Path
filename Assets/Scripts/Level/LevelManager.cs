@@ -87,7 +87,7 @@ public class LevelManager : MonoBehaviour {
 		DontDestroyOnLoad(elementManagerGO);
 
 		GameObject player;
-		if(TimeState == TimeStates.Present){
+		if(TimeState == TimeStates.Present || TimeState == TimeStates.Offline){
 			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
 		}
 		else{

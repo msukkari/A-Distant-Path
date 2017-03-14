@@ -65,7 +65,7 @@ public class PlayerControls : MonoBehaviour {
         }
 
         if(Input.GetButtonDown("YButton")){
-            if(LevelManager.instance.TimeState == TimeStates.Past){
+            if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline){
         	   climb();
             }
             else{
@@ -297,9 +297,9 @@ public class PlayerControls : MonoBehaviour {
 
         if(frontTile != null){
 
-        	float heightDiff = frontTile.transform.position.y - playerScript.gameObject.transform.position.y;
+        	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
         	Debug.Log(heightDiff);
-        	if(heightDiff < 1.6){
+        	if(heightDiff > 0 && heightDiff < 1.2){
         		StartCoroutine(climbWithStall(frontTile));
         	}
         	else{

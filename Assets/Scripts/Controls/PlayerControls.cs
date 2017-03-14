@@ -29,6 +29,7 @@ public class PlayerControls : MonoBehaviour {
     public float verticalVelocity;
 
     private bool isShooting = false;
+    private float timeSinceLastShot = 0.0f;
 
 
     // 0 is fire, 1 is water
@@ -136,9 +137,11 @@ public class PlayerControls : MonoBehaviour {
         Tile curTile = getTileUnderCursor();
 
 
-        // Debug.Log(isShooting);
-        if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
+        Debug.Log(isShooting);
+
+        if (Input.GetAxisRaw("LeftTrigger") > 0 && !isShooting && (Time.time - timeSinceLastShot > 2)) {
         	isShooting = true;
+            timeSinceLastShot = Time.time;
             if (mode == TriggerType.arcThrowing) {
                 playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {

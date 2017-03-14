@@ -139,7 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 1
   quantity: 1
-  navigatable: 0
+  navigatable: 1
+  climable: 0
   destroyTileOnLose: 1
 --- !u!198 &198260084537052122
 ParticleSystem:

@@ -72,8 +72,8 @@ public class LevelManager : MonoBehaviour {
 			PhotonNetwork.LoadLevel((int)Scenes.Present);
 		}
 		else if(TimeState == TimeStates.Offline){
- 			//SceneManager.LoadScene((int) Scenes.Offline);	
-			SceneManager.LoadScene((int)Scenes.AITest);	
+ 			SceneManager.LoadScene((int) Scenes.Offline);	
+			//SceneManager.LoadScene((int)Scenes.AITest);	
 
 		}
 		else{
@@ -215,6 +215,7 @@ public class LevelManager : MonoBehaviour {
 		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
+		Debug.Log("ELEMENT NAV IN CREATELEM: " + tile.element.navigatable);
 		tile.SetNavigatable (tile.element.navigatable);
 	}
 

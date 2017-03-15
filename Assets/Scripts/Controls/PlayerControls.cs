@@ -139,9 +139,8 @@ public class PlayerControls : MonoBehaviour {
 
         Debug.Log(isShooting);
 
-        if (Input.GetAxisRaw("LeftTrigger") > 0 && !isShooting && (Time.time - timeSinceLastShot > 2)) {
+        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting ) {
         	isShooting = true;
-            timeSinceLastShot = Time.time;
             if (mode == TriggerType.arcThrowing) {
                 playerScript.throwMaterial(curTile);
             } else if (mode == TriggerType.directInteract) {
@@ -150,7 +149,8 @@ public class PlayerControls : MonoBehaviour {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
         }
-        else{
+        else if(Input.GetAxisRaw("LeftTrigger") < 0.9)
+        {
         	// Debug.Log("SETTING SHOOTING TO FALSE");
         	isShooting = false;
         }

@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour {
 
     private TriggerType mode;
 
-    private float jumpForce = 3f;
+    private float jumpForce = 2.3f;
     public float verticalVelocity;
 
     private bool isShooting = false;
@@ -299,7 +299,10 @@ public class PlayerControls : MonoBehaviour {
 
         	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
         	Debug.Log(heightDiff);
-        	if(heightDiff > 0 && heightDiff < 1.2){
+            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted)){
+                StartCoroutine(climbWithStall(frontTile));
+            }
+        	else if(heightDiff > 0 && heightDiff < 1.2){
         		StartCoroutine(climbWithStall(frontTile));
         	}
         	else{

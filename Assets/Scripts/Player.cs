@@ -505,15 +505,22 @@ public class Player : MonoBehaviour{
         Debug.Log("Interact in front!");
         if(tile != null){ 
 
-        	if(curType == 0){
-            	this.ShootFireOnTile(tile);
-            }
-            else if(curType == 1){
-            	this.ShootWaterOnTile(tile);
-            }
-            else{
-            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
-            }
+        	float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+
+        	if(heightDiff < 2f){
+	        	if(curType == 0){
+	            	this.ShootFireOnTile(tile);
+	            }
+	            else if(curType == 1){
+	            	this.ShootWaterOnTile(tile);
+	            }
+	            else{
+	            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
+	            }
+	        }
+	        else{
+	        	Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
+	        }
             /*
         	Tile above = aboveTile(tile);
 

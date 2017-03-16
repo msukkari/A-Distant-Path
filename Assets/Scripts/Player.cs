@@ -10,6 +10,8 @@ public class Player : MonoBehaviour{
 	// current tile location of player (used for AI)
 	public Tile currentLocation;
 
+	public Vector3 curRespawnPoint;
+
 	public Dictionary<ElementType, int> elementsInventory = new Dictionary<ElementType, int>();
 
 	private float elementTimeCount = -1f;
@@ -113,7 +115,8 @@ public class Player : MonoBehaviour{
 	}
 
 	public void Respawn(){
-		this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
+		//this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
+		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y, this.curRespawnPoint.z);
 		this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
 	}
 

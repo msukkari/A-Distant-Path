@@ -24,18 +24,37 @@ public class Tile : MonoBehaviour {
 
     public bool isHighlighted;
 
+    private Renderer renderer;
+
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
 		SetNavigatable((this.element == null) ? true : this.element.navigatable);
 
 		this.setMaterial();
+
+		this.renderer = this.GetComponent<Renderer>();
 	}
 
 	
 	// Update is called once per frame
 	void Update (){
+		if(isHighlighted){
+			renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
 
+			if(this.element != null && this.element.highlightable){
+				if(renderer != null)
+					renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
+			}
+		}
+		else{
+			renderer.material.shader = Shader.Find("Diffuse");
+
+			if(this.element != null && this.element.highlightable){
+				if(renderer != null)
+					renderer.material.shader = Shader.Find("Diffuse");
+			}
+		}
 	}
 
 	// PUBLIC METHODS //

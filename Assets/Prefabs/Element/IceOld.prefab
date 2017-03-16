@@ -107,6 +107,7 @@ MonoBehaviour:
   elementType: 9
   quantity: 1
   navigatable: 1
+  climable: 0
+  highlightable: 1
   tileID: 0
   iceCubePrefab: {fileID: 0}
-  iceCubes: []

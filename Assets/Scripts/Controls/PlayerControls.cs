@@ -21,7 +21,7 @@ public class PlayerControls : MonoBehaviour {
     private float joystickThreshold = 0.3f;
 
     private GameObject selectedTile;
-    private GameObject prevSelectedTile;
+    private Tile prevSelectedTile;
 
     private TriggerType mode;
 
@@ -97,6 +97,7 @@ public class PlayerControls : MonoBehaviour {
 
         }
 
+        /*
         if (Input.GetAxis("RightTrigger") >= 0.9 || mode == TriggerType.directInteract) {
 
             RaycastHit hit = new RaycastHit();
@@ -132,9 +133,26 @@ public class PlayerControls : MonoBehaviour {
                 }
             }
         }
+        */
 
 
         Tile curTile = getTileUnderCursor();
+
+        if(curTile != prevSelectedTile){
+            if(prevSelectedTile != null){
+
+                prevSelectedTile.isHighlighted = false;
+            }
+
+            if(curTile != null){
+                float heightDiff = curTile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+
+                if(heightDiff <= 2f)
+                    curTile.isHighlighted = true;
+            }
+        }
+
+        prevSelectedTile = curTile;
 
 
         Debug.Log(isShooting);

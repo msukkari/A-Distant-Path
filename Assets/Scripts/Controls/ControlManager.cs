@@ -7,6 +7,8 @@ public class ControlManager : MonoBehaviour {
 
     public GameObject camera;
 
+    public Material SkyBox;
+
     void Awake() {
         // if the static class instance is null (singleton pattern)
         if (instance == null)
@@ -22,6 +24,8 @@ public class ControlManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         Debug.Log("Controls initialization...");
+
+
     }
 
     public void loadUtils() {

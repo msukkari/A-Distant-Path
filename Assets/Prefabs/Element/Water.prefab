@@ -141,6 +141,7 @@ MonoBehaviour:
   quantity: 1
   navigatable: 1
   climable: 1
+  highlightable: 1
   destroyTileOnLose: 1
 --- !u!198 &198260084537052122
 ParticleSystem:

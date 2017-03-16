@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject elementManagerPrefab;
 	public GameObject uiManagerPrefab;
 
+	public Material skyBox;
+
 	// Instance of player
 	private Player player;
 	
@@ -57,6 +59,10 @@ public class LevelManager : MonoBehaviour {
 		gm.InitAIManager();
 
 	}	
+
+	public void Update(){
+		RenderSettings.skybox = skyBox;
+	}
 
 	// LoadLevelScene() is called before LoadTileList() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public void LoadLevelScene(){
@@ -111,6 +117,8 @@ public class LevelManager : MonoBehaviour {
         }
    
         DontDestroyOnLoad(player);
+
+        
 
 	}
 
@@ -244,9 +252,6 @@ public class LevelManager : MonoBehaviour {
 		return this.player;
 	}
 
-	
-	// Update is called once per frame
-	void Update () { }
 }
 
 

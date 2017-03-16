@@ -107,3 +107,5 @@ MonoBehaviour:
   elementType: 14
   quantity: 1
   navigatable: 1
+  climable: 0
+  highlightable: 1

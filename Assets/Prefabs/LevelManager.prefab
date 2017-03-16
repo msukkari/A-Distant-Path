@@ -58,4 +58,5 @@ MonoBehaviour:
   elementManagerPrefab: {fileID: 1729996963719242, guid: f8085b5b581bade45acc00a780065323,
     type: 2}
   uiManagerPrefab: {fileID: 100034, guid: 9ccbb15236123c94f8d718c9b71d5fb6, type: 3}
+  skyBox: {fileID: 2100000, guid: 723de68204f944e409ff900206900ac7, type: 2}
   TimeState: 0

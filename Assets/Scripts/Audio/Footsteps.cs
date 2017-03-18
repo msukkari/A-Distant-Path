@@ -37,28 +37,10 @@ public class Footsteps : MonoBehaviour {
 
 	}
 
-
-	public void footstepOne() {
-		playStep();
-	}	
-
-	public void footstepTwo() {
-		playStep();
-	}
-
-
-
+	// --- triggered by animation event ---
+	public void footstepOne() { playStep(); }	
+	public void footstepTwo() { playStep(); }
 	
 	// Update is called once per frame
-	void Update () {
-		
-		/*if (controller.isGrounded == true && controller.velocity.magnitude > 0.0f && audio.isPlaying == false) {
-			
-			audio.volume = Random.Range(0.8f, 1);
-			audio.pitch = Random.Range(0.95f, 1.05f);
-
-			audio.Play();
-		}*/
-
-	}
+	void Update () { }
 }

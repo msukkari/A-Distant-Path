@@ -49,6 +49,7 @@ public class Player : MonoBehaviour{
 		lastValidTile = getCurTile ();
 	}
 
+
 	void Update(){
 		if (!frozen) {
 			if (Input.GetKeyDown (KeyCode.E))

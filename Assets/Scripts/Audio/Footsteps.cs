@@ -19,19 +19,46 @@ public class Footsteps : MonoBehaviour {
 		if (controller == null)
 			Destroy(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		Debug.Log("Velocity: " + controller.velocity.magnitude);
 
-		if (controller.isGrounded == true && controller.velocity.magnitude > 0.0f && audio.isPlaying == false) {
-			
+
+	private void playStep() {
+		Debug.Log("Grounded: " + controller.isGrounded);
+		Debug.Log("Velocity: " + controller.velocity.magnitude);
+		Debug.Log("Is audio Playing: " + audio.isPlaying);
+
+		if (controller.isGrounded == true && audio.isPlaying == false) {
+				
+			Debug.Log("step");
 			audio.volume = Random.Range(0.8f, 1);
 			audio.pitch = Random.Range(0.95f, 1.05f);
 
 			audio.Play();
 		}
+
+	}
+
+
+	public void footstepOne() {
+		playStep();
+	}	
+
+	public void footstepTwo() {
+		playStep();
+	}
+
+
+
+	
+	// Update is called once per frame
+	void Update () {
+		
+		/*if (controller.isGrounded == true && controller.velocity.magnitude > 0.0f && audio.isPlaying == false) {
+			
+			audio.volume = Random.Range(0.8f, 1);
+			audio.pitch = Random.Range(0.95f, 1.05f);
+
+			audio.Play();
+		}*/
 
 	}
 }

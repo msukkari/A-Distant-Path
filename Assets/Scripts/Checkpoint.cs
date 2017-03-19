@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter(Collider other){
-		Debug.Log("TRIGGER ON CATCH");
+		Debug.Log("TRIGGER ON CHECKPOINT");
 
 		Player player = other.gameObject.GetComponent<Player>();
 

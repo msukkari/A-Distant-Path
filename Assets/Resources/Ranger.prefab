@@ -757,7 +757,9 @@ MonoBehaviour:
   guns: []
   currentLocation: {fileID: 0}
   curRespawnPoint: {x: 0, y: 0, z: 0}
+  audio: {fileID: 0}
   ETmanager: {fileID: 0}
+  climbTrack: {fileID: 8300000, guid: e4344883cf3911d42a38772eeb7e26ef, type: 3}
 --- !u!114 &114534973296570848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,6 +788,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e590ae414cff0649945088c5113eab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tracks:
+  - {fileID: 8300000, guid: 5ee586b530f43c740abe5f401fb736f4, type: 3}
+  - {fileID: 8300000, guid: 38775fecd1dba114fbbdfb1613f4eede, type: 3}
+  - {fileID: 8300000, guid: e17e0af867c5d6041acf23efe44e0f0f, type: 3}
 --- !u!114 &114997805128851478
 MonoBehaviour:
   m_ObjectHideFlags: 1

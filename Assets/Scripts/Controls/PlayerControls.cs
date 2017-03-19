@@ -154,9 +154,6 @@ public class PlayerControls : MonoBehaviour {
 
         prevSelectedTile = curTile;
 
-
-        Debug.Log(isShooting);
-
         if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting ) {
         	isShooting = true;
             if (mode == TriggerType.arcThrowing) {

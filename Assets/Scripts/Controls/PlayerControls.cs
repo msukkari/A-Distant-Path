@@ -155,7 +155,6 @@ public class PlayerControls : MonoBehaviour {
         prevSelectedTile = curTile;
 
 
-        Debug.Log(isShooting);
 
         if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting ) {
         	isShooting = true;
@@ -336,7 +335,12 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator climbWithStall(Tile tile){
     	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
-    	
+        Debug.Log("AUDIO");
+
+        playerScript.audio.clip = playerScript.climbTrack;
+        playerScript.audio.volume = 0.1f;
+        playerScript.audio.Play();
+
     	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);
 

@@ -26,14 +26,20 @@ public class Player : MonoBehaviour{
 	private float frozenSinceSeconds = 0.0f;
 	public const float unfreezeSeconds = 2.0f;
 
+	public AudioSource audio;
+
 	// Get AIManager instance
 	private AIManager am = AIManager.instance;
   
 	// This is linked when the player is initiated in LevelManager
 	public EventTransferManager ETmanager;
 
+	// --- audio stuff ---
+	public AudioClip climbTrack;
+
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
+		this.audio = GetComponent<AudioSource>();
 
 		//elementsInventory[ElementType.Fire] = 10;
 		//elementsInventory[ElementType.Water] = 10;

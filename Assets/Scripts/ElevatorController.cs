@@ -19,7 +19,7 @@ public class ElevatorController : MonoBehaviour {
 	void Start () {
 		startPos = parent.transform.position;
 		this.audio = parent.transform.GetComponent<AudioSource>();
-		this.audio.volume = 0.5f;
+		this.audio.volume = 0.7f;
 	}
 	
 	// Update is called once per frame

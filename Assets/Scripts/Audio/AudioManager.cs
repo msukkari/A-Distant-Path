@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour {
 	// track list
 	public AudioClip[] tracks;
 
+	// track index
+	private int index = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +40,14 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!audio.isPlaying) {
+			index++;
+			if (index == tracks.Length) index = 0;
+
+			this.audio.clip = tracks[0];
+			this.audio.Play();
+		}
 		
 	}
 }

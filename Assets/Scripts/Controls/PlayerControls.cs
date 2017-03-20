@@ -195,7 +195,7 @@ public class PlayerControls : MonoBehaviour {
             orient(Mathf.Atan2(-1 * dispDir.z, dispDir.x) * Mathf.Rad2Deg);
         }
 
-        Debug.Log(dispDir);
+        //Debug.Log(dispDir);
         cc.SimpleMove(dispDir);
     }
 
@@ -315,12 +315,24 @@ public class PlayerControls : MonoBehaviour {
         if(frontTile != null){
 
         	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
+            Debug.Log("Front tile y: " + frontTile.transform.position.y);
+            Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
         	Debug.Log(heightDiff);
             if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2){
                 StartCoroutine(climbWithStall(frontTile));
+
+                Debug.Log("AUDIO");
+                playerScript.audio.clip = playerScript.climbTrack;
+                playerScript.audio.volume = 0.1f;
+                playerScript.audio.Play();
             }
         	else if(heightDiff > 0 && heightDiff < 1.2){
         		StartCoroutine(climbWithStall(frontTile));
+
+                Debug.Log("AUDIO");
+                playerScript.audio.clip = playerScript.climbTrack;
+                playerScript.audio.volume = 0.1f;
+                playerScript.audio.Play();
         	}
         	else{
         		Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
@@ -335,11 +347,13 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator climbWithStall(Tile tile){
     	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+        /*
         Debug.Log("AUDIO");
 
         playerScript.audio.clip = playerScript.climbTrack;
         playerScript.audio.volume = 0.1f;
         playerScript.audio.Play();
+        */
 
     	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);

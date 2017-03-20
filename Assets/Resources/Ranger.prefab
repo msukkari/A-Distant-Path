@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4030068332976676}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_R_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4690966430876468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_R_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4819449194122580}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_R_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4864423896950704}
   - component: {fileID: 137857793599185676}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4998326614747836}
   - component: {fileID: 137425670300910590}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4799779270715420}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4877487442016982}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4279318791490406}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_L_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4436601678127232}
   - component: {fileID: 137183652072519298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4499244719211902}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4408592570344588}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4039418249991284}
   - component: {fileID: 137710062931125262}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4962295007527490}
   - component: {fileID: 114534973296570848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Element Absorber Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4138561590781734}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 114997805128851478}
   - component: {fileID: 82069353545088620}
   - component: {fileID: 114582865709437188}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ranger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571669656180160}
   - component: {fileID: 137525932796397890}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4731964730018146}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_L_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4010544778860082}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_L_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772112766025106}
   - component: {fileID: 137456782623869482}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube_014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,6 +1161,6 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.72, z: 0}

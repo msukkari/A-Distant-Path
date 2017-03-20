@@ -65,7 +65,7 @@ public class PlayerControls : MonoBehaviour {
         }
 
         if(Input.GetButtonDown("YButton")){
-            if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline){
+            if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState != TimeStates.Offline){
         	   climb();
             }
             else{
@@ -85,7 +85,8 @@ public class PlayerControls : MonoBehaviour {
 
 
         if (Input.GetButtonDown("LeftBumper")) {
-            toggleMode();
+            //toggleMode();
+            climb();
         }
 
         if(mode == TriggerType.arcThrowing || mode == TriggerType.placeWaypoint) {

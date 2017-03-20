@@ -28,7 +28,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(photonView.isMine){
 
-			Debug.Log(this.transferOtherPressed);
+			Debug.Log("MINE: " + this.transferOtherPressed);
+
 
 			/* Added for debugging, not necessary anymore
 			if(Input.GetKeyDown("space")) {
@@ -202,7 +203,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	public void transferOtherPressedRPC(bool status){
 		//Debug.Log("TRANSFER OTHER PRESSED");
 		Debug.Log("Setting otherpressed to: " + status);
-		this.transferOtherPressed = status;
+
+		if(photonView.isMine){
+			this.transferOtherPressed = status;
+		}
 	}
 
 	// Checks to see if the current tile has a Transfer element, if it does then call the other player's transfer RPC

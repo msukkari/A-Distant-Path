@@ -3,7 +3,7 @@
 public enum AIStates {
 	FollowPlayer,
 	WaterSearch,
-	FoodSearch,
+	TurtleState,
 	ReturnSpawnWater,
 	RandomMovement,
 	ReturnSpawn,

@@ -75,6 +75,11 @@ public class Enemy : MonoBehaviour {
 				stateClass = new AIState(new WaterSearch(this));
 				break;
 
+			case AIStates.TurtleState:
+				Debug.Log("--- AI STATE CHANGE: TurtleState ---");
+				stateClass = new AIState(new TurtleState(this));
+				break;
+
 			case AIStates.ReturnSpawn:
 				Debug.Log("--- AI STATE CHANGE: ReturnSpawn ---");
 				stateClass = new AIState(new ReturnSpawn(this));

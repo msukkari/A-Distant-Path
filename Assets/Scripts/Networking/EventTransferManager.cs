@@ -14,8 +14,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
-	private AIManager am = AIManager.instance;
-
 
 	// Use this for initialization
 	void Awake () {
@@ -98,8 +96,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
 		Tile tile = lm.getTileAt(pos);
 
+
+
 		// AT THIS POINT, THE TURTLE AI WILL NEED TO RECALCULATE
-		am.AIStateEvent(AIEvents.OnMetalCubeRust);
+		
+		AIManager.instance.AIStateEvent(AIEvents.OnMetalCubeRust);
 
 		if(tile != null){
 

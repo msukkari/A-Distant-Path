@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 
 	public const int PAST_PLAYER_SCENE = (int) Scenes.TurtlePast;
 	public const int PRESENT_PLAYER_SCENE = (int) Scenes.TurtlePresent; 
-	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.Offline;
+	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.TurtlePresent;
 
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;

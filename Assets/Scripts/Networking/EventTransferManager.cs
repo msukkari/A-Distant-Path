@@ -14,10 +14,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
+	private bool transferOtherPressed;
+
 
 	// Use this for initialization
 	void Awake () {
 		this.transferHighlighted = false;
+		this.transferOtherPressed = false;
 	}
 	
 	// Update is called once per frame
@@ -51,9 +54,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("AButton")){
 					Debug.Log("CALLING TRANSFER TILE CHECK");
 
-					int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
-					int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
-					GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
+					if(this.transferOtherPressed){
+						int water = player.elementsInventory.ContainsKey(ElementType.Water) ? player.elementsInventory[ElementType.Water] : 0;
+						int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
+						GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
+					}
+					else{
+						GetComponent<PhotonView>().RPC("transferOtherPressed",PhotonTargets.Others, new object[]{true});
+					}
 				}
 			}
 			else{
@@ -62,6 +70,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
 					transferHighlighted = false;
 				}
+
+						GetComponent<PhotonView>().RPC("transferOtherPressedRPC",PhotonTargets.Others, new object[]{false});
+
 			}
 
 		}
@@ -186,6 +197,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		Debug.Log(TileID);
 	}	
 
+	[PunRPC]
+	public void transferOtherPressedRPC(bool status){
+		Debug.Log("TRANSFER OTHER PRESSED");
+		this.transferOtherPressed = status;
+	}
 
 	// Checks to see if the current tile has a Transfer element, if it does then call the other player's transfer RPC
 	// NOTE: This method has a lot of Debug.Log's which I used for debugging - not 100% necessary 
@@ -194,6 +210,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		Debug.Log("RECEIEVED RPC CALL FOR TRANSFER!");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer = play.GetComponent<Player>();
+
 
 		if(curPlayer != null){
 			Debug.Log("PLAYER COMPONENT FOUND");

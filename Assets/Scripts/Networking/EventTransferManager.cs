@@ -60,7 +60,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 						GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
 					}
 					else{
-						GetComponent<PhotonView>().RPC("transferOtherPressed",PhotonTargets.Others, new object[]{true});
+						GetComponent<PhotonView>().RPC("transferOtherPressedRPC",PhotonTargets.Others, new object[]{true});
 					}
 				}
 			}
@@ -199,7 +199,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void transferOtherPressedRPC(bool status){
-		Debug.Log("TRANSFER OTHER PRESSED");
+		//Debug.Log("TRANSFER OTHER PRESSED");
 		this.transferOtherPressed = status;
 	}
 

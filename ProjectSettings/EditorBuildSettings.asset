@@ -21,3 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AITestArea.unity
   - enabled: 1
     path: Assets/Scenes/Levels/Linked_Level/Past.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutle-Test-001/Turtle_Past.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tutle-Test-001/Turtle_Present.unity

@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 143695447193495512}
   - component: {fileID: 114528144841821326}
   - component: {fileID: 114997805128851478}
+  - component: {fileID: 82069353545088620}
+  - component: {fileID: 114582865709437188}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Player
@@ -644,6 +646,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1913417496140766}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &82069353545088620
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675831577513444}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5ee586b530f43c740abe5f401fb736f4, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95264588302476874
 Animator:
   serializedVersion: 3
@@ -674,7 +756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns: []
   currentLocation: {fileID: 0}
+  curRespawnPoint: {x: 0, y: 0, z: 0}
+  audio: {fileID: 0}
   ETmanager: {fileID: 0}
+  climbTrack: {fileID: 8300000, guid: e4344883cf3911d42a38772eeb7e26ef, type: 3}
 --- !u!114 &114534973296570848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -692,6 +777,21 @@ MonoBehaviour:
   isChargeable: 0
   chargeSpeed: 1
   chargeLevel: 0
+--- !u!114 &114582865709437188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675831577513444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e590ae414cff0649945088c5113eab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tracks:
+  - {fileID: 8300000, guid: 5ee586b530f43c740abe5f401fb736f4, type: 3}
+  - {fileID: 8300000, guid: 38775fecd1dba114fbbdfb1613f4eede, type: 3}
+  - {fileID: 8300000, guid: e17e0af867c5d6041acf23efe44e0f0f, type: 3}
 --- !u!114 &114997805128851478
 MonoBehaviour:
   m_ObjectHideFlags: 1

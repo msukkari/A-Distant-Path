@@ -28,6 +28,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(photonView.isMine){
 
+			Debug.Log(this.transferOtherPressed);
 
 			/* Added for debugging, not necessary anymore
 			if(Input.GetKeyDown("space")) {

@@ -72,7 +72,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					transferHighlighted = false;
 				}
 
-						GetComponent<PhotonView>().RPC("transferOtherPressedRPC",PhotonTargets.Others, new object[]{false});
+				GetComponent<PhotonView>().RPC("transferOtherPressedRPC",PhotonTargets.Others, new object[]{false});
 
 			}
 
@@ -201,6 +201,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	[PunRPC]
 	public void transferOtherPressedRPC(bool status){
 		//Debug.Log("TRANSFER OTHER PRESSED");
+		Debug.Log("Setting otherpressed to: " + status);
 		this.transferOtherPressed = status;
 	}
 

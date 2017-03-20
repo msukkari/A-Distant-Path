@@ -123,7 +123,7 @@ public class Player : MonoBehaviour{
 
 	public void Respawn(){
 		//this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
-		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y, this.curRespawnPoint.z);
+		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y + 0.5f, this.curRespawnPoint.z);
 		this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
 	}
 

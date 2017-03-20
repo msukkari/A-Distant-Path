@@ -471,7 +471,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675831577513444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.069, y: 0.497, z: 1.624}
+  m_LocalPosition: {x: 12.359722, y: 0.14589018, z: -2.6054707}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 4138561590781734}
@@ -807,6 +807,8 @@ MonoBehaviour:
   pivotPoint: {fileID: 0}
   cursor: {fileID: 1913417496140766}
   anim: {fileID: 0}
+  jumpForce: 4.5
+  gravity: -16
   verticalVelocity: 0
 --- !u!135 &135488233771722808
 SphereCollider:
@@ -1158,9 +1160,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.42
-  m_Radius: 0.5
+  m_Radius: 0.28
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.72, z: 0}
+  m_Center: {x: 0, y: 0.72, z: -0.18}

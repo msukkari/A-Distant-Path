@@ -10,6 +10,8 @@ public class Player : MonoBehaviour{
 	// current tile location of player (used for AI)
 	public Tile currentLocation;
 
+	public Vector3 curRespawnPoint;
+
 	public Dictionary<ElementType, int> elementsInventory = new Dictionary<ElementType, int>();
 
 	private float elementTimeCount = -1f;
@@ -24,14 +26,20 @@ public class Player : MonoBehaviour{
 	private float frozenSinceSeconds = 0.0f;
 	public const float unfreezeSeconds = 2.0f;
 
+	public AudioSource audio;
+
 	// Get AIManager instance
 	private AIManager am = AIManager.instance;
   
 	// This is linked when the player is initiated in LevelManager
 	public EventTransferManager ETmanager;
 
+	// --- audio stuff ---
+	public AudioClip climbTrack;
+
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
+		this.audio = GetComponent<AudioSource>();
 
 		//elementsInventory[ElementType.Fire] = 10;
 		//elementsInventory[ElementType.Water] = 10;
@@ -46,6 +54,7 @@ public class Player : MonoBehaviour{
 
 		lastValidTile = getCurTile ();
 	}
+
 
 	void Update(){
 		if (!frozen) {
@@ -113,7 +122,8 @@ public class Player : MonoBehaviour{
 	}
 
 	public void Respawn(){
-		this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
+		//this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
+		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y, this.curRespawnPoint.z);
 		this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
 	}
 
@@ -505,15 +515,22 @@ public class Player : MonoBehaviour{
         Debug.Log("Interact in front!");
         if(tile != null){ 
 
-        	if(curType == 0){
-            	this.ShootFireOnTile(tile);
-            }
-            else if(curType == 1){
-            	this.ShootWaterOnTile(tile);
-            }
-            else{
-            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
-            }
+        	float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+
+        	if(heightDiff < 2f){
+	        	if(curType == 0){
+	            	this.ShootFireOnTile(tile);
+	            }
+	            else if(curType == 1){
+	            	this.ShootWaterOnTile(tile);
+	            }
+	            else{
+	            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
+	            }
+	        }
+	        else{
+	        	Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
+	        }
             /*
         	Tile above = aboveTile(tile);
 

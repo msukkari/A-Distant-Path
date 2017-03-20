@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab4b67c5ba99f349995cb4e4cc67763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventManager: {fileID: 0}
   id: 0
   neighbors: []
   element: {fileID: 0}
@@ -111,3 +112,4 @@ MonoBehaviour:
   isGroundTile: 1
   tileScale: {x: 1, y: 1, z: 1}
   GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
+  isHighlighted: 1

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,11 +25,13 @@ public class CameraControls : MonoBehaviour {
 
     public static int type = 0;
 
+    public Material SkyBoxMat;
+
     // Use this for initialization
     void Start() {
         //height = character.GetComponent<CapsuleCollider>().height;
 
-        cam = pivot.GetComponentInChildren<Camera>();
+        cam = pivot.GetComponentInChildren<Camera>();        
         x = pivot.transform.rotation.y * 360 / Mathf.PI;
         y = pivot.transform.rotation.x * 360 / Mathf.PI;
         pivot.transform.Rotate(new Vector3(45f, 0, 0));

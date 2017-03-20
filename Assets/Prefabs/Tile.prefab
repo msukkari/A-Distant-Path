@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434778960483586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0, z: -24.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,9 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab4b67c5ba99f349995cb4e4cc67763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventManager: {fileID: 0}
   id: 0
   neighbors: []
   element: {fileID: 0}
   navigatable: 1
+  isGroundTile: 1
+  tileScale: {x: 1, y: 1, z: 1}
   GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
   isHighlighted: 0

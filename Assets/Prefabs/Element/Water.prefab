@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 64489547215524186}
   - component: {fileID: 23974109359676288}
   - component: {fileID: 114479723446908098}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4188725040217464}
   - component: {fileID: 198260084537052122}
   - component: {fileID: 199679997917476760}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WaterFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 1
   quantity: 1
-  navigatable: 0
+  navigatable: 1
+  climable: 1
+  highlightable: 1
   destroyTileOnLose: 1
 --- !u!198 &198260084537052122
 ParticleSystem:

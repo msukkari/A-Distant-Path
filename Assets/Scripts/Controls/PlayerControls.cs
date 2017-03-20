@@ -21,14 +21,15 @@ public class PlayerControls : MonoBehaviour {
     private float joystickThreshold = 0.3f;
 
     private GameObject selectedTile;
-    private GameObject prevSelectedTile;
+    private Tile prevSelectedTile;
 
     private TriggerType mode;
 
-    private float jumpForce = 3f;
+    private float jumpForce = 2.3f;
     public float verticalVelocity;
 
     private bool isShooting = false;
+    private float timeSinceLastShot = 0.0f;
 
 
     // 0 is fire, 1 is water
@@ -64,7 +65,7 @@ public class PlayerControls : MonoBehaviour {
         }
 
         if(Input.GetButtonDown("YButton")){
-            if(LevelManager.instance.TimeState == TimeStates.Past){
+            if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline){
         	   climb();
             }
             else{
@@ -96,6 +97,7 @@ public class PlayerControls : MonoBehaviour {
 
         }
 
+        /*
         if (Input.GetAxis("RightTrigger") >= 0.9 || mode == TriggerType.directInteract) {
 
             RaycastHit hit = new RaycastHit();
@@ -131,13 +133,28 @@ public class PlayerControls : MonoBehaviour {
                 }
             }
         }
+        */
 
 
         Tile curTile = getTileUnderCursor();
 
+        if(curTile != prevSelectedTile){
+            if(prevSelectedTile != null){
 
-        // Debug.Log(isShooting);
-        if (Input.GetAxis("LeftTrigger") >= 0.9 && !isShooting) {
+                prevSelectedTile.isHighlighted = false;
+            }
+
+            if(curTile != null){
+                float heightDiff = curTile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+
+                if(heightDiff <= 2f)
+                    curTile.isHighlighted = true;
+            }
+        }
+
+        prevSelectedTile = curTile;
+
+        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting ) {
         	isShooting = true;
             if (mode == TriggerType.arcThrowing) {
                 playerScript.throwMaterial(curTile);
@@ -147,7 +164,8 @@ public class PlayerControls : MonoBehaviour {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
         }
-        else{
+        else if(Input.GetAxisRaw("LeftTrigger") < 0.9)
+        {
         	// Debug.Log("SETTING SHOOTING TO FALSE");
         	isShooting = false;
         }
@@ -294,9 +312,12 @@ public class PlayerControls : MonoBehaviour {
 
         if(frontTile != null){
 
-        	float heightDiff = frontTile.transform.position.y - playerScript.gameObject.transform.position.y;
+        	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
         	Debug.Log(heightDiff);
-        	if(heightDiff < 1.6){
+            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted)){
+                StartCoroutine(climbWithStall(frontTile));
+            }
+        	else if(heightDiff > 0 && heightDiff < 1.2){
         		StartCoroutine(climbWithStall(frontTile));
         	}
         	else{
@@ -312,7 +333,12 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator climbWithStall(Tile tile){
     	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
-    	
+        Debug.Log("AUDIO");
+
+        playerScript.audio.clip = playerScript.climbTrack;
+        playerScript.audio.volume = 0.1f;
+        playerScript.audio.Play();
+
     	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);
 

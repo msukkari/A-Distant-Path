@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject elementManagerPrefab;
 	public GameObject uiManagerPrefab;
 
+	public Material skyBox;
+
 	// Instance of player
 	private Player player;
 	
@@ -58,6 +60,10 @@ public class LevelManager : MonoBehaviour {
 
 	}	
 
+	public void Update(){
+		RenderSettings.skybox = skyBox;
+	}
+
 	// LoadLevelScene() is called before LoadTileList() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public void LoadLevelScene(){
 
@@ -87,7 +93,7 @@ public class LevelManager : MonoBehaviour {
 		DontDestroyOnLoad(elementManagerGO);
 
 		GameObject player;
-		if(TimeState == TimeStates.Present){
+		if(TimeState == TimeStates.Present || TimeState == TimeStates.Offline){
 			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
 		}
 		else{
@@ -111,6 +117,8 @@ public class LevelManager : MonoBehaviour {
         }
    
         DontDestroyOnLoad(player);
+
+        
 
 	}
 
@@ -215,6 +223,7 @@ public class LevelManager : MonoBehaviour {
 		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
+		Debug.Log("ELEMENT NAV IN CREATELEM: " + tile.element.navigatable);
 		tile.SetNavigatable (tile.element.navigatable);
 	}
 
@@ -243,9 +252,6 @@ public class LevelManager : MonoBehaviour {
 		return this.player;
 	}
 
-	
-	// Update is called once per frame
-	void Update () { }
 }
 
 

@@ -106,3 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 13
   quantity: 1
+  navigatable: 1
+  climable: 0
+  highlightable: 1

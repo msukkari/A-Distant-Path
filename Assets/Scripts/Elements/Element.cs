@@ -9,7 +9,7 @@ public abstract class Element : MonoBehaviour {
 
 	public bool navigatable = true;
 	public bool climable = false;
-
+	public bool highlightable;
 	// Use this for initialization
 	void Start () {
 		

@@ -333,7 +333,12 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator climbWithStall(Tile tile){
     	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
-    	
+        Debug.Log("AUDIO");
+
+        playerScript.audio.clip = playerScript.climbTrack;
+        playerScript.audio.volume = 0.1f;
+        playerScript.audio.Play();
+
     	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);
 

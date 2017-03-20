@@ -83,6 +83,12 @@ public class GameManager : MonoBehaviour {
 	// --- AI ---
 	public GameObject aiManagerObject;
 	private AIManager aiManager;
+	// ---------------
+
+	// --- Audio ---
+	public GameObject audioManagerObject;
+	private AudioManager audioManager;
+	// ---------------
 
 	// Awake is called before Start function
 	void Awake() {
@@ -173,7 +179,7 @@ public class GameManager : MonoBehaviour {
 
 		lm.LoadLevelScene();
 
-
+		InitSound();
 	}
 
 	// InitAIManager: initializes that AI manager. Called from: LevelManager.cs
@@ -195,6 +201,14 @@ public class GameManager : MonoBehaviour {
         controls = ControlManager.instance;
 
         controls.loadUtils();
+    }
+
+    public void InitSound() {
+    	if (AudioManager.instance == null) {
+            Instantiate(audioManagerObject);
+        }
+
+        audioManager = AudioManager.instance;
     }
 
     // GetBuild: return the current game build

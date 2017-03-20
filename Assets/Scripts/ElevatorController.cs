@@ -9,18 +9,48 @@ public class ElevatorController : MonoBehaviour {
 	public GameObject parent;
 
 	private bool isTriggered = false;
+
+	// indicates direction change
+	private bool hasChanged = false;
+
+	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
 		startPos = parent.transform.position;
+		this.audio = parent.transform.GetComponent<AudioSource>();
+		this.audio.volume = 0.7f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isTriggered & parent.transform.position.y < endPos.y) {
-			parent.transform.position += Vector3.up * speed * 0.01f;
-		} else if ((!isTriggered) & parent.transform.position.y > startPos.y){
-			parent.transform.position += Vector3.down * speed * 0.01f;
+
+		bool atTop = parent.transform.position.y >= endPos.y;
+		bool atBottom = parent.transform.position.y <= startPos.y;
+
+		if (hasChanged) {
+			audio.Stop();
+			hasChanged = false;
 		}
+
+		if (isTriggered & !atTop) {
+			parent.transform.position += Vector3.up * speed * 0.01f;
+
+
+			if(!audio.isPlaying) {
+				audio.Play();
+			} 
+
+		} else if ((!isTriggered) & !atBottom){
+			parent.transform.position += Vector3.down * speed * 0.01f;
+
+			if(!audio.isPlaying) {
+				audio.Play();
+			}
+		}
+
+		if (atTop || atBottom)
+			audio.Stop();
 	}
 
 
@@ -28,12 +58,14 @@ public class ElevatorController : MonoBehaviour {
 		
 		if (other.tag == "Player") {
 			isTriggered = true;
+			hasChanged = true;
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "Player") {
 			isTriggered = false;
+			hasChanged = true;
 		}
 	}
 

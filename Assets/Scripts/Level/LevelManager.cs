@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 	}	
 
 	public void Update(){
-		RenderSettings.skybox = skyBox;
+		//RenderSettings.skybox = skyBox;
 	}
 
 	// LoadLevelScene() is called before LoadTileList() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

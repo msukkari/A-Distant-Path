@@ -46,7 +46,7 @@ public class Player : MonoBehaviour{
 
 
 		currentLocation = getCurTile();
-        curRespawnPoint = new Vector3(5f, 1f, 2.5f);
+        curRespawnPoint = new Vector3(5f, 0f, 2.5f);
 
         // Sanity check
         foreach (Gun gun in guns){

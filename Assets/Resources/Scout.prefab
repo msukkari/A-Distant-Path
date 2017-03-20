@@ -672,7 +672,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guns: []
   currentLocation: {fileID: 0}
+  curRespawnPoint: {x: 0, y: 0, z: 0}
+  audio: {fileID: 0}
   ETmanager: {fileID: 0}
+  climbTrack: {fileID: 0}
 --- !u!114 &114815967841878586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1062,4 +1065,4 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.87, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}

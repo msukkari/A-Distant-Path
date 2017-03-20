@@ -194,6 +194,8 @@ public class PlayerControls : MonoBehaviour {
             dispDir *= speed;
             orient(Mathf.Atan2(-1 * dispDir.z, dispDir.x) * Mathf.Rad2Deg);
         }
+
+        Debug.Log(dispDir);
         cc.SimpleMove(dispDir);
     }
 
@@ -314,7 +316,7 @@ public class PlayerControls : MonoBehaviour {
 
         	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
         	Debug.Log(heightDiff);
-            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted)){
+            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2){
                 StartCoroutine(climbWithStall(frontTile));
             }
         	else if(heightDiff > 0 && heightDiff < 1.2){

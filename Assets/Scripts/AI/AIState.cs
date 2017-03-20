@@ -3,6 +3,7 @@
 public enum AIStates {
 	FollowPlayer,
 	WaterSearch,
+	FoodSearch,
 	ReturnSpawnWater,
 	RandomMovement,
 	ReturnSpawn,
@@ -12,6 +13,7 @@ public enum AIStates {
 
 public enum AIEvents {
 	PlayerOnNewTile,
+	OnMetalCubeRust,
 }
 
 
@@ -22,6 +24,7 @@ public interface AIStateInterface {
 
 	// event functions
 	void playerOnNewTile();
+	void onMetalCubeRust();
 }
 
 
@@ -41,5 +44,9 @@ public class AIState {
 	// -- event functions -- //
 	public void playerOnNewTile() {
 		Strategy.playerOnNewTile();
+	}
+
+	public void onMetalCubeRust() {
+		Strategy.onMetalCubeRust();
 	}
 }

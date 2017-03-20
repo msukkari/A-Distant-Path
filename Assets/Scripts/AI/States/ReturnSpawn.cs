@@ -91,4 +91,5 @@ public class ReturnSpawn : AIStateInterface {
 
 	// Unused
 	public void playerOnNewTile() { }
+	public void onMetalCubeRust() { }
 }

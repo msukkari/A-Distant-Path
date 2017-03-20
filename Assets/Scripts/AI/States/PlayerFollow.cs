@@ -110,4 +110,5 @@ public class PlayerFollow : AIStateInterface {
 		this.end = lm.getPlayer().getCurTile();
 		calculatePath(); 
 	}
+	public void onMetalCubeRust() { }
 }

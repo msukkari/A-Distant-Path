@@ -30,5 +30,5 @@ public class Idle : AIStateInterface {
 
 	// do nothing
 	public void playerOnNewTile () { }
-
+	public void onMetalCubeRust() { }
 }

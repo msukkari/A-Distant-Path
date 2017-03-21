@@ -32,6 +32,8 @@ public class TurtleState : AIStateInterface {
 	private int select;
 	private Vector3 direction = Vector3.forward;
 
+	private CharacterController controller;
+
 	enum State {
 		Wait,
 		Walk
@@ -41,6 +43,8 @@ public class TurtleState : AIStateInterface {
 		// Set enemy instance
 		this.enemy = enemy;
 		this.enemy.isShrunk = true;
+
+		controller = enemy.GetComponent<CharacterController>();
 
 		// Create new A* pathfinding class
 		this.star = new AStar();
@@ -98,7 +102,10 @@ public class TurtleState : AIStateInterface {
 			// Select a random behavior
 			select = Random.Range(0, 2);
 
-			if (select == 1) {
+			// check if the turtle will now walk.
+			if (select == (int) State.Walk) {
+
+
 				// generate random direction
 				int randomVal = Random.Range (0, enemy.getCurTile ().neighbors.Count);
 				targetTile = enemy.getCurTile ().neighbors [randomVal];
@@ -109,6 +116,9 @@ public class TurtleState : AIStateInterface {
 
 				direction = targetTile.transform.position - enemy.getCurTile ().transform.position;
 				direction.Normalize ();
+
+
+				
 			} else {
 				timeInterval = Random.Range (0.0f, 3.0f);
 				now = 0.0f;
@@ -124,8 +134,18 @@ public class TurtleState : AIStateInterface {
 				break;
 
 			case (int) State.Walk:
+				enemy.transform.Rotate(0.0f, Input.GetAxis("Horizontal") * enemy.rotateSpeed, 0.0f);
+				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward);
+				float curSpeed = enemy.moveSpeed * Input.GetAxis("Vertical");
+				controller.SimpleMove(forward * curSpeed);
+				break;
+
+
+			/*
 			enemy.transform.position += (targetTile.transform.position - (enemy.transform.position - Vector3.up)).normalized
 				* enemy.moveSpeed * Time.deltaTime / 2.0f;
+				*/
+
 				break;
 
 			default:

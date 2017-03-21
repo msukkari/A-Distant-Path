@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
 
 	// speed of enemy
 	public float moveSpeed = 3.0f;
+	public float rotateSpeed = 2.0f;
 
 	// list of enemy waypoints
 	public List<Tile> waypoints = new List<Tile>();

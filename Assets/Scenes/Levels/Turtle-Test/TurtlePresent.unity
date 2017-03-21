@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16788316, g: 0.21073577, b: 0.28994018, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -20823,6 +20823,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551825536}
   - component: {fileID: 1551825537}
+  - component: {fileID: 1551825538}
   m_Layer: 0
   m_Name: Cube_017
   m_TagString: Untagged
@@ -20895,6 +20896,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000045597553, y: -0.000000029802322, z: 0.21500003}
     m_Extent: {x: 0.36000016, y: 0.3599999, z: 0.28500015}
   m_DirtyAABB: 0
+--- !u!143 &1551825538
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551825535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.7999833
+  m_Radius: 0.7200001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1552940383
 Prefab:
   m_ObjectHideFlags: 0
@@ -22374,6 +22392,7 @@ MonoBehaviour:
   currentState: 2
   initialState: 2
   moveSpeed: 3
+  rotateSpeed: 2
   waypoints: []
   isShrunk: 0
   isGrown: 0
@@ -22578,6 +22597,7 @@ MonoBehaviour:
   currentState: 2
   initialState: 2
   moveSpeed: 3
+  rotateSpeed: 2
   waypoints: []
   isShrunk: 0
   isGrown: 0

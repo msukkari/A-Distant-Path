@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
@@ -26,8 +24,6 @@ public class Tile : MonoBehaviour {
 
     private Renderer renderer;
     private Renderer elemRenderer;
-    private Shader highlight;
-    private Shader unHighlight;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
@@ -37,8 +33,6 @@ public class Tile : MonoBehaviour {
 		this.setMaterial();
 
 		this.renderer = this.GetComponent<Renderer>();
-		this.highlight = Shader.Find("Self-Illumin/Outlined Diffuse");
-		this.unHighlight = Shader.Find("Diffuse");
 	}
 
 	
@@ -49,8 +43,14 @@ public class Tile : MonoBehaviour {
 			elemRenderer = this.element.GetComponent<Renderer>();
 		}
 
-
-		if(isHighlighted){
+        Color highlightColor = new Color(0.51f, 0.39f, 0);
+        renderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        if (elemRenderer != null)
+        {
+            elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        }
+        /*
+        if (isHighlighted){
 			if(renderer.material.shader != this.highlight){
 				renderer.material.shader = this.highlight;
 			}
@@ -69,8 +69,8 @@ public class Tile : MonoBehaviour {
 				if(elemRenderer != null && elemRenderer.material.shader != this.unHighlight)
 					elemRenderer.material.shader = this.unHighlight;
 			}
-		}
-	}
+		}*/
+    }
 
 	// PUBLIC METHODS //
 	public int getTileID(){return id;} // getter for id

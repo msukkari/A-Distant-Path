@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16788329, g: 0.21073541, b: 0.2899403, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788316, g: 0.21073577, b: 0.28994018, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -805,7 +805,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  fireTransp: 0
+  waterTransp: 0
   player: {fileID: 0}
+  playerControls: {fileID: 0}
 --- !u!4 &102347942
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,7 +1462,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285162780}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7.6, y: -1, z: -15.6}
+  m_LocalPosition: {x: 7.6, y: 0, z: -15.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1048543755}
@@ -2086,7 +2089,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397062313}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.63, y: 0, z: -11.82}
+  m_LocalPosition: {x: 6.63, y: 1, z: -11.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1010533555}
@@ -4208,6 +4211,7 @@ MonoBehaviour:
   currentState: 0
   initialState: 6
   moveSpeed: 3
+  rotateSpeed: 2
   waypoints: []
   isShrunk: 0
   isGrown: 0

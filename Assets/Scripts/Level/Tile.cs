@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour {
@@ -21,13 +19,14 @@ public class Tile : MonoBehaviour {
 
 	// MATERIALS //
 	public Material GrassMat;
+	public Material GrassMatFuture;
 
     public bool isHighlighted;
 
     private Renderer renderer;
     private Renderer elemRenderer;
-    private Shader highlight;
-    private Shader unHighlight;
+
+    private AIManager am = AIManager.instance;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
@@ -37,8 +36,6 @@ public class Tile : MonoBehaviour {
 		this.setMaterial();
 
 		this.renderer = this.GetComponent<Renderer>();
-		this.highlight = Shader.Find("Self-Illumin/Outlined Diffuse");
-		this.unHighlight = Shader.Find("Diffuse");
 	}
 
 	
@@ -49,8 +46,14 @@ public class Tile : MonoBehaviour {
 			elemRenderer = this.element.GetComponent<Renderer>();
 		}
 
-
-		if(isHighlighted){
+        Color highlightColor = new Color(0.51f, 0.39f, 0);
+        renderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        if (elemRenderer != null)
+        {
+            elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        }
+        /*
+        if (isHighlighted){
 			if(renderer.material.shader != this.highlight){
 				renderer.material.shader = this.highlight;
 			}
@@ -69,8 +72,8 @@ public class Tile : MonoBehaviour {
 				if(elemRenderer != null && elemRenderer.material.shader != this.unHighlight)
 					elemRenderer.material.shader = this.unHighlight;
 			}
-		}
-	}
+		}*/
+    }
 
 	// PUBLIC METHODS //
 	public int getTileID(){return id;} // getter for id
@@ -144,6 +147,7 @@ public class Tile : MonoBehaviour {
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
+				am.AIStateEvent(AIEvents.OnMetalCubeRust);
 			}
 
 			Destroy (element.gameObject);
@@ -183,7 +187,13 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		renderer.material = GrassMat;
+
+		if(LevelManager.instance != null && LevelManager.instance.TimeState == TimeStates.Present){
+			renderer.material = GrassMatFuture;
+		}
+		else{
+			renderer.material = GrassMat;
+		}
 
 		if (element != null) {
 			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand

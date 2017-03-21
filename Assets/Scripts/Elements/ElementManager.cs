@@ -13,6 +13,7 @@ public class ElementManager : MonoBehaviour {
 	public GameObject stumpPrefab;
 	public GameObject saplingPrefab;
 	public GameObject bigtreePrefab;
+	public GameObject bigcubetreePrefab;
 	public GameObject icePrefab;
 	public GameObject sandPrefab;
 	public GameObject moltenSandPrefab;
@@ -66,7 +67,7 @@ public class ElementManager : MonoBehaviour {
 		elementSpawnDictionary.Add (ElementType.MetalCubeRusted, metalcuberustedPrefab);
 		elementSpawnDictionary.Add (ElementType.Stump, stumpPrefab);
 		elementSpawnDictionary.Add (ElementType.Sapling, saplingPrefab);
-		elementSpawnDictionary.Add (ElementType.BigTree, bigtreePrefab);
+		elementSpawnDictionary.Add (ElementType.BigTree, bigcubetreePrefab);
 		elementSpawnDictionary.Add (ElementType.Ice, icePrefab);
 		elementSpawnDictionary.Add (ElementType.Sand, sandPrefab);
 		elementSpawnDictionary.Add (ElementType.MoltenSand, moltenSandPrefab);

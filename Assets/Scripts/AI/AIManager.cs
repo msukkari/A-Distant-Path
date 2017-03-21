@@ -50,6 +50,10 @@ public class AIManager : MonoBehaviour {
 					enemy.stateClass.playerOnNewTile();
 					break;
 
+				case AIEvents.OnMetalCubeRust:
+					enemy.stateClass.onMetalCubeRust();
+					break;
+
 				default:
 					Debug.Log("AIManager.cs: undefined AIEvent!!");
 					break;

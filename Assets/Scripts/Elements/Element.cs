@@ -45,5 +45,6 @@ public enum ElementType {
 	MoltenSand,
 	Glass,
 	Stone,
-	Wood
+	Wood,
+	Lettuce,
 }

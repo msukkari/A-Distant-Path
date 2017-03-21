@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2da0962957b3c34887b911164a2dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 2, z: 0}
   parent: {fileID: 1329886512503110}

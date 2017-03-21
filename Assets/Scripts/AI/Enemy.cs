@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour {
 
 	// speed of enemy
 	public float moveSpeed = 3.0f;
+	public float rotateSpeed = 2.0f;
 
 	// list of enemy waypoints
 	public List<Tile> waypoints = new List<Tile>();
@@ -73,6 +74,11 @@ public class Enemy : MonoBehaviour {
 			case AIStates.WaterSearch:
 				Debug.Log("--- AI STATE CHANGE: WaterSearch ---");
 				stateClass = new AIState(new WaterSearch(this));
+				break;
+
+			case AIStates.TurtleState:
+				Debug.Log("--- AI STATE CHANGE: TurtleState ---");
+				stateClass = new AIState(new TurtleState(this));
 				break;
 
 			case AIStates.ReturnSpawn:

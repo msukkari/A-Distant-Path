@@ -23,9 +23,12 @@ public class Sign : MonoBehaviour {
 
 		if(distToPlayer	< 1.5f && SignText.text != textOnSign){
 				SignText.text = textOnSign;
-		}
+            SignText.transform.parent.GetComponent<Image>().enabled = true;
+
+        }
 		else if(distToPlayer >= 1.5f && SignText.text == textOnSign){
 				SignText.text = "";
-		}
+            SignText.transform.parent.GetComponent<Image>().enabled = false;
+        }
 	}
 }

@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour {
 	// --- Audio ---
 	public GameObject audioManagerObject;
 	private AudioManager audioManager;
+
+	public Material skyBox;
 	// ---------------
 
 	// Awake is called before Start function
@@ -221,5 +223,9 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () { }
+	void Update () {
+		if(RenderSettings.skybox != skyBox){
+			RenderSettings.skybox = skyBox;
+		}
+	}
 }

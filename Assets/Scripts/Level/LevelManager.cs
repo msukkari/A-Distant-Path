@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour {
 
 
-	public const int PAST_PLAYER_SCENE = (int) Scenes.TurtlePast;
-	public const int PRESENT_PLAYER_SCENE = (int) Scenes.TurtlePresent; 
-	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.TurtlePresent;
+	public const int PAST_PLAYER_SCENE = (int) Scenes.Past;
+	public const int PRESENT_PLAYER_SCENE = (int) Scenes.Present; 
+	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.Offline;
 
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour {
 	}	
 
 	public void Update(){
-		RenderSettings.skybox = skyBox;
+		//RenderSettings.skybox = skyBox;
 	}
 
 	// LoadLevelScene() is called before LoadTileList() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

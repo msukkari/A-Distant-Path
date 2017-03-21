@@ -7,6 +7,11 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
+
+	public const int PAST_PLAYER_SCENE = 7;
+	public const int PRESENT_PLAYER_SCENE = 8; 
+	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.Offline;
+
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 	private AIManager am = AIManager.instance;
@@ -71,14 +76,14 @@ public class LevelManager : MonoBehaviour {
     
     	if(TimeState == TimeStates.Past){
 			//SceneManager.LoadScene((int)Scenes.Past);
-			PhotonNetwork.LoadLevel((int)Scenes.Past);
+			PhotonNetwork.LoadLevel(PAST_PLAYER_SCENE);
 		}
 		else if(TimeState == TimeStates.Present){
 			//SceneManager.LoadScene((int)Scenes.Present);
-			PhotonNetwork.LoadLevel((int)Scenes.Present);
+			PhotonNetwork.LoadLevel(PRESENT_PLAYER_SCENE);
 		}
 		else if(TimeState == TimeStates.Offline){
- 			SceneManager.LoadScene((int) Scenes.Offline);	
+ 			SceneManager.LoadScene(OFFLINE_PLAYER_SCENE);	
 			//SceneManager.LoadScene((int)Scenes.AITest);	
 
 		}
@@ -94,10 +99,10 @@ public class LevelManager : MonoBehaviour {
 
 		GameObject player;
 		if(TimeState == TimeStates.Present || TimeState == TimeStates.Offline){
-			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;
+			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 6f), Quaternion.identity) as GameObject;
 		}
 		else{
-			player = Instantiate(pastPlayerPrefab, new Vector3(5f, 2.5f, 2.5f), Quaternion.identity) as GameObject;			
+			player = Instantiate(pastPlayerPrefab, new Vector3(5f, 2.5f, 6f), Quaternion.identity) as GameObject;			
 		}
 
 		this.player = player.GetComponent<Player>();

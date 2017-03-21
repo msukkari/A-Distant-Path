@@ -19,11 +19,14 @@ public class Tile : MonoBehaviour {
 
 	// MATERIALS //
 	public Material GrassMat;
+	public Material GrassMatFuture;
 
     public bool isHighlighted;
 
     private Renderer renderer;
     private Renderer elemRenderer;
+
+    private AIManager am = AIManager.instance;
 
 	void Start(){
 		element = GetComponentInChildren<Element> ();
@@ -144,6 +147,7 @@ public class Tile : MonoBehaviour {
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
+				am.AIStateEvent(AIEvents.OnMetalCubeRust);
 			}
 
 			Destroy (element.gameObject);
@@ -183,7 +187,13 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
-		renderer.material = GrassMat;
+
+		if(LevelManager.instance != null && LevelManager.instance.TimeState == TimeStates.Present){
+			renderer.material = GrassMatFuture;
+		}
+		else{
+			renderer.material = GrassMat;
+		}
 
 		if (element != null) {
 			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand

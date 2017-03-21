@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 4
   quantity: 1
-  navigatable: 1
+  navigatable: 0
   climable: 1
   highlightable: 1
   tileID: 0

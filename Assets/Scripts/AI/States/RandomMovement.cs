@@ -93,5 +93,6 @@ public class RandomMovement : AIStateInterface {
 
 	// do nothing..
 	public void playerOnNewTile () { }
+	public void onMetalCubeRust() { }
 
 }

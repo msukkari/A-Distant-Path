@@ -92,4 +92,5 @@ public class FollowWaypoints : AIStateInterface {
 
 
 	public void playerOnNewTile () { }
+	public void onMetalCubeRust() { }
 }

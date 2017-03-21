@@ -68,6 +68,8 @@ MonoBehaviour:
     type: 2}
   bigtreePrefab: {fileID: 1496319938696718, guid: 1314ad4cc8d2de74982e8259d3b9796a,
     type: 2}
+  bigcubetreePrefab: {fileID: 1067114144634472, guid: 653474a933e51664fa03b38963766de3,
+    type: 2}
   icePrefab: {fileID: 1715591441389790, guid: 226d83749ccba8748b2d36221e50210c, type: 2}
   sandPrefab: {fileID: 1633515460203148, guid: e48fe636e7ccb504aa92d2359a3d32ae, type: 2}
   moltenSandPrefab: {fileID: 1546327965419238, guid: e1aeae34feff8004386490c5c8c9bad5,

@@ -511,6 +511,7 @@ public class Player : MonoBehaviour{
         Debug.Log("Place waypoint");
     }
 
+
     public void interactInFront(Tile tile, int curType) {
         Debug.Log("Interact in front!");
         if(tile != null){ 

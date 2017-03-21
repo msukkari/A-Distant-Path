@@ -386,4 +386,8 @@ public class PlayerControls : MonoBehaviour {
 
     	//mesh.enableMesh(true);
     }
+
+    public float getCurrentAmmo() {
+        return currentAmmo;
+    }
 }

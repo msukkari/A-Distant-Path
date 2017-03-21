@@ -10,6 +10,7 @@ public class MetalCube : Element {
 		elementType = ElementType.MetalCube;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
 		this.climable = true;
+		navigatable = false;
 	}
 
 	// Update is called once per frame

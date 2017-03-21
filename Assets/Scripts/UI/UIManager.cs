@@ -10,15 +10,18 @@ public class UIManager : MonoBehaviour {
 
     public List<Image> fire;
     public List<Image> water;
-   
 
+    public float fireTransp;
+    public float waterTransp;
 
     public Player player;
+    public PlayerControls playerControls;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-        foreach(var image in fire) {
+        playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+        foreach (var image in fire) {
             image.CrossFadeAlpha(0, 0, false);
         }
         foreach (var image in water) {
@@ -36,6 +39,14 @@ public class UIManager : MonoBehaviour {
 				waterText.text = "Water Element = " + entry.Value;
 			}
 		}*/
+
+        if(playerControls.getCurrentAmmo() == 1) {
+            waterTransp = 1f;
+            fireTransp = 0.3f;
+        } else {
+            waterTransp = 0.3f;
+            fireTransp = 1f;
+        }
         
         if(fire != null && water != null) {
             foreach (var entry in player.elementsInventory) {
@@ -45,7 +56,7 @@ public class UIManager : MonoBehaviour {
                         if(i > 4) {
                             break;
                         }
-                        fire[i].CrossFadeAlpha(1, 0, false);
+                        fire[i].CrossFadeAlpha(fireTransp, 0, false);
                     }
                     for(; i < 5; i++) {
                         fire[i].CrossFadeAlpha(0, 0, false);
@@ -58,7 +69,7 @@ public class UIManager : MonoBehaviour {
                         if(i > 4) {
                             break;
                         }
-                        water[i].CrossFadeAlpha(1, 0, false);
+                        water[i].CrossFadeAlpha(waterTransp, 0, false);
                     }
                     for (; i < 5; i++) {
                         water[i].CrossFadeAlpha(0, 0, false);

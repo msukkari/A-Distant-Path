@@ -112,4 +112,5 @@ MonoBehaviour:
   isGroundTile: 1
   tileScale: {x: 1, y: 1, z: 1}
   GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
+  GrassMatFuture: {fileID: 2100000, guid: 304b61c3e2ac8df419ce333516b389bd, type: 2}
   isHighlighted: 0

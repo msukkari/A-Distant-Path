@@ -1,0 +1,366 @@
+fileFormatVersion: 2
+guid: 476bfda66358a0c488f3105e629771a1
+timeCreated: 1490022869
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone_001
+    100006: Bone_002
+    100008: Bone_L_001
+    100010: Bone_L_002
+    100012: Bone_R_001
+    100014: Bone_R_002
+    100016: Cube_017
+    100018: Cube_020
+    100020: Cube_021
+    100022: Cube_022
+    100024: Cube_023
+    100026: Cube_024
+    100028: Cube_025
+    100030: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone_001
+    400006: Bone_002
+    400008: Bone_L_001
+    400010: Bone_L_002
+    400012: Bone_R_001
+    400014: Bone_R_002
+    400016: Cube_017
+    400018: Cube_020
+    400020: Cube_021
+    400022: Cube_022
+    400024: Cube_023
+    400026: Cube_024
+    400028: Cube_025
+    400030: //RootNode
+    4300000: Cube_017
+    4300002: Cube_024
+    4300004: Cube_025
+    4300006: Cube_023
+    4300008: Cube_022
+    4300010: Cube_020
+    4300012: Cube_021
+    7400000: Default Take
+    7400002: TurtleEating
+    7400004: TurtleIdle
+    7400006: TurtleWalk
+    9500000: //RootNode
+    13700000: Cube_017
+    13700002: Cube_020
+    13700004: Cube_021
+    13700006: Cube_022
+    13700008: Cube_023
+    13700010: Cube_024
+    13700012: Cube_025
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone_001
+        weight: 1
+      - path: Armature/Bone_002
+        weight: 1
+      - path: Armature/Bone_L_001
+        weight: 1
+      - path: Armature/Bone_L_002
+        weight: 1
+      - path: Armature/Bone_R_001
+        weight: 1
+      - path: Armature/Bone_R_002
+        weight: 1
+      - path: Cube_017
+        weight: 1
+      - path: Cube_020
+        weight: 1
+      - path: Cube_021
+        weight: 1
+      - path: Cube_022
+        weight: 1
+      - path: Cube_023
+        weight: 1
+      - path: Cube_024
+        weight: 1
+      - path: Cube_025
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TurtleEating
+      takeName: TurtleEating
+      firstFrame: -1
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone_001
+        weight: 1
+      - path: Armature/Bone_002
+        weight: 1
+      - path: Armature/Bone_L_001
+        weight: 1
+      - path: Armature/Bone_L_002
+        weight: 1
+      - path: Armature/Bone_R_001
+        weight: 1
+      - path: Armature/Bone_R_002
+        weight: 1
+      - path: Cube_017
+        weight: 1
+      - path: Cube_020
+        weight: 1
+      - path: Cube_021
+        weight: 1
+      - path: Cube_022
+        weight: 1
+      - path: Cube_023
+        weight: 1
+      - path: Cube_024
+        weight: 1
+      - path: Cube_025
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TurtleIdle
+      takeName: TurtleIdle
+      firstFrame: -1
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone_001
+        weight: 1
+      - path: Armature/Bone_002
+        weight: 1
+      - path: Armature/Bone_L_001
+        weight: 1
+      - path: Armature/Bone_L_002
+        weight: 1
+      - path: Armature/Bone_R_001
+        weight: 1
+      - path: Armature/Bone_R_002
+        weight: 1
+      - path: Cube_017
+        weight: 1
+      - path: Cube_020
+        weight: 1
+      - path: Cube_021
+        weight: 1
+      - path: Cube_022
+        weight: 1
+      - path: Cube_023
+        weight: 1
+      - path: Cube_024
+        weight: 1
+      - path: Cube_025
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TurtleWalk
+      takeName: TurtleWalk
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone_001
+        weight: 1
+      - path: Armature/Bone_002
+        weight: 1
+      - path: Armature/Bone_L_001
+        weight: 1
+      - path: Armature/Bone_L_002
+        weight: 1
+      - path: Armature/Bone_R_001
+        weight: 1
+      - path: Armature/Bone_R_002
+        weight: 1
+      - path: Cube_017
+        weight: 1
+      - path: Cube_020
+        weight: 1
+      - path: Cube_021
+        weight: 1
+      - path: Cube_022
+        weight: 1
+      - path: Cube_023
+        weight: 1
+      - path: Cube_024
+        weight: 1
+      - path: Cube_025
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

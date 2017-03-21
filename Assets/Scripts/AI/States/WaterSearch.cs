@@ -89,4 +89,6 @@ public class WaterSearch : AIStateInterface {
 
 	// Required
 	public void playerOnNewTile() { }
+
+	public void onMetalCubeRust() { }
 }

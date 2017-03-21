@@ -21,6 +21,7 @@ public class TurtleState : AIStateInterface {
 	private int currentNode;
 
 	private bool foodFound = false;
+	private Tile foodTile;
 
 	// random movement vars
 	private bool occupied = false;
@@ -54,14 +55,14 @@ public class TurtleState : AIStateInterface {
 	public void FindClosestFoodSource() {
 
 		Tile closestFood = lm.GetClosestTileOfType(ElementType.Lettuce, enemy.getCurTile().transform.position);
-		Debug.Log("Closet lettuce id: " +  closestFood.id);
+		if (closestFood == null) return;
 
 		path = star.AStarPath(enemy.getCurTile(), closestFood);
-
 
 		// a path to food is found!!
 		if (path != null) {
 			path.Reverse();
+			this.foodTile = closestFood;
 			foodFound = true;
 			Debug.Log("PATH FOUND");
 			Debug.Log(path.Count);
@@ -154,10 +155,6 @@ public class TurtleState : AIStateInterface {
 			}
 
 		// Reached back to spawn tile
-		}
-
-		if (path.Count == 0) {
-			Debug.Log("reached end tile!!!");
 		}
 
 	} 

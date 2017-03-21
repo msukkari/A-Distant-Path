@@ -64,3 +64,4 @@ MonoBehaviour:
     type: 2}
   audioManagerObject: {fileID: 1650057382723672, guid: a72bdf61341f66e4c9cc86b36171febe,
     type: 2}
+  skyBox: {fileID: 2100000, guid: 723de68204f944e409ff900206900ac7, type: 2}

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour {
+public class PlayerControls : MonoBehaviour
+{
     //External Objects
     public CharacterController cc;
     public GameObject pivotPoint;
@@ -40,7 +41,8 @@ public class PlayerControls : MonoBehaviour {
     private int currentAmmo = 0;
 
     private int numTypes = 3;
-    public enum TriggerType {
+    public enum TriggerType
+    {
         placeWaypoint,
         arcThrowing,
         directInteract,
@@ -49,7 +51,8 @@ public class PlayerControls : MonoBehaviour {
     private Player playerScript;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         mode = TriggerType.directInteract;
@@ -59,59 +62,60 @@ public class PlayerControls : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         move();
         orient();
 
-        if(cc.isGrounded){
+        if (cc.isGrounded)
+        {
             anim.SetBool("isJumping", false);
         }
 
 
 
-        if(Input.GetButtonDown("YButton")){
-<<<<<<< HEAD
-            if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState != TimeStates.Offline){
-        	   climb();
-            }
-            else{
-                if(cc.isGrounded){
-                    verticalVelocity = jumpForce;
-=======
-            if(LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline){
-        	    if(cc.isGrounded){
+        if (Input.GetButtonDown("YButton"))
+        {
+            if (LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline)
+            {
+                if (cc.isGrounded)
+                {
                     Debug.Log("JUMP");
                     previous_y += jumpForce;
->>>>>>> refs/remotes/origin/master
-                    anim.SetBool("isJumping", true); 
+                    anim.SetBool("isJumping", true);
                 }
             }
-            else{
+            else
+            {
                 climb();
             }
         }
 
         moveDirection.y = previous_y;
-        moveDirection.y += this.gravity* Time.deltaTime;
+        moveDirection.y += this.gravity * Time.deltaTime;
         previous_y = moveDirection.y;
 
-        if(Input.GetButtonDown("BButton")){
-        	currentAmmo = (currentAmmo + 1) % 2;
+        if (Input.GetButtonDown("BButton"))
+        {
+            currentAmmo = (currentAmmo + 1) % 2;
         }
 
 
         cc.Move(this.moveDirection * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("LeftBumper")) {
-            //toggleMode();
-            climb();
+        if (Input.GetButtonDown("LeftBumper"))
+        {
+            toggleMode();
         }
 
-        if(mode == TriggerType.arcThrowing || mode == TriggerType.placeWaypoint) {
+        if (mode == TriggerType.arcThrowing || mode == TriggerType.placeWaypoint)
+        {
             actualCursorRange = cursorRange;
             cursor.GetComponent<MeshRenderer>().enabled = true;
-        } else if(mode == TriggerType.directInteract) {
+        }
+        else if (mode == TriggerType.directInteract)
+        {
             actualCursorRange = 1.8f;
             cursor.GetComponent<MeshRenderer>().enabled = false;
 
@@ -158,56 +162,70 @@ public class PlayerControls : MonoBehaviour {
 
         Tile curTile = getTileUnderCursor();
 
-        if(curTile != prevSelectedTile){
-            if(prevSelectedTile != null){
+        if (curTile != prevSelectedTile)
+        {
+            if (prevSelectedTile != null)
+            {
 
                 prevSelectedTile.isHighlighted = false;
             }
 
-            if(curTile != null){
+            if (curTile != null)
+            {
                 float heightDiff = curTile.gameObject.transform.position.y - this.gameObject.transform.position.y;
 
-                if(heightDiff <= 2f)
+                if (heightDiff <= 2f)
                     curTile.isHighlighted = true;
             }
         }
 
         prevSelectedTile = curTile;
 
-        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting ) {
-        	isShooting = true;
-            if (mode == TriggerType.arcThrowing) {
+        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting)
+        {
+            isShooting = true;
+            if (mode == TriggerType.arcThrowing)
+            {
                 playerScript.throwMaterial(curTile);
-            } else if (mode == TriggerType.directInteract) {
+            }
+            else if (mode == TriggerType.directInteract)
+            {
                 playerScript.interactInFront(curTile, currentAmmo);
-            } else if (mode == TriggerType.placeWaypoint) {
+            }
+            else if (mode == TriggerType.placeWaypoint)
+            {
                 playerScript.placeWaypoint(cursor.transform.position);
             }
         }
-        else if(Input.GetAxisRaw("LeftTrigger") < 0.9)
+        else if (Input.GetAxisRaw("LeftTrigger") < 0.9)
         {
-        	// Debug.Log("SETTING SHOOTING TO FALSE");
-        	isShooting = false;
+            // Debug.Log("SETTING SHOOTING TO FALSE");
+            isShooting = false;
         }
     }
 
-    public void move() {
+    public void move()
+    {
         float xDisp = Input.GetAxis("LeftJoystickHorizontal");
         float zDisp = -1 * Input.GetAxis("LeftJoystickVertical");
 
-        if((Mathf.Abs(xDisp) >= 0.1) || (Mathf.Abs(zDisp) >= 0.1)){
-        	anim.SetBool("isMoving", true);
+        if ((Mathf.Abs(xDisp) >= 0.1) || (Mathf.Abs(zDisp) >= 0.1))
+        {
+            anim.SetBool("isMoving", true);
         }
-        else{
-        	anim.SetBool("isMoving", false);
+        else
+        {
+            anim.SetBool("isMoving", false);
         }
 
-        if(cc.isGrounded){
+        if (cc.isGrounded)
+        {
             previous_y = 0f;
         }
         this.moveDirection = Vector3.zero;
 
-        if (Mathf.Abs(xDisp) >= joystickThreshold || Mathf.Abs(zDisp) >= joystickThreshold) {
+        if (Mathf.Abs(xDisp) >= joystickThreshold || Mathf.Abs(zDisp) >= joystickThreshold)
+        {
             Vector3 forward = pivotPoint.transform.TransformDirection(Vector3.forward);
             forward.y = 0;
             forward = forward.normalized;
@@ -217,14 +235,15 @@ public class PlayerControls : MonoBehaviour {
             this.moveDirection *= speed;
             orient(Mathf.Atan2(-1 * this.moveDirection.z, this.moveDirection.x) * Mathf.Rad2Deg);
         }
-        
+
         //dispDir += new Vector3(0f, this.verticalVelocity, 0f);
         //Debug.Log("vert: " + this.verticalVelocity);
         //Debug.Log(dispDir);
         //cc.Move(dispDir * Time.deltaTime);
     }
 
-    public void orient() {
+    public void orient()
+    {
         float camOrientation = pivotPoint.transform.rotation.eulerAngles.y;
 
 
@@ -232,19 +251,26 @@ public class PlayerControls : MonoBehaviour {
         orientation.x = Input.GetAxis("RightJoystickVertical");
         orientation.z = Input.GetAxis("RightJoystickHorizontal");
 
-        switch (CameraControls.type) {
+        switch (CameraControls.type)
+        {
             case 0:
-                if (Input.GetAxis("RightTrigger") >= 0.9) {
+                if (Input.GetAxis("RightTrigger") >= 0.9)
+                {
                     orientation.x = Input.GetAxis("RightJoystickVertical");
                     orientation.z = Input.GetAxis("RightJoystickHorizontal");
 
-                    if (orientation.sqrMagnitude >= 0.01) {
+                    if (orientation.sqrMagnitude >= 0.01)
+                    {
                         orient(Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation);
-                        cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude,2f, actualCursorRange));
-                    } else {
+                        cursor.transform.localPosition = new Vector3(0, 0, Mathf.Clamp(actualCursorRange * orientation.magnitude, 2f, actualCursorRange));
+                    }
+                    else
+                    {
                         cursor.transform.localPosition = new Vector3(0, 0, 1.8f);
                     }
-                } else {
+                }
+                else
+                {
                     cursor.transform.localPosition = new Vector3(0, 0, 1.8f);
                 }
                 break;
@@ -252,30 +278,37 @@ public class PlayerControls : MonoBehaviour {
                 orientation.x = Input.GetAxis("RightJoystickVertical");
                 orientation.z = Input.GetAxis("RightJoystickHorizontal");
 
-                if (orientation.sqrMagnitude >= 0.01) {
+                if (orientation.sqrMagnitude >= 0.01)
+                {
                     transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(orientation.x, orientation.z) * Mathf.Rad2Deg + camOrientation + 90, transform.eulerAngles.z);
                     cursor.transform.localPosition = new Vector3(0, 0, actualCursorRange * orientation.magnitude);
                     //Handles.DrawBezier
-                } else {
+                }
+                else
+                {
                     cursor.transform.localPosition = new Vector3(0, 0, 0);
                 }
                 break;
         }
     }
 
-    public void orient(float angle) {
+    public void orient(float angle)
+    {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, angle + 90, transform.eulerAngles.z);
     }
 
-    public void jump() {
+    public void jump()
+    {
 
     }
 
-    public void setPivotPoint(GameObject pivotPoint) {
+    public void setPivotPoint(GameObject pivotPoint)
+    {
         this.pivotPoint = pivotPoint;
     }
 
-    public void toggleMode() {
+    public void toggleMode()
+    {
         int i = (int)mode;
         i++;
         i %= numTypes;
@@ -288,18 +321,22 @@ public class PlayerControls : MonoBehaviour {
         }*/
     }
 
-    public Tile getTileUnderCursor(){
+    public Tile getTileUnderCursor()
+    {
         RaycastHit hit = new RaycastHit();
         Ray ray = new Ray(cursor.transform.position + new Vector3(0, 50, 0), Vector3.down);
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit))
+        {
             GameObject tileGO = hit.collider.gameObject;
-            if (tileGO != null) {
+            if (tileGO != null)
+            {
                 Tile tile = tileGO.GetComponent<Tile>();
 
-                if (tile != null) {
+                if (tile != null)
+                {
                     return tile;
-                }     
+                }
             }
         }
 
@@ -309,18 +346,20 @@ public class PlayerControls : MonoBehaviour {
 
 
 
-    public void climb(){
-    	Tile frontTile = null;
+    public void climb()
+    {
+        Tile frontTile = null;
 
 
 
-    	Tile tile = getTileUnderCursor();
+        Tile tile = getTileUnderCursor();
 
-    	if(tile != null){
-    		frontTile = tile;
-    	}
+        if (tile != null)
+        {
+            frontTile = tile;
+        }
 
-    	/*
+        /*
     	RaycastHit hit = new RaycastHit();
     	Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
         Ray ray = new Ray(this.gameObject.transform.position + new Vector3(0, 0.2f, 0), this.transform.forward);
@@ -337,13 +376,15 @@ public class PlayerControls : MonoBehaviour {
         */
 
 
-        if(frontTile != null){
+        if (frontTile != null)
+        {
 
-        	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
+            float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
             Debug.Log("Front tile y: " + frontTile.transform.position.y);
             Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
-        	Debug.Log(heightDiff);
-            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2){
+            Debug.Log(heightDiff);
+            if (frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2)
+            {
                 StartCoroutine(climbWithStall(frontTile));
 
                 Debug.Log("AUDIO");
@@ -351,27 +392,31 @@ public class PlayerControls : MonoBehaviour {
                 playerScript.audio.volume = 0.1f;
                 playerScript.audio.Play();
             }
-        	else if(heightDiff > 0 && heightDiff < 1.2){
-        		StartCoroutine(climbWithStall(frontTile));
+            else if (heightDiff > 0 && heightDiff < 1.2)
+            {
+                StartCoroutine(climbWithStall(frontTile));
 
                 Debug.Log("AUDIO");
                 playerScript.audio.clip = playerScript.climbTrack;
                 playerScript.audio.volume = 0.1f;
                 playerScript.audio.Play();
-        	}
-        	else{
-        		Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
-        	}
+            }
+            else
+            {
+                Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
+            }
 
         }
-        else{
-        	Debug.Log("Climbing failed, either not close enough to front tile or no such tile exists");
+        else
+        {
+            Debug.Log("Climbing failed, either not close enough to front tile or no such tile exists");
         }
 
     }
 
-    IEnumerator climbWithStall(Tile tile){
-    	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+    IEnumerator climbWithStall(Tile tile)
+    {
+        //PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
         /*
         Debug.Log("AUDIO");
 
@@ -380,20 +425,22 @@ public class PlayerControls : MonoBehaviour {
         playerScript.audio.Play();
         */
 
-    	//mesh.enableMesh(false);
-    	yield return new WaitForSeconds(0.2f);
+        //mesh.enableMesh(false);
+        yield return new WaitForSeconds(0.2f);
 
-    	Vector3 newPosition;
-    	if(tile.element != null && tile.element.climable){
-    		newPosition = tile.element.gameObject.transform.position;
-    	}
-    	else{
-    		newPosition = tile.transform.position;
-    	}
+        Vector3 newPosition;
+        if (tile.element != null && tile.element.climable)
+        {
+            newPosition = tile.element.gameObject.transform.position;
+        }
+        else
+        {
+            newPosition = tile.transform.position;
+        }
 
 
-    	this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
+        this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
 
-    	//mesh.enableMesh(true);
+        //mesh.enableMesh(true);
     }
 }

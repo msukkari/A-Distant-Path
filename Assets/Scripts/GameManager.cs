@@ -25,7 +25,11 @@ public enum Scenes {
 		Past,
 		Present,
 		Offline,
-		AITest
+		AITest,
+		LinkedLevelPast, //(from brendan: who's level is this?)
+		TurtlePast,
+		TurtlePresent,
+
 };
 
 public class GameManager : MonoBehaviour {
@@ -34,7 +38,7 @@ public class GameManager : MonoBehaviour {
 	//public static string ASSETSPATH = Application.dataPath;
 
 	// game build
-	private string BUILD = "EDMONTON";
+	private string BUILD = "EDMONTONSUCKS";
 
 	// static instance of GameManager
 	public static GameManager instance = null;

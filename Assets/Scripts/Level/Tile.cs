@@ -26,6 +26,8 @@ public class Tile : MonoBehaviour {
     private Renderer renderer;
     private Renderer elemRenderer;
 
+    private AIManager am = AIManager.instance;
+
 	void Start(){
 		element = GetComponentInChildren<Element> ();
 
@@ -145,6 +147,7 @@ public class Tile : MonoBehaviour {
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
+				am.AIStateEvent(AIEvents.OnMetalCubeRust);
 			}
 
 			Destroy (element.gameObject);

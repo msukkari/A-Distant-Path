@@ -7,6 +7,11 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoBehaviour {
 
+
+	public const int PAST_PLAYER_SCENE = (int) Scenes.TurtlePast;
+	public const int PRESENT_PLAYER_SCENE = (int) Scenes.TurtlePresent; 
+	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.TurtlePresent;
+
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 	private AIManager am = AIManager.instance;
@@ -71,14 +76,14 @@ public class LevelManager : MonoBehaviour {
     
     	if(TimeState == TimeStates.Past){
 			//SceneManager.LoadScene((int)Scenes.Past);
-			PhotonNetwork.LoadLevel((int)Scenes.Past);
+			PhotonNetwork.LoadLevel(PAST_PLAYER_SCENE);
 		}
 		else if(TimeState == TimeStates.Present){
 			//SceneManager.LoadScene((int)Scenes.Present);
-			PhotonNetwork.LoadLevel((int)Scenes.Present);
+			PhotonNetwork.LoadLevel(PRESENT_PLAYER_SCENE);
 		}
 		else if(TimeState == TimeStates.Offline){
- 			SceneManager.LoadScene((int) Scenes.Offline);	
+ 			SceneManager.LoadScene(OFFLINE_PLAYER_SCENE);	
 			//SceneManager.LoadScene((int)Scenes.AITest);	
 
 		}

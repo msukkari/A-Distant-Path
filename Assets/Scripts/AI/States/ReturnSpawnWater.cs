@@ -100,4 +100,5 @@ public class ReturnSpawnWater : AIStateInterface {
 
 	// Unused
 	public void playerOnNewTile() { }
+	public void onMetalCubeRust() { }
 }

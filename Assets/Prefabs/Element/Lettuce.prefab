@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1030483007302704}
+  m_RootGameObject: {fileID: 1956839614152662}
   m_IsPrefabParent: 1
---- !u!1 &1030483007302704
+--- !u!1 &1956839614152662
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4816857059556754}
-  - component: {fileID: 33987358026979524}
-  - component: {fileID: 23750213025513924}
-  - component: {fileID: 65887155092196904}
-  - component: {fileID: 114149108351329086}
-  m_Layer: 2
-  m_Name: MetalCube
+  - component: {fileID: 4284631603517820}
+  - component: {fileID: 33104732575655816}
+  - component: {fileID: 23623736951512208}
+  - component: {fileID: 95753396154915834}
+  - component: {fileID: 114129884166564868}
+  m_Layer: 0
+  m_Name: Lettuce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4816857059556754
+--- !u!4 &4284631603517820
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_GameObject: {fileID: 1956839614152662}
+  m_LocalRotation: {x: -0.66446304, y: -0.24184476, z: -0.24184473, w: 0.66446304}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4999998, y: 0.4999998, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23750213025513924
+--- !u!23 &23623736951512208
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
+  m_GameObject: {fileID: 1956839614152662}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5198fb00a69e754d918a1ec7ac62949, type: 2}
+  - {fileID: 2100000, guid: 87080e809e8019e48aa87fc617d3f11f, type: 2}
+  - {fileID: 2100000, guid: 69ee1e366f98b6949a83b5d20ed5cfa6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,39 +75,43 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33987358026979524
+--- !u!33 &33104732575655816
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
-  m_Mesh: {fileID: 4300000, guid: d6c312ce3d706dc41a8701d9e6eabe37, type: 3}
---- !u!65 &65887155092196904
-BoxCollider:
+  m_GameObject: {fileID: 1956839614152662}
+  m_Mesh: {fileID: 4300000, guid: b9e8062c570f5e54f9b384f2cb39a66d, type: 3}
+--- !u!95 &95753396154915834
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 1956839614152662}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.889892, y: 0.88951826, z: 0.84}
-  m_Center: {x: 0, y: 0, z: 0.91}
---- !u!114 &114149108351329086
+  m_Avatar: {fileID: 9000000, guid: b9e8062c570f5e54f9b384f2cb39a66d, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114129884166564868
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030483007302704}
+  m_GameObject: {fileID: 1956839614152662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b2da383fdb204458ce6917908207ad, type: 3}
+  m_Script: {fileID: 11500000, guid: e92b19eb6ba9a114c84d7daec22a7ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementType: 4
+  elementType: 16
   quantity: 1
-  navigatable: 0
-  climable: 1
-  highlightable: 1
-  tileID: 0
+  navigatable: 1
+  climable: 0
+  highlightable: 0

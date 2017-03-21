@@ -23,37 +23,42 @@ public class TurtleState : AIStateInterface {
 	private bool foodFound = false;
 	private Tile foodTile;
 
+	private float waitTime;
+	private float maxWaitTime = 10.0f;
+	private float minWaitTime = 2.0f;
+	private int state = 0;
+
 	// random movement vars
-	private bool occupied = false;
-	private Tile targetTile;
-	private float now = 0.0f;
-	private float timeInterval = 0.0f;
+	public float directionChangeInterval = 1;
+	public float maxHeadingChange = 30;
+	CharacterController controller;
+	private float heading;
+	private Vector3 targetRotation;
+	private IEnumerator randomCoroutine;
+	
 
-	private int select;
-	private Vector3 direction = Vector3.forward;
-
-	private CharacterController controller;
-
-	enum State {
+	private enum State {
 		Wait,
-		Walk
+		Walk,
 	}
+
 
 	public TurtleState(Enemy enemy) {
 		// Set enemy instance
 		this.enemy = enemy;
 		this.enemy.isShrunk = true;
 
-		controller = enemy.GetComponent<CharacterController>();
+		this.controller = enemy.GetComponent<CharacterController>();
 
 		// Create new A* pathfinding class
 		this.star = new AStar();
 
 		path = new List<Node> ();
 		path.Add (new Node (enemy.getCurTile (), null, 0, 0));
-		currentNode = 1;
+		currentNode = 0;
 
-		FindClosestFoodSource();
+		this.waitTime = Random.Range(minWaitTime, maxWaitTime);
+		this.state = (int) State.Wait;
 	}
 
 	public void FindClosestFoodSource() {
@@ -66,7 +71,7 @@ public class TurtleState : AIStateInterface {
 		// a path to food is found!!
 		if (path != null) {
 			path.Reverse();
-			this.foodTile = closestFood;
+			this.foodTile =  closestFood;
 			foodFound = true;
 			Debug.Log("PATH FOUND");
 			Debug.Log(path.Count);
@@ -78,7 +83,6 @@ public class TurtleState : AIStateInterface {
 	
 	// Update is called once per frame
 	public void Update () {
-		
 		if (!foodFound) {
 			randomMovement();
 		} else {
@@ -86,76 +90,73 @@ public class TurtleState : AIStateInterface {
 		}
 	}
 
+
+	float now = 0.0f;
+	Vector3 direction;
+	Quaternion lookRotation;
+
+
+	Vector3 moveDirection = Vector3.zero;
+	Tile target;
 	private void randomMovement() {
-		now += Time.deltaTime;
 
-		if(select == 0 && now >= timeInterval) {
-			occupied = false;
-		}
-
-		if (select == 1 && Vector3.Distance (targetTile.transform.position + Vector3.up, enemy.transform.position) < 0.1f) {
-			occupied = false;
-		}
-
-		// If the enemy is not occupied
-		if (!occupied) {
-			// Select a random behavior
-			select = Random.Range(0, 2);
-
-			// check if the turtle will now walk.
-			if (select == (int) State.Walk) {
-
-
-				// generate random direction
-				int randomVal = Random.Range (0, enemy.getCurTile ().neighbors.Count);
-				targetTile = enemy.getCurTile ().neighbors [randomVal];
-				
-				// if the target is not navigatable, break out of this itteration
-				if (!targetTile.navigatable)
-					return;
-
-				direction = targetTile.transform.position - enemy.getCurTile ().transform.position;
-				direction.Normalize ();
-
-
-				
-			} else {
-				timeInterval = Random.Range (0.0f, 3.0f);
-				now = 0.0f;
-			}
-
-
-			occupied = true;
-		}
-
-		switch (select) {
+		switch (state) {
 			case (int) State.Wait:
-				// Do nothing
+				now += Time.deltaTime;
+
+				if (now > waitTime) {
+					now = 0.0f;
+					resetRandom();
+				}
 				break;
 
 			case (int) State.Walk:
-				enemy.transform.Rotate(0.0f, Input.GetAxis("Horizontal") * enemy.rotateSpeed, 0.0f);
-				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward);
-				float curSpeed = enemy.moveSpeed * Input.GetAxis("Vertical");
-				controller.SimpleMove(forward * curSpeed);
+				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 1.5f);
+
+				enemy.transform.position += direction * Time.deltaTime;
+				//Vector3 forward = enemy.transform.TransformDirection(Vector3.forward);
+				//controller.SimpleMove(forward * 1.2f);
+
+				if (enemy.getCurTile() == target) {
+					Debug.Log("RESET");
+					resetRandom();
+				}
+
 				break;
-
-
-			/*
-			enemy.transform.position += (targetTile.transform.position - (enemy.transform.position - Vector3.up)).normalized
-				* enemy.moveSpeed * Time.deltaTime / 2.0f;
-				*/
-
-				break;
-
-			default:
-				Debug.Log("something fucked up..");
-				break;
-
 		}
+
 
 	}
 
+	private void resetRandom() {
+
+		// generate new state
+		//state = Random.Range(0, 2);
+		state = (state + 1) % 2;
+
+		switch (state) {
+			case (int) State.Wait:
+
+				// re-set the wait time
+				this.waitTime = Random.Range(minWaitTime, maxWaitTime);
+				break;
+
+			case (int) State.Walk:
+
+				List<Tile> waypoints = enemy.waypoints;
+
+				// if the current tile is a waypoint, remove it
+				waypoints.Remove(enemy.getCurTile());
+
+				int rand = Random.Range(0, waypoints.Count);
+				target = waypoints[rand];
+				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
+				direction.y = 0;
+				lookRotation = Quaternion.LookRotation(direction);
+				break;
+		}
+
+	}
 
 
 	private void goToFood() {
@@ -164,6 +165,35 @@ public class TurtleState : AIStateInterface {
 		}
 		Debug.Log("going to path..");
 
+		Debug.Log("first location: " + path[0].tile.id);
+
+		// there exists a path
+		if (path.Count != 0) {
+
+			Tile final = path [path.Count - 1].tile;
+			if (enemy.getCurTile() == final) {
+				Debug.Log("TARGET REACHED");
+				return;
+			}
+
+
+			if (enemy.getCurTile() == path[currentNode].tile) {
+				currentNode++;
+				target = path[currentNode].tile;
+				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
+				direction.y = 0;
+				lookRotation = Quaternion.LookRotation(direction);
+
+			} else {
+
+				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 1.5f);
+				enemy.transform.position += direction * Time.deltaTime;
+			}
+
+		}
+
+
+		/*
 		// Move towards each next tile on path
 		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {
 			enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
@@ -176,6 +206,7 @@ public class TurtleState : AIStateInterface {
 
 		// Reached back to spawn tile
 		}
+		*/
 
 	} 
 

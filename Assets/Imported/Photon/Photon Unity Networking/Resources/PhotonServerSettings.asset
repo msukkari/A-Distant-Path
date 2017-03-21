@@ -56,4 +56,5 @@ MonoBehaviour:
   - glassify
   - loseElement
   - destroyTree
+  - transferOtherPressedRPC
   DisableAutoOpenWizard: 1

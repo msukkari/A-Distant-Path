@@ -25,11 +25,15 @@ public class PlayerControls : MonoBehaviour {
 
     private TriggerType mode;
 
-    private float jumpForce = 2.3f;
+    public float jumpForce = 20f;
+    public float gravity = -30f;
     public float verticalVelocity;
 
     private bool isShooting = false;
     private float timeSinceLastShot = 0.0f;
+
+    private Vector3 moveDirection = Vector3.zero;
+    private float previous_y;
 
 
     // 0 is fire, 1 is water
@@ -60,28 +64,43 @@ public class PlayerControls : MonoBehaviour {
         orient();
 
         if(cc.isGrounded){
-            verticalVelocity = -9.81f * Time.deltaTime;
             anim.SetBool("isJumping", false);
         }
 
+
+
         if(Input.GetButtonDown("YButton")){
+<<<<<<< HEAD
             if(LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState != TimeStates.Offline){
         	   climb();
             }
             else{
                 if(cc.isGrounded){
                     verticalVelocity = jumpForce;
+=======
+            if(LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline){
+        	    if(cc.isGrounded){
+                    Debug.Log("JUMP");
+                    previous_y += jumpForce;
+>>>>>>> refs/remotes/origin/master
                     anim.SetBool("isJumping", true); 
                 }
             }
+            else{
+                climb();
+            }
         }
+
+        moveDirection.y = previous_y;
+        moveDirection.y += this.gravity* Time.deltaTime;
+        previous_y = moveDirection.y;
 
         if(Input.GetButtonDown("BButton")){
         	currentAmmo = (currentAmmo + 1) % 2;
         }
 
 
-        cc.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        cc.Move(this.moveDirection * Time.deltaTime);
 
 
         if (Input.GetButtonDown("LeftBumper")) {
@@ -183,7 +202,10 @@ public class PlayerControls : MonoBehaviour {
         	anim.SetBool("isMoving", false);
         }
 
-        Vector3 dispDir = Vector3.zero;
+        if(cc.isGrounded){
+            previous_y = 0f;
+        }
+        this.moveDirection = Vector3.zero;
 
         if (Mathf.Abs(xDisp) >= joystickThreshold || Mathf.Abs(zDisp) >= joystickThreshold) {
             Vector3 forward = pivotPoint.transform.TransformDirection(Vector3.forward);
@@ -191,11 +213,15 @@ public class PlayerControls : MonoBehaviour {
             forward = forward.normalized;
 
             Vector3 right = new Vector3(forward.z, 0, -forward.x);
-            dispDir = (xDisp * right + zDisp * forward);
-            dispDir *= speed;
-            orient(Mathf.Atan2(-1 * dispDir.z, dispDir.x) * Mathf.Rad2Deg);
+            this.moveDirection = (xDisp * right + zDisp * forward);
+            this.moveDirection *= speed;
+            orient(Mathf.Atan2(-1 * this.moveDirection.z, this.moveDirection.x) * Mathf.Rad2Deg);
         }
-        cc.SimpleMove(dispDir);
+        
+        //dispDir += new Vector3(0f, this.verticalVelocity, 0f);
+        //Debug.Log("vert: " + this.verticalVelocity);
+        //Debug.Log(dispDir);
+        //cc.Move(dispDir * Time.deltaTime);
     }
 
     public void orient() {
@@ -314,12 +340,24 @@ public class PlayerControls : MonoBehaviour {
         if(frontTile != null){
 
         	float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
+            Debug.Log("Front tile y: " + frontTile.transform.position.y);
+            Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
         	Debug.Log(heightDiff);
-            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted)){
+            if(frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2){
                 StartCoroutine(climbWithStall(frontTile));
+
+                Debug.Log("AUDIO");
+                playerScript.audio.clip = playerScript.climbTrack;
+                playerScript.audio.volume = 0.1f;
+                playerScript.audio.Play();
             }
         	else if(heightDiff > 0 && heightDiff < 1.2){
         		StartCoroutine(climbWithStall(frontTile));
+
+                Debug.Log("AUDIO");
+                playerScript.audio.clip = playerScript.climbTrack;
+                playerScript.audio.volume = 0.1f;
+                playerScript.audio.Play();
         	}
         	else{
         		Debug.Log("THE TILE THE PLAYER IS TRYING TO CLIMB IS TOO HIGH");
@@ -334,11 +372,13 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator climbWithStall(Tile tile){
     	//PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
+        /*
         Debug.Log("AUDIO");
 
         playerScript.audio.clip = playerScript.climbTrack;
         playerScript.audio.volume = 0.1f;
         playerScript.audio.Play();
+        */
 
     	//mesh.enableMesh(false);
     	yield return new WaitForSeconds(0.2f);

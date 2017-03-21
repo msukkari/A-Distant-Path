@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,7 +38,13 @@ public class Footsteps : MonoBehaviour {
 	// sets the audio clip depenedent on current material
 	private void setClip() {
 
-		Element element = curTile.element;
+		Element element;
+		if(curTile != null){
+			element = curTile.element;
+		}
+		else{
+			element = null;
+		}
 
 		if (element == null) { 
 			audio.clip = tracks[0];

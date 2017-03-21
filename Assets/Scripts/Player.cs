@@ -124,7 +124,7 @@ public class Player : MonoBehaviour{
 
 	public void Respawn(){
 		//this.gameObject.transform.position = new Vector3(5f, 0.0f, 2.5f);
-		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y, this.curRespawnPoint.z);
+		this.gameObject.transform.position = new Vector3(this.curRespawnPoint.x, this.curRespawnPoint.y + 0.5f, this.curRespawnPoint.z);
 		this.gameObject.GetComponent<CharacterController>().SimpleMove(Vector3.zero);
 	}
 
@@ -423,7 +423,7 @@ public class Player : MonoBehaviour{
 	public Tile getCurTile(){
 		RaycastHit hit;
 
-		if(Physics.Raycast(transform.position, Vector3.down, out hit)){
+		if(Physics.Raycast(transform.position + new Vector3(0f, 1f, 0f), Vector3.down, out hit)){
 			Tile cur = hit.collider.gameObject.GetComponent<Tile>();
 
 			if (cur != null){

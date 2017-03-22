@@ -103,6 +103,7 @@ public class TurtleState : AIStateInterface {
 		switch (state) {
 			case (int) State.Wait:
 				now += Time.deltaTime;
+				controller.SimpleMove(Vector3.down);
 
 				if (now > waitTime) {
 					now = 0.0f;
@@ -111,14 +112,19 @@ public class TurtleState : AIStateInterface {
 				break;
 
 			case (int) State.Walk:
+				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
+				direction.y = 0;
+				lookRotation = Quaternion.LookRotation(direction);
 				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 1.5f);
 
-				enemy.transform.position += direction * Time.deltaTime;
-				//Vector3 forward = enemy.transform.TransformDirection(Vector3.forward);
-				//controller.SimpleMove(forward * 1.2f);
+				//enemy.transform.position += direction * Time.deltaTime;
+				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward) * 50.0f;
+				controller.SimpleMove(forward * Time.deltaTime);
+
+				Debug.Log(enemy.getCurTile().id);
 
 				if (enemy.getCurTile() == target) {
-					Debug.Log("RESET");
+					Debug.Log("TURTLE IS BEING RESET");
 					resetRandom();
 				}
 
@@ -138,7 +144,8 @@ public class TurtleState : AIStateInterface {
 			case (int) State.Wait:
 
 				// re-set the wait time
-				this.waitTime = Random.Range(minWaitTime, maxWaitTime);
+				//this.waitTime = Random.Range(minWaitTime, maxWaitTime);
+				this.waitTime = 1;
 				break;
 
 			case (int) State.Walk:
@@ -146,13 +153,11 @@ public class TurtleState : AIStateInterface {
 				List<Tile> waypoints = enemy.waypoints;
 
 				// if the current tile is a waypoint, remove it
-				waypoints.Remove(enemy.getCurTile());
+				//waypoints.Remove(enemy.getCurTile());
 
 				int rand = Random.Range(0, waypoints.Count);
 				target = waypoints[rand];
-				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
-				direction.y = 0;
-				lookRotation = Quaternion.LookRotation(direction);
+				
 				break;
 		}
 

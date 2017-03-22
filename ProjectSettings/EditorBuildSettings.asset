@@ -27,6 +27,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Turtle-Test/TurtlePast.unity
   - enabled: 1
     path: Assets/Scenes/Levels/Turtle-Test/TurtlePresent.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/AI-Level-1/Past.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/AI-Level-1/Present.unity
   - enabled: 0
     path: Assets/Scenes/Levels/Turtle-Test-002/TurtlePast.unity
   - enabled: 0

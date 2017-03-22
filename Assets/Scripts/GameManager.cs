@@ -27,8 +27,11 @@ public enum Scenes {
 		Offline,
 		AITest,
 		LinkedLevelPast, //(from brendan: who's level is this?)
+		LinkedLevelPresent,
 		TurtlePast,
 		TurtlePresent,
+		AILevel1Past,
+		AILevel1Present,
 
 };
 

@@ -58,6 +58,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				if(Input.GetButton("BButton") && !this.player.hasTransfered){
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
+						Debug.Log("CALLING SEND ELEMS");
 						GetComponent<PhotonView>().RPC("sendElems", PhotonTargets.Others);
 						this.player.hasTransfered = true;
 					}
@@ -140,7 +141,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void sendElems(){
-		Debug.Log("sending elems");
+		Debug.Log("INSIDE SENDELEMS");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
@@ -169,6 +170,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void recieveElemsFirst(int fire, int water){
+		Debug.Log("INSIDE RECIEVEELEMSFIRST");
+
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
@@ -199,6 +202,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void recieveElemsSecond(int fire, int water){
+		Debug.Log("INSIDE RECIEVEELEMSSECOND");
+
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 

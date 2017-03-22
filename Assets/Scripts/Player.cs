@@ -37,6 +37,8 @@ public class Player : MonoBehaviour{
 	// --- audio stuff ---
 	public AudioClip climbTrack;
 
+	public bool otherPlayerPressingTransfer;
+
     
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();

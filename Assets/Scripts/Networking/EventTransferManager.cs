@@ -6,6 +6,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	public int cur;
 
+	public GameObject playerGO;
 	public Player player;
 
 
@@ -27,7 +28,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if(playerGO == null){
+			playerGO = GameObject.FindGameObjectWithTag("Player");
+			player = playerGO.GetComponent<Player>();
+		}
+
 		if(photonView.isMine){
+
+			Debug.Log(this.player.otherPlayerPressingTransfer);
 
 
 			/* Added for debugging, not necessary anymore
@@ -48,11 +56,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 				if(Input.GetButtonDown("BButton")){
-					if(this.otherPlayerPressing){
+					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
+						GetComponent<PhotonView>().RPC("sendElems", PhotonTargets.Others);
 					}
 					else{
 						// Change other players pressed
+						Debug.Log("Calling otherPlayerPressTransfer RPC");
+						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others);
 					}
 				}
 
@@ -89,6 +100,17 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 
+	[PunRPC]
+	public void otherPlayerPressTransfer(){
+		Debug.Log("otherPlayerPressTransfer being called");
+
+		if(player == null){
+			Debug.Log("PLAYER IS NULL IN otherPlayerPressTransfer");
+		}
+		this.player.otherPlayerPressingTransfer = true;
+	}
+
+
 	public void OnMetalRust(Vector3 pos){
 		if(photonView.isMine){
 			GetComponent<PhotonView>().RPC("rustMetalCube",PhotonTargets.Others, new object[]{pos});
@@ -110,6 +132,86 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	public void OnLoseElement(int tileID) {
 		GetComponent<PhotonView>().RPC("loseElement",PhotonTargets.Others, new object[]{tileID});
 	}
+
+
+	[PunRPC]
+	public void sendElems(){
+		Debug.Log("sending elems");
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer;
+
+		if(play != null){
+			curPlayer = play.GetComponent<Player>();
+		}
+		else{
+			Debug.Log("Player gameobject not bad");
+			return;
+		}
+
+		if(curPlayer != null){
+			int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
+			int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
+
+			GetComponent<PhotonView>().RPC("recieveElemsFirst",PhotonTargets.Others, new object[]{curFire, curWater});
+		}
+		else{
+			Debug.Log("PLAYER COMPONENT NOT FOUND");
+		}
+
+	}
+
+	[PunRPC]
+	public void recieveElemsFirst(int fire, int water){
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer;
+
+		if(play != null){
+			curPlayer = play.GetComponent<Player>();
+		}
+		else{
+			Debug.Log("Player gameobject not bad");
+			return;
+		}
+
+		if(curPlayer != null){
+			int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
+			int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
+
+			GetComponent<PhotonView>().RPC("recieveElemsSecond",PhotonTargets.Others, new object[]{curFire, curWater});
+			curPlayer.otherPlayerPressingTransfer = false;
+
+			curPlayer.elementsInventory[ElementType.Water] = water;
+			curPlayer.elementsInventory[ElementType.Fire] = fire;
+		}
+		else{
+			Debug.Log("PLAYER COMPONENT NOT FOUND");
+		}
+	}
+
+	[PunRPC]
+	public void recieveElemsSecond(int fire, int water){
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer;
+
+		if(play != null){
+			curPlayer = play.GetComponent<Player>();
+		}
+		else{
+			Debug.Log("Player gameobject not bad");
+			return;
+		}
+
+		if(curPlayer != null){
+			curPlayer.elementsInventory[ElementType.Water] = water;
+			curPlayer.elementsInventory[ElementType.Fire] = fire;
+
+			curPlayer.otherPlayerPressingTransfer = false;
+		}
+		else{
+			Debug.Log("PLAYER COMPONENT NOT FOUND");
+		}
+	}
+
 
 
 	[PunRPC]

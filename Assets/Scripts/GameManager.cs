@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
 	//public static string ASSETSPATH = Application.dataPath;
 
 	// game build
-	private string BUILD = "EDMONTONSUCKS";
+	private string BUILD = "TRANSFERNEW";
 
 	// static instance of GameManager
 	public static GameManager instance = null;

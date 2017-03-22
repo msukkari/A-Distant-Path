@@ -70,6 +70,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 				else if(!Input.GetButtonUp("BButton")){
 					this.player.hasTransfered = false;
+					this.player.otherPlayerPressingTransfer = false;
 				}
 
 

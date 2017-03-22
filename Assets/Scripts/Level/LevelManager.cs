@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoBehaviour {
 
 
-	public const int PAST_PLAYER_SCENE = 7;
-	public const int PRESENT_PLAYER_SCENE = 8; 
+	public const int PAST_PLAYER_SCENE = 6;
+	public const int PRESENT_PLAYER_SCENE = 5; 
 	public const int OFFLINE_PLAYER_SCENE = (int) Scenes.Offline;
 
 	// GameManager GetInstanceGameManager

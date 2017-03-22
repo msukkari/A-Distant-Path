@@ -340,7 +340,7 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
-        Debug.Log("ERROR GETTING TILE UNDER CURSOR");
+        //Debug.Log("ERROR GETTING TILE UNDER CURSOR");
         return null;
     }
 

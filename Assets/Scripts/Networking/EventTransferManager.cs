@@ -35,7 +35,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(photonView.isMine){
 
-			Debug.Log(this.player.otherPlayerPressingTransfer);
+			//Debug.Log(this.player.otherPlayerPressingTransfer);
 
 
 			/* Added for debugging, not necessary anymore
@@ -49,7 +49,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			//Debug.Log(player.getCurTile().element);
 			if(player.getCurTile().element != null && player.getCurTile().element.elementType == ElementType.Transfer){
 
-				Debug.Log("PLAYER IS ON A TRANSFER TILE");
+				//Debug.Log("PLAYER IS ON A TRANSFER TILE");
 
 				recentTransferPos = player.getCurTile().transform.position;
 
@@ -108,7 +108,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void otherPlayerPressTransfer(bool status){
-		Debug.Log("otherPlayerPressTransfer being called");
+		//Debug.Log("otherPlayerPressTransfer being called");
 
 		if(player == null){
 			Debug.Log("PLAYER IS NULL IN otherPlayerPressTransfer");

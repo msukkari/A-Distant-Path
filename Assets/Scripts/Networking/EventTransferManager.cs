@@ -55,7 +55,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 
-				if(Input.GetButtonDown("BButton")){
+				if(Input.GetButton("BButton")){
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
 						GetComponent<PhotonView>().RPC("sendElems", PhotonTargets.Others);

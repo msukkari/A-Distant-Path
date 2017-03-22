@@ -535,53 +535,50 @@ public class Player : MonoBehaviour{
 
     public void interactInFront(Tile tile, int curType) {
         Debug.Log("Interact in front!");
-        if(tile != null){ 
+        if(getCurTile() != tile) {
+            if (tile != null) {
 
-        	float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+                float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
 
-        	if(heightDiff < 2f){
-	        	if(curType == 0){
-	            	this.ShootFireOnTile(tile);
-	            }
-	            else if(curType == 1){
-	            	this.ShootWaterOnTile(tile);
-	            }
-	            else{
-	            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
-	            }
-	        }
-	        else{
-	        	Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
-	        }
-            /*
-        	Tile above = aboveTile(tile);
+                if (heightDiff < 2f) {
+                    if (curType == 0) {
+                        this.ShootFireOnTile(tile);
+                    } else if (curType == 1) {
+                        this.ShootWaterOnTile(tile);
+                    } else {
+                        Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
+                    }
+                } else {
+                    Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
+                }
+                /*
+                Tile above = aboveTile(tile);
 
-        	if(above != null){
-        		Tile aboveAbove = aboveTile(above);
+                if(above != null){
+                    Tile aboveAbove = aboveTile(above);
 
-        		if(aboveAbove != null){
-        			Debug.Log(aboveAbove.getTileID());
-        			this.ShootWaterOnTile(aboveAbove.getTileID());
-        		}
-        		else{
-        			Debug.Log(above.getTileID());
-        			this.ShootWaterOnTile(above.getTileID());
-        		}
-        	}
-        	else{
-        		Debug.Log(tile.getTileID());
-        		this.ShootWaterOnTile(tile.getTileID());
-        	}
-        	*/
+                    if(aboveAbove != null){
+                        Debug.Log(aboveAbove.getTileID());
+                        this.ShootWaterOnTile(aboveAbove.getTileID());
+                    }
+                    else{
+                        Debug.Log(above.getTileID());
+                        this.ShootWaterOnTile(above.getTileID());
+                    }
+                }
+                else{
+                    Debug.Log(tile.getTileID());
+                    this.ShootWaterOnTile(tile.getTileID());
+                }
+                */
+            } else {
+                Debug.Log("TILE IS NULL IN INTERACTINFRONT");
+
+
+            }
+        } else {
+            Debug.Log("TILE PLAYER IS SHOOTING IS TILE PLAYER IS ON");
         }
-        else{
-        	Debug.Log("TILE IS NULL IN INTERACTINFRONT");
-
-        	
-        }
-
-
-
     }
 
     public Tile aboveTile(Tile curTile){

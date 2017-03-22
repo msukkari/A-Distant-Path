@@ -4981,7 +4981,7 @@ Prefab:
         type: 2}
       propertyPath: SignText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 633749171}
     - target: {fileID: 4632617663350986, guid: 735e10fb107435d4285bf83c2640dade, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
@@ -9977,7 +9977,7 @@ Prefab:
         type: 2}
       propertyPath: SignText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 633749171}
     - target: {fileID: 4632617663350986, guid: 735e10fb107435d4285bf83c2640dade, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
@@ -10434,6 +10434,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4348193210544472, guid: 4683debd652d5244f8eba8ebff9e62e3,
     type: 2}
   m_PrefabInternal: {fileID: 629014158}
+--- !u!114 &633749171 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114975766027430018, guid: f0291b88c9ddf354593bfb09bd25ecc1,
+    type: 2}
+  m_PrefabInternal: {fileID: 70147427}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &635110550
 Prefab:
   m_ObjectHideFlags: 0
@@ -11036,7 +11042,7 @@ Prefab:
         type: 2}
       propertyPath: SignText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 633749171}
     - target: {fileID: 4632617663350986, guid: 735e10fb107435d4285bf83c2640dade, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
@@ -16780,48 +16786,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99754b1179f1c5148bc89ee6590917a4, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1063451251
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1799608500}
-    m_Modifications:
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.007
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.5009999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4481843672235680, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: deabe5dabd03f5c478d044150d6aa24d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1071450367
 Prefab:
@@ -23018,7 +22982,7 @@ Prefab:
         type: 2}
       propertyPath: SignText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 633749171}
     - target: {fileID: 4632617663350986, guid: 735e10fb107435d4285bf83c2640dade, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
@@ -29535,7 +29499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4505316430913702, guid: 653474a933e51664fa03b38963766de3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4505316430913702, guid: 653474a933e51664fa03b38963766de3, type: 2}
       propertyPath: m_LocalPosition.z

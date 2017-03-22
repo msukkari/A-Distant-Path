@@ -72,6 +72,9 @@ public class TurtleState : AIStateInterface {
 			return;
 		}
 
+		Debug.Log("current: " + enemy.getCurTile().id);
+		Debug.Log("target: " + closestFood.id);
+
 		path = star.AStarPath(enemy.getCurTile(), closestFood);
 
 		// a path to food is found!!

@@ -16,9 +16,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Present.unity
   - enabled: 1
-    path: Assets/Scenes/Levels/Linked_Level/Present.unity
-  - enabled: 1
     path: Assets/Scenes/Levels/Linked_Level/Past.unity
+  - enabled: 1
+    path: Assets/Scenes/Levels/Linked_Level/Present.unity
   - enabled: 1
     path: Assets/Scenes/Levels/Unlinked-Level/Present.unity
   - enabled: 1

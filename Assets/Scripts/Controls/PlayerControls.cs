@@ -74,7 +74,7 @@ public class PlayerControls : MonoBehaviour
 
 
 
-        if (Input.GetButtonDown("YButton"))
+        if (Input.GetButtonDown("AButton"))
         {
             if (LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline)
             {
@@ -95,7 +95,7 @@ public class PlayerControls : MonoBehaviour
         moveDirection.y += this.gravity * Time.deltaTime;
         previous_y = moveDirection.y;
 
-        if (Input.GetButtonDown("BButton"))
+        if (Input.GetButtonDown("YButton"))
         {
             currentAmmo = (currentAmmo + 1) % 2;
         }
@@ -360,8 +360,8 @@ public class PlayerControls : MonoBehaviour
         }
 
         /*
-    	RaycastHit hit = new RaycastHit();
-    	Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
+        RaycastHit hit = new RaycastHit();
+        Debug.DrawRay(this.gameObject.transform.position, this.transform.forward, Color.red, 5);
         Ray ray = new Ray(this.gameObject.transform.position + new Vector3(0, 0.2f, 0), this.transform.forward);
 
 
@@ -369,7 +369,7 @@ public class PlayerControls : MonoBehaviour
             GameObject tileGO = hit.collider.gameObject;
 
             if (tileGO != null && hit.distance < 1) {
-                	Debug.Log("GLOBAL: " + tileGO.transform.position + " LOCAL: " + tileGO.transform.localPosition);
+                    Debug.Log("GLOBAL: " + tileGO.transform.position + " LOCAL: " + tileGO.transform.localPosition);
                     frontTile = tileGO;
             }
         }

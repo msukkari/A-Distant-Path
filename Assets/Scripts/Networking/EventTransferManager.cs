@@ -68,7 +68,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others);
 					}
 				}
-				else if(Input.GetButtonUp("BButton")){
+				else if(!Input.GetButton("BButton")){
 					this.player.hasTransfered = false;
 					this.player.otherPlayerPressingTransfer = false;
 				}

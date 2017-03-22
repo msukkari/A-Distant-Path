@@ -192,6 +192,7 @@ public class TurtleState : AIStateInterface {
 			Tile final = path [path.Count - 1].tile;
 			if (enemy.getCurTile() == final) {
 				Debug.Log("TARGET REACHED");
+				this.enemy.isEating = true;
 				return;
 			}
 

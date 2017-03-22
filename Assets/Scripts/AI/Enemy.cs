@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour {
 	public bool foundWater = false;
 	public bool frozePlayer = false;
 	public bool followPlayerAgain = false;
+	public bool isEating = false;
 
 	public float activityRadius = 15.0f;
 

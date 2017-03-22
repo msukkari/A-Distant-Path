@@ -15,9 +15,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private bool transferHighlighted;
 
 
+	private bool otherPlayerPressing;
+
+
 	// Use this for initialization
 	void Awake () {
 		this.transferHighlighted = false;
+		this.otherPlayerPressing = false;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +45,22 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 				recentTransferPos = player.getCurTile().transform.position;
 
+
+
+				if(Input.GetButtonDown("BButton")){
+					if(this.otherPlayerPressing){
+						// Transfer resources
+					}
+					else{
+						// Change other players pressed
+					}
+				}
+
+
+
+
+
+				/*
 				if(transferHighlighted == false){
 					Debug.Log("CALLING pOnTransfer");
 					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{recentTransferPos});
@@ -55,6 +75,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					int fire = player.elementsInventory.ContainsKey(ElementType.Fire) ? player.elementsInventory[ElementType.Fire] : 0;
 					GetComponent<PhotonView>().RPC("transferTileCheck",PhotonTargets.Others, new object[]{fire, water});
 				}
+				*/
 			}
 			else{
 

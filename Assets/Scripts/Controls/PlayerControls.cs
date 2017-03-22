@@ -74,7 +74,7 @@ public class PlayerControls : MonoBehaviour
 
 
 
-        if (Input.GetButtonDown("YButton"))
+        if (Input.GetButtonDown("AButton"))
         {
             if (LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline)
             {
@@ -95,7 +95,7 @@ public class PlayerControls : MonoBehaviour
         moveDirection.y += this.gravity * Time.deltaTime;
         previous_y = moveDirection.y;
 
-        if (Input.GetButtonDown("BButton"))
+        if (Input.GetButtonDown("YButton"))
         {
             currentAmmo = (currentAmmo + 1) % 2;
         }

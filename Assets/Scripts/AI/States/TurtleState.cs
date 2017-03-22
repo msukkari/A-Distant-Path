@@ -24,7 +24,7 @@ public class TurtleState : AIStateInterface {
 	private Tile foodTile;
 
 	private float waitTime;
-	private float maxWaitTime = 10.0f;
+	private float maxWaitTime = 6.0f;
 	private float minWaitTime = 2.0f;
 	private int state = 0;
 
@@ -63,8 +63,14 @@ public class TurtleState : AIStateInterface {
 
 	public void FindClosestFoodSource() {
 
-		Tile closestFood = lm.GetClosestTileOfType(ElementType.Lettuce, enemy.getCurTile().transform.position);
-		if (closestFood == null) return;
+		//Tile closestFood = lm.GetClosestTileOfType(ElementType.Lettuce, enemy.getCurTile().transform.position);
+			
+		Tile closestFood = enemy.goal;
+
+		if (closestFood == null) {
+			Debug.Log("NO FOOD TILE PRESENT ON MAP");
+			return;
+		}
 
 		path = star.AStarPath(enemy.getCurTile(), closestFood);
 
@@ -74,8 +80,17 @@ public class TurtleState : AIStateInterface {
 			this.foodTile =  closestFood;
 			foodFound = true;
 			Debug.Log("PATH FOUND");
-			Debug.Log(path.Count);
+			
+			Debug.Log(" --- Length of path: " + path.Count);
+			Debug.Log("Tiles ID's of path: ");
+			foreach (Node node in path) {
+				Debug.Log("id: " + node.tile.id);
+			}
+
+			Debug.Log("-----------");
+
 		} else {
+			Debug.Log("NO FOOD FOUND");
 			foodFound = false;
 		}
 	}
@@ -103,6 +118,7 @@ public class TurtleState : AIStateInterface {
 		switch (state) {
 			case (int) State.Wait:
 				now += Time.deltaTime;
+				controller.SimpleMove(Vector3.down);
 
 				if (now > waitTime) {
 					now = 0.0f;
@@ -111,14 +127,19 @@ public class TurtleState : AIStateInterface {
 				break;
 
 			case (int) State.Walk:
-				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 1.5f);
+				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
+				direction.y = 0;
+				lookRotation = Quaternion.LookRotation(direction);
+				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * enemy.rotateSpeed);
 
-				enemy.transform.position += direction * Time.deltaTime;
-				//Vector3 forward = enemy.transform.TransformDirection(Vector3.forward);
-				//controller.SimpleMove(forward * 1.2f);
+				//enemy.transform.position += direction * Time.deltaTime;
+				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward) * enemy.moveSpeed;
+				controller.SimpleMove(forward * Time.deltaTime);
+
+				Debug.Log(enemy.getCurTile().id);
 
 				if (enemy.getCurTile() == target) {
-					Debug.Log("RESET");
+					Debug.Log("TURTLE IS BEING RESET");
 					resetRandom();
 				}
 
@@ -146,13 +167,11 @@ public class TurtleState : AIStateInterface {
 				List<Tile> waypoints = enemy.waypoints;
 
 				// if the current tile is a waypoint, remove it
-				waypoints.Remove(enemy.getCurTile());
+				//waypoints.Remove(enemy.getCurTile());
 
 				int rand = Random.Range(0, waypoints.Count);
 				target = waypoints[rand];
-				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
-				direction.y = 0;
-				lookRotation = Quaternion.LookRotation(direction);
+				
 				break;
 		}
 
@@ -173,40 +192,32 @@ public class TurtleState : AIStateInterface {
 			Tile final = path [path.Count - 1].tile;
 			if (enemy.getCurTile() == final) {
 				Debug.Log("TARGET REACHED");
+				this.enemy.isEating = true;
 				return;
 			}
 
 
 			if (enemy.getCurTile() == path[currentNode].tile) {
+				Debug.Log("ONTO NEW NODE");
 				currentNode++;
 				target = path[currentNode].tile;
-				direction = (target.transform.position - enemy.getCurTile().transform.position).normalized;
-				direction.y = 0;
-				lookRotation = Quaternion.LookRotation(direction);
+				
 
 			} else {
 
-				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 1.5f);
-				enemy.transform.position += direction * Time.deltaTime;
+				direction = (target.transform.position - enemy.transform.position).normalized;
+				direction.y = 0;
+				lookRotation = Quaternion.LookRotation(direction);
+				enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * enemy.rotateSpeed);
+				//enemy.transform.position += direction * Time.deltaTime;
+			
+				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward) * enemy.moveSpeed;
+				controller.SimpleMove(forward * Time.deltaTime);
+
 			}
 
 		}
 
-
-		/*
-		// Move towards each next tile on path
-		if (path.Count != 0 && enemy.getCurTile () != path [path.Count - 1].tile) {
-			enemy.transform.position += (path [currentNode + 1].tile.transform.position - (enemy.transform.position - Vector3.up)).normalized
-				* enemy.moveSpeed * Time.deltaTime;
-
-			// If at the last node in path, increment the index to move to (currentNode)
-			if (Vector3.Distance (path [currentNode + 1].tile.transform.position + Vector3.up, enemy.transform.position) < 0.1f) {
-				currentNode++;
-			}
-
-		// Reached back to spawn tile
-		}
-		*/
 
 	} 
 

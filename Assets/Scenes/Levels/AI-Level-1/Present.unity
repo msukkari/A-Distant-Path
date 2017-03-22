@@ -2046,23 +2046,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4683debd652d5244f8eba8ebff9e62e3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1495128951 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1203797875325802, guid: f19899c59a0028347898ff357bce9104,
-    type: 2}
-  m_PrefabInternal: {fileID: 1551245835}
---- !u!114 &1495128952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1495128951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da9530c0de767b5438cad3d103052fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeInterval: 3
 --- !u!4 &1544318174 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4348193210544472, guid: 4683debd652d5244f8eba8ebff9e62e3,
@@ -2132,51 +2115,6 @@ Prefab:
       propertyPath: goal
       value: 
       objectReference: {fileID: 669708987}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f2e4be0f2e8ac4a4181aa16c0c41430a, type: 3}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: BypassListenerEffects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: BypassEffects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 82800345129801880, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: BypassReverbZones
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114750039623767678, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: moveSpeed
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114750039623767678, guid: f19899c59a0028347898ff357bce9104,
-        type: 2}
-      propertyPath: rotateSpeed
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f19899c59a0028347898ff357bce9104, type: 2}
   m_IsPrefabParent: 0

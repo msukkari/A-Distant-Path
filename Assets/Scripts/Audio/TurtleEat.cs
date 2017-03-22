@@ -10,6 +10,7 @@ public class TurtleEat : MonoBehaviour {
 
 	public float timeInterval;
 	private float now;
+	private int eatCount = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,9 @@ public class TurtleEat : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (eatCount >= 3)
+			return;
+
 		if (enemy.isEating) {
 
 			now += Time.deltaTime;
@@ -30,6 +34,7 @@ public class TurtleEat : MonoBehaviour {
 			if (now >= timeInterval) {
 				audio.Play();
 				now = 0.0f;
+				eatCount++;
 			}
 
 		}

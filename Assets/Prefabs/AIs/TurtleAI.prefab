@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 143572571101901122}
   - component: {fileID: 65596631498240270}
   - component: {fileID: 82800345129801880}
+  - component: {fileID: 114000897557052626}
   m_Layer: 0
   m_Name: TurtleAI
   m_TagString: Untagged
@@ -433,7 +434,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203797875325802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.096, y: -0.468, z: 7.396}
+  m_LocalPosition: {x: 6.121036, y: -0.5, z: 9.119699}
   m_LocalScale: {x: 1.2, y: 1.5, z: 1.2}
   m_Children:
   - {fileID: 4161188451096474}
@@ -507,9 +508,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: f2e4be0f2e8ac4a4181aa16c0c41430a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -565,7 +566,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -595,6 +596,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000897557052626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1203797875325802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9530c0de767b5438cad3d103052fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeInterval: 3
 --- !u!114 &114750039623767678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,19 +621,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 2
   initialState: 2
-  moveSpeed: 25
-  rotateSpeed: 2
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  moveSpeed: 40
+  rotateSpeed: 3
+  waypoints: []
   goal: {fileID: 0}
   isShrunk: 0
   isGrown: 0
   foundWater: 0
   frozePlayer: 0
   followPlayerAgain: 0
+  isEating: 0
   activityRadius: 15
 --- !u!137 &137217771744438166
 SkinnedMeshRenderer:

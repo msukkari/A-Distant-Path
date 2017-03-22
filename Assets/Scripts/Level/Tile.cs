@@ -52,6 +52,7 @@ public class Tile : MonoBehaviour {
         {
             elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
         }
+  
         /*
         if (isHighlighted){
 			if(renderer.material.shader != this.highlight){
@@ -147,7 +148,6 @@ public class Tile : MonoBehaviour {
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
-				am.AIStateEvent(AIEvents.OnMetalCubeRust);
 			}
 
 			Destroy (element.gameObject);

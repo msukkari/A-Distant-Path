@@ -96,12 +96,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
 		Tile tile = lm.getTileAt(pos);
 
-
-
-		// AT THIS POINT, THE TURTLE AI WILL NEED TO RECALCULATE
-		
-		AIManager.instance.AIStateEvent(AIEvents.OnMetalCubeRust);
-
 		if(tile != null){
 
 			if(tile.element != null){

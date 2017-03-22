@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour {
 	// list of enemy waypoints
 	public List<Tile> waypoints = new List<Tile>();
 
+	public Tile goal;
+
 	// spawn tile of enemy
 	private Tile spawnTile;
 	private Tile lastValidTile;

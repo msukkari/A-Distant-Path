@@ -6,6 +6,8 @@ public class MetalCube : Element {
 
 	public int tileID;
 
+	private AIManager am = AIManager.instance;
+
 	void Start () {
 		elementType = ElementType.MetalCube;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
@@ -16,6 +18,11 @@ public class MetalCube : Element {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	void OnDestroy() {
+		Debug.Log("HERHERHERHEHREHRHERHER");
+		am.AIStateEvent(AIEvents.OnMetalCubeRust);
 	}
 
 	public override bool WaterInteract(EventTransferManager ETManager) {

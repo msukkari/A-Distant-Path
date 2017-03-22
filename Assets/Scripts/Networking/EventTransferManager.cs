@@ -55,7 +55,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 
-				if(Input.GetButton("BButton")){
+				if(Input.GetButton("BButton") && !this.player.hasTransfered){
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
 						GetComponent<PhotonView>().RPC("sendElems", PhotonTargets.Others);
@@ -65,6 +65,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 						Debug.Log("Calling otherPlayerPressTransfer RPC");
 						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others);
 					}
+				}
+				else if(!Input.GetButtonUp("BButton")){
+					this.player.hasTransfered = false;
 				}
 
 
@@ -150,6 +153,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(curPlayer != null){
 			curPlayer.otherPlayerPressingTransfer = false;
+			curPlayer.hasTransfered = false;
 
 			int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
 			int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
@@ -176,6 +180,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 
 		if(curPlayer != null){
+			curPlayer.hasTransfered = true;
+
 			int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
 			int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
 

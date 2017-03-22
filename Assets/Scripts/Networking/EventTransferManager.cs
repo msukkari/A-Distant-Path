@@ -65,12 +65,12 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					else{
 						// Change other players pressed
 						Debug.Log("Calling otherPlayerPressTransfer RPC");
-						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others);
+						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
 					}
 				}
-				else if(!Input.GetButton("BButton")){
+				else{
 					this.player.hasTransfered = false;
-					this.player.otherPlayerPressingTransfer = false;
+					GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{false});
 				}
 
 
@@ -107,13 +107,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 	[PunRPC]
-	public void otherPlayerPressTransfer(){
+	public void otherPlayerPressTransfer(bool status){
 		Debug.Log("otherPlayerPressTransfer being called");
 
 		if(player == null){
 			Debug.Log("PLAYER IS NULL IN otherPlayerPressTransfer");
 		}
-		this.player.otherPlayerPressingTransfer = true;
+		this.player.otherPlayerPressingTransfer = status;
 	}
 
 

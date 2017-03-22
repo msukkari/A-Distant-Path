@@ -155,8 +155,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 
 		if(curPlayer != null){
-			curPlayer.otherPlayerPressingTransfer = false;
-			curPlayer.hasTransfered = false;
+			curPlayer.hasTransfered = true;
 
 			int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
 			int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
@@ -219,8 +218,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		if(curPlayer != null){
 			curPlayer.elementsInventory[ElementType.Water] = water;
 			curPlayer.elementsInventory[ElementType.Fire] = fire;
-
-			curPlayer.otherPlayerPressingTransfer = false;
 		}
 		else{
 			Debug.Log("PLAYER COMPONENT NOT FOUND");

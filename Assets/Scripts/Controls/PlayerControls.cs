@@ -24,7 +24,6 @@ public class PlayerControls : MonoBehaviour
     private GameObject selectedTile;
     private Tile prevSelectedTile;
 
-    private TriggerType mode;
 
     public float jumpForce = 20f;
     public float gravity = -30f;
@@ -41,12 +40,7 @@ public class PlayerControls : MonoBehaviour
     private int currentAmmo = 0;
 
     private int numTypes = 3;
-    public enum TriggerType
-    {
-        placeWaypoint,
-        arcThrowing,
-        directInteract,
-    }
+    
 
     private Player playerScript;
 
@@ -55,8 +49,9 @@ public class PlayerControls : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        mode = TriggerType.directInteract;
         playerScript = gameObject.GetComponent<Player>();
+        actualCursorRange = 1.8f;
+        cursor.GetComponent<MeshRenderer>().enabled = false;
     }
 
 
@@ -104,22 +99,14 @@ public class PlayerControls : MonoBehaviour
         cc.Move(this.moveDirection * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("LeftBumper"))
-        {
-            toggleMode();
-        }
+        
 
-        if (mode == TriggerType.arcThrowing || mode == TriggerType.placeWaypoint)
-        {
-            actualCursorRange = cursorRange;
-            cursor.GetComponent<MeshRenderer>().enabled = true;
-        }
-        else if (mode == TriggerType.directInteract)
-        {
+        
+        
             actualCursorRange = 1.8f;
             cursor.GetComponent<MeshRenderer>().enabled = false;
 
-        }
+        
 
         /*
         if (Input.GetAxis("RightTrigger") >= 0.9 || mode == TriggerType.directInteract) {
@@ -184,22 +171,12 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting)
         {
             isShooting = true;
-            if (mode == TriggerType.arcThrowing)
-            {
-                playerScript.throwMaterial(curTile);
-            }
-            else if (mode == TriggerType.directInteract)
-            {
-                playerScript.interactInFront(curTile, currentAmmo);
-            }
-            else if (mode == TriggerType.placeWaypoint)
-            {
-                playerScript.placeWaypoint(cursor.transform.position);
-            }
+
+            playerScript.interactInFront(curTile, currentAmmo);
+
         }
         else if (Input.GetAxisRaw("LeftTrigger") < 0.9)
         {
-            // Debug.Log("SETTING SHOOTING TO FALSE");
             isShooting = false;
         }
     }
@@ -305,20 +282,6 @@ public class PlayerControls : MonoBehaviour
     public void setPivotPoint(GameObject pivotPoint)
     {
         this.pivotPoint = pivotPoint;
-    }
-
-    public void toggleMode()
-    {
-        int i = (int)mode;
-        i++;
-        i %= numTypes;
-        mode = (TriggerType)i;
-
-        /*if (mode == TriggerType.placeWaypoint || mode == TriggerType.arcThrowing) {
-            cursor.GetComponent<MeshRenderer>().enabled = true;
-        } else if (mode == TriggerType.directInteract) {
-            cursor.GetComponent<MeshRenderer>().enabled = false;
-        }*/
     }
 
     public Tile getTileUnderCursor()

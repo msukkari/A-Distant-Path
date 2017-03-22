@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-	public Text fireText;
-	public Text waterText;
-
     public List<Image> fire;
     public List<Image> water;
+
+    public Image firePlus;
+    public Image waterPlus;
 
     public float fireTransp;
     public float waterTransp;
@@ -27,18 +27,14 @@ public class UIManager : MonoBehaviour {
         foreach (var image in water) {
             image.CrossFadeAlpha(0, 0, false);
         }
+
+        firePlus.CrossFadeAlpha(0, 0, false);
+        waterPlus.CrossFadeAlpha(0, 0, false);
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		/*foreach (var entry in player.elementsInventory) {
-			if (entry.Key == ElementType.Fire) {
-				fireText.text = "Fire Element = " + entry.Value;
-			}
-			if (entry.Key == ElementType.Water) {
-				waterText.text = "Water Element = " + entry.Value;
-			}
-		}*/
+
+    // Update is called once per frame
+    void Update () {
 
         if(playerControls.getCurrentAmmo() == 1) {
             waterTransp = 1f;
@@ -60,6 +56,11 @@ public class UIManager : MonoBehaviour {
                     }
                     for(; i < 5; i++) {
                         fire[i].CrossFadeAlpha(0, 0, false);
+                    }
+                    if(entry.Value > 5) {
+                        firePlus.CrossFadeAlpha(fireTransp, 0, false);
+                    } else {
+                        firePlus.CrossFadeAlpha(0, 0, false);
                     }
                 }
                 

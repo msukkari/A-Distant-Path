@@ -16,12 +16,20 @@ public class ElementShooterGun : Gun {
 		currentElement = elementType;
 	}
 
+
 	public override void ShootGun(Tile tile, int chargesPerHit) {
-		if (owner.currentLocation != tile && owner.HasElement (currentElement, chargesPerHit) && (!tile.HasElement() || tile.element.elementType != currentElement)) {
-			tile.GainElement (currentElement);
+        Debug.Log("Shooting");
+        if (owner.currentLocation != tile && owner.HasElement (currentElement, chargesPerHit) && (!tile.HasElement() || tile.element.elementType != currentElement)) {
 			owner.LoseElement (currentElement, chargesPerHit);
-		}
-	}
+
+
+            GameObject particle = Instantiate(Resources.Load("Particle")) as GameObject;
+            particle.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+            particle.GetComponent<Particle>().setParameters(tile.gameObject, owner, currentElement, tile);
+
+
+        }
+    }
 
 	public override void ChangeMode() {
 		ChangeElement ();

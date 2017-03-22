@@ -18,8 +18,8 @@ public class Player : MonoBehaviour{
 	private const int PICKUP_TIME_THRESHOLD = 1;
 
 	private int currentGun = 0;
-	private bool chargingWeapon = false;
-	private float currentCharge = 0.0f;
+	//private bool chargingWeapon = false;
+	//private float currentCharge = 0.0f;
 
 	private Tile lastValidTile;
 	private bool frozen;
@@ -37,6 +37,7 @@ public class Player : MonoBehaviour{
 	// --- audio stuff ---
 	public AudioClip climbTrack;
 
+    
 	void Start() {
 		guns = GetComponentsInChildren<Gun> ();
 		this.audio = GetComponent<AudioSource>();
@@ -74,9 +75,16 @@ public class Player : MonoBehaviour{
 			}
 
 			// Suck tile only if space is pressed and the player is not moving
-			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton")) && NotMoving ()) {
-				chargingWeapon = true;
-			}
+			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton"))) {
+                Debug.Log("Sucking up!");
+
+                /*if (element is Water) {
+                    absorbingParticleSystem.gameObject.SetActive(true);
+                } else {
+                    absorbingParticleSystem.gameObject.SetActive(false);
+                }*/
+                guns[currentGun].AreaShot();
+            }
 
 			// R Shoots water in the front tile (for now)
 			if (Input.GetKeyDown (KeyCode.R)) {
@@ -87,11 +95,17 @@ public class Player : MonoBehaviour{
 			if (Input.GetKeyDown (KeyCode.Q)) {
 				ShootFireInFrontTile ();	
 			}
-
-			if (chargingWeapon && NotMoving ()) {
-				currentCharge += Time.deltaTime;
-
-				if (currentCharge > 1.0f) {
+			/*if (chargingWeapon && NotMoving ()) {
+				//currentCharge += Time.deltaTime;
+                Element element = gameObject.GetComponent<PlayerControls>().getPrevTile().element;
+                Debug.Log(element);
+                if(element is Water) {
+                    absorbingParticleSystem.gameObject.SetActive(true);
+                } else {
+                    absorbingParticleSystem.gameObject.SetActive(false);
+                }
+                
+                if (currentCharge > 1.0f) {
 					guns [currentGun].AreaShot ();
 					currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
 					chargingWeapon = false;
@@ -99,13 +113,13 @@ public class Player : MonoBehaviour{
 			} else {
 				currentCharge = 0.0f;
 				chargingWeapon = false;
-			}
+			}*/
 
-			if (Input.GetKeyUp (KeyCode.Space)) {
+			/*if (Input.GetKeyUp (KeyCode.Space)) {
 				currentCharge = 0.0f;
 				chargingWeapon = false;
 
-			}
+			}*/
 
 			// handle AI trigger
 			AITrigger ();

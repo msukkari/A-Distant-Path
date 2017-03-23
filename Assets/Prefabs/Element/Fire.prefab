@@ -258,6 +258,7 @@ MonoBehaviour:
   IGNITE_THRESHOLD: 0
   nList: []
   fireSystemOn: 0
+  audio: {fileID: 0}
 --- !u!198 &198021217703947636
 ParticleSystem:
   m_ObjectHideFlags: 1

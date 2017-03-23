@@ -392,6 +392,8 @@ public class Player : MonoBehaviour{
 			audio.Play();
 		}
 
+
+
 	}
 
 	public void LoseElement(ElementType element, int number) {

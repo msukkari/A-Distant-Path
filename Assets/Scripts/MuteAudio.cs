@@ -15,7 +15,8 @@ public class MuteAudio : MonoBehaviour {
 		Player player = other.gameObject.GetComponent<Player>();
 
 		if(player != null){
-			AudioManager.instance.primary.Stop();		
+			AudioManager.instance.primary.Stop();	
+			AudioManager.instance.stop = true;	
 		}
 
 	}

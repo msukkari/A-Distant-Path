@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour {
 	public bool fadeFrom1to3 = false;
 	public bool isFading = false;
 	private float targetVol;  
+	public bool stop = false;
 
 	// Use this for initialization
 	void Start () {
@@ -53,7 +54,7 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (stop) return;
 
 		if (!primary.isPlaying) {
 			index++;

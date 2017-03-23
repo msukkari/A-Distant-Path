@@ -32,4 +32,12 @@ public class Menu : MonoBehaviour {
 
 
  	}
+
+ 	public void Update() {
+ 		if (Input.GetButtonDown("AButton")) {
+ 			LoadOnline();
+ 		} else if(Input.GetButtonDown("YButton") && Input.GetButtonDown("BButton")) {
+ 			LoadOffline();
+ 		}
+ 	}
 }

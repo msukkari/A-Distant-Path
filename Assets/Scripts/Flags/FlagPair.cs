@@ -8,6 +8,7 @@ public class FlagPair : MonoBehaviour {
     public Player playerScript;
     public bool rightFlag = false;
     public bool leftFlag = false;
+    public Gate gate;
 	// Use this for initialization
 	void Start () {
         GameObject obj = GameObject.FindGameObjectWithTag("Player");
@@ -19,7 +20,7 @@ public class FlagPair : MonoBehaviour {
 	void Update () {
         if (flagsActive)
         {
-            if (playerScript.otherPlayerFinishedLevel)
+            if (playerScript.otherPlayerFinishedLevel || gate.gateOpen)
             {
                 rightFlag = true;
             }

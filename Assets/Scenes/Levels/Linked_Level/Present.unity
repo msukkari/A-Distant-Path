@@ -19242,6 +19242,7 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   rightFlag: 0
   leftFlag: 0
+  gate: {fileID: 0}
 --- !u!65 &808090280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30236,6 +30237,7 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   rightFlag: 0
   leftFlag: 0
+  gate: {fileID: 0}
 --- !u!65 &1257718562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37027,6 +37029,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4644611712664604, guid: 7451c835eb66d6f4abca28783a73114d,
     type: 2}
   m_PrefabInternal: {fileID: 1616933339}
+--- !u!114 &1616933342 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114646589009457168, guid: 7451c835eb66d6f4abca28783a73114d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1616933339}
+  m_Script: {fileID: 11500000, guid: c9591e2235ef60a45a3cd7ed60a033be, type: 3}
 --- !u!1001 &1617349909
 Prefab:
   m_ObjectHideFlags: 0
@@ -41300,6 +41308,7 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   rightFlag: 0
   leftFlag: 0
+  gate: {fileID: 1616933342}
 --- !u!65 &1801062261
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47044,6 +47053,7 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   rightFlag: 0
   leftFlag: 0
+  gate: {fileID: 0}
 --- !u!65 &2041461897
 BoxCollider:
   m_ObjectHideFlags: 0

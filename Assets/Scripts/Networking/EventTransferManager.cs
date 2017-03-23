@@ -59,7 +59,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 				if(Input.GetButton("BButton") && !this.player.hasTransfered){
 
-					//GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+					if(transferHighlighted == false){
+						GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = true;
+					}
 
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
@@ -78,13 +81,19 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					}
 				}
 				else if(!Input.GetButton("BButton")){
-					//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+					if(transferHighlighted){
+						GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = false;
+					}
 
 					this.player.hasTransfered = false;
 					GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{false});
 				}
 				else{
-					//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+					if(transferHighlighted){
+						GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = false;
+					}
 				}
 				/*
 				if(transferHighlighted == false){

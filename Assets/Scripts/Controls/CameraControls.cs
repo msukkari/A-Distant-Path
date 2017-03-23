@@ -46,7 +46,10 @@ public class CameraControls : MonoBehaviour {
     private float targetAngle;
 
     // Update is called once per frame
-    void Update() {        
+    void Update() {       
+
+        if (character == null) return;
+
         //Camera Displacement
         Vector3 distance = character.transform.position - transform.position;
         if (distance.sqrMagnitude > 0) {

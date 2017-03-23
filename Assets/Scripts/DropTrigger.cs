@@ -78,6 +78,9 @@ public class DropTrigger : MonoBehaviour {
 					GameObject obj = objects[rand];
 					objects.Remove(obj);
 
+					if (obj.GetComponent<Catch>() != null)
+						return;
+
 					obj.AddComponent<Rigidbody>();
 
 					fallenObjects.Add(obj);

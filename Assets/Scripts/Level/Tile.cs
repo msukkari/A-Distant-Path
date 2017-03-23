@@ -168,8 +168,7 @@ public class Tile : MonoBehaviour {
 
         if (!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
         {
-            collider.size = new Vector3(collider.size.x, 2f, collider.size.z);
-            collider.center = Vector3.up * 0.5f;
+            collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
         }
         else if (navigatable)
         {

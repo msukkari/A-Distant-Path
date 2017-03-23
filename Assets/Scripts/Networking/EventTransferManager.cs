@@ -160,6 +160,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
+					this.player.getCurTile().gate.GetComponent<Gate>().otherFlag.isTriggered = true;
+					this.player.getCurTile().gate.GetComponent<Gate>().myFlag.isTriggered = true;
+
+	
+
 					Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
 					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 					player.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
@@ -170,6 +175,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					this.player.recentFinishTile = null;
 				}
 				else{
+
+					Debug.Log("IN THE ELSE");
+					this.player.getCurTile().gate.GetComponent<Gate>().myFlag.isTriggered = true;
 
 					float curTime3 = Time.time;
 

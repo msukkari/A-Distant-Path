@@ -6,6 +6,8 @@ public class CorpseTrigger : MonoBehaviour {
 	public Vector3 SpawnPoint;
 	public GameObject scoutPrefab;
 
+	public bool hasBeenTriggered;
+
 	// Use this for initialization
 	void Start () {
 		this.SpawnPoint = new Vector3(this.transform.position.x, this.transform.position.y + 10, this.transform.position.z - 1);
@@ -21,8 +23,9 @@ public class CorpseTrigger : MonoBehaviour {
 
 		Player player = other.gameObject.GetComponent<Player>();
 
-		if(player != null){
-			GameObject deadScount = Instantiate(scoutPrefab, SpawnPoint, Quaternion.identity) as GameObject;			
+		if(player != null && !hasBeenTriggered){
+			GameObject deadScount = Instantiate(scoutPrefab, SpawnPoint, Quaternion.Euler(-90, 0, 0)) as GameObject;	
+			this.hasBeenTriggered = true;		
 		}
 
 	}

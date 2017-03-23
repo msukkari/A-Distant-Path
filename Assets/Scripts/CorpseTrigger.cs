@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class CorpseTrigger : MonoBehaviour {
 	public Vector3 SpawnPoint;
 	public GameObject scoutPrefab;
 
 	public bool hasBeenTriggered;
+	public Text title;
 
 	// Use this for initialization
 	void Start () {
@@ -29,4 +32,10 @@ public class CorpseTrigger : MonoBehaviour {
 		}
 
 	}
+
+
+	IEnumerator ChangeText() {
+        yield return new WaitForSeconds(5);
+        title.enabled = true;
+    }
 }

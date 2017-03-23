@@ -8929,6 +8929,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fp: {fileID: 194497367}
+--- !u!114 &368422516 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114001897467064850, guid: f0291b88c9ddf354593bfb09bd25ecc1,
+    type: 2}
+  m_PrefabInternal: {fileID: 70147427}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &369575901
 Prefab:
   m_ObjectHideFlags: 0
@@ -21031,6 +21037,8 @@ MonoBehaviour:
   SpawnPoint: {x: 0, y: 0, z: 0}
   scoutPrefab: {fileID: 1113400170334994, guid: 51ce738a855a22646a635257067b3138,
     type: 2}
+  hasBeenTriggered: 0
+  title: {fileID: 368422516}
 --- !u!23 &920885192
 MeshRenderer:
   m_ObjectHideFlags: 0

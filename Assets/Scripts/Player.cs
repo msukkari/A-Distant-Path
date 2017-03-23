@@ -36,6 +36,8 @@ public class Player : MonoBehaviour{
 
 	// --- audio stuff ---
 	public AudioClip climbTrack;
+	public AudioClip waterElementPickup;
+	public AudioClip fireElementPickup;
 
 	public bool otherPlayerPressingTransfer;
 	public bool hasTransfered;
@@ -376,6 +378,15 @@ public class Player : MonoBehaviour{
 		} else {
 			elementsInventory.Add (element, number);
 		}
+
+		if (element == ElementType.Water) {
+			audio.clip = waterElementPickup;
+			audio.Play();
+		} else if (element == ElementType.Fire) {
+			audio.clip = fireElementPickup;
+			audio.Play();
+		}
+
 	}
 
 	public void LoseElement(ElementType element, int number) {

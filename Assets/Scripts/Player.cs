@@ -630,6 +630,10 @@ public class Player : MonoBehaviour{
         {
             other.GetComponentInParent<FlagPair>().next.flagsActive = true;
         }
+        else if (other.CompareTag("FlagTrigger2"))
+        {
+            other.GetComponentInParent<FlagPair>().leftFlag = true;
+        }
     }
 
     public void emptyInventory()

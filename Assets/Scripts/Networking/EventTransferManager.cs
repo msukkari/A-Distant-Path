@@ -36,14 +36,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		if(photonView.isMine){
 
 			if(this.player.otherPlayerPressingTransfer){
-				for(Tile tile in lm.getTileList()){
+				foreach(Tile tile in lm.getTileList()){
 					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
 						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;			
 					}
 				}
 			}
 			else{
-				for(Tile tile in lm.getTileList()){
+				foreach(Tile tile in lm.getTileList()){
 					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
 						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;			
 					}

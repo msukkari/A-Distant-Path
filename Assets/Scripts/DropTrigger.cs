@@ -56,9 +56,7 @@ public class DropTrigger : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (fall) {
-
-			if(objects.Count != 0) {
+		if (fall && objects.Count != 0) {
 
 				now += Time.deltaTime;
 
@@ -70,8 +68,12 @@ public class DropTrigger : MonoBehaviour {
 
 
 					obj.AddComponent<Rigidbody>();
+
+					/*
 					Rigidbody gameObjectsRigidBody = obj.AddComponent<Rigidbody>(); // Add the rigidbody.
 					gameObjectsRigidBody.mass = 5; // Set the GO's mass to 5 via the Rigidbody.
+					gameObjectsRigidBody.velocity = new Vector3(0, 0, 0);
+					*/
 
 					//fallenObjects.Add(obj);
 					objects.Remove(obj);
@@ -84,7 +86,7 @@ public class DropTrigger : MonoBehaviour {
 					//}
 				}
 
-			} 
+			 
 
 			/*else {
 				Debug.Log("here!!");

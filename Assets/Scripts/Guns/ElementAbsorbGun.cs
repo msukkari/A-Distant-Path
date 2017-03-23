@@ -22,13 +22,6 @@ public class ElementAbsorbGun : Gun {
 	public override void AreaShot() {
 		foreach (Tile neighbor in owner.getCurTile().neighbors) {
 			if (neighbor.element != null && (neighbor.element.elementType == ElementType.Water || neighbor.element.elementType == ElementType.Fire)) {
-					
-				Debug.Log("SUCK");
-
-				if (neighbor.element.elementType == ElementType.Fire) {
-					Debug.Log("HERE");
-					neighbor.element.GetComponent<AudioSource>().Stop();
-				}
 				ElementType elementObtained = SuckTileElement (neighbor);
 
 

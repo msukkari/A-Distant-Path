@@ -77,7 +77,7 @@ public class CameraControls : MonoBehaviour {
                         if (turnDir.y >= rotateThreshold || turnDir.y <= -rotateThreshold) {
                             y = Mathf.Lerp(y, turnDir.y * rotateSpeed + y, Time.deltaTime);
                         }
-                        y = Mathf.Clamp(y, 10, 70);
+                        y = Mathf.Clamp(y, 30, 80);
                         pivot.transform.rotation = Quaternion.Euler(new Vector3(y, x, 0));
                     }
                 }

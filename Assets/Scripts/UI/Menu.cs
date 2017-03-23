@@ -12,7 +12,8 @@ public class Menu : MonoBehaviour {
 	// GameManager GetInstanceGameManager
 	private GameManager gm = GameManager.instance;
 
-
+    public GameObject button;
+        
 	public void LoadOnline() {
 		Debug.Log("Menu.cs: <online button clicked>");
 

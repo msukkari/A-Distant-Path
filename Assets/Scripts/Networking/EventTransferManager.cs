@@ -19,6 +19,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private bool otherPlayerPressing;
 
 	float initialTime;
+	float initialTime2;
+	float initialTime3;
 
 
 	// Use this for initialization
@@ -27,6 +29,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		this.otherPlayerPressing = false;
 
 		initialTime = Time.time;
+		initialTime2 = Time.time;
+		initialTime3 = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -95,8 +99,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					}
 					else{
 						// Change other players pressed
-						Debug.Log("Calling otherPlayerPressTransfer RPC");
-						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
+
+						float curTime2 = Time.time;
+						if(curTime2 - initialTime2 > 1f){
+							initialTime2 = curTime2;
+
+							Debug.Log("Calling otherPlayerPressTransfer RPC");
+							GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
+						}
 					}
 				}
 				else if(!Input.GetButton("BButton")){
@@ -155,14 +165,21 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					this.player.recentFinishTile = null;
 				}
 				else{
-					Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
-					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
+
+					float curTime3 = Time.time;
+
+					if(curTime3 - initialTime3 > 1f){
+						initialTime3 = curTime3;
+
+						Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
+						GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
+					}
 				}
 			}
 
 
 			float curTime = Time.time;
-			if(initialTime - curTime > 1f){
+			if(curTime - initialTime > 1f){
 				initialTime = curTime;
 
 				Debug.Log("HAS BEEN ONE SECOND, CALLING OTHER PLAYER PRESSED OFF");
@@ -544,6 +561,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 }
+
+
 
 
 

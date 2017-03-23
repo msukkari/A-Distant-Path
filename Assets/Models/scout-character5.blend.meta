@@ -408,8 +408,8 @@ ModelImporter:
     - serializedVersion: 16
       name: IdleAnim
       takeName: IdleAnim
-      firstFrame: -1
-      lastFrame: 144
+      firstFrame: 0
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

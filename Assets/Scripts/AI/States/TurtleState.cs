@@ -168,10 +168,10 @@ public class TurtleState : AIStateInterface {
 				Vector3 forward = enemy.transform.TransformDirection(Vector3.forward) * enemy.moveSpeed;
 				controller.SimpleMove(forward * Time.deltaTime);
 
-				Debug.Log(enemy.getCurTile().id);
+				//Debug.Log(enemy.getCurTile().id);
 
 				if (enemy.getCurTile() == target) {
-					Debug.Log("TURTLE IS BEING RESET");
+					//Debug.Log("TURTLE IS BEING RESET");
 					resetRandom();
 				}
 

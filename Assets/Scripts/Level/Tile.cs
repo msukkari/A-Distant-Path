@@ -192,20 +192,26 @@ public class Tile : MonoBehaviour {
 	// Sets the material of the tile based on the element it has
 	private void setMaterial(){
 		Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            if (LevelManager.instance != null && LevelManager.instance.TimeState == TimeStates.Present)
+            {
+                renderer.material = GrassMatFuture;
+            }
+            else
+            {
+                renderer.material = GrassMat;
+            }
 
-		if(LevelManager.instance != null && LevelManager.instance.TimeState == TimeStates.Present){
-			renderer.material = GrassMatFuture;
-		}
-		else{
-			renderer.material = GrassMat;
-		}
-
-		if (element != null) {
-			if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand
-			   || element.elementType == ElementType.MoltenSand || element.elementType == ElementType.Glass) {
-				renderer.material = element.GetComponent<Renderer>().material;
-			}
-		}
+            if (element != null)
+            {
+                if (element.elementType == ElementType.Ice || element.elementType == ElementType.Sand
+                   || element.elementType == ElementType.MoltenSand || element.elementType == ElementType.Glass)
+                {
+                    renderer.material = element.GetComponent<Renderer>().material;
+                }
+            }
+        }
 		/*
 		if (element != null) {
 			switch (element.elementType) {

@@ -181,8 +181,8 @@ public class LevelManager : MonoBehaviour {
 
         foreach (Tile tile in TileList)
         {
-        	Debug.Log(tile);
-        	Debug.Log("ET MANAGER: " + this.ETManager);
+        	//Debug.Log(tile);
+        	//Debug.Log("ET MANAGER: " + this.ETManager);
             tile.EventManager = this.ETManager;
         }
 

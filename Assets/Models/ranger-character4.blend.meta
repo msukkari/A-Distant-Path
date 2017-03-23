@@ -423,7 +423,7 @@ ModelImporter:
     - serializedVersion: 16
       name: IdleAnimRanger
       takeName: IdleAnimRanger
-      firstFrame: -1
+      firstFrame: 0
       lastFrame: 79
       wrapMode: 0
       orientationOffsetY: 0

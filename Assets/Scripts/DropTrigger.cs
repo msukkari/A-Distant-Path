@@ -37,14 +37,15 @@ public class DropTrigger : MonoBehaviour {
 		beenTriggered = true;
 
 		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        int i = 0;
-
         foreach (Collider collider in hitColliders) {
         	GameObject obj = collider.transform.gameObject;
         	objects.Add(obj);
         }
         this.fall = true;
-        au.secondary.Play();
+        if (au != null && au.secondary != null)
+        {
+            au.secondary.Play();
+        }
 	}
 
 	public void OnTriggerEnter(Collider other){
@@ -82,6 +83,11 @@ public class DropTrigger : MonoBehaviour {
 						return;
 
 					obj.AddComponent<Rigidbody>();
+                    MeshCollider m = obj.GetComponent<MeshCollider>();
+                    if (m != null)
+                    {
+                        m.convex = true;
+                    }
 
 					fallenObjects.Add(obj);
 					

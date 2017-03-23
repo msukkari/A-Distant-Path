@@ -22,6 +22,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	float initialTime2;
 	float initialTime3;
 
+	private bool otherFlagRaised;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -154,16 +156,20 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 			}
 
+			if(player.otherPlayerFinishedLevel && !this.otherFlagRaised){
+				this.otherFlagRaised = true;
+				player.nextFlag.isTriggered = true;
+			}
+
 			if(player.getCurTile().isFinalTile){
 				Debug.Log("Destroying barrier");
 
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
-					this.player.getCurTile().gate.GetComponent<Gate>().otherFlag.isTriggered = true;
 					this.player.getCurTile().gate.GetComponent<Gate>().myFlag.isTriggered = true;
 
-	
+
 
 					Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
 					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;

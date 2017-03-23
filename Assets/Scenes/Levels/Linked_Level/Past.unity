@@ -14814,6 +14814,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4348193210544472, guid: 4683debd652d5244f8eba8ebff9e62e3,
     type: 2}
   m_PrefabInternal: {fileID: 731409845}
+--- !u!1 &732500669 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1865055059629596, guid: 7451c835eb66d6f4abca28783a73114d,
+    type: 2}
+  m_PrefabInternal: {fileID: 345091943}
 --- !u!1001 &735192267
 Prefab:
   m_ObjectHideFlags: 0
@@ -20487,6 +20492,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114386914283730212, guid: cb84cdd1142c91d4daa813f9ee2e4a7f,
+        type: 2}
+      propertyPath: nextFlagGO
+      value: 
+      objectReference: {fileID: 732500669}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb84cdd1142c91d4daa813f9ee2e4a7f, type: 2}
   m_IsPrefabParent: 0

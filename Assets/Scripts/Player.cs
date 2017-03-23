@@ -47,6 +47,8 @@ public class Player : MonoBehaviour{
 
 	public Tile recentFinishTile;
 
+	public Flag nextFlag;
+
     
 	void Start() {
 		this.hasTransfered = false;

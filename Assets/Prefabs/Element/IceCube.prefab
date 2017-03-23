@@ -80,7 +80,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983955630465292}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -111,7 +111,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633634886659172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -179,6 +179,8 @@ MonoBehaviour:
   element: {fileID: 0}
   navigatable: 1
   isGroundTile: 1
+  isFinalTile: 0
+  gate: {fileID: 0}
   tileScale: {x: 1, y: 1, z: 1}
   GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
   GrassMatFuture: {fileID: 0}

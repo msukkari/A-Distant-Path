@@ -5,10 +5,13 @@ using UnityEngine;
 public class Gate : MonoBehaviour {
 
 	public Animator anim;
+	public GameObject child;
+	public Collider block;
 
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
+		block = child.GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame

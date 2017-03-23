@@ -385,10 +385,13 @@ public class Player : MonoBehaviour{
 		}
 
 		if (element == ElementType.Water) {
+			audio.volume = 1.0f;
 			audio.clip = waterElementPickup;
 			audio.Play();
 		} else if (element == ElementType.Fire) {
+			float temp = audio.volume;
 			audio.clip = fireElementPickup;
+			audio.volume = 0.1f;
 			audio.Play();
 		}
 

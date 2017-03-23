@@ -626,6 +626,9 @@ public class Player : MonoBehaviour{
         if (other.CompareTag("Fire"))
         {
             this.Respawn();
+        } else if (other.CompareTag("FlagTrigger"))
+        {
+            other.GetComponentInParent<FlagPair>().next.flagsActive = true;
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Level
   - MetalCube
   - Fire
+  - FlagTrigger
   layers:
   - Default
   - TransparentFX

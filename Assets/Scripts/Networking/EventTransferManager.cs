@@ -100,6 +100,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					else{
 						// Change other players pressed
 
+						Debug.Log("Calling otherPlayerPressTransfer RPC");
+						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
+
+						/*
 						float curTime2 = Time.time;
 						if(curTime2 - initialTime2 > 1f){
 							initialTime2 = curTime2;
@@ -107,6 +111,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 							Debug.Log("Calling otherPlayerPressTransfer RPC");
 							GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
 						}
+						*/
 					}
 				}
 				else if(!Input.GetButton("BButton")){

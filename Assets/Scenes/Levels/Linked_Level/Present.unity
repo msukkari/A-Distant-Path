@@ -21087,7 +21087,6 @@ GameObject:
   - component: {fileID: 920885194}
   - component: {fileID: 920885193}
   - component: {fileID: 920885192}
-  - component: {fileID: 920885190}
   - component: {fileID: 920885191}
   m_Layer: 2
   m_Name: CorpseTrigger
@@ -21096,22 +21095,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &920885190
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 54533552005586242, guid: cb84cdd1142c91d4daa813f9ee2e4a7f,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 920885189}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &920885191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32677,6 +32660,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4348193210544472, guid: 4683debd652d5244f8eba8ebff9e62e3,
     type: 2}
   m_PrefabInternal: {fileID: 1452945247}
+--- !u!1001 &1453813468
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 24.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -79.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595786420317320, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: eae97995020ab7b4a8279c92e4336a6e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1459138869
 GameObject:
   m_ObjectHideFlags: 0

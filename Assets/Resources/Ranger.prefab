@@ -760,8 +760,10 @@ MonoBehaviour:
   audio: {fileID: 0}
   ETmanager: {fileID: 0}
   climbTrack: {fileID: 8300000, guid: e4344883cf3911d42a38772eeb7e26ef, type: 3}
-  shootingParticleSystem: {fileID: 0}
-  absorbingParticleSystem: {fileID: 0}
+  waterElementPickup: {fileID: 8300000, guid: 7ca9ec8b577ff4a45953bee8fc95431b, type: 3}
+  fireElementPickup: {fileID: 8300000, guid: 8fadf347408234b43851d274574fa03b, type: 3}
+  otherPlayerPressingTransfer: 0
+  hasTransfered: 0
 --- !u!114 &114534973296570848
 MonoBehaviour:
   m_ObjectHideFlags: 1

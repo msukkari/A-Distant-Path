@@ -107,7 +107,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
-					player.getCurTile().gate.block.enabled = false;
+					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 					player.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
 					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
 
@@ -151,7 +151,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer = play.GetComponent<Player>();
 
 			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
-				curPlayer.getCurTile().gate.block.enabled = false;
+				curPlayer.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 				curPlayer.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
 
 

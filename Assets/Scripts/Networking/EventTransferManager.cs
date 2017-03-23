@@ -146,7 +146,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
 
 					this.player.otherPlayerFinishedLevel = false;
-					this.player.getCurTile().isFinalTile = false;
+					this.player.recentFinishTile.isFinalTile = false;
+					this.player.recentFinishTile = null;
 				}
 				else{
 					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
@@ -191,6 +192,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 				curPlayer.otherPlayerFinishedLevel = false;
 				curPlayer.recentFinishTile.isFinalTile = false;
+				curPlayer.recentFinishTile = null;
 			}
 			else{
 				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");

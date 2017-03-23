@@ -28,7 +28,9 @@ public class CorpseTrigger : MonoBehaviour {
 
 		if(player != null && !hasBeenTriggered){
 			GameObject deadScount = Instantiate(scoutPrefab, SpawnPoint, Quaternion.Euler(-90, 0, 0)) as GameObject;	
-			this.hasBeenTriggered = true;		
+			this.hasBeenTriggered = true;	
+
+			StartCoroutine(ChangeText());
 		}
 
 	}

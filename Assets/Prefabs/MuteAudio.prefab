@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33825868980358808}
   - component: {fileID: 65071247660923660}
   - component: {fileID: 23068626185044886}
+  - component: {fileID: 114977394945688342}
   m_Layer: 2
   m_Name: MuteAudio
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184383720586512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.41, y: 2.68, z: -79.77}
+  m_LocalPosition: {x: 23.649097, y: 3.03, z: -79.88}
   m_LocalScale: {x: 3.9747615, y: 1, z: 1.4399829}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,3 +93,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114977394945688342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184383720586512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65ecb09bbd32674c83b19b19fc87162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

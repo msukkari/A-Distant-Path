@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 65596631498240270}
   - component: {fileID: 82800345129801880}
   - component: {fileID: 114000897557052626}
+  - component: {fileID: 114744132031665480}
   m_Layer: 0
   m_Name: TurtleAI
   m_TagString: Untagged
@@ -434,7 +435,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203797875325802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.121036, y: -0.5, z: 9.119699}
+  m_LocalPosition: {x: 16.975025, y: 1.5000001, z: -68.31923}
   m_LocalScale: {x: 1.2, y: 1.5, z: 1.2}
   m_Children:
   - {fileID: 4161188451096474}
@@ -508,7 +509,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f2e4be0f2e8ac4a4181aa16c0c41430a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7fa8b3e908813164b8e377ef59ea7d8e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
@@ -608,6 +609,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInterval: 3
+--- !u!114 &114744132031665480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1203797875325802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6d9cc3220895147ab949030cf29ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeInterval: 4
 --- !u!114 &114750039623767678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,9 +635,16 @@ MonoBehaviour:
   currentState: 2
   initialState: 2
   moveSpeed: 40
-  rotateSpeed: 3
-  waypoints: []
+  rotateSpeed: 5
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   goal: {fileID: 0}
+  trigger: {fileID: 0}
   isShrunk: 0
   isGrown: 0
   foundWater: 0

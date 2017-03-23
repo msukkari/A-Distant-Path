@@ -164,7 +164,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			float curTime = Time.time;
 			if(initialTime - curTime > 1f){
 				initialTime = curTime;
-				
+
+				Debug.Log("HAS BEEN ONE SECOND, CALLING OTHER PLAYER PRESSED OFF");
+
 				if(player.recentFinishTile == null){
 					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
 				}

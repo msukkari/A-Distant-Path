@@ -35,6 +35,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(photonView.isMine){
 
+
+
 			//Debug.Log(this.player.otherPlayerPressingTransfer);
 
 
@@ -56,6 +58,9 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 				if(Input.GetButton("BButton") && !this.player.hasTransfered){
+
+					GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
 						Debug.Log("CALLING SEND ELEMS");
@@ -73,8 +78,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					}
 				}
 				else if(!Input.GetButton("BButton")){
+					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+
 					this.player.hasTransfered = false;
 					GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{false});
+				}
+				else{
+					GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
 				}
 				/*
 				if(transferHighlighted == false){
@@ -448,7 +458,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			if(tile.element != null){
 				if(tile.element.elementType == ElementType.Transfer){
-					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;
 				}
 				else{
 					Debug.Log("NOT A TRANSFER TILE!");
@@ -473,7 +483,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			if(tile.element != null){
 				if(tile.element.elementType == ElementType.Transfer){
-					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
 				}
 				else{
 					Debug.Log("NOT A TRANSFER TILE!");

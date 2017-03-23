@@ -141,6 +141,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
+					Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
 					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 					player.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
 					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
@@ -150,6 +151,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					this.player.recentFinishTile = null;
 				}
 				else{
+					Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
 					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
 				}
 			}
@@ -159,6 +161,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void otherPlayerFinLevel(bool status){
+		Debug.Log("Other player has finished the level!");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 

@@ -29979,7 +29979,7 @@ Prefab:
     - target: {fileID: 114029104611069968, guid: 735e10fb107435d4285bf83c2640dade,
         type: 2}
       propertyPath: textOnSign
-      value: 1
+      value: Too often do the aged look to the past with regret, rather than resourcefulness.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 735e10fb107435d4285bf83c2640dade, type: 2}

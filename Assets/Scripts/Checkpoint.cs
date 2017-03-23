@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
+    public bool firstTime = true;
 
 	public Vector3 SpawnPoint;
 	// Use this for initialization
@@ -21,7 +22,9 @@ public class Checkpoint : MonoBehaviour {
 		Player player = other.gameObject.GetComponent<Player>();
 
 		if(player != null){
+            if (firstTime) { player.emptyInventory(); }
 			player.curRespawnPoint = this.SpawnPoint;
+                firstTime = false;
 		}
 	}
 }

@@ -613,5 +613,11 @@ public class Player : MonoBehaviour{
         }
     }
 
+    public void emptyInventory()
+    {
+        elementsInventory[ElementType.Fire] = 0;
+        elementsInventory[ElementType.Water] = 0;
+    }
+
 
 }

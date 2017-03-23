@@ -18,11 +18,19 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	private bool otherPlayerPressing;
 
+	float initialTime;
+	float initialTime2;
+	float initialTime3;
+
 
 	// Use this for initialization
 	void Awake () {
 		this.transferHighlighted = false;
 		this.otherPlayerPressing = false;
+
+		initialTime = Time.time;
+		initialTime2 = Time.time;
+		initialTime3 = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -34,6 +42,21 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		}
 
 		if(photonView.isMine){
+
+			if(this.player.otherPlayerPressingTransfer){
+				foreach(Tile tile in lm.getTileList()){
+					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
+						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;			
+					}
+				}
+			}
+			else{
+				foreach(Tile tile in lm.getTileList()){
+					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
+						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;			
+					}
+				}	
+			}
 
 			//Debug.Log(this.player.otherPlayerPressingTransfer);
 
@@ -56,6 +79,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 
 				if(Input.GetButton("BButton") && !this.player.hasTransfered){
+
+					/*
+					if(transferHighlighted == false){
+						GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = true;
+					}
+					*/
+
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
 						Debug.Log("CALLING SEND ELEMS");
@@ -68,13 +99,30 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					}
 					else{
 						// Change other players pressed
-						Debug.Log("Calling otherPlayerPressTransfer RPC");
-						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
+
+						float curTime2 = Time.time;
+						if(curTime2 - initialTime2 > 1f){
+							initialTime2 = curTime2;
+
+							Debug.Log("Calling otherPlayerPressTransfer RPC");
+							GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
+						}
 					}
 				}
 				else if(!Input.GetButton("BButton")){
+					if(transferHighlighted){
+						//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = false;
+					}
+
 					this.player.hasTransfered = false;
 					GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{false});
+				}
+				else{
+					if(transferHighlighted){
+						//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						transferHighlighted = false;
+					}
 				}
 				/*
 				if(transferHighlighted == false){
@@ -107,15 +155,37 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
+					Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
 					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 					player.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
 					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
 
 					this.player.otherPlayerFinishedLevel = false;
-					this.player.getCurTile().isFinalTile = false;
+					this.player.recentFinishTile.isFinalTile = false;
+					this.player.recentFinishTile = null;
 				}
 				else{
-					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
+
+					float curTime3 = Time.time;
+
+					if(curTime3 - initialTime3 > 1f){
+						initialTime3 = curTime3;
+
+						Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
+						GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
+					}
+				}
+			}
+
+
+			float curTime = Time.time;
+			if(curTime - initialTime > 1f){
+				initialTime = curTime;
+
+				Debug.Log("HAS BEEN ONE SECOND, CALLING OTHER PLAYER PRESSED OFF");
+
+				if(player.recentFinishTile == null){
+					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
 				}
 			}
 
@@ -124,6 +194,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void otherPlayerFinLevel(bool status){
+		Debug.Log("Other player has finished the level!");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
@@ -151,12 +222,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer = play.GetComponent<Player>();
 
 			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
-				curPlayer.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
-				curPlayer.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
+				curPlayer.recentFinishTile.gate.GetComponent<Gate>().block.enabled = false;
+				curPlayer.recentFinishTile.gate.GetComponent<Gate>().anim.SetBool("Open", true);
 
 
 				curPlayer.otherPlayerFinishedLevel = false;
-				curPlayer.getCurTile().isFinalTile = false;
+				curPlayer.recentFinishTile.isFinalTile = false;
+				curPlayer.recentFinishTile = null;
 			}
 			else{
 				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");
@@ -448,7 +520,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			if(tile.element != null){
 				if(tile.element.elementType == ElementType.Transfer){
-					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.red;
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;
 				}
 				else{
 					Debug.Log("NOT A TRANSFER TILE!");
@@ -473,7 +545,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			if(tile.element != null){
 				if(tile.element.elementType == ElementType.Transfer){
-					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.white;
+					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
 				}
 				else{
 					Debug.Log("NOT A TRANSFER TILE!");
@@ -489,6 +561,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	}
 
 }
+
+
 
 
 

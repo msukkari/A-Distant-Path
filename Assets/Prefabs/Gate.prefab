@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPos: {x: 0, y: 0, z: 0}
+  isTriggered: 0
 --- !u!114 &114277276766742558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -760,6 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPos: {x: 0, y: 0, z: 0}
+  isTriggered: 0
 --- !u!114 &114646589009457168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -774,8 +776,10 @@ MonoBehaviour:
   anim: {fileID: 0}
   child: {fileID: 1334513862557488}
   block: {fileID: 0}
-  myFlag: {fileID: 1555859191177598}
-  otherFlag: {fileID: 1865055059629596}
+  myFlagGO: {fileID: 1555859191177598}
+  otherFlagGO: {fileID: 1865055059629596}
+  myFlag: {fileID: 0}
+  otherFlag: {fileID: 0}
 --- !u!137 &137176077650001570
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

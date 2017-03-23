@@ -156,6 +156,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 			}
 
+			if(player.recentFinishTile == null){
+				GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
+			}
+
 		}
 	}
 

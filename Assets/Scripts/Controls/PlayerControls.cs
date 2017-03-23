@@ -168,14 +168,14 @@ public class PlayerControls : MonoBehaviour
 
         prevSelectedTile = curTile;
 
-        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting)
+        if (Input.GetAxisRaw("RightTrigger") >= 0.9 && !isShooting)
         {
             isShooting = true;
 
             playerScript.interactInFront(curTile, currentAmmo);
 
         }
-        else if (Input.GetAxisRaw("LeftTrigger") < 0.9)
+        else if (Input.GetAxisRaw("RightTrigger") < 0.9)
         {
             isShooting = false;
         }
@@ -231,7 +231,7 @@ public class PlayerControls : MonoBehaviour
         switch (CameraControls.type)
         {
             case 0:
-                if (Input.GetAxis("RightTrigger") >= 0.9)
+                if (Input.GetAxis("LeftTrigger") >= 0.9)
                 {
                     orientation.x = Input.GetAxis("RightJoystickVertical");
                     orientation.z = Input.GetAxis("RightJoystickHorizontal");
@@ -286,8 +286,17 @@ public class PlayerControls : MonoBehaviour
 
     public Tile getTileUnderCursor()
     {
+        RaycastHit hitAbove = new RaycastHit();
+        Ray rayAbove = new Ray(gameObject.transform.position, Vector3.up);
+        float y = 0;
+        if (Physics.Raycast(rayAbove, out hitAbove)) {
+            y = 0.1f;
+        } else {
+            y = 50f;
+        }
+
         RaycastHit hit = new RaycastHit();
-        Ray ray = new Ray(cursor.transform.position + new Vector3(0, 50, 0), Vector3.down);
+        Ray ray = new Ray(cursor.transform.position + new Vector3(0, y, 0), Vector3.down);
 
         if (Physics.Raycast(ray, out hit))
         {

@@ -35,7 +35,9 @@ public class TurtleState : AIStateInterface {
 	private float heading;
 	private Vector3 targetRotation;
 	private IEnumerator randomCoroutine;
-	
+
+	private Animator anim;
+		
 
 	private enum State {
 		Wait,
@@ -59,6 +61,8 @@ public class TurtleState : AIStateInterface {
 
 		this.waitTime = Random.Range(minWaitTime, maxWaitTime);
 		this.state = (int) State.Wait;
+
+		anim = this.enemy.GetComponent<Animator>();
 	}
 
 	private bool FindClosestFoodSource() {
@@ -185,6 +189,8 @@ public class TurtleState : AIStateInterface {
 
 		switch (state) {
 			case (int) State.Wait:
+				//wait
+			    anim.SetBool("Moving", false);
 
 				// re-set the wait time
 				this.waitTime = Random.Range(minWaitTime, maxWaitTime);
@@ -193,6 +199,8 @@ public class TurtleState : AIStateInterface {
 			case (int) State.Walk:
 
 				List<Tile> waypoints = enemy.waypoints;
+				//walk
+				anim.SetBool("Moving", true);
 
 				// if the current tile is a waypoint, remove it
 				//waypoints.Remove(enemy.getCurTile());
@@ -221,6 +229,9 @@ public class TurtleState : AIStateInterface {
 			if (enemy.getCurTile() == final) {
 				Debug.Log("TARGET REACHED");
 				this.enemy.isEating = true;
+				//wait
+				anim.SetBool("Eating", true);
+
 				return;
 			}
 
@@ -232,6 +243,8 @@ public class TurtleState : AIStateInterface {
 				
 
 			} else {
+				//walk
+	            anim.SetBool("Moving", true);
 
 				direction = (target.transform.position - enemy.transform.position).normalized;
 				direction.y = 0;

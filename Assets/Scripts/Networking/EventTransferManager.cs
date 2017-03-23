@@ -76,11 +76,6 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					this.player.hasTransfered = false;
 					GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{false});
 				}
-
-
-
-
-
 				/*
 				if(transferHighlighted == false){
 					Debug.Log("CALLING pOnTransfer");
@@ -106,9 +101,65 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 			}
 
+			if(player.getCurTile().isFinalTile){
+				Debug.Log("Destroying barrier");
+
+				this.player.recentFinishTile = this.player.getCurTile();
+
+				if(this.player.otherPlayerFinishedLevel){
+					Destroy(player.getCurTile().gate);
+					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
+
+					this.player.otherPlayerFinishedLevel = false;
+					this.player.getCurTile().isFinalTile = false;
+				}
+				else{
+					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, , new object[]{true});
+				}
+			}
+
 		}
 	}
 
+	[PunRPC]
+	public void otherPlayerFinLevel(bool status){
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer;
+
+		if(play != null){
+			curPlayer = play.GetComponent<Player>();
+
+			if(curPlayer != null){
+				curPlayer.otherPlayerFinishedLevel = status;
+			}
+			else{
+				Debug.Log("ERROR GETTING CURPLAYER");
+			}
+		}		
+		else{
+				Debug.Log("ERROR GETTING PLAYER GO");
+		}
+	}
+
+	[PunRPC]
+	public void destoryBarrier(){
+		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
+		Player curPlayer;
+
+		if(play != null){
+			curPlayer = play.GetComponent<Player>();
+
+			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
+				Destroy(curPlayer.recentFinishTile.gate);
+
+				this.curPlayer.otherPlayerFinishedLevel = false;
+				this.curPlayer.getCurTile().isFinalTile = false;
+			}
+			else{
+				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");
+			}
+		}
+	}
 
 	[PunRPC]
 	public void otherPlayerPressTransfer(bool status){

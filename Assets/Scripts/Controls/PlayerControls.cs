@@ -71,7 +71,11 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetButtonDown("AButton"))
         {
-            if (LevelManager.instance.TimeState == TimeStates.Present || LevelManager.instance.TimeState == TimeStates.Offline)
+            if (LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline)
+            {
+                climb();
+            }
+            else
             {
                 if (cc.isGrounded)
                 {
@@ -79,10 +83,6 @@ public class PlayerControls : MonoBehaviour
                     previous_y += jumpForce;
                     anim.SetBool("isJumping", true);
                 }
-            }
-            else
-            {
-                climb();
             }
         }
 

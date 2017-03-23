@@ -99,10 +99,10 @@ public class LevelManager : MonoBehaviour {
 
 		GameObject player;
 		if(TimeState == TimeStates.Past || TimeState == TimeStates.Offline){
-			player = Instantiate(pastPlayerPrefab, new Vector3(5f, 2.5f, 6f), Quaternion.identity) as GameObject;			
+			player = Instantiate(pastPlayerPrefab, new Vector3(-16f, -1f, 21f), Quaternion.identity) as GameObject;			
 		}
 		else{
-			player = Instantiate(futurePlayerPrefab, new Vector3(5f, 2.5f, 6f), Quaternion.identity) as GameObject;			
+			player = Instantiate(futurePlayerPrefab, new Vector3(-16f, -1f, 21f), Quaternion.identity) as GameObject;			
 		}
 
 		this.player = player.GetComponent<Player>();

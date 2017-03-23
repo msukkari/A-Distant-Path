@@ -147,7 +147,6 @@ public class Tile : MonoBehaviour {
 				this.enabled = false;
 			} else {
 				this.SetNavigatable (true);
-				am.AIStateEvent(AIEvents.OnMetalCubeRust);
 			}
 
 			Destroy (element.gameObject);

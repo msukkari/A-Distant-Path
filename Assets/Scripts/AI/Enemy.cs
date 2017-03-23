@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour {
 	// list of enemy waypoints
 	public List<Tile> waypoints = new List<Tile>();
 
+	public Tile goal;
+	public GameObject trigger;
+
 	// spawn tile of enemy
 	private Tile spawnTile;
 	private Tile lastValidTile;
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour {
 	public bool foundWater = false;
 	public bool frozePlayer = false;
 	public bool followPlayerAgain = false;
+	public bool isEating = false;
 
 	public float activityRadius = 15.0f;
 

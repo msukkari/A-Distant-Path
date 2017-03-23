@@ -20,6 +20,7 @@ public class ElementManager : MonoBehaviour {
 	public GameObject glassPrefab;
 	public GameObject stonePrefab;
 	public GameObject woodPrefab;
+	public GameObject rustfractorPrefab;
 
 	public static Dictionary<ElementType, GameObject> elementSpawnDictionary = new Dictionary<ElementType, GameObject>();
 	public static Dictionary<HashSet<ElementType>, ElementType> elementCombinationsDictionary = 
@@ -74,6 +75,7 @@ public class ElementManager : MonoBehaviour {
 		elementSpawnDictionary.Add (ElementType.Glass, glassPrefab);
 		elementSpawnDictionary.Add (ElementType.Stone, stonePrefab);
 		elementSpawnDictionary.Add (ElementType.Wood, woodPrefab);
+		elementSpawnDictionary.Add (ElementType.RustFractor, rustfractorPrefab);
 	}
 
 	private void FillElementCombinationsDictionary() {

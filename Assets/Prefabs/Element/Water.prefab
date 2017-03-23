@@ -142,7 +142,7 @@ MonoBehaviour:
   navigatable: 1
   climable: 1
   highlightable: 1
-  destroyTileOnLose: 1
+  destroyTileOnLose: 0
 --- !u!198 &198260084537052122
 ParticleSystem:
   m_ObjectHideFlags: 1

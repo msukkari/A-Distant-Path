@@ -18,8 +18,8 @@ public class Player : MonoBehaviour{
 	private const int PICKUP_TIME_THRESHOLD = 1;
 
 	private int currentGun = 0;
-	private bool chargingWeapon = false;
-	private float currentCharge = 0.0f;
+	//private bool chargingWeapon = false;
+	//private float currentCharge = 0.0f;
 
 	private Tile lastValidTile;
 	private bool frozen;
@@ -37,7 +37,14 @@ public class Player : MonoBehaviour{
 	// --- audio stuff ---
 	public AudioClip climbTrack;
 
+	public bool otherPlayerPressingTransfer;
+	public bool hasTransfered;
+
+    
 	void Start() {
+		this.hasTransfered = false;
+
+		
 		guns = GetComponentsInChildren<Gun> ();
 		this.audio = GetComponent<AudioSource>();
 
@@ -46,9 +53,10 @@ public class Player : MonoBehaviour{
 
 
 		currentLocation = getCurTile();
-    
-		// Sanity check
-		foreach(Gun gun in guns){
+        curRespawnPoint = new Vector3(5f, 0f, 2.5f);
+
+        // Sanity check
+        foreach (Gun gun in guns){
 			gun.owner = this;
 		}
 
@@ -74,9 +82,16 @@ public class Player : MonoBehaviour{
 			}
 
 			// Suck tile only if space is pressed and the player is not moving
-			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton")) && NotMoving ()) {
-				chargingWeapon = true;
-			}
+			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton"))) {
+                Debug.Log("Sucking up!");
+
+                /*if (element is Water) {
+                    absorbingParticleSystem.gameObject.SetActive(true);
+                } else {
+                    absorbingParticleSystem.gameObject.SetActive(false);
+                }*/
+                guns[currentGun].AreaShot();
+            }
 
 			// R Shoots water in the front tile (for now)
 			if (Input.GetKeyDown (KeyCode.R)) {
@@ -87,11 +102,17 @@ public class Player : MonoBehaviour{
 			if (Input.GetKeyDown (KeyCode.Q)) {
 				ShootFireInFrontTile ();	
 			}
-
-			if (chargingWeapon && NotMoving ()) {
-				currentCharge += Time.deltaTime;
-
-				if (currentCharge > 1.0f) {
+			/*if (chargingWeapon && NotMoving ()) {
+				//currentCharge += Time.deltaTime;
+                Element element = gameObject.GetComponent<PlayerControls>().getPrevTile().element;
+                Debug.Log(element);
+                if(element is Water) {
+                    absorbingParticleSystem.gameObject.SetActive(true);
+                } else {
+                    absorbingParticleSystem.gameObject.SetActive(false);
+                }
+                
+                if (currentCharge > 1.0f) {
 					guns [currentGun].AreaShot ();
 					currentCharge = 0.0f; // Charge is reset after the areashot to insure that an areashot is only done once per second
 					chargingWeapon = false;
@@ -99,13 +120,13 @@ public class Player : MonoBehaviour{
 			} else {
 				currentCharge = 0.0f;
 				chargingWeapon = false;
-			}
+			}*/
 
-			if (Input.GetKeyUp (KeyCode.Space)) {
+			/*if (Input.GetKeyUp (KeyCode.Space)) {
 				currentCharge = 0.0f;
 				chargingWeapon = false;
 
-			}
+			}*/
 
 			// handle AI trigger
 			AITrigger ();
@@ -514,53 +535,50 @@ public class Player : MonoBehaviour{
 
     public void interactInFront(Tile tile, int curType) {
         Debug.Log("Interact in front!");
-        if(tile != null){ 
+        if(getCurTile() != tile) {
+            if (tile != null) {
 
-        	float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+                float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
 
-        	if(heightDiff < 2f){
-	        	if(curType == 0){
-	            	this.ShootFireOnTile(tile);
-	            }
-	            else if(curType == 1){
-	            	this.ShootWaterOnTile(tile);
-	            }
-	            else{
-	            	Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
-	            }
-	        }
-	        else{
-	        	Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
-	        }
-            /*
-        	Tile above = aboveTile(tile);
+                if (heightDiff < 2f) {
+                    if (curType == 0) {
+                        this.ShootFireOnTile(tile);
+                    } else if (curType == 1) {
+                        this.ShootWaterOnTile(tile);
+                    } else {
+                        Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");
+                    }
+                } else {
+                    Debug.Log("TILE IS TOO HIGH TO SHOOT ON");
+                }
+                /*
+                Tile above = aboveTile(tile);
 
-        	if(above != null){
-        		Tile aboveAbove = aboveTile(above);
+                if(above != null){
+                    Tile aboveAbove = aboveTile(above);
 
-        		if(aboveAbove != null){
-        			Debug.Log(aboveAbove.getTileID());
-        			this.ShootWaterOnTile(aboveAbove.getTileID());
-        		}
-        		else{
-        			Debug.Log(above.getTileID());
-        			this.ShootWaterOnTile(above.getTileID());
-        		}
-        	}
-        	else{
-        		Debug.Log(tile.getTileID());
-        		this.ShootWaterOnTile(tile.getTileID());
-        	}
-        	*/
+                    if(aboveAbove != null){
+                        Debug.Log(aboveAbove.getTileID());
+                        this.ShootWaterOnTile(aboveAbove.getTileID());
+                    }
+                    else{
+                        Debug.Log(above.getTileID());
+                        this.ShootWaterOnTile(above.getTileID());
+                    }
+                }
+                else{
+                    Debug.Log(tile.getTileID());
+                    this.ShootWaterOnTile(tile.getTileID());
+                }
+                */
+            } else {
+                Debug.Log("TILE IS NULL IN INTERACTINFRONT");
+
+
+            }
+        } else {
+            Debug.Log("TILE PLAYER IS SHOOTING IS TILE PLAYER IS ON");
         }
-        else{
-        	Debug.Log("TILE IS NULL IN INTERACTINFRONT");
-
-        	
-        }
-
-
-
     }
 
     public Tile aboveTile(Tile curTile){

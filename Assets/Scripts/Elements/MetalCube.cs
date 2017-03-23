@@ -23,7 +23,10 @@ public class MetalCube : Element {
 	}
 
 	void OnDestroy() {
-		this.tile.navigatable = true;
+        if (tile != null)
+        {
+            this.tile.navigatable = true;
+        }
 	}
 
 	public override bool WaterInteract(EventTransferManager ETManager) {

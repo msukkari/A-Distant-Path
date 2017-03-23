@@ -89,7 +89,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
-						Debug.Log("CALLING SEND ELEMS");
+						// Debug.Log("CALLING SEND ELEMS");
 						//sucess transfer
 
 						player.getCurTile().element.GetComponent<AudioSource>().Play();
@@ -100,7 +100,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					else{
 						// Change other players pressed
 
-						Debug.Log("Calling otherPlayerPressTransfer RPC");
+						// Debug.Log("Calling otherPlayerPressTransfer RPC");
 						GetComponent<PhotonView>().RPC("otherPlayerPressTransfer", PhotonTargets.Others, new object[]{true});
 
 						/*
@@ -155,12 +155,12 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			}
 
 			if(player.getCurTile().isFinalTile){
-				Debug.Log("Destroying barrier");
+				//Debug.Log("Destroying barrier");
 
 				this.player.recentFinishTile = this.player.getCurTile();
 
 				if(this.player.otherPlayerFinishedLevel){
-					Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
+					//Debug.Log("FINIHSED THE LEVEL AND THE OTHER PLAYER HAS FINISHED!");
 					player.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
 					player.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
 					GetComponent<PhotonView>().RPC("destoryBarrier",PhotonTargets.Others);
@@ -176,7 +176,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					if(curTime3 - initialTime3 > 1f){
 						initialTime3 = curTime3;
 
-						Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
+						//Debug.Log("FINISHED THE LEVEL BUT THE OTHER PLAYER HASNT FINISHED");
 						GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
 					}
 				}
@@ -187,7 +187,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			if(curTime - initialTime > 1f){
 				initialTime = curTime;
 
-				Debug.Log("HAS BEEN ONE SECOND, CALLING OTHER PLAYER PRESSED OFF");
+				//Debug.Log("HAS BEEN ONE SECOND, CALLING OTHER PLAYER PRESSED OFF");
 
 				if(player.recentFinishTile == null){
 					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
@@ -199,7 +199,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void otherPlayerFinLevel(bool status){
-		Debug.Log("Other player has finished the level!");
+		//Debug.Log("Other player has finished the level!");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
@@ -210,11 +210,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				curPlayer.otherPlayerFinishedLevel = status;
 			}
 			else{
-				Debug.Log("ERROR GETTING CURPLAYER");
+				// Debug.Log("ERROR GETTING CURPLAYER");
 			}
 		}		
 		else{
-				Debug.Log("ERROR GETTING PLAYER GO");
+				// Debug.Log("ERROR GETTING PLAYER GO");
 		}
 	}
 
@@ -238,7 +238,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				curPlayer.recentFinishTile = null;
 			}
 			else{
-				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");
+				// Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");
 			}
 		}
 	}
@@ -248,7 +248,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		//Debug.Log("otherPlayerPressTransfer being called");
 
 		if(player == null){
-			Debug.Log("PLAYER IS NULL IN otherPlayerPressTransfer");
+			// Debug.Log("PLAYER IS NULL IN otherPlayerPressTransfer");
 		}
 		this.player.otherPlayerPressingTransfer = status;
 	}
@@ -279,7 +279,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void sendElems(){
-		Debug.Log("INSIDE SENDELEMS");
+		// Debug.Log("INSIDE SENDELEMS");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
@@ -296,7 +296,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		}
 		else{
-			Debug.Log("Player gameobject not bad");
+			// Debug.Log("Player gameobject not bad");
 			return;
 		}
 
@@ -309,14 +309,14 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			GetComponent<PhotonView>().RPC("recieveElemsFirst",PhotonTargets.Others, new object[]{curFire, curWater});
 		}
 		else{
-			Debug.Log("PLAYER COMPONENT NOT FOUND");
+			// Debug.Log("PLAYER COMPONENT NOT FOUND");
 		}
 
 	}
 
 	[PunRPC]
 	public void recieveElemsFirst(int fire, int water){
-		Debug.Log("INSIDE RECIEVEELEMSFIRST");
+		//Debug.Log("INSIDE RECIEVEELEMSFIRST");
 
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
@@ -325,7 +325,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer = play.GetComponent<Player>();
 		}
 		else{
-			Debug.Log("Player gameobject not bad");
+			// Debug.Log("Player gameobject not bad");
 			return;
 		}
 
@@ -342,13 +342,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer.elementsInventory[ElementType.Fire] = fire;
 		}
 		else{
-			Debug.Log("PLAYER COMPONENT NOT FOUND");
+			//Debug.Log("PLAYER COMPONENT NOT FOUND");
 		}
 	}
 
 	[PunRPC]
 	public void recieveElemsSecond(int fire, int water){
-		Debug.Log("INSIDE RECIEVEELEMSSECOND");
+		//Debug.Log("INSIDE RECIEVEELEMSSECOND");
 
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
@@ -357,7 +357,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer = play.GetComponent<Player>();
 		}
 		else{
-			Debug.Log("Player gameobject not bad");
+			//Debug.Log("Player gameobject not bad");
 			return;
 		}
 
@@ -366,7 +366,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer.elementsInventory[ElementType.Fire] = fire;
 		}
 		else{
-			Debug.Log("PLAYER COMPONENT NOT FOUND");
+			//Debug.Log("PLAYER COMPONENT NOT FOUND");
 		}
 	}
 
@@ -374,7 +374,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void rustMetalCube(Vector3 pos){
-		Debug.Log("METAL CUBE HAS BEEN RUSTED!");
+		//Debug.Log("METAL CUBE HAS BEEN RUSTED!");
 		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
@@ -385,65 +385,65 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					tile.GainElement(ElementType.RustFractor);
 				}
 				else{
-					Debug.Log("NOT A METAL CUBE!");
+					//Debug.Log("NOT A METAL CUBE!");
 				}
 			}
 			else{
-				Debug.Log("TILE HAS NO ELEMENT IN RUST METAL CUBE");
+				//Debug.Log("TILE HAS NO ELEMENT IN RUST METAL CUBE");
 			}
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN RUST METAL CUBE");
+			//Debug.Log("TILE NOT FOUND IN RUST METAL CUBE");
 		}
 
 	}
 
 	[PunRPC] void glassify(int tileID){
-		Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
+		//Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
 		Tile tile = lm.getTileAt(tileID);
 
 		if(tile != null){
 			tile.GainElement(ElementType.Glass);
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN GLASSIFY");
+			//Debug.Log("TILE NOT FOUND IN GLASSIFY");
 		}
 	}
 
 	[PunRPC] void loseElement(int tileID){
-		Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
+		//Debug.Log("FIRE HAS BEEN ADDED TO SAND!");
 		Tile tile = lm.getTileAt(tileID);
 
 		if(tile != null){
 			tile.LoseElement();
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN GLASSIFY");
+			//Debug.Log("TILE NOT FOUND IN GLASSIFY");
 		}
 	}
 
 	[PunRPC] void growTree(Vector3 pos){
-		Debug.Log("SAPLING HAS BEEN WATERED!");
+		//Debug.Log("SAPLING HAS BEEN WATERED!");
 		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null){
 			tile.GainElement(ElementType.BigTree);
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN GROWTREE");
+			//Debug.Log("TILE NOT FOUND IN GROWTREE");
 		}
 	}
 
 	[PunRPC]
 	void destroyTree(Vector3 pos){
-		Debug.Log("BIG TREE BEING DESTROYED");
+		//Debug.Log("BIG TREE BEING DESTROYED");
 		Tile tile = lm.getTileAt(pos);
 
 		if(tile != null && tile.element != null && tile.element.elementType == ElementType.BigTree){
 			tile.LoseElement();
 		}
 		else{
-			Debug.Log("ELEMENT ISNT A BIG TREE IS DESTORY TREE");
+			//Debug.Log("ELEMENT ISNT A BIG TREE IS DESTORY TREE");
 		}
 	}
 
@@ -473,21 +473,21 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	// NOTE: This method has a lot of Debug.Log's which I used for debugging - not 100% necessary 
 	[PunRPC]
 	public void transferTileCheck(int fire, int water){
-		Debug.Log("RECEIEVED RPC CALL FOR TRANSFER!");
+		//Debug.Log("RECEIEVED RPC CALL FOR TRANSFER!");
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer = play.GetComponent<Player>();
 
 		if(curPlayer != null){
-			Debug.Log("PLAYER COMPONENT FOUND");
+			//Debug.Log("PLAYER COMPONENT FOUND");
 			Tile curTile = curPlayer.getCurTile();
 			if(curTile != null){
-				Debug.Log("TILE FOUND");
+				//Debug.Log("TILE FOUND");
 
 				Element curElement = curTile.element;
 				if(curElement != null){
-					Debug.Log("ELEMENT FOUND!");
+					//Debug.Log("ELEMENT FOUND!");
 					if(curElement.elementType == ElementType.Transfer){
-						Debug.Log("ELEMENT IS A TRANSFER ELEMENT!");
+						//Debug.Log("ELEMENT IS A TRANSFER ELEMENT!");
 						int curWater = curPlayer.elementsInventory.ContainsKey(ElementType.Water) ? curPlayer.elementsInventory[ElementType.Water] : 0;
 						int curFire = curPlayer.elementsInventory.ContainsKey(ElementType.Fire) ? curPlayer.elementsInventory[ElementType.Fire] : 0;
 						curPlayer.elementsInventory[ElementType.Water] = water;
@@ -497,12 +497,12 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					}
 				}
 				else{
-					Debug.Log("ELEMENT NOT FOUND");
+					//Debug.Log("ELEMENT NOT FOUND");
 				}
 			}
 		}
 		else{
-			Debug.Log("PLAYER COMPONENT NOT FOUND");
+			//Debug.Log("PLAYER COMPONENT NOT FOUND");
 		}
 
 	}
@@ -510,7 +510,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void transferResources(int fire, int water){
-		Debug.Log("RECEIEVED TRANSFER COMFIRMATION");
+		//Debug.Log("RECEIEVED TRANSFER COMFIRMATION");
 		//Debug.Log("OTHER PLAYER HAS " + fire + " FIRE AND " + water + " WATER");
 
 		player.elementsInventory[ElementType.Water] = water;
@@ -530,15 +530,15 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;
 				}
 				else{
-					Debug.Log("NOT A TRANSFER TILE!");
+					//Debug.Log("NOT A TRANSFER TILE!");
 				}
 			}
 			else{
-				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+				//Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
 			}
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+			//Debug.Log("TILE NOT FOUND IN pOnTransfer");
 		}
 	}
 
@@ -555,15 +555,15 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;
 				}
 				else{
-					Debug.Log("NOT A TRANSFER TILE!");
+					//Debug.Log("NOT A TRANSFER TILE!");
 				}
 			}
 			else{
-				Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
+				//Debug.Log("TILE HAS NO ELEMENT IN pOnTransfer");
 			}
 		}
 		else{
-			Debug.Log("TILE NOT FOUND IN pOnTransfer");
+			//Debug.Log("TILE NOT FOUND IN pOnTransfer");
 		}
 	}
 

@@ -163,9 +163,11 @@ public class Tile : MonoBehaviour {
 		this.navigatable = navigatable;
 		BoxCollider collider = this.GetComponent<BoxCollider> ();
 
-		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
-			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
-		else if(navigatable){
+		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer) { 
+			collider.size = new Vector3(collider.size.x, 2.0f, collider.size.z);
+            collider.center = Vector3.up * 0.5f;
+
+		} else if(navigatable){
 			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
 		}
 		

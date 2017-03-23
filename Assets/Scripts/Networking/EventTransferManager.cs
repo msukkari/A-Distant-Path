@@ -185,12 +185,12 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			curPlayer = play.GetComponent<Player>();
 
 			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
-				curPlayer.getCurTile().gate.GetComponent<Gate>().block.enabled = false;
-				curPlayer.getCurTile().gate.GetComponent<Gate>().anim.SetBool("Open", true);
+				curPlayer.recentFinishTile.gate.GetComponent<Gate>().block.enabled = false;
+				curPlayer.recentFinishTile.gate.GetComponent<Gate>().anim.SetBool("Open", true);
 
 
 				curPlayer.otherPlayerFinishedLevel = false;
-				curPlayer.getCurTile().isFinalTile = false;
+				curPlayer.recentFinishTile.isFinalTile = false;
 			}
 			else{
 				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");

@@ -15,16 +15,18 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
-	int count = 0;
-
 
 	private bool otherPlayerPressing;
+
+	float initialTime;
 
 
 	// Use this for initialization
 	void Awake () {
 		this.transferHighlighted = false;
 		this.otherPlayerPressing = false;
+
+		initialTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -159,10 +161,13 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			}
 
 
-			count++;
-			if(player.recentFinishTile == null && count % 100){
-				GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
-				count = 0;
+			float curTime = Time.time;
+			if(initialTime - curTime > 1f){
+				initalTime = curTime;
+				
+				if(player.recentFinishTile == null){
+					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
+				}
 			}
 
 		}

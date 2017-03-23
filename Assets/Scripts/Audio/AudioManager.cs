@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AudioManager : MonoBehaviour {
 
 	// static instance of NetworkManager
@@ -10,7 +11,9 @@ public class AudioManager : MonoBehaviour {
 	// GameManager instance
 	private GameManager gm = GameManager.instance;
 
-	private AudioSource audio;
+	//AudioSources
+	public AudioSource primary;
+	public AudioSource secondary;
 
 	// track list
 	public AudioClip[] tracks;
@@ -33,21 +36,23 @@ public class AudioManager : MonoBehaviour {
 		// Sets this to not be destroyed on scene reload
 		DontDestroyOnLoad(gameObject);
 
-		this.audio = GetComponent<AudioSource>();
-		this.audio.clip = tracks[1];
-		this.audio.Play();
+		this.primary = GetComponent<AudioSource>();
+		this.primary.clip = tracks[1];
+		this.primary.Play();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (!audio.isPlaying) {
+		if (!primary.isPlaying) {
 			index++;
 			if (index == tracks.Length) index = 0;
 
-			this.audio.clip = tracks[0];
-			this.audio.Play();
+			this.primary.clip = tracks[0];
+			this.primary.Play();
 		}
 		
+
 	}
 }

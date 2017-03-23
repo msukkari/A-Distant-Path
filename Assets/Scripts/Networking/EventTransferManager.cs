@@ -59,6 +59,10 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
 						Debug.Log("CALLING SEND ELEMS");
+						//sucess transfer
+
+						player.getCurTile().element.GetComponent<AudioSource>().Play();
+
 						GetComponent<PhotonView>().RPC("sendElems", PhotonTargets.Others);
 						this.player.hasTransfered = true;
 					}
@@ -146,8 +150,17 @@ public class EventTransferManager : Photon.MonoBehaviour {
 		GameObject play = GameObject.FindGameObjectsWithTag("Player")[0];
 		Player curPlayer;
 
+		// here
+
+
 		if(play != null){
 			curPlayer = play.GetComponent<Player>();
+			Element elem = curPlayer.getCurTile().element;
+
+			if (elem.elementType == ElementType.Transfer) {
+				elem.GetComponent<AudioSource>().Play();
+			}
+
 		}
 		else{
 			Debug.Log("Player gameobject not bad");

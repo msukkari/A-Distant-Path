@@ -114,7 +114,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 					this.player.getCurTile().isFinalTile = false;
 				}
 				else{
-					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, , new object[]{true});
+					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{true});
 				}
 			}
 
@@ -152,8 +152,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
 				Destroy(curPlayer.recentFinishTile.gate);
 
-				this.curPlayer.otherPlayerFinishedLevel = false;
-				this.curPlayer.getCurTile().isFinalTile = false;
+				curPlayer.otherPlayerFinishedLevel = false;
+				curPlayer.getCurTile().isFinalTile = false;
 			}
 			else{
 				Debug.Log("PLAYER DOESNT HAVE A RECENT FINISH TILE!");

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ice : Element {
 
 	public int tileID;
+    public GameObject player;
 
 	public GameObject iceCubePrefab;
     //public GameObject icePrefab;
@@ -13,7 +14,8 @@ public class Ice : Element {
 	void Start () {
 		elementType = ElementType.Ice;
 		this.tileID = transform.parent.GetComponent<Tile>().getTileID();
-	}
+        this.player = GameObject.FindGameObjectWithTag("Player");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -63,17 +65,36 @@ public class Ice : Element {
 		//}
         RaycastHit hit;
         Ray ray = new Ray(topTile.transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out hit)){
-            Tile hitTile = hit.collider.GetComponentInParent<Tile>();       
-                if (hitTile.element != null ){
-                    if (hitTile.element.elementType != ElementType.Ice){
-                        hitTile.element.WaterInteract(hitTile.EventManager);
+        bool isTile = false;
+        if (Physics.Raycast(ray, out hit)) {
+            Component[] Components = hit.collider.GetComponentsInParent<Component>();
+            for(int i=0;i< Components.GetLength(0);i++) {
+                Component current = Components[i];
+                if (current.tag == "Tile") {
+                   Tile hitTile = hit.collider.GetComponentInParent<Tile>();
+                   isTile = true;
+                   if (hitTile.element != null){
+                        if (hitTile.element.elementType != ElementType.Ice)
+                            {
+                                hitTile.element.WaterInteract(hitTile.EventManager);
+                            }
+                        }
+                        else
+                        {
+                            hitTile.GainElement(ElementType.Water);
+                        }
+                    i = Components.GetLength(0);
                     }
-                } else {
-                    hitTile.GainElement(ElementType.Water);
                 }
+            }
+        if (isTile)
+        {
+            topTile.gameObject.SetActive(false);
+        } else
+        {
+            Player playerScript = player.GetComponent<Player>();
+            playerScript.GainElement(ElementType.Fire,1);
         }
-        topTile.gameObject.SetActive(false);
 	}
 
 	/*private void CreateOrDestroyIceBlock(bool create) {

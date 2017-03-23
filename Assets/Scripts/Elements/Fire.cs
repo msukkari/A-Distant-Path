@@ -8,12 +8,15 @@ public class Fire : Element {
 	public List<Tile> nList;
 	public bool fireSystemOn = false;
 
+	public AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
 		elementType = ElementType.Fire;
 		navigatable = false;
 		nList = transform.parent.GetComponent<Tile>().neighbors;
 		IGNITE_THRESHOLD = 1000;
+		this.audio = GetComponent<AudioSource>();
 
 		if(nList == null){
 			Debug.Log("Error getting nList in Fire Element");
@@ -24,7 +27,7 @@ public class Fire : Element {
 	void Update () {
 		if(fireSystemOn){
 			stepFireSystem();
-		}
+		} 
 	}
 
 	private void stepFireSystem(){

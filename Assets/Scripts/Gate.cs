@@ -6,6 +6,7 @@ public class Gate : MonoBehaviour {
 
 	public Animator anim;
 	public GameObject child;
+    public bool gateOpen;
 	public Collider block;
 
 	// Use this for initialization
@@ -16,6 +17,6 @@ public class Gate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        gateOpen = anim.GetBool("Open");
 	}
 }

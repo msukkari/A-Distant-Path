@@ -229,9 +229,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			if(curPlayer.recentFinishTile != null && curPlayer.recentFinishTile.isFinalTile){
 				curPlayer.recentFinishTile.gate.GetComponent<Gate>().block.enabled = false;
 				curPlayer.recentFinishTile.gate.GetComponent<Gate>().anim.SetBool("Open", true);
+                curPlayer.recentFinishTile.gate.GetComponent<Gate>().gateOpen = true;
 
 
-				curPlayer.otherPlayerFinishedLevel = false;
+
+                curPlayer.otherPlayerFinishedLevel = false;
 				curPlayer.recentFinishTile.isFinalTile = false;
 				curPlayer.recentFinishTile = null;
 			}

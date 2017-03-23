@@ -163,7 +163,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 			float curTime = Time.time;
 			if(initialTime - curTime > 1f){
-				initalTime = curTime;
+				initialTime = curTime;
 				
 				if(player.recentFinishTile == null){
 					GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});

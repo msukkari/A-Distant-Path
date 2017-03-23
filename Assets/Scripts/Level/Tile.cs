@@ -15,6 +15,9 @@ public class Tile : MonoBehaviour {
 	public bool navigatable = true;
 	public bool isGroundTile = true;
 
+	public bool isFinalTile;
+	public GameObject gate;
+
 	public Vector3 tileScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
 	// MATERIALS //
@@ -163,11 +166,15 @@ public class Tile : MonoBehaviour {
 		this.navigatable = navigatable;
 		BoxCollider collider = this.GetComponent<BoxCollider> ();
 
-		if(!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
-			collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
-		else if(navigatable){
-			collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
-		}
+        if (!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
+        {
+            collider.size = new Vector3(collider.size.x, 2f, collider.size.z);
+            collider.center = Vector3.up * 0.5f;
+        }
+        else if (navigatable)
+        {
+            collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+        }
 		
 	}
 

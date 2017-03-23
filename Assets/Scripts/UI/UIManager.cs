@@ -75,6 +75,11 @@ public class UIManager : MonoBehaviour {
                     for (; i < 5; i++) {
                         water[i].CrossFadeAlpha(0, 0, false);
                     }
+                    if (entry.Value > 5) {
+                        waterPlus.CrossFadeAlpha(waterTransp, 0, false);
+                    } else {
+                        waterPlus.CrossFadeAlpha(0, 0, false);
+                    }
                 }
             }
         }

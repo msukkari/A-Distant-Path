@@ -39,8 +39,13 @@ public class Player : MonoBehaviour{
 	public AudioClip waterElementPickup;
 	public AudioClip fireElementPickup;
 
+	// --- network booleans ---
 	public bool otherPlayerPressingTransfer;
 	public bool hasTransfered;
+
+	public bool otherPlayerFinishedLevel;
+
+	public Tile recentFinishTile;
 
     
 	void Start() {
@@ -610,4 +615,20 @@ public class Player : MonoBehaviour{
 
 		return null;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+            this.Respawn();
+        }
+    }
+
+    public void emptyInventory()
+    {
+        elementsInventory[ElementType.Fire] = 0;
+        elementsInventory[ElementType.Water] = 0;
+    }
+
+
 }

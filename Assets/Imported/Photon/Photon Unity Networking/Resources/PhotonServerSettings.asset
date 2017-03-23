@@ -61,4 +61,6 @@ MonoBehaviour:
   - recieveElemsFirst
   - recieveElemsSecond
   - sendElems
+  - destoryBarrier
+  - otherPlayerFinLevel
   DisableAutoOpenWizard: 1

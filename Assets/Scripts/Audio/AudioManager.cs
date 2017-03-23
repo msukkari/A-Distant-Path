@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour {
 		this.primary.clip = tracks[1];
 		this.primary.Play();
 
-		this.tertiary.volume = 0;
+		//this.tertiary.volume = 0;
 	}
 	
 	// Update is called once per frame

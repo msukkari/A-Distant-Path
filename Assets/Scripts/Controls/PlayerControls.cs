@@ -166,7 +166,7 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
-        if (curTile == playerScript.getCurTile()) {
+        if (curTile == playerScript.getCurTile() && curTile !=null) {
             curTile.isHighlighted = false;
         }
 

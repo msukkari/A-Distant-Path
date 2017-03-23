@@ -236,6 +236,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 			if(tile.element != null){
 				if(tile.element.elementType == ElementType.MetalCube){
 					tile.LoseElement();
+					tile.GainElement(ElementType.RustFractor);
 				}
 				else{
 					Debug.Log("NOT A METAL CUBE!");

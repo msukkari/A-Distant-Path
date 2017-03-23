@@ -79,3 +79,5 @@ MonoBehaviour:
   stonePrefab: {fileID: 1128275275651286, guid: 122a49b97390b294a80a4f25f6e864f7,
     type: 2}
   woodPrefab: {fileID: 1378966597508914, guid: 9ed2b095dc675f240ab0060a04c5db41, type: 2}
+  rustfractorPrefab: {fileID: 1631262241562048, guid: ad568dd9904840b4bb9d558e2ff1fea0,
+    type: 2}

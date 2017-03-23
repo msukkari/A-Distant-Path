@@ -47,4 +47,5 @@ public enum ElementType {
 	Stone,
 	Wood,
 	Lettuce,
+	RustFractor
 }

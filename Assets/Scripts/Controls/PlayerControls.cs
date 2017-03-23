@@ -346,6 +346,10 @@ public class PlayerControls : MonoBehaviour
             Debug.Log("Front tile y: " + frontTile.transform.position.y);
             Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
             Debug.Log(heightDiff);
+            Debug.Log("FrontTile element: " + frontTile.element);
+            if(frontTile.element != null){
+                Debug.Log("FrontTile element type: " + frontTile.element.elementType);
+            }
             if (frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2)
             {
                 StartCoroutine(climbWithStall(frontTile));

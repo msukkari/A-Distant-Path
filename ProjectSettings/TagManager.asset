@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - Level
+  - MetalCube
   layers:
   - Default
   - TransparentFX

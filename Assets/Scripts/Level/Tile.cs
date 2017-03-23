@@ -15,6 +15,9 @@ public class Tile : MonoBehaviour {
 	public bool navigatable = true;
 	public bool isGroundTile = true;
 
+	public bool isFinalTile;
+	public GameObject gate;
+
 	public Vector3 tileScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
 	// MATERIALS //

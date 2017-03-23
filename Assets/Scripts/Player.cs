@@ -37,8 +37,13 @@ public class Player : MonoBehaviour{
 	// --- audio stuff ---
 	public AudioClip climbTrack;
 
+	// --- network booleans ---
 	public bool otherPlayerPressingTransfer;
 	public bool hasTransfered;
+
+	public bool otherPlayerFinishedLevel;
+
+	public Tile recentFinishTile;
 
     
 	void Start() {

@@ -61,7 +61,7 @@ public class TurtleState : AIStateInterface {
 		this.state = (int) State.Wait;
 	}
 
-	public void FindClosestFoodSource() {
+	private bool FindClosestFoodSource() {
 
 		//Tile closestFood = lm.GetClosestTileOfType(ElementType.Lettuce, enemy.getCurTile().transform.position);
 			
@@ -69,11 +69,25 @@ public class TurtleState : AIStateInterface {
 
 		if (closestFood == null) {
 			Debug.Log("NO FOOD TILE PRESENT ON MAP");
-			return;
+			return false;
 		}
 
+			
 		Debug.Log("current: " + enemy.getCurTile().id);
+		Debug.Log("-----");
+
+		foreach (Tile t in enemy.getCurTile().neighbors) {
+			Debug.Log(t.id);
+		}
+		Debug.Log("-----");
+		
 		Debug.Log("target: " + closestFood.id);
+		Debug.Log("-----");
+
+		foreach (Tile t in closestFood.neighbors) {
+			Debug.Log(t.id);
+		}
+		Debug.Log("-----");
 
 		path = star.AStarPath(enemy.getCurTile(), closestFood);
 
@@ -81,7 +95,6 @@ public class TurtleState : AIStateInterface {
 		if (path != null) {
 			path.Reverse();
 			this.foodTile =  closestFood;
-			foodFound = true;
 			Debug.Log("PATH FOUND");
 			
 			Debug.Log(" --- Length of path: " + path.Count);
@@ -94,18 +107,30 @@ public class TurtleState : AIStateInterface {
 
 		} else {
 			Debug.Log("NO FOOD FOUND");
-			foodFound = false;
+			return false;
 		}
+
+		return true;
 	}
 
 	
 	// Update is called once per frame
 	public void Update () {
-		if (!foodFound) {
-			randomMovement();
-		} else {
+
+		// in the event 
+		if (enemy.trigger == null) {
+
+			if (!foodFound) {
+				if (FindClosestFoodSource()) foodFound = true;
+			}
+		} 
+
+		if (foodFound) {
 			goToFood();
+		} else {
+			randomMovement();
 		}
+
 	}
 
 

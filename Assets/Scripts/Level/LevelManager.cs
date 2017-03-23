@@ -151,7 +151,7 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
-		Debug.Log("COULDN'T FIND TILE IN GETTILEAT");
+		//Debug.Log("COULDN'T FIND TILE IN GETTILEAT");
 		return null;
 	}
 
@@ -232,7 +232,7 @@ public class LevelManager : MonoBehaviour {
 			tile.element.GetComponent<AudioSource>().Play();
 		}
 
-		Debug.Log("ELEMENT NAV IN CREATELEM: " + tile.element.navigatable);
+		//Debug.Log("ELEMENT NAV IN CREATELEM: " + tile.element.navigatable);
 		tile.SetNavigatable (tile.element.navigatable);
 	}
 

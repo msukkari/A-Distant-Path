@@ -599,4 +599,14 @@ public class Player : MonoBehaviour{
 
 		return null;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+
+        }
+    }
+
+
 }

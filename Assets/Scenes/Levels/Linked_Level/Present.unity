@@ -5536,7 +5536,7 @@ Prefab:
     - target: {fileID: 114029104611069968, guid: 735e10fb107435d4285bf83c2640dade,
         type: 2}
       propertyPath: textOnSign
-      value: 'Metal '
+      value: I always wondered why these metals blocks were here.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 735e10fb107435d4285bf83c2640dade, type: 2}

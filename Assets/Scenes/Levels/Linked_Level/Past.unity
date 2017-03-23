@@ -17008,7 +17008,7 @@ Prefab:
     - target: {fileID: 114029104611069968, guid: 735e10fb107435d4285bf83c2640dade,
         type: 2}
       propertyPath: textOnSign
-      value: Cuboid Oak Tree, planted 1945
+      value: I wonder why these metal blocks are here.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 735e10fb107435d4285bf83c2640dade, type: 2}

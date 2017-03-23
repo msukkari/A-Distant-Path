@@ -14,12 +14,15 @@ public class AudioManager : MonoBehaviour {
 	//AudioSources
 	public AudioSource primary;
 	public AudioSource secondary;
+	public AudioSource tertiary;
 
 	// track list
 	public AudioClip[] tracks;
 
 	// track index
 	private int index = 0;
+
+	public bool fadeFrom1to3 = false;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,7 @@ public class AudioManager : MonoBehaviour {
 		this.primary.clip = tracks[1];
 		this.primary.Play();
 
+		this.tertiary.volume = 0;
 	}
 	
 	// Update is called once per frame
@@ -55,4 +59,6 @@ public class AudioManager : MonoBehaviour {
 		
 
 	}
+
+
 }

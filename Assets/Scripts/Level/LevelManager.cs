@@ -146,7 +146,7 @@ public class LevelManager : MonoBehaviour {
 
 	public Tile getTileAt(Vector3 pos){
 		foreach(Tile tile in TileList){
-			if(tile.transform.position == pos){
+			if(tile != null && tile.transform.position == pos){
 				return tile;
 			}
 		}

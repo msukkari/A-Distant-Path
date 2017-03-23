@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure; 
 
 public class DropTrigger : MonoBehaviour {
 
@@ -18,6 +19,9 @@ public class DropTrigger : MonoBehaviour {
 
 	private float now = 0.0f;
 
+	private bool isVibrating = false;
+
+	AudioManager au = AudioManager.instance;
 	
 
 
@@ -40,6 +44,7 @@ public class DropTrigger : MonoBehaviour {
         	objects.Add(obj);
         }
         this.fall = true;
+        au.secondary.Play();
 	}
 
 	public void OnTriggerEnter(Collider other){
@@ -55,6 +60,12 @@ public class DropTrigger : MonoBehaviour {
 	void Update () {
 	
 		if (fall) {
+
+			if (!isVibrating) {
+				GamePad.SetVibration(0, 100.0f, 100.0f);
+				isVibrating = true;
+			}
+
 			now += Time.deltaTime;
 
 			if(objects.Count != 0) {
@@ -67,11 +78,6 @@ public class DropTrigger : MonoBehaviour {
 					GameObject obj = objects[rand];
 					objects.Remove(obj);
 
-					if(obj.GetComponent<Gate>() != null) {
-						Debug.Log("HERHERHERHER");
-						return; 
-					}
-
 					obj.AddComponent<Rigidbody>();
 
 					fallenObjects.Add(obj);
@@ -82,6 +88,10 @@ public class DropTrigger : MonoBehaviour {
 
 			// destroy when not needed
 			} else {	
+
+				if (isVibrating)
+					GamePad.SetVibration(0, 0.0f, 0.0f);
+
 				if (now >= resetTime) {
 					foreach (GameObject obj in fallenObjects) {
 						Destroy(obj);

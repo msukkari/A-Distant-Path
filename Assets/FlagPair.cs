@@ -17,11 +17,16 @@ public class FlagPair : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (playerScript.otherPlayerFinishedLevel){
-            rightFlag = true;
-        }
-        if (playerScript.recentFinishTile!=null){
-            leftFlag = true;
+        if (flagsActive)
+        {
+            if (playerScript.otherPlayerFinishedLevel)
+            {
+                rightFlag = true;
+            }
+            if (playerScript.recentFinishTile != null)
+            {
+                leftFlag = true;
+            }
         }
 	}
 }

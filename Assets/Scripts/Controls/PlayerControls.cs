@@ -168,14 +168,14 @@ public class PlayerControls : MonoBehaviour
 
         prevSelectedTile = curTile;
 
-        if (Input.GetAxisRaw("LeftTrigger") >= 0.9 && !isShooting)
+        if (Input.GetAxisRaw("RightTrigger") >= 0.9 && !isShooting)
         {
             isShooting = true;
 
             playerScript.interactInFront(curTile, currentAmmo);
 
         }
-        else if (Input.GetAxisRaw("LeftTrigger") < 0.9)
+        else if (Input.GetAxisRaw("RightTrigger") < 0.9)
         {
             isShooting = false;
         }
@@ -231,7 +231,7 @@ public class PlayerControls : MonoBehaviour
         switch (CameraControls.type)
         {
             case 0:
-                if (Input.GetAxis("RightTrigger") >= 0.9)
+                if (Input.GetAxis("LeftTrigger") >= 0.9)
                 {
                     orientation.x = Input.GetAxis("RightJoystickVertical");
                     orientation.z = Input.GetAxis("RightJoystickHorizontal");

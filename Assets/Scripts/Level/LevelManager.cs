@@ -228,6 +228,10 @@ public class LevelManager : MonoBehaviour {
 		//elementCreated.transform.position = new Vector3(tile.transform.position.x, elementCreated.transform.position.y, tile.transform.position.z);
 		tile.element = elementCreated.GetComponent<Element> ();
 
+		if (tile.element.elementType == ElementType.BigTree) {
+			tile.element.GetComponent<AudioSource>().Play();
+		}
+
 		Debug.Log("ELEMENT NAV IN CREATELEM: " + tile.element.navigatable);
 		tile.SetNavigatable (tile.element.navigatable);
 	}

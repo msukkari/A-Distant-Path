@@ -4186,6 +4186,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: center.x
+      value: -12.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: center.y
+      value: -6.066
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: center.z
+      value: 4.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: radius
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dropInterval
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb84cdd1142c91d4daa813f9ee2e4a7f, type: 2}
   m_IsPrefabParent: 0

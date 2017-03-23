@@ -713,7 +713,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -764,6 +764,8 @@ MonoBehaviour:
   fireElementPickup: {fileID: 8300000, guid: 8fadf347408234b43851d274574fa03b, type: 3}
   otherPlayerPressingTransfer: 0
   hasTransfered: 0
+  otherPlayerFinishedLevel: 0
+  recentFinishTile: {fileID: 0}
 --- !u!114 &114534973296570848
 MonoBehaviour:
   m_ObjectHideFlags: 1

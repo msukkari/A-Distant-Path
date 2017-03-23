@@ -11,7 +11,7 @@ public class DropTrigger : MonoBehaviour {
 	public float resetTime;
 
 	private List<GameObject> objects;
-	//private List<GameObject> fallenObjects;
+	private List<GameObject> fallenObjects;
 	private bool fall = false;
 
 	private bool beenTriggered = false;
@@ -24,14 +24,13 @@ public class DropTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.objects = new List<GameObject>();
-		//this.fallenObjects = new List<GameObject>();
+		this.fallenObjects = new List<GameObject>();
 	}
 
 	public void trigger() {
 
 		if (beenTriggered) return;
 		beenTriggered = true;
-		Debug.Log("TRIGGER");
 
 		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         int i = 0;
@@ -43,7 +42,6 @@ public class DropTrigger : MonoBehaviour {
         this.fall = true;
 	}
 
-	/*
 	public void OnTriggerEnter(Collider other){
 		Player player = other.gameObject.GetComponent<Player>();
 
@@ -51,53 +49,44 @@ public class DropTrigger : MonoBehaviour {
 		if(player != null){
 			trigger();
 		}
-	}*/
+	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		if (fall && objects.Count != 0) {
+		if (fall) {
+			now += Time.deltaTime;
 
-				now += Time.deltaTime;
+			if(objects.Count != 0) {
+
 
 				if (now >= dropInterval) {
 
 					int rand = Random.Range(0, objects.Count);
 
 					GameObject obj = objects[rand];
-
-
 					obj.AddComponent<Rigidbody>();
 
-					/*
-					Rigidbody gameObjectsRigidBody = obj.AddComponent<Rigidbody>(); // Add the rigidbody.
-					gameObjectsRigidBody.mass = 5; // Set the GO's mass to 5 via the Rigidbody.
-					gameObjectsRigidBody.velocity = new Vector3(0, 0, 0);
-					*/
 
-					//fallenObjects.Add(obj);
+					fallenObjects.Add(obj);
 					objects.Remove(obj);
 
-					//UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(obj, "Assets/Scripts/DropTrigger.cs (19,10)", "Rigidbody");
-					//obj.AddComponent<Rigidbody>();
-
-					//if (obj.GetComponent<Rigidbody>() == null) {
-						
-					//}
+					now = 0.0f;
 				}
 
-			 
 
-			/*else {
-				Debug.Log("here!!");
+			// destroy when not needed
+			} else {	
 				if (now >= resetTime) {
 					foreach (GameObject obj in fallenObjects) {
 						Destroy(obj);
 					}
 					Destroy(this);
-					Debug.Log("HEREHE");
 				}
-			}*/
+			}
 		}
+
+
 	}
 }
+

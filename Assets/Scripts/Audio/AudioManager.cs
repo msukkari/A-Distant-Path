@@ -19,10 +19,15 @@ public class AudioManager : MonoBehaviour {
 	// track list
 	public AudioClip[] tracks;
 
+	// fade interval
+	public float fadeInterval;
+
 	// track index
 	private int index = 0;
 
 	public bool fadeFrom1to3 = false;
+	public bool isFading = false;
+	private float targetVol;  
 
 	// Use this for initialization
 	void Start () {
@@ -49,13 +54,32 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		if (!primary.isPlaying) {
 			index++;
 			if (index == tracks.Length) index = 0;
 
 			this.primary.clip = tracks[0];
-			this.primary.Play();
+			this.primary.Play();	
+
+			return;
 		}
+
+
+		if (fadeFrom1to3) {
+
+			if (!isFading) {
+				isFading = true;
+				this.targetVol = primary.volume;
+				return;
+			}	
+
+			
+
+
+
+		}
+
 		
 
 	}

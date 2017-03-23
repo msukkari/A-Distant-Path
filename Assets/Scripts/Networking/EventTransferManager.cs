@@ -15,6 +15,8 @@ public class EventTransferManager : Photon.MonoBehaviour {
 	private Vector3 recentTransferPos;
 	private bool transferHighlighted;
 
+	int count = 0;
+
 
 	private bool otherPlayerPressing;
 
@@ -156,8 +158,11 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 			}
 
-			if(player.recentFinishTile == null){
+
+			count++;
+			if(player.recentFinishTile == null && count % 100){
 				GetComponent<PhotonView>().RPC("otherPlayerFinLevel",PhotonTargets.Others, new object[]{false});
+				count = 0;
 			}
 
 		}

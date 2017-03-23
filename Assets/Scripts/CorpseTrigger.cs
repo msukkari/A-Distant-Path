@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -39,5 +40,7 @@ public class CorpseTrigger : MonoBehaviour {
 	IEnumerator ChangeText() {
         yield return new WaitForSeconds(5);
         title.enabled = true;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(11);
     }
 }

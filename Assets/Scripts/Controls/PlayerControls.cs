@@ -166,6 +166,10 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
+        if (curTile == playerScript.getCurTile()) {
+            curTile.isHighlighted = false;
+        }
+
         prevSelectedTile = curTile;
 
         if (Input.GetAxisRaw("RightTrigger") >= 0.9 && !isShooting)

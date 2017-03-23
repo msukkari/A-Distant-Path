@@ -35,7 +35,20 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 		if(photonView.isMine){
 
-
+			if(this.player.otherPlayerPressingTransfer){
+				for(Tile tile in lm.getTileList()){
+					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
+						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;			
+					}
+				}
+			}
+			else{
+				for(Tile tile in lm.getTileList()){
+					if(tile.element != null && tile.element.elementType == ElementType.Transfer){
+						tile.gameObject.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.black;			
+					}
+				}	
+			}
 
 			//Debug.Log(this.player.otherPlayerPressingTransfer);
 
@@ -59,10 +72,12 @@ public class EventTransferManager : Photon.MonoBehaviour {
 
 				if(Input.GetButton("BButton") && !this.player.hasTransfered){
 
+					/*
 					if(transferHighlighted == false){
 						GetComponent<PhotonView>().RPC("pOnTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
 						transferHighlighted = true;
 					}
+					*/
 
 					if(this.player.otherPlayerPressingTransfer){
 						// Transfer resources
@@ -82,7 +97,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 				else if(!Input.GetButton("BButton")){
 					if(transferHighlighted){
-						GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
 						transferHighlighted = false;
 					}
 
@@ -91,7 +106,7 @@ public class EventTransferManager : Photon.MonoBehaviour {
 				}
 				else{
 					if(transferHighlighted){
-						GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
+						//GetComponent<PhotonView>().RPC("pOffTransfer",PhotonTargets.Others, new object[]{this.player.getCurTile().transform.position});
 						transferHighlighted = false;
 					}
 				}

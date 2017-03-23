@@ -65,9 +65,10 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	// <BUILT IN CALL> OnGUI: Displays photon connect details
+    /*
 	void OnGUI() {
 		GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-	}
+	}*/
 
 	// <BUILT IN CALL> OnJoinedLobby: Attempts to connect client to a random lobby
 	void OnJoinedLobby() {	

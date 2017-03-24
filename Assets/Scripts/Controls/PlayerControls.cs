@@ -43,6 +43,7 @@ public class PlayerControls : MonoBehaviour
     
 
     private Player playerScript;
+    private bool climbing = false;
 
     // Use this for initialization
     void Start()
@@ -70,7 +71,10 @@ public class PlayerControls : MonoBehaviour
         {
             if (LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline)
             {
-                climb();
+                if (!climbing)
+                {
+                    climb();
+                }
             }
             else if (cc.isGrounded)
             {
@@ -394,7 +398,7 @@ public class PlayerControls : MonoBehaviour
         if (frontTile != null)
         {
 
-            float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
+            float heightDiff = frontTile.transform.position.y - transform.position.y;
             /*
             Debug.Log("Front tile y: " + frontTile.transform.position.y);
             Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
@@ -404,7 +408,7 @@ public class PlayerControls : MonoBehaviour
                 Debug.Log("FrontTile element type: " + frontTile.element.elementType);
             }
             */
-            if (frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2)
+            if (frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 0.75f)
             {
                 StartCoroutine(climbWithStall(frontTile));
 
@@ -413,7 +417,7 @@ public class PlayerControls : MonoBehaviour
                 playerScript.audio.volume = 0.1f;
                 playerScript.audio.Play();
             }
-            else if (heightDiff > 0 && heightDiff < 1.2)
+            else if (0.25f < heightDiff && heightDiff < 0.75f)
             {
                 StartCoroutine(climbWithStall(frontTile));
 
@@ -437,6 +441,7 @@ public class PlayerControls : MonoBehaviour
 
     IEnumerator climbWithStall(Tile tile)
     {
+        climbing = true;
         //PlayerMesh mesh = this.GetComponentInChildren<PlayerMesh>();
         /*
         Debug.Log("AUDIO");
@@ -446,8 +451,8 @@ public class PlayerControls : MonoBehaviour
         playerScript.audio.Play();
         */
 
-            //mesh.enableMesh(false);
-            yield return new WaitForSeconds(0.2f);
+        //mesh.enableMesh(false);
+        yield return new WaitForSeconds(0.15f);
 
         Vector3 newPosition;
         if (tile.element != null && tile.element.climable)
@@ -458,10 +463,9 @@ public class PlayerControls : MonoBehaviour
         {
             newPosition = tile.transform.position;
         }
-
-
-        this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
-
+        
+        this.transform.position = new Vector3(newPosition.x, newPosition.y + 0.5f, newPosition.z); // height is hard coded for now
+        climbing = false;
         //mesh.enableMesh(true);
     }
 

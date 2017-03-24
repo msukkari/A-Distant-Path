@@ -559,12 +559,12 @@ public class Player : MonoBehaviour{
         if(getCurTile() != tile) {
             if (tile != null) {
 
-                float heightDiff = tile.gameObject.transform.position.y - this.gameObject.transform.position.y;
+                float heightDiff = tile.transform.position.y - transform.position.y;
 
                 if (heightDiff < 2f) {
                     if (curType == 0) {
                         this.ShootFireOnTile(tile);
-                    } else if (curType == 1) {
+                    } else if (curType == 1 && (heightDiff < 1f || !tile.HasElementOfType(ElementType.Ice))) {
                         this.ShootWaterOnTile(tile);
                     } else {
                         Debug.Log("TRYING TO SHOOT INVALID ELEMENT TYPE");

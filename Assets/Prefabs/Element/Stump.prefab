@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4188639474736930
 Transform:
@@ -106,4 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementType: 6
   quantity: 1
+  navigatable: 1
+  climable: 0
+  highlightable: 0
   tileID: 0

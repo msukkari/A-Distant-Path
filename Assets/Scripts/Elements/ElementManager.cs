@@ -96,7 +96,7 @@ public class ElementManager : MonoBehaviour {
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Wood), ElementType.Wood);
 
 		// Two element combinations
-		elementCombinationsDictionary.Add (GetSetFor (ElementType.Fire, ElementType.Water), ElementType.Steam);
+		//elementCombinationsDictionary.Add (GetSetFor (ElementType.Fire, ElementType.Water), ElementType.Steam);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.MetalCube, ElementType.Water), ElementType.MetalCubeRusted);	
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.Stump, ElementType.Water), ElementType.Sapling);
 		elementCombinationsDictionary.Add (GetSetFor (ElementType.BigTree, ElementType.Stump), ElementType.BigTree);

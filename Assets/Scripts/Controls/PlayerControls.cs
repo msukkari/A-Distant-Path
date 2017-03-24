@@ -464,7 +464,7 @@ public class PlayerControls : MonoBehaviour
             newPosition = tile.transform.position;
         }
         
-        this.transform.position = new Vector3(newPosition.x, newPosition.y + 0.5f, newPosition.z); // height is hard coded for now
+        this.transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z); // height is hard coded for now
         climbing = false;
         //mesh.enableMesh(true);
     }

@@ -13,7 +13,8 @@ public class textController : MonoBehaviour {
 	void Update () {
         RectTransform t = this.GetComponentInParent<RectTransform>();
         t.anchoredPosition += Vector2.up;
-        if (t.position.y > 10)
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }

@@ -65,10 +65,19 @@ public class Tile : MonoBehaviour {
         }
 
         Color highlightColor = new Color(0.51f, 0.39f, 0);
-        renderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        if (renderer != null && renderer.material != null)
+        {
+            renderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        }
         if (elemRenderer != null)
         {
-            elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+            foreach (Material m in elemRenderer.materials)
+            {
+                if (m != null)
+                {
+                    m.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+                }
+            }
         }
     }
 
@@ -162,11 +171,11 @@ public class Tile : MonoBehaviour {
 
         if (!navigatable && this.element != null && this.element.elementType != ElementType.Transfer)
         {
-            collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
+            //collider.size = new Vector3(collider.size.x, 2.5f, collider.size.z);
         }
         else if (navigatable)
         {
-            collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
+            //collider.size = new Vector3(collider.size.x, 1.0f, collider.size.z);
         }
 		
 	}
@@ -307,8 +316,8 @@ public class Tile : MonoBehaviour {
 	private Tile GetTileAbove() {
 		RaycastHit hit;
 
-		Debug.DrawLine (this.transform.position, this.transform.position + 3.0f * Vector3.up);
-		if (Physics.Raycast (this.transform.position, Vector3.up, out hit)) {
+		//Debug.DrawLine (this.transform.position, this.transform.position + 3.0f * Vector3.up);
+		if (Physics.Raycast (this.transform.position, Vector3.up, out hit, 1f)) {
 			if (hit.collider.tag == "Tile") {
 				return hit.collider.gameObject.GetComponent<Tile>();
 			}

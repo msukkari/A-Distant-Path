@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f3fc8af26914448acba9a5d107a382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePrefab: {fileID: 1447741304997964, guid: 99754b1179f1c5148bc89ee6590917a4, type: 2}
+  firePrefab: {fileID: 1447741304997964, guid: 94dc208fb08eca44485ece46ca96cd57, type: 2}
   waterPrefab: {fileID: 1797516619120934, guid: deabe5dabd03f5c478d044150d6aa24d,
     type: 2}
   steamPrefab: {fileID: 1499303183999688, guid: cbdab045fb91d434895e812d28fc3ec3,

@@ -27,7 +27,7 @@ public class CameraControls : MonoBehaviour {
 
     public Material SkyBoxMat;
 
-    private float x = 45;
+    private float x = 90 + 45;
     private float y = 35;
 
     // Use this for initialization
@@ -42,6 +42,7 @@ public class CameraControls : MonoBehaviour {
 
         character.GetComponent<PlayerControls>().setPivotPoint(pivot);
 
+        transform.position = character.transform.position;
         pivot.transform.rotation = Quaternion.Euler(new Vector3(y, x, 0));
     }
 

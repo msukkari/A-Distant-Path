@@ -20,11 +20,13 @@ public class ElementAbsorbGun : Gun {
 	}
 
 	public override void AreaShot() {
-		foreach (Tile neighbor in owner.getCurTile().neighbors) {
+        Tile currentTile = owner.getCurTile();
+        List<Tile> tiles = new List<Tile>(owner.getCurTile().neighbors);
+        tiles.Add(currentTile);
+        foreach (Tile neighbor in tiles) {
 			if (neighbor.element != null && (neighbor.element.elementType == ElementType.Water || neighbor.element.elementType == ElementType.Fire)) {
 				ElementType elementObtained = SuckTileElement (neighbor);
-
-
+                
                 GameObject particle = Instantiate(Resources.Load("Particle")) as GameObject;
                 particle.transform.position = neighbor.transform.position + new Vector3(0, 0.5f, 0);
                 particle.GetComponent<Particle>().setParameters(GameObject.FindGameObjectWithTag("Player"), elementObtained, owner);

@@ -51,7 +51,6 @@ public class PlayerControls : MonoBehaviour
         anim = GetComponent<Animator>();
         playerScript = gameObject.GetComponent<Player>();
         actualCursorRange = 1.8f;
-        cursor.GetComponent<MeshRenderer>().enabled = false;
     }
 
 
@@ -66,23 +65,18 @@ public class PlayerControls : MonoBehaviour
         {
             anim.SetBool("isJumping", false);
         }
-
-
-
+        
         if (Input.GetButtonDown("AButton"))
         {
             if (LevelManager.instance.TimeState == TimeStates.Past || LevelManager.instance.TimeState == TimeStates.Offline)
             {
                 climb();
             }
-            else
+            else if (cc.isGrounded)
             {
-                if (cc.isGrounded)
-                {
-                    Debug.Log("JUMP");
-                    previous_y += jumpForce;
-                    anim.SetBool("isJumping", true);
-                }
+                //Debug.Log("JUMP");
+                previous_y += jumpForce;
+                anim.SetBool("isJumping", true);
             }
         }
 
@@ -94,20 +88,11 @@ public class PlayerControls : MonoBehaviour
         {
             currentAmmo = (currentAmmo + 1) % 2;
         }
-
-
+        
         cc.Move(this.moveDirection * Time.deltaTime);
-
-
         
-
+        actualCursorRange = 1.8f;
         
-        
-            actualCursorRange = 1.8f;
-            cursor.GetComponent<MeshRenderer>().enabled = false;
-
-        
-
         /*
         if (Input.GetAxis("RightTrigger") >= 0.9 || mode == TriggerType.directInteract) {
 
@@ -189,16 +174,7 @@ public class PlayerControls : MonoBehaviour
     {
         float xDisp = Input.GetAxis("LeftJoystickHorizontal");
         float zDisp = -1 * Input.GetAxis("LeftJoystickVertical");
-
-        if ((Mathf.Abs(xDisp) >= 0.1) || (Mathf.Abs(zDisp) >= 0.1))
-        {
-            anim.SetBool("isMoving", true);
-        }
-        else
-        {
-            anim.SetBool("isMoving", false);
-        }
-
+        
         if (cc.isGrounded)
         {
             previous_y = 0f;
@@ -207,6 +183,8 @@ public class PlayerControls : MonoBehaviour
 
         if (Mathf.Abs(xDisp) >= joystickThreshold || Mathf.Abs(zDisp) >= joystickThreshold)
         {
+            anim.SetBool("isMoving", true);
+
             Vector3 forward = pivotPoint.transform.TransformDirection(Vector3.forward);
             forward.y = 0;
             forward = forward.normalized;
@@ -215,6 +193,10 @@ public class PlayerControls : MonoBehaviour
             this.moveDirection = (xDisp * right + zDisp * forward);
             this.moveDirection *= speed;
             orient(Mathf.Atan2(-1 * this.moveDirection.z, this.moveDirection.x) * Mathf.Rad2Deg);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
         }
 
         //dispDir += new Vector3(0f, this.verticalVelocity, 0f);
@@ -290,6 +272,68 @@ public class PlayerControls : MonoBehaviour
 
     public Tile getTileUnderCursor()
     {
+        Collider[] hits = Physics.OverlapSphere(transform.position, 2.0f);
+        Tile best = null;
+        float bestVal = 0.5f;
+        foreach (Collider hit in hits)
+        {
+            Tile tile = hit.GetComponent<Tile>();
+            if (tile != null && tile.GetTopTile() == tile)
+            {
+                float heightDiff = tile.transform.position.y - transform.position.y;
+                Vector3 planarDiff = Vector3.ProjectOnPlane(tile.transform.position - transform.position, Vector3.up);
+                if (-1.65f < heightDiff && heightDiff < 1.65f && planarDiff.magnitude < 1.45f)
+                {
+                    float val = Vector3.Dot(transform.forward, planarDiff.normalized) + (0.001f * tile.transform.position.y);
+                    if (val > bestVal)
+                    {
+                        best = tile;
+                        bestVal = val;
+                    }
+                }
+            }
+        }
+        return best;
+        /*
+        Tile playerTile = playerScript.getCurTile();
+        foreach (Tile tile in playerTile.neighbors)
+        {
+            Tile topTile = tile.GetTopTile();
+            float heightDiff = topTile.transform.position.y - playerTile.transform.position.y;
+            if (-1.1f < heightDiff && heightDiff < 2.1f)
+            {
+                float val = Vector3.Dot(transform.forward, Vector3.ProjectOnPlane(topTile.transform.position - transform.position, Vector3.up).normalized);
+                if (val > bestVal)
+                {
+                    best = topTile;
+                    bestVal = val;
+                }
+            }
+        }
+        return best;
+        */
+
+        /*
+        Tile playerTile = playerScript.getCurTile();
+        Tile best = null;
+        float bestVal = 0.5f;
+        foreach (Tile tile in playerTile.neighbors)
+        {
+            Tile topTile = tile.GetTopTile();
+            float heightDiff = topTile.transform.position.y - playerTile.transform.position.y;
+            if (-1.1f < heightDiff && heightDiff < 2.1f)
+            {
+                float val = Vector3.Dot(transform.forward, Vector3.ProjectOnPlane(topTile.transform.position - transform.position, Vector3.up).normalized);
+                if (val > bestVal)
+                {
+                    best = topTile;
+                    bestVal = val;
+                }
+            }
+        }
+        return best;
+        */
+        /*
         RaycastHit hitAbove = new RaycastHit();
         Ray rayAbove = new Ray(gameObject.transform.position, Vector3.up);
         float y = 0;
@@ -308,16 +352,15 @@ public class PlayerControls : MonoBehaviour
             if (tileGO != null)
             {
                 Tile tile = tileGO.GetComponent<Tile>();
-
                 if (tile != null)
                 {
                     return tile;
                 }
             }
         }
-
         //Debug.Log("ERROR GETTING TILE UNDER CURSOR");
         return null;
+        */
     }
 
 
@@ -325,9 +368,6 @@ public class PlayerControls : MonoBehaviour
     public void climb()
     {
         Tile frontTile = null;
-
-
-
         Tile tile = getTileUnderCursor();
 
         if (tile != null)
@@ -350,12 +390,12 @@ public class PlayerControls : MonoBehaviour
             }
         }
         */
-
-
+        
         if (frontTile != null)
         {
 
             float heightDiff = frontTile.transform.position.y - playerScript.getCurTile().gameObject.transform.position.y;
+            /*
             Debug.Log("Front tile y: " + frontTile.transform.position.y);
             Debug.Log("Cur tile y :" + playerScript.getCurTile().gameObject.transform.position.y);
             Debug.Log(heightDiff);
@@ -363,11 +403,12 @@ public class PlayerControls : MonoBehaviour
             if(frontTile.element != null){
                 Debug.Log("FrontTile element type: " + frontTile.element.elementType);
             }
+            */
             if (frontTile.element != null && (frontTile.element.elementType == ElementType.MetalCube || frontTile.element.elementType == ElementType.MetalCubeRusted) && heightDiff < 1.2)
             {
                 StartCoroutine(climbWithStall(frontTile));
 
-                Debug.Log("AUDIO");
+                //Debug.Log("AUDIO");
                 playerScript.audio.clip = playerScript.climbTrack;
                 playerScript.audio.volume = 0.1f;
                 playerScript.audio.Play();
@@ -376,7 +417,7 @@ public class PlayerControls : MonoBehaviour
             {
                 StartCoroutine(climbWithStall(frontTile));
 
-                Debug.Log("AUDIO");
+                //Debug.Log("AUDIO");
                 playerScript.audio.clip = playerScript.climbTrack;
                 playerScript.audio.volume = 0.1f;
                 playerScript.audio.Play();
@@ -405,8 +446,8 @@ public class PlayerControls : MonoBehaviour
         playerScript.audio.Play();
         */
 
-        //mesh.enableMesh(false);
-        yield return new WaitForSeconds(0.2f);
+            //mesh.enableMesh(false);
+            yield return new WaitForSeconds(0.2f);
 
         Vector3 newPosition;
         if (tile.element != null && tile.element.climable)

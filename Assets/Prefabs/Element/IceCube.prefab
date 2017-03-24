@@ -11,23 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1983955630465292}
   m_IsPrefabParent: 1
---- !u!1 &1633634886659172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4960062102518740}
-  - component: {fileID: 33575862062972758}
-  - component: {fileID: 23101858616909100}
-  m_Layer: 0
-  m_Name: IceCube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1983955630465292
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +21,8 @@ GameObject:
   - component: {fileID: 4456502897923924}
   - component: {fileID: 65621026924687216}
   - component: {fileID: 114305602062781160}
+  - component: {fileID: 33937534955780302}
+  - component: {fileID: 23721982945514196}
   m_Layer: 8
   m_Name: IceCube
   m_TagString: Untagged
@@ -52,32 +37,18 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983955630465292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.525729, y: 0, z: -18.666489}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4960062102518740}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4960062102518740
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633634886659172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4456502897923924}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23101858616909100
+--- !u!23 &23721982945514196
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633634886659172}
+  m_GameObject: {fileID: 1983955630465292}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -103,12 +74,12 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33575862062972758
+--- !u!33 &33937534955780302
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633634886659172}
+  m_GameObject: {fileID: 1983955630465292}
   m_Mesh: {fileID: 4300000, guid: ca96ae2e89fcb6049b330f7000370e80, type: 3}
 --- !u!65 &65621026924687216
 BoxCollider:
@@ -144,4 +115,3 @@ MonoBehaviour:
   tileScale: {x: 1, y: 1, z: 1}
   GrassMat: {fileID: 2100000, guid: 7ad7761dc3da86a43a911943da498ea8, type: 2}
   GrassMatFuture: {fileID: 0}
-  isHighlighted: 1

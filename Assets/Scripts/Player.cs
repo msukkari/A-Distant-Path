@@ -90,7 +90,7 @@ public class Player : MonoBehaviour{
 
 			// Suck tile only if space is pressed and the player is not moving
 			if ((Input.GetKey (KeyCode.Space) || Input.GetButton ("XButton"))) {
-                Debug.Log("Sucking up!");
+                //Debug.Log("Sucking up!");
 
                 /*if (element is Water) {
                     absorbingParticleSystem.gameObject.SetActive(true);

@@ -21,16 +21,17 @@ public class UIManager : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
-        foreach (var image in fire) {
-            image.CrossFadeAlpha(0, 0, false);
+        foreach (var image in fire)
+        {
+            SetAlpha(image, 0);
         }
-        foreach (var image in water) {
-            image.CrossFadeAlpha(0, 0, false);
+        foreach (var image in water)
+        {
+            SetAlpha(image, 0);
         }
 
-        firePlus.CrossFadeAlpha(0, 0, false);
-        waterPlus.CrossFadeAlpha(0, 0, false);
-
+        SetAlpha(firePlus, 0);
+        SetAlpha(waterPlus, 0);
     }
 
     // Update is called once per frame
@@ -52,15 +53,17 @@ public class UIManager : MonoBehaviour {
                         if(i > 4) {
                             break;
                         }
-                        fire[i].CrossFadeAlpha(fireTransp, 0, false);
+                        SetAlpha(fire[i], fireTransp);
                     }
-                    for(; i < 5; i++) {
-                        fire[i].CrossFadeAlpha(0, 0, false);
+                    for(; i < 5; i++)
+                    {
+                        SetAlpha(fire[i], 0);
                     }
-                    if(entry.Value > 5) {
-                        firePlus.CrossFadeAlpha(fireTransp, 0, false);
+                    if(entry.Value > 5)
+                    {
+                        SetAlpha(firePlus, fireTransp);
                     } else {
-                        firePlus.CrossFadeAlpha(0, 0, false);
+                        SetAlpha(firePlus, 0);
                     }
                 }
                 
@@ -70,18 +73,27 @@ public class UIManager : MonoBehaviour {
                         if(i > 4) {
                             break;
                         }
-                        water[i].CrossFadeAlpha(waterTransp, 0, false);
+                        SetAlpha(water[i], waterTransp);
                     }
-                    for (; i < 5; i++) {
-                        water[i].CrossFadeAlpha(0, 0, false);
+                    for (; i < 5; i++)
+                    {
+                        SetAlpha(water[i], 0);
                     }
-                    if (entry.Value > 5) {
-                        waterPlus.CrossFadeAlpha(waterTransp, 0, false);
+                    if (entry.Value > 5)
+                    {
+                        SetAlpha(waterPlus, waterTransp);
                     } else {
-                        waterPlus.CrossFadeAlpha(0, 0, false);
+                        SetAlpha(waterPlus, 0);
                     }
                 }
             }
         }
 	}
+
+    private void SetAlpha(Image image, float alpha)
+    {
+        Color temp = image.color;
+        temp.a = alpha;
+        image.color = temp;
+    }
 }

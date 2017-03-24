@@ -24,8 +24,6 @@ public class Tile : MonoBehaviour {
 	public Material GrassMat;
 	public Material GrassMatFuture;
 
-    public bool isHighlighted;
-
     private Renderer renderer;
     private Renderer elemRenderer;
 
@@ -43,6 +41,7 @@ public class Tile : MonoBehaviour {
 
 	
 	// Update is called once per frame
+    /*
 	void Update (){
 
 		if(elemRenderer == null && this.element != null){
@@ -55,27 +54,22 @@ public class Tile : MonoBehaviour {
         {
             elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
         }
-        /*
-        if (isHighlighted){
-			if(renderer.material.shader != this.highlight){
-				renderer.material.shader = this.highlight;
-			}
+    }
+*/
 
-			if(this.element != null && this.element.highlightable){
-				if(elemRenderer != null && elemRenderer.material.shader != this.highlight)
-					elemRenderer.material.shader = this.highlight;
-			}
-		}
-		else{
-			if(renderer.material.shader != this.unHighlight){
-				renderer.material.shader = this.unHighlight;
-			}
+    public void SetHighlight(bool isHighlighted)
+    {
+        if (elemRenderer == null && this.element != null)
+        {
+            elemRenderer = this.element.GetComponent<Renderer>();
+        }
 
-			if(this.element != null && this.element.highlightable){
-				if(elemRenderer != null && elemRenderer.material.shader != this.unHighlight)
-					elemRenderer.material.shader = this.unHighlight;
-			}
-		}*/
+        Color highlightColor = new Color(0.51f, 0.39f, 0);
+        renderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        if (elemRenderer != null)
+        {
+            elemRenderer.material.SetColor("_EmissionColor", isHighlighted ? highlightColor : Color.black);
+        }
     }
 
 	// PUBLIC METHODS //

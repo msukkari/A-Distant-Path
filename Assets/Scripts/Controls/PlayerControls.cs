@@ -154,7 +154,7 @@ public class PlayerControls : MonoBehaviour
             if (prevSelectedTile != null)
             {
 
-                prevSelectedTile.isHighlighted = false;
+                prevSelectedTile.SetHighlight(false);
             }
 
             if (curTile != null)
@@ -162,12 +162,12 @@ public class PlayerControls : MonoBehaviour
                 float heightDiff = curTile.gameObject.transform.position.y - this.gameObject.transform.position.y;
 
                 if (heightDiff <= 2f)
-                    curTile.isHighlighted = true;
+                    curTile.SetHighlight(true);
             }
         }
 
         if (curTile == playerScript.getCurTile() && curTile !=null) {
-            curTile.isHighlighted = false;
+            curTile.SetHighlight(false);
         }
 
         prevSelectedTile = curTile;

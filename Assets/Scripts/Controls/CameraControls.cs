@@ -27,21 +27,23 @@ public class CameraControls : MonoBehaviour {
 
     public Material SkyBoxMat;
 
+    private float x = 45;
+    private float y = 35;
+
     // Use this for initialization
     void Start() {
         //height = character.GetComponent<CapsuleCollider>().height;
 
         cam = pivot.GetComponentInChildren<Camera>();        
-        x = pivot.transform.rotation.y * 360 / Mathf.PI;
-        y = pivot.transform.rotation.x * 360 / Mathf.PI;
-        pivot.transform.Rotate(new Vector3(45f, 0, 0));
+        //x = pivot.transform.rotation.y * 360 / Mathf.PI;
+        //y = pivot.transform.rotation.x * 360 / Mathf.PI;
+        //pivot.transform.Rotate(new Vector3(45f, 0, 0));
         cam.gameObject.transform.localPosition = camPos;
 
         character.GetComponent<PlayerControls>().setPivotPoint(pivot);
-    }
 
-    private float x = 0;
-    private float y = 0;
+        pivot.transform.rotation = Quaternion.Euler(new Vector3(y, x, 0));
+    }
 
     private float targetAngle;
 
@@ -53,12 +55,10 @@ public class CameraControls : MonoBehaviour {
             if (distance.sqrMagnitude < 0.0001) {
                 transform.position = character.transform.position;
             } else {
-                float x = Mathf.Lerp(transform.position.x, character.transform.position.x, Time.deltaTime * dragFactor);
-                float z = Mathf.Lerp(transform.position.z, character.transform.position.z, Time.deltaTime * dragFactor);
-
-                transform.position = new Vector3(x, character.transform.position.y, z);
+                Vector3 pos = Vector3.Lerp(transform.position, character.transform.position, Time.deltaTime * dragFactor);
+                pos.y = character.transform.position.y;
+                transform.position = pos;
             }
-
         }
 
 

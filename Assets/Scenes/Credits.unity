@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16788329, g: 0.21073541, b: 0.2899403, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788316, g: 0.21073577, b: 0.28994018, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -464,9 +464,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits\n\nMusic: \nfrom Fez, by Disasterpeace\n\nTeam:\nMichael -  Programming\nBrendan
-    - Programming\nKarl - Programming\nNehir - Programming\nMilan - Game / Level Design\nAdam
-    - Art \nScott - Art \n\nSpecial Thanks:\nBio Adam Granger and Javier G\xF3mez "
+  m_Text: "Credits\n\nMusic: \nfrom Fez, by Disasterpeace\n\nTeam:\nMichael Sukkarieh
+    -  Team Lead / Programming\nBrendan Kellam - Programming\nKarl Godin - Programming\nNehir
+    Akdag - Programming\nMilan Singh- Game / Level Design\nAdam Chan - Art \nScott
+    Sewell - Art \n\nSpecial Thanks:\nBio Adam Granger and Javier G\xF3mez "
 --- !u!222 &672511275
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -484,3 +485,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95183a8cc8aa864d986b445d4b15a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  t: {fileID: 0}

@@ -4,7 +4,7 @@
 
 # Game Summary
 
-Two players, one in the past and the other in the future, must use a veriaty of elements in their environment, as well as the diffence in time, to explore a forest together.
+Two players, one in the past and the other in the future, must use a variety of elements in their environment, as well as the difference in time, to explore a forest together.
 
 # Competition Mandate
 
